@@ -24,7 +24,7 @@ public class DataInitializer implements CommandLineRunner {
             User admin = new User(
                     "Admin",
                     adminEmail,
-                    passwordEncoder.encode("Admin@890"),
+                    passwordEncoder.encode("Admin@123"),
                     "0000000000" // Dummy phone number
             );
             admin.setRole("ADMIN");
