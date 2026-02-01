@@ -129,12 +129,80 @@ public class ReturnRequestController {
             if (order != null) {
                 order.setReturnStatus(status.toUpperCase());
                 orderRepo.save(order);
+
+                // Automaticaly make it as re-order if status is APPROVED
+                if ("APPROVED".equalsIgnoreCase(status)) {
+                    createReorder(order);
+                }
             }
 
             return ResponseEntity.ok(new ReturnRequestDTO(updated));
         } catch (Exception e) {
+            logger.error("Error updating return status", e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(Map.of("error", "Failed to update return status"));
+                    .body(Map.of("error", "Failed to update return status: " + e.getMessage()));
+        }
+    }
+
+    private void createReorder(Order originalOrder) {
+        try {
+            Order newOrder = new Order();
+            newOrder.setUser(originalOrder.getUser());
+
+            // Copy shipping details
+            if (originalOrder.getShipping() != null) {
+                ShippingSnapshot oldShipping = originalOrder.getShipping();
+                ShippingSnapshot newShipping = new ShippingSnapshot();
+                newShipping.setName(oldShipping.getName());
+                newShipping.setPhone(oldShipping.getPhone());
+                newShipping.setStreet(oldShipping.getStreet());
+                newShipping.setCity(oldShipping.getCity());
+                newShipping.setState(oldShipping.getState());
+                newShipping.setPincode(oldShipping.getPincode());
+                newShipping.setLandmark(oldShipping.getLandmark());
+                newShipping.setAddressType(oldShipping.getAddressType());
+                newOrder.setShipping(newShipping);
+            }
+
+            newOrder.setDeliveryOption(originalOrder.getDeliveryOption());
+            newOrder.setPaymentMethod("replacement");
+            newOrder.setPaymentStatus("PAID"); // Replacement doesn't need new payment
+            newOrder.setSubtotal(originalOrder.getSubtotal());
+            newOrder.setShippingFee(originalOrder.getShippingFee());
+            newOrder.setTotal(originalOrder.getTotal());
+            newOrder.setStatus("pending");
+
+            // Save order first to get ID for items
+            Order savedOrder = orderRepo.save(newOrder);
+
+            // Copy items
+            List<OrderItem> newItems = originalOrder.getItems().stream().map(item -> {
+                OrderItem newItem = new OrderItem();
+                newItem.setOrder(savedOrder);
+                newItem.setProduct(item.getProduct());
+                newItem.setVariant(item.getVariant());
+                newItem.setProductName(item.getProductName());
+                newItem.setProductImageUrl(item.getProductImageUrl());
+                newItem.setVariantName(item.getVariantName());
+                newItem.setVariantPrice(item.getVariantPrice());
+                newItem.setVariantOriginalPrice(item.getVariantOriginalPrice());
+                newItem.setVariantWeightValue(item.getVariantWeightValue());
+                newItem.setVariantWeightUnit(item.getVariantWeightUnit());
+                newItem.setQuantity(item.getQuantity());
+                newItem.setPrice(item.getPrice());
+                newItem.setWeightValue(item.getWeightValue());
+                newItem.setWeightUnit(item.getWeightUnit());
+                return newItem;
+            }).collect(Collectors.toList());
+
+            savedOrder.setItems(newItems);
+            orderRepo.save(savedOrder);
+
+            logger.info("Created re-order #{} from original order #{}", savedOrder.getId(), originalOrder.getId());
+        } catch (Exception e) {
+            logger.error("Failed to create automatic re-order", e);
+            // We don't throw here to avoid failing the status update itself,
+            // but in a production app we might want a different strategy.
         }
     }
 }
