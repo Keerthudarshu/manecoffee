@@ -2,20 +2,22 @@ import React, { useState } from 'react';
 import Icon from '../../../components/AppIcon';
 import Button from '../../../components/ui/Button';
 import Image from '../../../components/AppImage';
+import ReturnRequestModal from './ReturnRequestModal';
 
-const OrderTrackingDetails = ({ order, processingInvoice, handleDownloadInvoice, handlePrintInvoice }) => {
+const OrderTrackingDetails = ({ order, processingInvoice, handleDownloadInvoice, handlePrintInvoice, onRefresh }) => {
   const [showTimelineModal, setShowTimelineModal] = useState(false);
+  const [showReturnModal, setShowReturnModal] = useState(false);
   // Use trackingHistory from DB if present, else fallback
   const trackingHistory = Array.isArray(order?.trackingHistory) && order.trackingHistory.length > 0
     ? order.trackingHistory
     : [
-        {
-          status: 'Order Confirmed',
-          date: order?.createdAt,
-          details: ['Your Order has been placed.'],
-        },
-        ...(order?.status === 'delivered' ? [{ status: 'Delivered', date: order?.deliveredAt || order?.updatedAt, details: ['Your item has been delivered.'] }] : []),
-      ];
+      {
+        status: 'Order Confirmed',
+        date: order?.createdAt,
+        details: ['Your Order has been placed.'],
+      },
+      ...(order?.status === 'delivered' ? [{ status: 'Delivered', date: order?.deliveredAt || order?.updatedAt, details: ['Your item has been delivered.'] }] : []),
+    ];
 
   // For main card, show only the main statuses
   const steps = trackingHistory.map((h, idx) => ({
@@ -86,14 +88,36 @@ const OrderTrackingDetails = ({ order, processingInvoice, handleDownloadInvoice,
           </div>
         </div>
 
-        {/* Chat/Rating */}
         <div className="bg-white rounded-lg border border-border p-4 flex flex-col md:flex-row gap-4 items-center justify-between">
           <Button variant="outline" className="w-full md:w-auto">Chat with us</Button>
+
+          {order?.status === 'delivered' && !order?.returnStatus && (
+            <Button
+              variant="default"
+              className="w-full md:w-auto bg-orange-600 hover:bg-orange-700 text-white"
+              onClick={() => setShowReturnModal(true)}
+            >
+              Return Product
+            </Button>
+          )}
+
+          {order?.returnStatus && (
+            <div className="flex flex-col items-center md:items-end">
+              <span className="text-sm font-medium text-muted-foreground mb-1">Return Status</span>
+              <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold border ${order.returnStatus === 'PENDING' ? 'bg-yellow-100 text-yellow-800 border-yellow-200' :
+                  order.returnStatus === 'APPROVED' ? 'bg-blue-100 text-blue-800 border-blue-200' :
+                    order.returnStatus === 'RE_DELIVERED' ? 'bg-green-100 text-green-800 border-green-200' :
+                      'bg-red-100 text-red-800 border-red-200'
+                }`}>
+                {order.returnStatus}
+              </span>
+            </div>
+          )}
         </div>
         <div className="bg-white rounded-lg border border-border p-4">
           <div className="font-body font-medium mb-2">Rate your experience</div>
           <div className="flex items-center gap-2">
-            {[1,2,3,4,5].map(star => (
+            {[1, 2, 3, 4, 5].map(star => (
               <span key={star} className="text-2xl text-muted-foreground cursor-pointer">★</span>
             ))}
           </div>
@@ -164,6 +188,13 @@ const OrderTrackingDetails = ({ order, processingInvoice, handleDownloadInvoice,
           </div>
         </div>
       )}
+      {/* Return Modal */}
+      <ReturnRequestModal
+        order={order}
+        isOpen={showReturnModal}
+        onClose={() => setShowReturnModal(false)}
+        onRefresh={onRefresh}
+      />
     </div>
   );
 };

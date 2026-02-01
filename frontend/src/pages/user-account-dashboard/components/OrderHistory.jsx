@@ -30,47 +30,47 @@ const OrderHistory = () => {
   ];
 
   // Fetch user orders from API
-  useEffect(() => {
-    const fetchOrders = async () => {
-      if (!user?.email) return;
-      setLoading(true);
-      setError(null);
-      try {
-        const userOrders = await orderApi.getUserOrders(user.email);
-        // For each order item, if weightValue/unit missing, fetch from product/variant
-        const db = jsonDb;
-        const normalized = await Promise.all((userOrders || []).map(async (order) => {
-          const items = await Promise.all((order?.items || []).map(async (item) => {
-            let weightValue = item.weightValue;
-            let weightUnit = item.weightUnit;
-            // If missing, try to fetch from product/variant
-            if ((!weightValue || !weightUnit) && item.productId && item.variantId) {
-              try {
-                const product = await db.getProductById(item.productId);
-                const variant = product?.variants?.find(v => v.id === item.variantId || v._id === item.variantId);
-                if (variant) {
-                  weightValue = variant.weightValue || variant.weight || '';
-                  weightUnit = variant.weightUnit || variant.unit || '';
-                }
-              } catch {}
-            }
-            const resolved = resolveImageUrl(item?.productImage || item?.image || item?.imageUrl || '');
-            return { ...item, productImage: resolved, weightValue, weightUnit };
-          }));
-          return { ...order, items };
+  const fetchOrders = async () => {
+    if (!user?.email) return;
+    setLoading(true);
+    setError(null);
+    try {
+      const userOrders = await orderApi.getUserOrders(user.email);
+      // For each order item, if weightValue/unit missing, fetch from product/variant
+      const db = jsonDb;
+      const normalized = await Promise.all((userOrders || []).map(async (order) => {
+        const items = await Promise.all((order?.items || []).map(async (item) => {
+          let weightValue = item.weightValue;
+          let weightUnit = item.weightUnit;
+          // If missing, try to fetch from product/variant
+          if ((!weightValue || !weightUnit) && item.productId && item.variantId) {
+            try {
+              const product = await db.getProductById(item.productId);
+              const variant = product?.variants?.find(v => v.id === item.variantId || v._id === item.variantId);
+              if (variant) {
+                weightValue = variant.weightValue || variant.weight || '';
+                weightUnit = variant.weightUnit || variant.unit || '';
+              }
+            } catch { }
+          }
+          const resolved = resolveImageUrl(item?.productImage || item?.image || item?.imageUrl || '');
+          return { ...item, productImage: resolved, weightValue, weightUnit };
         }));
-        setOrders(normalized);
-      } catch (err) {
-        console.error('Error fetching orders:', err);
-        setError(err.message || 'Failed to load orders');
-      } finally {
-        setLoading(false);
-      }
-    };
+        return { ...order, items };
+      }));
+      setOrders(normalized);
+    } catch (err) {
+      console.error('Error fetching orders:', err);
+      setError(err.message || 'Failed to load orders');
+    } finally {
+      setLoading(false);
+    }
+  };
+  useEffect(() => {
     fetchOrders();
   }, [user?.email]);
 
-  const filteredOrders = filterStatus === 'all' 
+  const filteredOrders = filterStatus === 'all'
     ? (Array.isArray(orders) ? orders : [])
     : (Array.isArray(orders) ? orders.filter(order => order?.status === filterStatus) : []);
 
@@ -105,14 +105,14 @@ const OrderHistory = () => {
         companyPhone: "+91 7892783668",
         companyEmail: "info@sanathana-parampara.com"
       };
-      
+
       // Enhanced customer data mapping with better fallbacks
       const customer = {
         name: order.shipping?.name || order.customerName || user?.name || 'Valued Customer',
         email: order.customerEmail || user?.email || 'N/A',
         phone: order.shipping?.phone || order.customerPhone || user?.phone || 'N/A'
       };
-      
+
       // Enhanced order data with proper formatting matching backend structure
       const enhancedOrder = {
         ...order,
@@ -136,7 +136,7 @@ const OrderHistory = () => {
           pincode: 'N/A'
         }
       };
-      
+
       await new Promise(resolve => setTimeout(resolve, 500)); // Brief delay for UX
       downloadInvoice(enhancedOrder, customer, settings);
     } catch (error) {
@@ -157,14 +157,14 @@ const OrderHistory = () => {
         companyPhone: "+91 7892783668",
         companyEmail: "info@sanatanaparampare.com"
       };
-      
+
       // Enhanced customer data mapping with better fallbacks
       const customer = {
         name: order.shipping?.name || order.customerName || user?.name || 'Valued Customer',
         email: order.customerEmail || user?.email || 'N/A',
         phone: order.shipping?.phone || order.customerPhone || user?.phone || 'N/A'
       };
-      
+
       // Enhanced order data with proper formatting matching backend structure
       const enhancedOrder = {
         ...order,
@@ -188,7 +188,7 @@ const OrderHistory = () => {
           pincode: 'N/A'
         }
       };
-      
+
       await new Promise(resolve => setTimeout(resolve, 300)); // Brief delay for UX
       printInvoice(enhancedOrder, customer, settings);
     } catch (error) {
@@ -231,8 +231,8 @@ const OrderHistory = () => {
           <Icon name="AlertCircle" size={48} className="text-red-500 mx-auto mb-4" />
           <h3 className="text-lg font-semibold text-red-800 mb-2">Error Loading Orders</h3>
           <p className="text-red-600 mb-4">{error}</p>
-          <Button 
-            variant="outline" 
+          <Button
+            variant="outline"
             onClick={() => window.location.reload()}
           >
             Try Again
@@ -309,9 +309,9 @@ const OrderHistory = () => {
                       onClick={() => toggleOrderExpansion(order?.id)}
                       className="p-2 hover:bg-muted rounded-full transition-colors duration-200"
                     >
-                      <Icon 
-                        name={expandedOrder === order?.id ? "ChevronUp" : "ChevronDown"} 
-                        size={20} 
+                      <Icon
+                        name={expandedOrder === order?.id ? "ChevronUp" : "ChevronDown"}
+                        size={20}
                         className="text-muted-foreground"
                       />
                     </button>
@@ -321,7 +321,13 @@ const OrderHistory = () => {
 
               {/* Order Details */}
               {expandedOrder === order?.id && (
-                <OrderTrackingDetails order={order} processingInvoice={processingInvoice} handleDownloadInvoice={handleDownloadInvoice} handlePrintInvoice={handlePrintInvoice} />
+                <OrderTrackingDetails
+                  order={order}
+                  processingInvoice={processingInvoice}
+                  handleDownloadInvoice={handleDownloadInvoice}
+                  handlePrintInvoice={handlePrintInvoice}
+                  onRefresh={fetchOrders}
+                />
               )}
             </div>
           ))
