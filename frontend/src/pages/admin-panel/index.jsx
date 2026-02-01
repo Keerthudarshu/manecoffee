@@ -9,6 +9,7 @@ import OrderManagement from './components/OrderManagement';
 import Dashboard from './components/Dashboard';
 import Settings from './components/Settings';
 import InquiryManagement from './components/InquiryManagement';
+import ReturnManagement from './components/ReturnManagement';
 
 const AdminPanel = () => {
   const [currentUser, setCurrentUser] = useState(null);
@@ -62,6 +63,8 @@ const AdminPanel = () => {
         return <Settings />;
       case 'inquiries':
         return <InquiryManagement />;
+      case 'returns':
+        return <ReturnManagement />;
       default:
         return <Dashboard />;
     }

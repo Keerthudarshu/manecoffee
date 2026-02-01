@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { X, LayoutDashboard, Package, Users, ShoppingCart, Settings, MessageSquare } from 'lucide-react';
+import { X, LayoutDashboard, Package, Users, ShoppingCart, Settings, MessageSquare, RotateCcw } from 'lucide-react';
 import { API_CONFIG } from '../../../config/apiConfig';
 
 const AdminSidebar = ({ activeSection, onSectionChange, isOpen, onClose }) => {
@@ -60,6 +60,12 @@ const AdminSidebar = ({ activeSection, onSectionChange, isOpen, onClose }) => {
       icon: MessageSquare,
       description: 'Customer messages',
       badge: inquiryCount > 0 ? inquiryCount : null
+    },
+    {
+      id: 'returns',
+      label: 'Returns',
+      icon: RotateCcw,
+      description: 'Order returns'
     },
     {
       id: 'settings',

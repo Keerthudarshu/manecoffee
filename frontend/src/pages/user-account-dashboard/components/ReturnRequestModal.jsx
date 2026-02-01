@@ -94,12 +94,12 @@ const ReturnRequestModal = ({ order, isOpen, onClose, onRefresh }) => {
                                 className="absolute inset-0 opacity-0 cursor-pointer"
                             />
                             {preview ? (
-                                <div className="relative w-full aspect-video">
-                                    <img src={preview} alt="Preview" className="w-full h-full object-contain rounded" />
+                                <div className="relative w-full h-64 border rounded overflow-hidden bg-muted/30">
+                                    <img src={preview} alt="Preview" className="w-full h-full object-contain" />
                                     <button
                                         type="button"
                                         onClick={(e) => { e.stopPropagation(); setPreview(null); setImage(null); }}
-                                        className="absolute top-2 right-2 p-1 bg-red-500 text-white rounded-full hover:bg-red-600"
+                                        className="absolute top-2 right-2 p-1 bg-red-500 text-white rounded-full hover:bg-red-600 shadow-md transition-transform hover:scale-110"
                                     >
                                         <Icon name="X" size={16} />
                                     </button>
@@ -108,7 +108,7 @@ const ReturnRequestModal = ({ order, isOpen, onClose, onRefresh }) => {
                                 <div className="text-center">
                                     <Icon name="Upload" size={32} className="text-muted-foreground mx-auto mb-2" />
                                     <p className="text-sm text-muted-foreground">Click to upload or drag and drop</p>
-                                    <p className="text-xs text-muted-foreground mt-1">PNG, JPG, JPEG up to 5MB</p>
+                                    <p className="text-xs text-muted-foreground mt-1">PNG, JPG, JPEG (High quality supported)</p>
                                 </div>
                             )}
                         </div>
