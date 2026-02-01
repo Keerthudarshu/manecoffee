@@ -19,7 +19,7 @@ public class DataInitializer implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        String adminEmail = "Admin@gmail.com";
+        String adminEmail = "admin@gmail.com";
         if (userRepository.findByEmail(adminEmail).isEmpty()) {
             User admin = new User(
                     "Admin",
