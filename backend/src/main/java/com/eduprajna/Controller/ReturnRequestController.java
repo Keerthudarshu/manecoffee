@@ -6,6 +6,7 @@ import com.eduprajna.entity.OrderItem;
 import com.eduprajna.entity.ReturnRequest;
 import com.eduprajna.entity.ShippingSnapshot;
 import com.eduprajna.entity.User;
+import com.eduprajna.repository.OrderItemRepository;
 import com.eduprajna.repository.OrderRepository;
 import com.eduprajna.repository.ReturnRequestRepository;
 import com.eduprajna.service.StorageService;
@@ -15,6 +16,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -32,6 +34,9 @@ public class ReturnRequestController {
 
     @Autowired
     private OrderRepository orderRepo;
+
+    @Autowired
+    private OrderItemRepository orderItemRepo;
 
     @Autowired
     private UserService userService;
@@ -112,6 +117,7 @@ public class ReturnRequestController {
     }
 
     @PutMapping("/admin/{id}/status")
+    @Transactional
     public ResponseEntity<?> updateReturnStatus(
             @PathVariable Long id,
             @RequestBody Map<String, String> body) {
@@ -146,6 +152,7 @@ public class ReturnRequestController {
         }
     }
 
+    @Transactional
     private void createReorder(Order originalOrder) {
         try {
             Order newOrder = new Order();
@@ -175,10 +182,10 @@ public class ReturnRequestController {
             newOrder.setStatus("pending");
 
             // Save order first to get ID for items
-            Order savedOrder = orderRepo.save(newOrder);
+            final Order savedOrder = orderRepo.save(newOrder);
 
-            // Copy items
-            List<OrderItem> newItems = originalOrder.getItems().stream().map(item -> {
+            // Copy items and save them explicitly
+            originalOrder.getItems().forEach(item -> {
                 OrderItem newItem = new OrderItem();
                 newItem.setOrder(savedOrder);
                 newItem.setProduct(item.getProduct());
@@ -194,17 +201,18 @@ public class ReturnRequestController {
                 newItem.setPrice(item.getPrice());
                 newItem.setWeightValue(item.getWeightValue());
                 newItem.setWeightUnit(item.getWeightUnit());
-                return newItem;
-            }).collect(Collectors.toList());
+                orderItemRepo.save(newItem);
+                savedOrder.getItems().add(newItem);
+            });
 
-            savedOrder.setItems(newItems);
+            // Final save to update the order with the collection of items (redundant but
+            // safe)
             orderRepo.save(savedOrder);
 
-            logger.info("Created re-order #{} from original order #{}", savedOrder.getId(), originalOrder.getId());
+            logger.info("Created re-order #{} from original order #{} with {} items",
+                    savedOrder.getId(), originalOrder.getId(), savedOrder.getItems().size());
         } catch (Exception e) {
             logger.error("Failed to create automatic re-order", e);
-            // We don't throw here to avoid failing the status update itself,
-            // but in a production app we might want a different strategy.
         }
     }
 }
