@@ -3,8 +3,12 @@
 import React, { useState, useEffect } from 'react';
 
 const desktopImages = [
-  '/assets/banner/first.png',
   '/assets/banner/second.png',
+  '/assets/banner/3.png',
+  '/assets/banner/4.png',
+  '/assets/banner/5.png'
+
+
 ];
 const mobileImages = [
   '/assets/banner/mobilefirst.png',
