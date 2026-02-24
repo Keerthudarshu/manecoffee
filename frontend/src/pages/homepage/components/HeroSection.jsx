@@ -6,7 +6,8 @@ const desktopImages = [
   '/assets/banner/second.png',
   '/assets/banner/3.png',
   '/assets/banner/4.png',
-  '/assets/banner/5.png'
+  '/assets/banner/5.png',
+  '/assets/banner/6.png'
 
 
 ];
