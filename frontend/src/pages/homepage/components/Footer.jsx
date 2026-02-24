@@ -73,9 +73,13 @@ const Footer = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
             {/* Brand Section */}
             <div className="lg:col-span-2">
-              <Link to="/homepage" className="flex items-center space-x-2 mb-4">
-                <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                  <Icon name="Leaf" size={20} color="white" />
+              <Link to="/homepage" className="flex items-center space-x-3 mb-4 group">
+                <div className="w-10 h-10 flex items-center justify-center">
+                  <img
+                    src="/assets/images/logo.png"
+                    alt="Sanatana Parampare"
+                    className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-110"
+                  />
                 </div>
                 <span className="font-heading font-bold text-xl text-foreground">
                   Sanatana Parampare
@@ -84,12 +88,12 @@ const Footer = () => {
               <p className="font-body text-muted-foreground mb-6 max-w-md">
                 Experience the purest traditional foods following ancient wisdom. Handcrafted with love using time-honored recipes and natural ingredients. Discover authentic Indian heritage flavors.
               </p>
-              
+
               {/* Contact Info */}
               <div className="space-y-3">
                 <div className="flex items-center space-x-3">
                   <Icon name="Phone" size={16} className="text-primary" />
-                  <a 
+                  <a
                     href={`tel:${contactInfo?.phone}`}
                     className="font-body text-sm text-foreground hover:text-primary transition-colors duration-200"
                   >
@@ -98,7 +102,7 @@ const Footer = () => {
                 </div>
                 <div className="flex items-center space-x-3">
                   <Icon name="MessageCircle" size={16} className="text-success" />
-                  <a 
+                  <a
                     href={`https://wa.me/${contactInfo?.whatsapp?.replace(/\s/g, '')}`}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -109,7 +113,7 @@ const Footer = () => {
                 </div>
                 <div className="flex items-center space-x-3">
                   <Icon name="Mail" size={16} className="text-primary" />
-                  <a 
+                  <a
                     href={`mailto:${contactInfo?.email}`}
                     className="font-body text-sm text-foreground hover:text-primary transition-colors duration-200"
                   >
