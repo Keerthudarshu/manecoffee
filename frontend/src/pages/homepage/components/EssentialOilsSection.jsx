@@ -1,14 +1,14 @@
 import React from 'react';
 
 const essentialOils = [
+  { id: 39, name: 'Groundnut Oil', img: '/assets/images/esential oils/Ground nut oil bottle.png' },
+  { id: 38, name: 'Dry Coconut Oil', img: '/assets/images/esential oils/Dry coconut oil Bottle.png' },
   { id: 18, name: 'Saflower Oil', img: '/assets/images/esential oils/Saflower oil Bottle.png' },
   { id: 19, name: 'Sesame Oil', img: '/assets/images/esential oils/Sesame oil bottle.png' },
-  { id: 20, name: 'Flax Seed Oil', img: '/assets/images/esential oils/Flax seed oil.png' },
-  { id: 21, name: 'Niger Oil', img: '/assets/images/esential oils/Niger oil Bottle.png' },
-  { id: 22, name: 'Virgin Coconut Oil', img: '/assets/images/esential oils/V Coconut oil Bottle.png' },
   { id: 23, name: 'Mustard Oil', img: '/assets/images/esential oils/Mustard oil bottle.png' },
-  { id: 38, name: 'Dry Coconut Oil', img: '/assets/images/esential oils/Dry coconut oil Bottle.png' },
-  { id: 39, name: 'Groundnut Oil', img: '/assets/images/esential oils/Ground nut oil bottle.png' },
+  { id: 21, name: 'Niger Oil', img: '/assets/images/esential oils/Niger oil Bottle.png' },
+  { id: 20, name: 'Flax Seed Oil', img: '/assets/images/esential oils/Flax seed oil.png' },
+  { id: 22, name: 'Virgin Coconut Oil', img: '/assets/images/esential oils/V Coconut oil Bottle.png' },
 ];
 
 const EssentialOilsSection = () => (
@@ -16,10 +16,10 @@ const EssentialOilsSection = () => (
     <div className="container mx-auto px-4">
       <div className="text-center mb-12">
         <h2 className="font-heading text-4xl font-bold text-accent mb-4">
-          Essential Oils
+          Edible Oils
         </h2>
         <p className="font-body text-lg text-muted-foreground max-w-2xl mx-auto">
-          Discover our range of pure, traditional essential oils for your daily needs.
+          Discover our range of pure, traditional Edible oils for your daily needs.
         </p>
       </div>
       <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-8">

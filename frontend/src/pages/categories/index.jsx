@@ -65,7 +65,7 @@ const CategoriesPage = () => {
       id: 8,
       name: 'Chemical Free Jaggery',
       productCount: 8,
-      image: '/assets/banner/Jaggery_Sweeteners.jpg',
+      image: '/assets/banner/Jaggery_Sweeteners.jpeg',
       icon: 'Candy',
       description: 'Chemical-free natural sweeteners',
       featured: ['Powder Jaggery', 'Solid Jaggery', 'Palm Jaggery'],
@@ -77,7 +77,7 @@ const CategoriesPage = () => {
       id: 5,
       name: 'Papads',
       productCount: 15,
-      image: '/assets/banner/papad.png',
+      image: '/assets/banner/papad.jpeg',
       icon: 'Cookie',
       description: 'Handmade papads & traditional items',
       featured: ['Rice Papad', 'Urad Papad', 'Ragi Items'],
@@ -108,7 +108,7 @@ const CategoriesPage = () => {
 
       <div className="min-h-screen bg-background">
         <Header />
-        
+
         <main className="pt-6">
           <div className="container mx-auto px-4">
             <Breadcrumb customItems={breadcrumbItems} />
@@ -120,7 +120,7 @@ const CategoriesPage = () => {
               </h1>
               <div className="w-24 h-1 bg-accent mx-auto mb-6"></div>
               <p className="font-body text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                Explore our carefully curated categories of traditional Indian products. 
+                Explore our carefully curated categories of traditional Indian products.
                 Each category represents generations of authentic recipes and traditional methods.
               </p>
             </div>
@@ -129,10 +129,10 @@ const CategoriesPage = () => {
             {categories.length > 0 ? (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mb-16">
                 {categories.map((category) => (
-                  <CategoryCard 
-                    key={category.id} 
-                    category={category} 
-                    onClick={() => handleCategoryClick(category)} 
+                  <CategoryCard
+                    key={category.id}
+                    category={category}
+                    onClick={() => handleCategoryClick(category)}
                   />
                 ))}
               </div>
@@ -173,7 +173,7 @@ const CategoriesPage = () => {
 };
 
 const CategoryCard = ({ category, onClick }) => (
-  <div 
+  <div
     className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 cursor-pointer group transform hover:scale-105"
     onClick={onClick}
   >
@@ -188,7 +188,7 @@ const CategoryCard = ({ category, onClick }) => (
         }}
       />
       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent group-hover:from-black/70 transition-all duration-300"></div>
-      
+
       {/* Product Count Badge */}
       <div className="absolute top-4 right-4">
         <span className="bg-white/90 text-primary px-3 py-1 rounded-full text-sm font-semibold">

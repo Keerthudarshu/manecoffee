@@ -43,7 +43,7 @@ const ProductCategoriesSection = () => {
       subtitle: 'Pure & Natural',
       description: 'Traditional ghee and unprocessed wild honey',
       icon: 'Heart',
-        image: '/assets/banner/gee3.avif',
+      image: '/assets/banner/gee3.avif',
       products: ['Pure Ghee', 'Wild Honey', 'Farm Honey', 'A2 Ghee'],
       color: 'bg-gradient-to-br from-amber-100 to-yellow-100',
       textColor: 'text-amber-800'
@@ -54,7 +54,7 @@ const ProductCategoriesSection = () => {
       subtitle: 'Chemical Free',
       description: 'Natural sweeteners made using traditional methods',
       icon: 'Candy',
-      image: '/assets/banner/Jaggery_Sweeteners.jpg',
+      image: '/assets/banner/Jaggery_Sweeteners.jpeg',
       products: ['Powder Jaggery', 'Ginger Jaggery', 'Solid Jaggery', 'Palm Jaggery'],
       color: 'bg-gradient-to-br from-brown-100 to-orange-100',
       textColor: 'text-brown-800'
@@ -82,7 +82,7 @@ const ProductCategoriesSection = () => {
           </h2>
           <div className="w-24 h-1 bg-accent mx-auto mb-6"></div>
           <p className="font-body text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Discover authentic Indian flavors crafted using ancient wisdom and traditional methods. 
+            Discover authentic Indian flavors crafted using ancient wisdom and traditional methods.
             Each product tells a story of our rich culinary heritage.
           </p>
         </div>
@@ -103,7 +103,7 @@ const ProductCategoriesSection = () => {
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-                
+
                 {/* Icon Overlay */}
                 <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm p-3 rounded-full">
                   <Icon name={category.icon} size={24} className="text-primary" />

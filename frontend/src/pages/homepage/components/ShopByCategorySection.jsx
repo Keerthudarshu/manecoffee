@@ -33,7 +33,7 @@ const ShopByCategorySection = () => {
       id: 6,
       name: 'Pickles',
       productCount: 18,
-      image:['/assets/banner/pickles.png'],
+      image: ['/assets/banner/pickles.png'],
       icon: 'Jar',
       description: 'Homemade traditional pickles',
       featured: ['Mango Pickle', 'Lemon Pickle', 'Mixed Veg'],
@@ -57,7 +57,7 @@ const ShopByCategorySection = () => {
       id: 8,
       name: 'Chemical Free Jaggery',
       productCount: 8,
-      image: ['/assets/banner/Jaggery_Sweeteners.jpg'],
+      image: ['/assets/banner/Jaggery_Sweeteners.jpeg'],
       icon: 'Candy',
       description: 'Chemical-free natural sweeteners',
       featured: ['Powder Jaggery', 'Solid Jaggery', 'Palm Jaggery'],
@@ -68,7 +68,7 @@ const ShopByCategorySection = () => {
       id: 5,
       name: 'Papads',
       productCount: 15,
-      image: ['/assets/banner/papad.png'],
+      image: ['/assets/banner/papad.jpeg'],
       icon: 'Cookie',
       description: 'Handmade papads & traditional items',
       featured: ['Rice Papad', 'Urad Papad', 'Ragi Items'],
@@ -121,10 +121,10 @@ const ShopByCategorySection = () => {
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   loading="lazy"
                 />
-                
+
                 {/* Enhanced Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-                
+
                 {/* Badge */}
                 <div className="absolute top-4 left-4">
                   <span className="bg-primary/90 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg border border-primary/20">
@@ -160,7 +160,7 @@ const ShopByCategorySection = () => {
                 <h3 className="font-heading text-xl font-bold text-foreground mb-2">
                   {category.name}
                 </h3>
-                
+
                 {/* Description */}
                 <p className="font-body text-muted-foreground text-sm mb-4">
                   {category.description}
@@ -191,14 +191,14 @@ const ShopByCategorySection = () => {
                       ₹{category.startingPrice}
                     </span>
                   </div>
-                  
+
                   <div className="flex items-center text-primary group-hover:text-accent transition-colors duration-300">
                     <span className="font-medium text-sm mr-2">Shop Now</span>
                     <Icon name="ArrowRight" size={16} className="group-hover:translate-x-1 transition-transform duration-300" />
                   </div>
                 </div>
 
-                  {/* Removed Add to Cart and Add to Wishlist buttons as requested */}
+                {/* Removed Add to Cart and Add to Wishlist buttons as requested */}
               </div>
             </Link>
           ))}
