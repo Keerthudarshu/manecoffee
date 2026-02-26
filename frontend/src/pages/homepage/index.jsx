@@ -6,6 +6,7 @@ import BannerShowcase from './components/BannerShowcase';
 import FeaturedProductsSection from './components/FeaturedProductsSection';
 
 import ShopByCategorySection from './components/ShopByCategorySection';
+import CategoryProductsSection from './components/CategoryProductsSection';
 import EssentialOilsSection from './components/EssentialOilsSection';
 
 
@@ -82,8 +83,8 @@ const Homepage = () => {
     <>
       <Helmet>
         <title>Sanatana Parampare - Buy Premium Traditional Indian Food Products Online</title>
-        <meta 
-          name="description" 
+        <meta
+          name="description"
           content="Shop premium traditional Indian food products online at Sanatana Parampare. Buy wood-pressed oils, spice powders, pickles, pure ghee, honey & more. Free delivery above ₹499. Authentic quality guaranteed."
         />
         <meta name="keywords" content="buy traditional indian food online, wood pressed oils, spice powders, pickles, pure ghee, honey, jaggery, papads, organic food products, sanatana parampare shop, traditional food delivery" />
@@ -117,6 +118,8 @@ const Homepage = () => {
           {/* Featured Products - Best selling items with quick purchase */}
           <FeaturedProductsSection onAddToCart={handleAddToCart} />
 
+          {/* New Category-Based Product Section */}
+          <CategoryProductsSection onAddToCart={handleAddToCart} />
 
           {/* Shop by Category - Browse all product categories */}
           <ShopByCategorySection />
