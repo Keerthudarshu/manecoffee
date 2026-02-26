@@ -1,4 +1,4 @@
-  import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import apiClient from '../../../services/api';
 import { X } from 'lucide-react';
 import dataService from '../../../services/dataService';
@@ -31,21 +31,21 @@ const ProductForm = ({ product, onSave, onCancel }) => {
       // Convert single-price product to variants, or use existing variants
       const incomingVariants = (product.variants && Array.isArray(product.variants) && product.variants.length > 0)
         ? product.variants.map(v => ({
-            price: v.price != null ? String(v.price) : '',
-            originalPrice: v.originalPrice != null ? String(v.originalPrice) : '',
-            stockQuantity: v.stockQuantity != null ? String(v.stockQuantity) : '',
-            weightValue: v.weightValue != null ? String(v.weightValue) : '',
-            weightUnit: v.weightUnit || 'ML'
-          }))
+          price: v.price != null ? String(v.price) : '',
+          originalPrice: v.originalPrice != null ? String(v.originalPrice) : '',
+          stockQuantity: v.stockQuantity != null ? String(v.stockQuantity) : '',
+          weightValue: v.weightValue != null ? String(v.weightValue) : '',
+          weightUnit: v.weightUnit || 'ML'
+        }))
         : [
-            {
-              price: product.price ? String(product.price) : '',
-              originalPrice: product.originalPrice ? String(product.originalPrice) : '',
-              stockQuantity: product.stockQuantity ? String(product.stockQuantity) : '',
-              weightValue: product.weight ? String(product.weight).replace(/[^0-9.]/g, '') : '',
-              weightUnit: 'ML'
-            }
-          ];
+          {
+            price: product.price ? String(product.price) : '',
+            originalPrice: product.originalPrice ? String(product.originalPrice) : '',
+            stockQuantity: product.stockQuantity ? String(product.stockQuantity) : '',
+            weightValue: product.weight ? String(product.weight).replace(/[^0-9.]/g, '') : '',
+            weightUnit: 'ML'
+          }
+        ];
 
       setFormData({
         name: product.name || '',
@@ -80,7 +80,7 @@ const ProductForm = ({ product, onSave, onCancel }) => {
       const canvas = document.createElement('canvas');
       const ctx = canvas.getContext('2d');
       const img = new Image();
-      
+
       img.onload = () => {
         // Calculate new dimensions
         let { width, height } = img;
@@ -92,15 +92,15 @@ const ProductForm = ({ product, onSave, onCancel }) => {
           width = (width * maxHeight) / height;
           height = maxHeight;
         }
-        
+
         canvas.width = width;
         canvas.height = height;
-        
+
         // Draw and compress
         ctx.drawImage(img, 0, 0, width, height);
         canvas.toBlob(resolve, 'image/jpeg', quality);
       };
-      
+
       img.src = URL.createObjectURL(file);
     });
   };
@@ -115,7 +115,7 @@ const ProductForm = ({ product, onSave, onCancel }) => {
           setError('Image file is too large. Please select an image smaller than 20MB.');
           return;
         }
-        
+
         // Compress image if it's larger than 500KB
         if (file.size > 500 * 1024) {
           console.log('Compressing image from', (file.size / 1024).toFixed(2), 'KB');
@@ -259,7 +259,7 @@ const ProductForm = ({ product, onSave, onCancel }) => {
       onSave();
     } catch (err) {
       console.error('Error saving product:', err);
-      
+
       // Handle specific error types
       if (err.message?.includes('413') || err.message?.includes('Content Too Large') || err.message?.includes('MaxUploadSizeExceededException')) {
         setError('Image file is too large. Please select a smaller image or try compressing it further.');
@@ -365,11 +365,11 @@ const ProductForm = ({ product, onSave, onCancel }) => {
                     </select>
                   </div>
                   <div className="flex items-center justify-end h-full pb-1">
-                    { (formData.variants || []).length > 1 && (
+                    {(formData.variants || []).length > 1 && (
                       <button type="button" onClick={() => removeVariant(idx)} className="text-destructive hover:opacity-80 ml-2" title="Remove variant">
                         <X size={18} />
                       </button>
-                    ) }
+                    )}
                   </div>
                 </div>
               </div>
@@ -397,7 +397,7 @@ const ProductForm = ({ product, onSave, onCancel }) => {
               >
                 <option value="">{categories.length === 0 ? 'Loading categories...' : 'Select Category'}</option>
                 {categories.map((category) => (
-                  <option key={category.id} value={category.id}>{category.name}</option>
+                  <option key={category.id} value={category.name}>{category.name}</option>
                 ))}
               </select>
             </div>

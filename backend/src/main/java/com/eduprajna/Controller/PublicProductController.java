@@ -22,6 +22,9 @@ public class PublicProductController {
     @Autowired
     private ProductService productService;
 
+    @Autowired
+    private com.eduprajna.repository.CategoryRepository categoryRepository;
+
     /**
      * Get all active products for public consumption
      * Supports filtering by category, search, and other parameters
@@ -62,6 +65,17 @@ public class PublicProductController {
 
                         if (normalizedProductCategory.equals(normalizedCategory))
                             return true;
+
+                        // Check if productCategory is an ID and match its name
+                        try {
+                            Long catId = Long.parseLong(productCategory.trim());
+                            return categoryRepository.findById(catId)
+                                    .map(c -> c.getName().toLowerCase().replace("-", " ").replace("_", " ")
+                                            .equals(normalizedCategory))
+                                    .orElse(false);
+                        } catch (NumberFormatException e) {
+                            // Not an ID, proceed to partial matching
+                        }
 
                         // Partial matching
                         return normalizedProductCategory.contains(normalizedCategory) ||
@@ -178,9 +192,23 @@ public class PublicProductController {
                         return false;
 
                     // Case-insensitive matching
-                    return productCategory.toLowerCase().equals(categoryName.toLowerCase()) ||
+                    if (productCategory.toLowerCase().equals(categoryName.toLowerCase()) ||
                             productCategory.toLowerCase().replace("-", " ")
-                                    .equals(categoryName.toLowerCase().replace("-", " "));
+                                    .equals(categoryName.toLowerCase().replace("-", " "))) {
+                        return true;
+                    }
+
+                    // Check if productCategory is an ID
+                    try {
+                        Long catId = Long.parseLong(productCategory.trim());
+                        return categoryRepository.findById(catId)
+                                .map(c -> c.getName().equalsIgnoreCase(categoryName) ||
+                                        c.getName().toLowerCase().replace("-", " ")
+                                                .equals(categoryName.toLowerCase().replace("-", " ")))
+                                .orElse(false);
+                    } catch (NumberFormatException e) {
+                        return false;
+                    }
                 })
                 .collect(Collectors.toList());
 
