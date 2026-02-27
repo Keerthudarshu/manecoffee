@@ -1,16 +1,16 @@
-require('dotenv').config();
+const path = require('path');
+require('dotenv').config({ path: path.join(__dirname, '.env') });
 const express = require('express');
 const cors = require('cors');
 const sgMail = require('@sendgrid/mail');
 const PDFDocument = require('pdfkit');
 const fs = require('fs');
-const path = require('path');
 
 const app = express();
 const port = process.env.PORT || 5001;
 
 // SendGrid Validation & Initialization
-const apiKey = process.env.SENDGRID_API_KEY;
+const apiKey = process.env.SENDGRID_API_KEY ? process.env.SENDGRID_API_KEY.trim() : null;
 
 if (!apiKey) {
     console.error('FATAL ERROR: SENDGRID_API_KEY is not defined in .env');
@@ -26,6 +26,13 @@ if (!apiKey.startsWith('SG.')) {
 const maskedKey = apiKey.substring(0, 6) + '...' + apiKey.substring(apiKey.length - 4);
 console.log(`Email Service Initializing...`);
 console.log(`SendGrid API Key Loaded: ${maskedKey}`);
+const fromEmail = process.env.FROM_EMAIL;
+if (!fromEmail) {
+    console.warn('WARNING: FROM_EMAIL is not defined in .env. Emails may fail to send.');
+} else {
+    console.log(`Verified Sender: ${fromEmail}`);
+}
+
 sgMail.setApiKey(apiKey);
 
 // Middleware
@@ -246,12 +253,15 @@ app.post('/api/send-confirmation', async (req, res) => {
         res.status(200).json({ success: true, message: 'Confirmation email sent with invoice' });
     } catch (error) {
         console.error('Error sending email:', error);
-        res.status(500).json({ success: false, message: 'Failed to send confirmation email' });
+        if (error.response && error.response.body) {
+            console.error('SendGrid Error Body:', JSON.stringify(error.response.body, null, 2));
+        }
+        res.status(500).json({ success: false, message: 'Failed to send confirmation email', error: error.message });
     }
 });
 
 // Health check
-app.get('/health', (req, res) => {
+app.get(['/health', '/api/health'], (req, res) => {
     res.status(200).send('Email service is running');
 });
 
@@ -310,7 +320,10 @@ app.post('/api/send-subscription-confirmation', async (req, res) => {
         res.status(200).json({ success: true, message: 'Subscription confirmation email sent' });
     } catch (error) {
         console.error('Error sending subscription email:', error);
-        res.status(500).json({ success: false, message: 'Failed to send subscription confirmation email' });
+        if (error.response && error.response.body) {
+            console.error('SendGrid Error Body:', JSON.stringify(error.response.body, null, 2));
+        }
+        res.status(500).json({ success: false, message: 'Failed to send subscription confirmation email', error: error.message });
     }
 });
 
@@ -362,7 +375,10 @@ app.post('/api/send-contact-thankyou', async (req, res) => {
         res.status(200).json({ success: true, message: 'Contact thank-you email sent' });
     } catch (error) {
         console.error('Error sending contact thank-you email:', error);
-        res.status(500).json({ success: false, message: 'Failed to send contact thank-you email' });
+        if (error.response && error.response.body) {
+            console.error('SendGrid Error Body:', JSON.stringify(error.response.body, null, 2));
+        }
+        res.status(500).json({ success: false, message: 'Failed to send contact thank-you email', error: error.message });
     }
 });
 
