@@ -104,7 +104,7 @@ const TrustSignals = () => {
               </p>
             </div>
           </div>
-          
+
           <div className="flex items-center space-x-3">
             <Icon name="MessageCircle" size={16} className="text-success" />
             <div>
@@ -112,11 +112,11 @@ const TrustSignals = () => {
                 WhatsApp
               </p>
               <p className="font-data text-xs text-muted-foreground">
-                +91 98765 43210
+                +91 99025 23333
               </p>
             </div>
           </div>
-          
+
           <div className="flex items-center space-x-3">
             <Icon name="Mail" size={16} className="text-accent" />
             <div>
@@ -124,7 +124,7 @@ const TrustSignals = () => {
                 Email Support
               </p>
               <p className="font-data text-xs text-muted-foreground">
-                support@sanatanaparampare.com
+                paramparestore@gmail.com
               </p>
             </div>
           </div>

@@ -26,11 +26,14 @@ const ContactPage = () => {
   ];
 
   const contactInfo = {
-    phone: "+91 80 4567 8901",
-    whatsapp: "+91 98765 43210",
+    phone: "+91 99025 23333",
+    whatsapp: "+91 99025 23333",
     email: "hello@sanatanaparampare.com",
-    supportEmail: "support@sanatanaparampare.com",
-    address: "123 MG Road, Bengaluru, Karnataka 560001"
+    supportEmail: "paramparestore@gmail.com",
+    address: `Anand Vihari No - 87, 
+2nd main road, 2nd stage,
+Vinayaka layout, Vijayanagar,
+    Bengaluru - 560040`
   };
 
   const businessHours = [
@@ -247,7 +250,7 @@ const ContactPage = () => {
                         name="phone"
                         value={formData.phone}
                         onChange={handleInputChange}
-                        placeholder="+91 98765 43210"
+                        placeholder="+91 99025 23333"
                       />
                       <Input
                         label="Subject"
@@ -326,13 +329,18 @@ const ContactPage = () => {
                       </div>
                     </div>
 
-                    {/* Map Placeholder */}
-                    <div className="mt-8 bg-gradient-to-r from-primary/10 to-accent/10 rounded-lg h-48 flex items-center justify-center">
-                      <div className="text-center">
-                        <Icon name="MapPin" size={32} className="text-primary mx-auto mb-2" />
-                        <p className="font-body text-muted-foreground">Interactive Map</p>
-                        <p className="font-body text-sm text-muted-foreground">Coming Soon</p>
-                      </div>
+                    {/* Interactive Map */}
+                    <div className="mt-8 overflow-hidden rounded-lg h-64 lg:h-80 shadow-inner">
+                      <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d243.00358392382697!2d77.52991475164892!3d12.968182535125827!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae3d0f974ab0f9%3A0xdbaa955b2992da79!2sSanatana%20Parampare!5e0!3m2!1sen!2sin!4v1772190902319!5m2!1sen!2sin"
+                        width="100%"
+                        height="100%"
+                        style={{ border: 0 }}
+                        allowFullScreen=""
+                        loading="lazy"
+                        referrerPolicy="no-referrer-when-downgrade"
+                        title="Sanatana Parampare Location"
+                      ></iframe>
                     </div>
                   </div>
 

@@ -21,7 +21,7 @@ const Settings = () => {
     currency: 'INR',
     shippingFee: '50',
     freeShippingThreshold: '500',
-    contactEmail: 'support@sanatanaparampare.com'
+    contactEmail: 'paramparestore@gmail.com'
   });
 
   const [loading, setLoading] = useState({

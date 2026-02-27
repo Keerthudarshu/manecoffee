@@ -96,7 +96,7 @@ const PaymentForm = ({ onNext, onBack, orderTotal, paymentMethod: initialPayment
       } else if (cardData?.cardNumber?.replace(/\s/g, '')?.length < 16) {
         newErrors.cardNumber = 'Invalid card number';
       }
-      
+
       if (!cardData?.expiryMonth) newErrors.expiryMonth = 'Expiry month is required';
       if (!cardData?.expiryYear) newErrors.expiryYear = 'Expiry year is required';
       if (!cardData?.cvv) newErrors.cvv = 'CVV is required';
@@ -119,7 +119,7 @@ const PaymentForm = ({ onNext, onBack, orderTotal, paymentMethod: initialPayment
    */
   const handleSubmit = async (e) => {
     e?.preventDefault();
-    
+
     if (!paymentMethod) {
       setErrors({ paymentMethod: 'Please select a payment method' });
       return;
@@ -167,12 +167,11 @@ const PaymentForm = ({ onNext, onBack, orderTotal, paymentMethod: initialPayment
           {paymentMethods?.map((method) => (
             <label
               key={method?.id}
-              className={`block p-4 border rounded-lg cursor-pointer transition-colors duration-200 ${
-                paymentMethod === method?.id
+              className={`block p-4 border rounded-lg cursor-pointer transition-colors duration-200 ${paymentMethod === method?.id
                   ? 'border-primary bg-primary/5'
-                  : method?.available 
-                    ? 'border-border hover:border-primary/50' :'border-border bg-muted/50 cursor-not-allowed'
-              }`}
+                  : method?.available
+                    ? 'border-border hover:border-primary/50' : 'border-border bg-muted/50 cursor-not-allowed'
+                }`}
             >
               <input
                 type="radio"
@@ -183,22 +182,20 @@ const PaymentForm = ({ onNext, onBack, orderTotal, paymentMethod: initialPayment
                 disabled={!method?.available}
                 className="sr-only"
               />
-              
+
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-3">
-                  <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
-                    paymentMethod === method?.id 
-                      ? 'bg-primary text-primary-foreground' 
+                  <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${paymentMethod === method?.id
+                      ? 'bg-primary text-primary-foreground'
                       : method?.available
                         ? 'bg-muted text-muted-foreground'
                         : 'bg-muted/50 text-muted-foreground/50'
-                  }`}>
+                    }`}>
                     <Icon name={method?.icon} size={20} />
                   </div>
                   <div>
-                    <h3 className={`font-body font-medium ${
-                      method?.available ? 'text-foreground' : 'text-muted-foreground'
-                    }`}>
+                    <h3 className={`font-body font-medium ${method?.available ? 'text-foreground' : 'text-muted-foreground'
+                      }`}>
                       {method?.name}
                     </h3>
                     <p className="font-body text-sm text-muted-foreground">
@@ -206,17 +203,16 @@ const PaymentForm = ({ onNext, onBack, orderTotal, paymentMethod: initialPayment
                     </p>
                   </div>
                 </div>
-                
+
                 <div className="flex items-center space-x-3">
                   {method?.fee > 0 && (
                     <span className="font-data text-sm text-muted-foreground">
                       +₹{method?.fee}
                     </span>
                   )}
-                  <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
-                    paymentMethod === method?.id
-                      ? 'border-primary bg-primary' :'border-border'
-                  }`}>
+                  <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${paymentMethod === method?.id
+                      ? 'border-primary bg-primary' : 'border-border'
+                    }`}>
                     {paymentMethod === method?.id && (
                       <div className="w-2 h-2 bg-primary-foreground rounded-full" />
                     )}
@@ -240,7 +236,7 @@ const PaymentForm = ({ onNext, onBack, orderTotal, paymentMethod: initialPayment
             <h3 className="font-body font-medium text-foreground">
               Card Details
             </h3>
-            
+
             <Input
               label="Cardholder Name"
               type="text"
@@ -302,7 +298,7 @@ const PaymentForm = ({ onNext, onBack, orderTotal, paymentMethod: initialPayment
             <h3 className="font-body font-medium text-foreground">
               UPI Details
             </h3>
-            
+
             <Input
               label="UPI ID"
               type="text"
@@ -311,7 +307,7 @@ const PaymentForm = ({ onNext, onBack, orderTotal, paymentMethod: initialPayment
               error={errors?.upiId}
               required
               placeholder="yourname@paytm"
-              description="Enter your UPI ID (e.g., 9876543210@paytm)"
+              description="Enter your UPI ID (e.g., 99025 23333@paytm)"
             />
           </div>
         )}

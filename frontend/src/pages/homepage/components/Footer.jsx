@@ -41,7 +41,7 @@ const Footer = () => {
 
   const contactInfo = {
     phone: "+91 99025 23333",
-    whatsapp: "+91 98765 43210",
+    whatsapp: "+91 99025 23333",
     email: "paramparestore@gmail.com",
     address: "Anand Vihari No - 87 2nd main road, 2nd stage Vinayaka layout, Vijayanagar,Bengaluru - 560040"
   };

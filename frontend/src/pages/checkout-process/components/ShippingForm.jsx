@@ -60,7 +60,7 @@ const ShippingForm = ({ onNext, onAddressSelect, user, isLoading = false }) => {
         const list = await userApi.getAddresses(authUser.email);
         const addressList = Array.isArray(list) ? list : [];
         setSaved(addressList);
-        
+
         // If no saved addresses, automatically show new address form
         if (addressList.length === 0) {
           setShowNewAddressForm(true);
@@ -87,21 +87,21 @@ const ShippingForm = ({ onNext, onAddressSelect, user, isLoading = false }) => {
    */
   const isFormValid = () => {
     return formData?.firstName?.trim() &&
-           formData?.lastName?.trim() &&
-           formData?.email?.trim() &&
-           /\S+@\S+\.\S+/?.test(formData?.email) &&
-           formData?.phone?.trim() &&
-           /^[+]?[91]?[6-9]\d{9}$/?.test(formData?.phone?.replace(/\s/g, '')) &&
-           formData?.address?.trim() &&
-           formData?.city?.trim() &&
-           formData?.state &&
-           formData?.pincode?.trim() &&
-           /^\d{6}$/?.test(formData?.pincode);
+      formData?.lastName?.trim() &&
+      formData?.email?.trim() &&
+      /\S+@\S+\.\S+/?.test(formData?.email) &&
+      formData?.phone?.trim() &&
+      /^[+]?[91]?[6-9]\d{9}$/?.test(formData?.phone?.replace(/\s/g, '')) &&
+      formData?.address?.trim() &&
+      formData?.city?.trim() &&
+      formData?.state &&
+      formData?.pincode?.trim() &&
+      /^\d{6}$/?.test(formData?.pincode);
   };
 
   const validateForm = () => {
     const newErrors = {};
-    
+
     if (!formData?.firstName?.trim()) newErrors.firstName = 'First name is required';
     if (!formData?.lastName?.trim()) newErrors.lastName = 'Last name is required';
     if (!formData?.email?.trim()) newErrors.email = 'Email is required';
@@ -126,7 +126,7 @@ const ShippingForm = ({ onNext, onAddressSelect, user, isLoading = false }) => {
    */
   const handleSubmit = async (e) => {
     e?.preventDefault();
-    
+
     try {
       if (selectedAddress) {
         // Use selected saved address
@@ -134,16 +134,16 @@ const ShippingForm = ({ onNext, onAddressSelect, user, isLoading = false }) => {
         if (!address) {
           throw new Error('Selected address not found');
         }
-        
+
         if (onAddressSelect) onAddressSelect(address);
         onNext(address);
         return;
       }
-      
+
       if (showNewAddressForm && validateForm()) {
         // Create new address
         let created = null;
-        
+
         // Save to backend if requested
         if (saveAddress && authUser?.email) {
           try {
@@ -166,7 +166,7 @@ const ShippingForm = ({ onNext, onAddressSelect, user, isLoading = false }) => {
             // Continue with local address creation
           }
         }
-        
+
         // Create address object for checkout
         const addressToUse = created || {
           name: `${formData.firstName} ${formData.lastName}`.trim(),
@@ -178,7 +178,7 @@ const ShippingForm = ({ onNext, onAddressSelect, user, isLoading = false }) => {
           landmark: '',
           addressType: 'Home'
         };
-        
+
         if (onAddressSelect) onAddressSelect(addressToUse);
         onNext(addressToUse);
       }
@@ -213,10 +213,9 @@ const ShippingForm = ({ onNext, onAddressSelect, user, isLoading = false }) => {
               {saved?.map((address) => (
                 <label
                   key={address?.id}
-                  className={`block p-4 border rounded-lg cursor-pointer transition-colors duration-200 ${
-                    selectedAddress === address?.id?.toString()
-                      ? 'border-primary bg-primary/5' :'border-border hover:border-primary/50'
-                  }`}
+                  className={`block p-4 border rounded-lg cursor-pointer transition-colors duration-200 ${selectedAddress === address?.id?.toString()
+                      ? 'border-primary bg-primary/5' : 'border-border hover:border-primary/50'
+                    }`}
                 >
                   <input
                     type="radio"
@@ -246,10 +245,9 @@ const ShippingForm = ({ onNext, onAddressSelect, user, isLoading = false }) => {
                         {address?.phone}
                       </p>
                     </div>
-                    <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
-                      selectedAddress === address?.id?.toString()
-                        ? 'border-primary bg-primary' :'border-border'
-                    }`}>
+                    <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${selectedAddress === address?.id?.toString()
+                        ? 'border-primary bg-primary' : 'border-border'
+                      }`}>
                       {selectedAddress === address?.id?.toString() && (
                         <div className="w-2 h-2 bg-primary-foreground rounded-full" />
                       )}
@@ -258,7 +256,7 @@ const ShippingForm = ({ onNext, onAddressSelect, user, isLoading = false }) => {
                 </label>
               ))}
             </div>
-            
+
             <Button
               type="button"
               variant="outline"
@@ -338,7 +336,7 @@ const ShippingForm = ({ onNext, onAddressSelect, user, isLoading = false }) => {
                 onChange={handleInputChange}
                 error={errors?.phone}
                 required
-                placeholder="+91 98765 43210"
+                placeholder="+91 99025 23333"
               />
             </div>
 
@@ -422,7 +420,7 @@ const ShippingForm = ({ onNext, onAddressSelect, user, isLoading = false }) => {
             {isLoading ? 'Processing...' : 'Continue to Delivery'}
           </Button>
         </div>
-        
+
         {/* Debug info - remove in production */}
         {process.env.NODE_ENV === 'development' && (
           <div className="mt-4 p-2 bg-gray-100 text-xs text-gray-600 rounded">
