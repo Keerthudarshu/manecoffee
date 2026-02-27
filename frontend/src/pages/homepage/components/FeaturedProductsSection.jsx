@@ -18,7 +18,7 @@ const FeaturedProductsSection = ({ onAddToCart }) => {
   ];
 
   // Helper function to map database products to display format
-  const mapProductData = (dbProduct) => {
+  const mapProductData = (dbProduct, categoryName) => {
     const variants = dbProduct.variants || [];
 
     // Store full variant objects with all details
@@ -96,7 +96,7 @@ const FeaturedProductsSection = ({ onAddToCart }) => {
 
             const categoryProducts = await productApi.getAll(params);
             productsData[category.id] = Array.isArray(categoryProducts)
-              ? categoryProducts.map(mapProductData)
+              ? categoryProducts.map(prod => mapProductData(prod, category.name))
               : [];
           } catch (err) {
             console.error(`Failed to fetch ${category.name}:`, err);
