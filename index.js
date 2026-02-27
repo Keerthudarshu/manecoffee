@@ -1,23 +1,36 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
-const dotenv = require('dotenv');
 const sgMail = require('@sendgrid/mail');
 const PDFDocument = require('pdfkit');
 const fs = require('fs');
 const path = require('path');
 
-dotenv.config();
-
 const app = express();
 const port = process.env.PORT || 5001;
+
+// SendGrid Validation & Initialization
+const apiKey = process.env.SENDGRID_API_KEY;
+
+if (!apiKey) {
+    console.error('FATAL ERROR: SENDGRID_API_KEY is not defined in .env');
+    process.exit(1);
+}
+
+if (!apiKey.startsWith('SG.')) {
+    console.error('FATAL ERROR: Invalid SendGrid API Key format. It must start with "SG."');
+    process.exit(1);
+}
+
+// Masked API Key for debug log
+const maskedKey = apiKey.substring(0, 6) + '...' + apiKey.substring(apiKey.length - 4);
+console.log(`Email Service Initializing...`);
+console.log(`SendGrid API Key Loaded: ${maskedKey}`);
+sgMail.setApiKey(apiKey);
 
 // Middleware
 app.use(cors());
 app.use(express.json());
-
-// SendGrid Configuration
-sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 // Logo Path
 const logoPath = path.join(__dirname, 'frontend', 'public', 'assets', 'images', 'logo.png');
