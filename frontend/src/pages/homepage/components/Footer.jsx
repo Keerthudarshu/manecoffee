@@ -33,17 +33,17 @@ const Footer = () => {
   };
 
   const socialLinks = [
-    { name: "Facebook", icon: "Facebook", url: "https://facebook.com/sanatanaparampare" },
-    { name: "Instagram", icon: "Instagram", url: "https://instagram.com/sanatanaparampare" },
-    { name: "Twitter", icon: "Twitter", url: "https://twitter.com/sanatanaparampare" },
-    { name: "YouTube", icon: "Youtube", url: "https://youtube.com/sanatanaparampare" }
+    { name: "Facebook", icon: "Facebook", url: "https://www.facebook.com/sanatanaparampare/" },
+    { name: "Instagram", icon: "Instagram", url: "https://www.instagram.com/parampare_store/?hl=en" },
+    { name: "Twitter", icon: "Twitter", url: "#" },
+    { name: "YouTube", icon: "Youtube", url: "https://youtube.com/channel/UC1WQFhTsxmcU64-ocvXuM6w" }
   ];
 
   const contactInfo = {
-    phone: "+91 80 4567 8901",
+    phone: "+91 99025 23333",
     whatsapp: "+91 98765 43210",
-    email: "hello@sanatanaparampare.com",
-    address: "123 MG Road, Bengaluru, Karnataka 560001"
+    email: "paramparestore@gmail.com",
+    address: "Anand Vihari No - 87 2nd main road, 2nd stage Vinayaka layout, Vijayanagar,Bengaluru - 560040"
   };
 
   return (
