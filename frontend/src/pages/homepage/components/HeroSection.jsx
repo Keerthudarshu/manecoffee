@@ -14,7 +14,9 @@ const desktopImages = [
 const mobileImages = [
   '/assets/banner/mobilefirst.png',
   '/assets/banner/mobileseccond.png',
-  '/assets/banner/mobilethird.png'
+  '/assets/banner/mobilethird.png',
+  '/assets/banner/mobilefourth.png'
+
 ];
 
 function useIsMobile() {
