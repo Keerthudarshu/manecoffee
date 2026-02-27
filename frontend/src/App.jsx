@@ -26,6 +26,8 @@ import ShippingPolicy from './pages/policies/ShippingPolicy';
 import ReturnPolicy from './pages/policies/ReturnPolicy';
 import PrivacyPolicy from './pages/policies/PrivacyPolicy';
 import TermsOfService from './pages/policies/TermsOfService';
+import BlogIndex from './pages/blog';
+import BlogPost from './pages/blog/BlogPost';
 import NotFound from './pages/NotFound';
 
 // Protected Route Component
@@ -87,6 +89,8 @@ function App() {
                   <Route path="/return-policy" element={<ReturnPolicy />} />
                   <Route path="/privacy-policy" element={<PrivacyPolicy />} />
                   <Route path="/terms-of-service" element={<TermsOfService />} />
+                  <Route path="/blog" element={<BlogIndex />} />
+                  <Route path="/blog/:id" element={<BlogPost />} />
                   <Route path="/admin-login" element={<AdminLogin />} />
                   <Route
                     path="/admin-dashboard"

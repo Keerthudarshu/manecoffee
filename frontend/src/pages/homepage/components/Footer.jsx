@@ -14,15 +14,15 @@ const Footer = () => {
   const footerLinks = {
     company: [
       { label: "About Us", path: "/about" },
-      { label: "Our Story", path: "/our-story" },
-      { label: "Blog", path: "/blog" },
+      { label: "Our Blog", path: "/blog" },
+      { label: "Our Story", path: "/about#heritage-story" },
       { label: "Contact Us", path: "/contact" }
     ],
     customer: [
       { label: "My Account", path: "/user-account-dashboard" },
       { label: "Order History", path: "/user-account-dashboard?tab=orders" },
-      { label: "Track Order", path: "/track-order" },
-      { label: "Help & Support", path: "/support" }
+      { label: "Track Order", path: "/user-account-dashboard?tab=orders" },
+      { label: "Help & Support", path: "/contact" }
     ],
     policies: [
       { label: "Shipping Policy", path: "/shipping-policy" },
