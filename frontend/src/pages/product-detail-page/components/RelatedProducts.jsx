@@ -26,10 +26,13 @@ const RelatedProducts = ({ products, onAddToCart }) => {
           View All
         </Link>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div
+        className="flex sm:grid overflow-x-auto sm:overflow-x-visible items-stretch sm:grid-cols-2 lg:grid-cols-4 gap-4 pb-4 no-scrollbar"
+        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+      >
         {products?.map((product) => (
-          <div key={product?.id} className="group">
-            <div className="bg-muted/50 rounded-lg border border-border hover:shadow-warm-md transition-all duration-300">
+          <div key={product?.id} className="group flex-shrink-0 w-[280px] sm:w-auto h-full">
+            <div className="bg-muted/50 rounded-lg border border-border hover:shadow-warm-md transition-all duration-300 h-full flex flex-col">
               {/* Product Image */}
               <div className="relative aspect-square rounded-t-lg overflow-hidden">
                 <Link to={`/product-detail-page?id=${product?.id}`}>
@@ -39,7 +42,7 @@ const RelatedProducts = ({ products, onAddToCart }) => {
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                 </Link>
-                
+
                 {/* Quick Actions */}
                 <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
                   <button
@@ -93,10 +96,9 @@ const RelatedProducts = ({ products, onAddToCart }) => {
                         key={index}
                         name="Star"
                         size={12}
-                        className={`${
-                          index < Math.round(product?.rating)
-                            ? 'text-warning fill-current' :'text-muted-foreground'
-                        }`}
+                        className={`${index < Math.round(product?.rating)
+                          ? 'text-warning fill-current' : 'text-muted-foreground'
+                          }`}
                       />
                     ))}
                   </div>
