@@ -11,6 +11,7 @@ import EssentialOilsSection from './components/EssentialOilsSection';
 
 
 import NewsletterSection from './components/NewsletterSection';
+import TrustCertificates from '../../components/TrustCertificates';
 import Footer from './components/Footer';
 
 import { useCart } from '../../contexts/CartContext';
@@ -129,6 +130,9 @@ const Homepage = () => {
 
           {/* Newsletter Section */}
           <NewsletterSection />
+
+          {/* Trust Certificates Section */}
+          <TrustCertificates />
         </main>
 
         {/* Footer */}

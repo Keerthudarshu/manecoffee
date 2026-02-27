@@ -256,13 +256,13 @@ const FeaturedProductsSection = ({ onAddToCart }) => {
                       {/* Stock Status */}
                       <div className="absolute top-3 right-3 flex flex-col gap-2">
                         {currentDiscount > 0 && (
-                          <span className="bg-accent/90 backdrop-blur-sm text-white px-3 py-1 rounded-full text-[11px] font-black shadow-lg border border-accent/20">
+                          <span className="bg-[#C1FF72] text-black px-3 py-1 rounded-full text-[11px] font-black shadow-lg border border-accent/20">
                             {currentDiscount}% OFF
                           </span>
                         )}
-                        <div className={`px-3 py-1 rounded-full text-xs font-medium shadow-lg backdrop-blur-sm border ${product.inStock
-                          ? 'bg-green-500/90 text-white border-green-500/20'
-                          : 'bg-red-500/90 text-white border-red-500/20'
+                        <div className={`px-3 py-1 rounded-full text-xs font-bold shadow-lg backdrop-blur-sm border ${product.inStock
+                          ? 'bg-green-500 text-black border-green-500/20'
+                          : 'bg-red-500 text-black border-red-500/20'
                           }`}>
                           {product.inStock ? 'In Stock' : 'Out of Stock'}
                         </div>
@@ -352,7 +352,7 @@ const FeaturedProductsSection = ({ onAddToCart }) => {
                             </span>
                           )}
                         </div>
-                        <div className={`text-sm font-medium ${product.inStock ? 'text-success' : 'text-destructive'}`}>
+                        <div className={`text-sm font-bold ${product.inStock ? 'text-green-600' : 'text-red-600'}`}>
                           {product.inStock ? 'In Stock' : 'Out of Stock'}
                         </div>
                       </div>

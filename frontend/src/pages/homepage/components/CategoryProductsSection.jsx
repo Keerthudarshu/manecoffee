@@ -156,15 +156,17 @@ const CategoryProductsSection = ({ onAddToCart }) => {
                             <button
                                 key={cat.name}
                                 onClick={() => setActiveCategory(cat.name)}
-                                className={`flex-shrink-0 flex items-center gap-3 px-6 py-4 rounded-2xl font-semibold transition-all duration-300 border-2 whitespace-nowrap ${activeCategory === cat.name
+                                className={`flex-shrink-0 flex flex-col sm:flex-row items-center gap-2 sm:gap-3 px-3 sm:px-6 py-3 sm:py-4 rounded-xl sm:rounded-2xl font-semibold transition-all duration-300 border-2 w-[calc(33.33%-0.5rem)] sm:w-auto ${activeCategory === cat.name
                                     ? 'bg-primary text-white border-primary shadow-lg scale-105'
                                     : 'bg-white text-muted-foreground border-border hover:border-primary/30 hover:bg-primary/5'
                                     }`}
                             >
-                                <div className={`p-2 rounded-xl ${activeCategory === cat.name ? 'bg-white/20' : 'bg-primary/5'}`}>
-                                    <Icon name={cat.icon} size={20} className={activeCategory === cat.name ? 'text-white' : 'text-primary'} />
+                                <div className={`p-1.5 sm:p-2 rounded-lg sm:rounded-xl ${activeCategory === cat.name ? 'bg-white/20' : 'bg-primary/5'}`}>
+                                    <Icon name={cat.icon} size={18} className={activeCategory === cat.name ? 'text-white' : 'text-primary'} />
                                 </div>
-                                {cat.name}
+                                <span className="text-[10px] sm:text-base text-center leading-tight whitespace-normal sm:whitespace-nowrap">
+                                    {cat.name}
+                                </span>
                             </button>
                         ))}
                     </div>
@@ -303,7 +305,7 @@ const CategoryProductsSection = ({ onAddToCart }) => {
                                                         <span className="text-xs text-muted-foreground line-through opacity-70">₹{product.originalPrice}</span>
                                                     )}
                                                 </div>
-                                                <p className="text-[10px] font-bold text-accent">{product.discount}% SAVINGS</p>
+                                                <p className="text-[10px] font-bold text-black">{product.discount}% SAVINGS</p>
                                             </div>
 
                                             <Link

@@ -12,6 +12,7 @@ import ProductReviews from './components/ProductReviews';
 import RelatedProducts from './components/RelatedProducts';
 import productApi from '../../services/productApi';
 import dataService from '../../services/dataService';
+import TrustCertificates from '../../components/TrustCertificates';
 import apiClient from '../../services/api';
 import { resolveImageUrl } from '../../lib/resolveImageUrl';
 
@@ -19,7 +20,7 @@ const ProductDetailPage = () => {
   const [searchParams] = useSearchParams();
   const { id: urlParamId } = useParams();
   const productId = urlParamId || searchParams?.get('id') || '1';
-  
+
   const { cartItems, addToCart, addToWishlist, removeFromWishlist, isInWishlist, getCartItemCount } = useCart();
 
   // State for product data
@@ -34,9 +35,9 @@ const ProductDetailPage = () => {
       try {
         setLoading(true);
         setError(null);
-        
+
         console.log('Fetching product details for ID:', productId);
-        
+
         // Try to fetch from backend API first
         let productData = null;
         try {
@@ -52,12 +53,12 @@ const ProductDetailPage = () => {
           });
         } catch (apiError) {
           console.warn('Backend API failed, falling back to local data:', apiError?.message);
-          
+
           // Fallback to hardcoded data from dataService
           const response = await dataService.getProducts();
           const products = response?.data || [];
           productData = products.find(p => p.id === productId || p.id === parseInt(productId));
-          
+
           if (!productData) {
             throw new Error(`Product with ID ${productId} not found`);
           }
@@ -75,23 +76,23 @@ const ProductDetailPage = () => {
         // Normalize product data to expected format
         const normalizedVariants = Array.isArray(productData?.variants) && productData.variants.length > 0
           ? productData.variants.map((v, idx) => ({
-              ...v,
-              id: v?.id ?? `variant-${idx}`,
-              weight: v?.weight || (v?.weightValue ? `${v.weightValue}${v.weightUnit || ''}` : 'Default'),
-              stockQuantity: v?.stockQuantity ?? v?.stock ?? 0
-            }))
+            ...v,
+            id: v?.id ?? `variant-${idx}`,
+            weight: v?.weight || (v?.weightValue ? `${v.weightValue}${v.weightUnit || ''}` : 'Default'),
+            stockQuantity: v?.stockQuantity ?? v?.stock ?? 0
+          }))
           : [
-              {
-                id: 'default',
-                weight: productData?.weightValue ? `${productData.weightValue}${productData.weightUnit || ''}` : (productData?.weight || 'Default'),
-                weightValue: productData?.weightValue,
-                weightUnit: productData?.weightUnit,
-                price: productData?.price || productData?.salePrice || 0,
-                originalPrice: productData?.originalPrice || productData?.mrp || productData?.price || 0,
-                stock: productData?.stockQuantity ?? productData?.stock ?? 0,
-                stockQuantity: productData?.stockQuantity ?? productData?.stock ?? 0
-              }
-            ];
+            {
+              id: 'default',
+              weight: productData?.weightValue ? `${productData.weightValue}${productData.weightUnit || ''}` : (productData?.weight || 'Default'),
+              weightValue: productData?.weightValue,
+              weightUnit: productData?.weightUnit,
+              price: productData?.price || productData?.salePrice || 0,
+              originalPrice: productData?.originalPrice || productData?.mrp || productData?.price || 0,
+              stock: productData?.stockQuantity ?? productData?.stock ?? 0,
+              stockQuantity: productData?.stockQuantity ?? productData?.stock ?? 0
+            }
+          ];
 
         const normalizedProduct = {
           id: productData?.id,
@@ -139,7 +140,7 @@ const ProductDetailPage = () => {
             }
             return [];
           })(),
-          
+
           // Parse ingredients from backend string format
           ingredients: (() => {
             const ingredientsStr = productData?.ingredients || '';
@@ -150,27 +151,27 @@ const ProductDetailPage = () => {
                 spices: []
               };
             }
-            
+
             // Parse comma-separated ingredients
             const ingredientList = ingredientsStr
               .split(',')
               .map(item => item.trim())
               .filter(item => item.length > 0);
-            
+
             return {
               description: ingredientsStr,
               primary: ingredientList,
               spices: [] // Keep empty as admin doesn't separate spices
             };
           })(),
-          
+
           // Parse benefits from backend string format  
           benefits: (() => {
             const benefitsStr = productData?.benefits || '';
             if (!benefitsStr || typeof benefitsStr !== 'string') {
               return [];
             }
-            
+
             // Parse comma-separated benefits
             return benefitsStr
               .split(',')
@@ -198,18 +199,18 @@ const ProductDetailPage = () => {
           const normalizedRelated = sameCategory.map(p => {
             const relatedVariants = Array.isArray(p?.variants) && p.variants.length > 0
               ? p.variants.map((v, idx) => ({
-                  ...v,
-                  id: v?.id ?? `variant-${idx}`,
-                  weight: v?.weight || (v?.weightValue ? `${v.weightValue}${v.weightUnit || ''}` : 'Default')
-                }))
+                ...v,
+                id: v?.id ?? `variant-${idx}`,
+                weight: v?.weight || (v?.weightValue ? `${v.weightValue}${v.weightUnit || ''}` : 'Default')
+              }))
               : [
-                  {
-                    id: 'default',
-                    weight: p?.weightValue ? `${p.weightValue}${p.weightUnit || ''}` : (p?.weight || 'Default'),
-                    price: parseFloat(p?.price ?? p?.salePrice ?? 0) || 0,
-                    originalPrice: parseFloat(p?.originalPrice ?? p?.price ?? p?.salePrice ?? 0) || 0
-                  }
-                ];
+                {
+                  id: 'default',
+                  weight: p?.weightValue ? `${p.weightValue}${p.weightUnit || ''}` : (p?.weight || 'Default'),
+                  price: parseFloat(p?.price ?? p?.salePrice ?? 0) || 0,
+                  originalPrice: parseFloat(p?.originalPrice ?? p?.price ?? p?.salePrice ?? 0) || 0
+                }
+              ];
 
             return {
               id: p?.id,
@@ -242,13 +243,13 @@ const ProductDetailPage = () => {
   const breadcrumbItems = [
     { label: 'Home', path: '/homepage' },
     { label: 'Products', path: '/product-collection-grid' },
-    { label: product?.category || 'Category', path: `/product-collection-grid?category=${encodeURIComponent(product?.category || '')}`},
+    { label: product?.category || 'Category', path: `/product-collection-grid?category=${encodeURIComponent(product?.category || '')}` },
     { label: product?.name || 'Product', path: `/product-detail-page?id=${productId}` }
   ];
 
   const handleAddToCart = (item) => {
     if (!product) return;
-    
+
     // Use the item data directly - it has all the variant info already prepared by ProductInfo
     const productToAdd = {
       id: `${item?.productId}-${item?.variantId}`,
@@ -265,15 +266,15 @@ const ProductDetailPage = () => {
       weightValue: item?.weightValue,
       weightUnit: item?.weightUnit
     };
-    
+
     addToCart(productToAdd, item?.quantity || 1);
   };
 
   const handleAddToWishlist = () => {
     if (!product) return;
-    
+
     const isInWishlistStatus = isInWishlist(product?.id);
-    
+
     if (isInWishlistStatus) {
       removeFromWishlist(product?.id);
     } else {
@@ -298,10 +299,10 @@ const ProductDetailPage = () => {
   if (loading) {
     return (
       <div className="min-h-screen bg-background">
-        <Header 
+        <Header
           cartItemCount={getCartItemCount()}
           cartItems={cartItems}
-          onSearch={() => {}}
+          onSearch={() => { }}
         />
         <main className="container mx-auto px-4 py-6">
           <div className="flex items-center justify-center min-h-[400px]">
@@ -319,17 +320,17 @@ const ProductDetailPage = () => {
   if (error) {
     return (
       <div className="min-h-screen bg-background">
-        <Header 
+        <Header
           cartItemCount={getCartItemCount()}
           cartItems={cartItems}
-          onSearch={() => {}}
+          onSearch={() => { }}
         />
         <main className="container mx-auto px-4 py-6">
           <div className="flex items-center justify-center min-h-[400px]">
             <div className="text-center">
               <p className="text-destructive mb-4">Error loading product: {error}</p>
-              <button 
-                onClick={() => window.location.reload()} 
+              <button
+                onClick={() => window.location.reload()}
                 className="px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90"
               >
                 Retry
@@ -345,17 +346,17 @@ const ProductDetailPage = () => {
   if (!product) {
     return (
       <div className="min-h-screen bg-background">
-        <Header 
+        <Header
           cartItemCount={getCartItemCount()}
           cartItems={cartItems}
-          onSearch={() => {}}
+          onSearch={() => { }}
         />
         <main className="container mx-auto px-4 py-6">
           <div className="flex items-center justify-center min-h-[400px]">
             <div className="text-center">
               <p className="text-muted-foreground mb-4">Product not found</p>
-              <a 
-                href="/product-collection-grid" 
+              <a
+                href="/product-collection-grid"
                 className="px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90"
               >
                 Browse Products
@@ -369,25 +370,25 @@ const ProductDetailPage = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header 
+      <Header
         cartItemCount={getCartItemCount()}
         cartItems={cartItems}
-        onSearch={() => {}}
+        onSearch={() => { }}
       />
       <main className="container mx-auto px-4 py-6">
         <Breadcrumb customItems={breadcrumbItems} />
-        
+
         {/* Product Section */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
           {/* Product Images */}
           <div className="lg:sticky lg:top-24 lg:self-start">
-            <ProductImageGallery 
+            <ProductImageGallery
               images={product?.images}
               productName={product?.name}
             />
             {/* ...removed duplicate Oil Essentials sticker... */}
           </div>
-          
+
           {/* Product Information */}
           <div>
             <ProductInfo
@@ -399,7 +400,7 @@ const ProductDetailPage = () => {
           </div>
         </div>
 
-       {/* / Oil Essentials Sticker (single, end-to-end, below product section)
+        {/* / Oil Essentials Sticker (single, end-to-end, below product section)
         <div style={{width:'100%',background:'#FFF8E1',overflow:'visible',margin:'0 auto'}}>
           <img
             src="/assets/images/esential oils/oilessentials.jpeg"
@@ -412,6 +413,9 @@ const ProductDetailPage = () => {
         <div className="mb-12">
           <ProductDetails product={product} />
         </div>
+
+        {/* Trust Certificates Section */}
+        <TrustCertificates className="mb-12 border rounded-xl" />
 
         {/* FAQ Section */}
         <div className="mb-12">
