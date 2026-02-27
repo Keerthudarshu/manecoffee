@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.http.ResponseEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,6 +16,11 @@ import org.slf4j.LoggerFactory;
 public class EmailService {
 
     private static final Logger logger = LoggerFactory.getLogger(EmailService.class);
+
+    @Autowired
+    private RestTemplate restTemplate;
+
+    private final String NODE_MAIL_SERVER_URL = "http://localhost:5001/api";
 
     @Autowired
     private JavaMailSender mailSender;
@@ -98,181 +105,84 @@ public class EmailService {
     }
 
     /**
-     * Send contact thank you email
+     * Send contact thank you email via Node.js Mail Server
      */
     public boolean sendContactThankYou(String name, String email) {
         try {
-            SimpleMailMessage message = new SimpleMailMessage();
-            message.setFrom("noreply@sanathanaparampara.com");
-            message.setTo(email);
-            message.setSubject("Thank you for contacting Sanatana Parampara");
+            java.util.Map<String, String> payload = new java.util.HashMap<>();
+            payload.put("name", name);
+            payload.put("email", email);
 
-            String emailBody = "Hello " + name + ",\n\n" +
-                    "Thank you for contacting Sanatana Parampara. We have received your inquiry and will get back to you shortly.\n\n"
-                    +
-                    "Best regards,\n" +
-                    "Sanatana Parampara Team";
+            logger.info("Forwarding contact thank you email request to Node.js server for: {}", email);
+            ResponseEntity<String> response = restTemplate.postForEntity(
+                    NODE_MAIL_SERVER_URL + "/send-contact-thankyou",
+                    payload,
+                    String.class);
 
-            message.setText(emailBody);
-            mailSender.send(message);
-            logger.info("Contact thank you email sent to: {}", email);
-            return true;
-
+            if (response.getStatusCode().is2xxSuccessful()) {
+                logger.info("Node.js server successfully handled contact thank you email for: {}", email);
+                return true;
+            } else {
+                logger.error("Node.js server failed to send contact thank you email. Status: {}",
+                        response.getStatusCode());
+                return false;
+            }
         } catch (Exception e) {
-            logger.error("Failed to send contact thank you email to: {}", email, e);
+            logger.error("Error forwarding contact thank you email to Node.js server", e);
             return false;
         }
     }
 
     /**
-     * Send subscription confirmation email
+     * Send subscription confirmation email via Node.js Mail Server
      */
     public boolean sendSubscriptionConfirmation(String email) {
         try {
-            SimpleMailMessage message = new SimpleMailMessage();
-            message.setFrom("noreply@sanathanaparampara.com");
-            message.setTo(email);
-            message.setSubject("Welcome to Sanatana Parampara Family!");
+            java.util.Map<String, String> payload = new java.util.HashMap<>();
+            payload.put("email", email);
 
-            String emailBody = "Hello,\n\n" +
-                    "Thank you for subscribing to our newsletter! You are now part of the Sanatana Parampara family.\n\n"
-                    +
-                    "Use code WELCOME10 for 10% off your first order.\n\n" +
-                    "Best regards,\n" +
-                    "Sanatana Parampara Team";
+            logger.info("Forwarding subscription confirmation request to Node.js server for: {}", email);
+            ResponseEntity<String> response = restTemplate.postForEntity(
+                    NODE_MAIL_SERVER_URL + "/send-subscription-confirmation",
+                    payload,
+                    String.class);
 
-            message.setText(emailBody);
-            mailSender.send(message);
-            logger.info("Subscription confirmation email sent to: {}", email);
-            return true;
-
+            if (response.getStatusCode().is2xxSuccessful()) {
+                logger.info("Node.js server successfully handled subscription for: {}", email);
+                return true;
+            } else {
+                logger.error("Node.js server failed to send subscription confirmation. Status: {}",
+                        response.getStatusCode());
+                return false;
+            }
         } catch (Exception e) {
-            logger.error("Failed to send subscription confirmation email to: {}", email, e);
+            logger.error("Error forwarding subscription confirmation to Node.js server", e);
             return false;
         }
     }
 
     /**
-     * Send order confirmation email (Ported from Node.js)
+     * Send order confirmation email via Node.js Mail Server
      */
     public boolean sendOrderConfirmation(java.util.Map<String, Object> orderData) {
         try {
             String email = (String) orderData.get("email");
-            Object orderIdObj = orderData.get("orderId");
-            String orderId = orderIdObj != null ? String.valueOf(orderIdObj) : "N/A";
+            logger.info("Forwarding order confirmation request to Node.js server for: {}", email);
 
-            @SuppressWarnings("unchecked")
-            java.util.List<java.util.Map<String, Object>> items = (java.util.List<java.util.Map<String, Object>>) orderData
-                    .get("items");
+            ResponseEntity<String> response = restTemplate.postForEntity(
+                    NODE_MAIL_SERVER_URL + "/send-confirmation",
+                    orderData,
+                    String.class);
 
-            Double subtotal = parseDouble(orderData.get("subtotal"));
-            Double shippingCost = parseDouble(orderData.get("shippingCost"));
-            Double discountAmount = parseDouble(orderData.get("discountAmount"));
-            Double total = parseDouble(orderData.get("total"));
-
-            StringBuilder rowsHtml = new StringBuilder();
-            for (java.util.Map<String, Object> item : items) {
-                String name = (String) item.get("name");
-                Object weightVal = item.get("weightValue");
-                String weightUnit = (String) item.get("weightUnit");
-                String weightDisplay = (weightVal != null ? weightVal : "-") + " "
-                        + (weightUnit != null ? weightUnit : "");
-
-                int quantity = parseInt(item.get("quantity"));
-                Double price = parseDouble(item.get("price"));
-                Double itemTotal = quantity * price;
-
-                rowsHtml.append("<tr>")
-                        .append("<td style=\"padding: 10px; border: 1px solid #ddd;\">").append(name).append("</td>")
-                        .append("<td style=\"padding: 10px; border: 1px solid #ddd;\">").append(weightDisplay)
-                        .append("</td>")
-                        .append("<td style=\"padding: 10px; border: 1px solid #ddd; text-align: center;\">")
-                        .append(quantity).append("</td>")
-                        .append("<td style=\"padding: 10px; border: 1px solid #ddd; text-align: right;\">₹")
-                        .append(String.format("%.2f", price)).append("</td>")
-                        .append("<td style=\"padding: 10px; border: 1px solid #ddd; text-align: right;\">₹")
-                        .append(String.format("%.2f", itemTotal)).append("</td>")
-                        .append("</tr>");
+            if (response.getStatusCode().is2xxSuccessful()) {
+                logger.info("Node.js server successfully handled order confirmation for: {}", email);
+                return true;
+            } else {
+                logger.error("Node.js server failed to send order confirmation. Status: {}", response.getStatusCode());
+                return false;
             }
-
-            String discountRow = "";
-            if (discountAmount > 0) {
-                discountRow = "<tr>" +
-                        "<td colspan=\"4\" style=\"padding: 10px; text-align: right; font-weight: bold; color: #e53e3e;\">Discount</td>"
-                        +
-                        "<td style=\"padding: 10px; text-align: right; color: #e53e3e;\">-₹"
-                        + String.format("%.2f", discountAmount) + "</td>" +
-                        "</tr>";
-            }
-
-            String emailBody = "<div style=\"font-family: Arial, sans-serif; max-width: 600px; margin: auto; border: 1px solid #eee; padding: 20px;\">"
-                    +
-                    "<div style=\"text-align: center; margin-bottom: 20px;\">" +
-                    "<h2>Sanatana Parampare</h2>" +
-                    "</div>" +
-                    "<h2 style=\"color: #4CAF50; text-align: center;\">Thank you for your order!</h2>" +
-                    "<p>Hi there,</p>" +
-                    "<p>Your order <strong>#" + orderId + "</strong> has been confirmed and is being processed.</p>" +
-
-                    "<table style=\"width: 100%; border-collapse: collapse; margin-top: 20px;\">" +
-                    "<thead>" +
-                    "<tr style=\"background-color: #f8f8f8;\">" +
-                    "<th style=\"padding: 10px; border: 1px solid #ddd; text-align: left;\">Product</th>" +
-                    "<th style=\"padding: 10px; border: 1px solid #ddd; text-align: left;\">Weight</th>" +
-                    "<th style=\"padding: 10px; border: 1px solid #ddd; text-align: center;\">Qty</th>" +
-                    "<th style=\"padding: 10px; border: 1px solid #ddd; text-align: right;\">Price</th>" +
-                    "<th style=\"padding: 10px; border: 1px solid #ddd; text-align: right;\">Total</th>" +
-                    "</tr>" +
-                    "</thead>" +
-                    "<tbody>" +
-                    rowsHtml.toString() +
-                    "</tbody>" +
-                    "<tfoot>" +
-                    "<tr>" +
-                    "<td colspan=\"4\" style=\"padding: 10px; text-align: right; font-weight: bold;\">Subtotal</td>" +
-                    "<td style=\"padding: 10px; text-align: right;\">₹" + String.format("%.2f", subtotal) + "</td>" +
-                    "</tr>" +
-                    "<tr>" +
-                    "<td colspan=\"4\" style=\"padding: 10px; text-align: right; font-weight: bold;\">Shipping</td>" +
-                    "<td style=\"padding: 10px; text-align: right;\">₹" + String.format("%.2f", shippingCost) + "</td>"
-                    +
-                    "</tr>" +
-                    discountRow +
-                    "<tr style=\"background-color: #f8f8f8; font-size: 1.1em;\">" +
-                    "<td colspan=\"4\" style=\"padding: 10px; text-align: right; font-weight: bold;\">Grand Total</td>"
-                    +
-                    "<td style=\"padding: 10px; text-align: right; font-weight: bold; color: #4CAF50;\">₹"
-                    + String.format("%.2f", total) + "</td>" +
-                    "</tr>" +
-                    "</tfoot>" +
-                    "</table>" +
-
-                    "<p style=\"margin-top: 30px;\">An invoice PDF has been attached to this email for your records.</p>"
-                    +
-                    "<p>We'll notify you when your order is shipped!</p>" +
-
-                    "<div style=\"margin-top: 40px; border-top: 1px solid #eee; padding-top: 20px; font-size: 12px; color: #888; text-align: center;\">"
-                    +
-                    "<p>Sanatana Parampare - 100% Authentic Products</p>" +
-                    "<p>If you have any questions, contact us at techmindset@kvgengg.com</p>" +
-                    "</div>" +
-                    "</div>";
-
-            jakarta.mail.internet.MimeMessage mimeMessage = mailSender.createMimeMessage();
-            org.springframework.mail.javamail.MimeMessageHelper helper = new org.springframework.mail.javamail.MimeMessageHelper(
-                    mimeMessage, true, "UTF-8");
-
-            helper.setFrom("noreply@sanathanaparampara.com");
-            helper.setTo(email);
-            helper.setSubject("Order Confirmation #" + orderId + " - Sanatana Parampare");
-            helper.setText(emailBody, true); // true = isHtml
-
-            mailSender.send(mimeMessage);
-            logger.info("Order confirmation email sent to: {}", email);
-            return true;
-
         } catch (Exception e) {
-            logger.error("Failed to send order confirmation email", e);
+            logger.error("Error forwarding order confirmation to Node.js server", e);
             return false;
         }
     }
