@@ -28,8 +28,6 @@ const TrustCertificates = ({ className = "" }) => {
                     ))}
                 </div>
             </div>
-            {/* Dark Teal Bottom Bar to match reference */}
-            <div className="h-4 sm:h-6 bg-[#004D40] w-full mt-4"></div>
         </div>
     );
 };

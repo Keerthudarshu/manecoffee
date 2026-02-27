@@ -63,7 +63,7 @@ function App() {
       <BrowserRouter>
         <AuthProvider>
           <CartProvider>
-            <div className="App">
+            <div className="App overflow-x-hidden">
               <ErrorBoundary>
                 <ScrollToTop />
                 <Routes>
