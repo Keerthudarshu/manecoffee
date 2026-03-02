@@ -20,34 +20,38 @@ public class EmailController {
     public ResponseEntity<?> sendContactThankYou(@RequestBody Map<String, String> payload) {
         String name = payload.get("name");
         String email = payload.get("email");
-
         if (name == null || email == null) {
-            return ResponseEntity.badRequest().body(Map.of("message", "Name and email are required"));
+            return ResponseEntity.badRequest().body(Map.of("message", "Name and email are required."));
         }
-
-        boolean sent = emailService.sendContactThankYou(name, email);
-        if (sent) {
-            return ResponseEntity.ok(Map.of("message", "Email sent successfully"));
-        } else {
-            return ResponseEntity.internalServerError()
-                    .body(Map.of("message", "Failed to send email. Check backend logs."));
+        try {
+            boolean sent = emailService.sendContactThankYou(name, email);
+            if (sent) {
+                return ResponseEntity.ok(Map.of("message", "Email sent successfully"));
+            } else {
+                return ResponseEntity.internalServerError()
+                        .body(Map.of("message", "Failed to send email. Check backend logs."));
+            }
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().body(Map.of("message", "Error: " + e.getMessage()));
         }
     }
 
     @PostMapping("/send-subscription-confirmation")
     public ResponseEntity<?> sendSubscriptionConfirmation(@RequestBody Map<String, String> payload) {
         String email = payload.get("email");
-
         if (email == null) {
-            return ResponseEntity.badRequest().body(Map.of("message", "Email is required"));
+            return ResponseEntity.badRequest().body(Map.of("message", "Email is required."));
         }
-
-        boolean sent = emailService.sendSubscriptionConfirmation(email);
-        if (sent) {
-            return ResponseEntity.ok(Map.of("message", "Subscription email sent successfully"));
-        } else {
-            return ResponseEntity.internalServerError()
-                    .body(Map.of("message", "Failed to send email. Check backend logs."));
+        try {
+            boolean sent = emailService.sendSubscriptionConfirmation(email);
+            if (sent) {
+                return ResponseEntity.ok(Map.of("message", "Subscription email sent successfully"));
+            } else {
+                return ResponseEntity.internalServerError()
+                        .body(Map.of("message", "Failed to send email. Check backend logs."));
+            }
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().body(Map.of("message", "Error: " + e.getMessage()));
         }
     }
 
