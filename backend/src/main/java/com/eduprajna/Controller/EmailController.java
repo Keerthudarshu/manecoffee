@@ -32,7 +32,10 @@ public class EmailController {
                         .body(Map.of("message", "Failed to send email. Check backend logs."));
             }
         } catch (Exception e) {
-            return ResponseEntity.internalServerError().body(Map.of("message", "Error: " + e.getMessage()));
+            java.io.StringWriter sw = new java.io.StringWriter();
+            e.printStackTrace(new java.io.PrintWriter(sw));
+            return ResponseEntity.internalServerError()
+                    .body(Map.of("message", "Error: " + e.getMessage(), "stackTrace", sw.toString()));
         }
     }
 
@@ -51,7 +54,10 @@ public class EmailController {
                         .body(Map.of("message", "Failed to send email. Check backend logs."));
             }
         } catch (Exception e) {
-            return ResponseEntity.internalServerError().body(Map.of("message", "Error: " + e.getMessage()));
+            java.io.StringWriter sw = new java.io.StringWriter();
+            e.printStackTrace(new java.io.PrintWriter(sw));
+            return ResponseEntity.internalServerError()
+                    .body(Map.of("message", "Error: " + e.getMessage(), "stackTrace", sw.toString()));
         }
     }
 
@@ -71,8 +77,10 @@ public class EmailController {
                         Map.of("success", false, "message", "Failed to send confirmation email. Check backend logs."));
             }
         } catch (Exception e) {
+            java.io.StringWriter sw = new java.io.StringWriter();
+            e.printStackTrace(new java.io.PrintWriter(sw));
             return ResponseEntity.internalServerError().body(
-                    Map.of("success", false, "message", "Error: " + e.getMessage()));
+                    Map.of("success", false, "message", "Error: " + e.getMessage(), "stackTrace", sw.toString()));
         }
     }
 }
