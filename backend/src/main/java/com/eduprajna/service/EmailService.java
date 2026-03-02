@@ -98,11 +98,14 @@ public class EmailService {
         }
     }
 
-    /**
-     * Send contact thank you email
-     */
-    public boolean sendContactThankYou(String name, String email) {
+    public boolean sendContactThankYou(String name, String email) throws Exception {
+        logger.info("Starting sendContactThankYou for: {}", email);
         try {
+            if (mailSender == null)
+                throw new RuntimeException("JavaMailSender is NOT injected!");
+            if (templateEngine == null)
+                throw new RuntimeException("TemplateEngine is NOT injected!");
+
             MimeMessage mimeMessage = mailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
 
@@ -110,9 +113,12 @@ public class EmailService {
             context.setVariable("name", name);
 
             boolean logoExists = checkLogoExists();
+            logger.info("Logo exists: {}, Path: {}", logoExists, LOGO_PATH);
             context.setVariable("logoExists", logoExists);
 
+            logger.info("Processing template: email/contact-thankyou");
             String htmlContent = templateEngine.process("email/contact-thankyou", context);
+            logger.info("Template processed successfully. Length: {}", htmlContentLength(htmlContent));
 
             helper.setFrom(fromEmail);
             helper.setTo(email);
@@ -123,28 +129,35 @@ public class EmailService {
                 helper.addInline("logo", new ClassPathResource(LOGO_PATH));
             }
 
+            logger.info("Sending email to: {}", email);
             mailSender.send(mimeMessage);
-            logger.info("Contact thank you email sent to: {}", email);
+            logger.info("Contact thank you email sent successfully to: {}", email);
             return true;
         } catch (Exception e) {
-            logger.error("Error sending contact thank you email", e);
-            return false;
+            logger.error("CRITICAL ERROR in sendContactThankYou: {}", e.getMessage(), e);
+            throw e;
         }
     }
 
-    /**
-     * Send subscription confirmation email
-     */
-    public boolean sendSubscriptionConfirmation(String email) {
+    public boolean sendSubscriptionConfirmation(String email) throws Exception {
+        logger.info("Starting sendSubscriptionConfirmation for: {}", email);
         try {
+            if (mailSender == null)
+                throw new RuntimeException("JavaMailSender is NOT injected!");
+            if (templateEngine == null)
+                throw new RuntimeException("TemplateEngine is NOT injected!");
+
             MimeMessage mimeMessage = mailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
 
             Context context = new Context();
             boolean logoExists = checkLogoExists();
+            logger.info("Logo exists: {}, Path: {}", logoExists, LOGO_PATH);
             context.setVariable("logoExists", logoExists);
 
+            logger.info("Processing template: email/subscription-confirmation");
             String htmlContent = templateEngine.process("email/subscription-confirmation", context);
+            logger.info("Template processed successfully. Length: {}", htmlContentLength(htmlContent));
 
             helper.setFrom(fromEmail);
             helper.setTo(email);
@@ -155,22 +168,33 @@ public class EmailService {
                 helper.addInline("logo", new ClassPathResource(LOGO_PATH));
             }
 
+            logger.info("Sending email to: {}", email);
             mailSender.send(mimeMessage);
-            logger.info("Subscription confirmation email sent to: {}", email);
+            logger.info("Subscription confirmation email sent successfully to: {}", email);
             return true;
         } catch (Exception e) {
-            logger.error("Error sending subscription email", e);
-            return false;
+            logger.error("CRITICAL ERROR in sendSubscriptionConfirmation: {}", e.getMessage(), e);
+            throw e;
         }
+    }
+
+    private int htmlContentLength(String html) {
+        return html != null ? html.length() : 0;
     }
 
     /**
      * Send order confirmation email with PDF invoice
      */
-    public boolean sendOrderConfirmation(Map<String, Object> orderData) {
+    public boolean sendOrderConfirmation(Map<String, Object> orderData) throws Exception {
+        String email = (String) orderData.get("email");
+        String orderIdStr = String.valueOf(orderData.getOrDefault("orderId", orderData.getOrDefault("id", "N/A")));
+        logger.info("Starting sendOrderConfirmation for Order: {}, Email: {}", orderIdStr, email);
+
         try {
-            String email = (String) orderData.get("email");
-            String orderIdStr = String.valueOf(orderData.getOrDefault("orderId", orderData.getOrDefault("id", "N/A")));
+            if (mailSender == null)
+                throw new RuntimeException("JavaMailSender is NOT injected!");
+            if (templateEngine == null)
+                throw new RuntimeException("TemplateEngine is NOT injected!");
 
             MimeMessage mimeMessage = mailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
@@ -180,9 +204,12 @@ public class EmailService {
             context.setVariables(orderData);
             context.setVariable("orderId", orderIdStr);
             boolean logoExists = checkLogoExists();
+            logger.info("Logo exists: {}, Path: {}", logoExists, LOGO_PATH);
             context.setVariable("logoExists", logoExists);
 
+            logger.info("Processing template: email/order-confirmation");
             String htmlContent = templateEngine.process("email/order-confirmation", context);
+            logger.info("Template processed successfully. Length: {}", htmlContentLength(htmlContent));
 
             helper.setFrom(fromEmail);
             helper.setTo(email);
@@ -194,15 +221,18 @@ public class EmailService {
             }
 
             // Generate PDF attachment
+            logger.info("Generating invoice PDF for Order: {}", orderIdStr);
             byte[] pdfBytes = generateInvoicePDF(orderData);
+            logger.info("PDF generated successfully. Size: {} bytes", pdfBytes.length);
             helper.addAttachment("invoice_" + orderIdStr + ".pdf", new ByteArrayResource(pdfBytes));
 
+            logger.info("Sending email to: {}", email);
             mailSender.send(mimeMessage);
-            logger.info("Order confirmation email with PDF sent to: {}", email);
+            logger.info("Order confirmation email with PDF sent successfully to: {}", email);
             return true;
         } catch (Exception e) {
-            logger.error("Error sending order confirmation email", e);
-            return false;
+            logger.error("CRITICAL ERROR in sendOrderConfirmation for Order {}: {}", orderIdStr, e.getMessage(), e);
+            throw e;
         }
     }
 
