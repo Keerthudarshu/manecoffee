@@ -1,16 +1,36 @@
 package com.eduprajna.service;
 
+import com.lowagie.text.*;
+import com.lowagie.text.Font;
+import com.lowagie.text.Image;
+import com.lowagie.text.pdf.PdfPCell;
+import com.lowagie.text.pdf.PdfPTable;
+import com.lowagie.text.pdf.PdfWriter;
+import com.lowagie.text.pdf.draw.LineSeparator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
-import org.springframework.http.ResponseEntity;
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.context.Context;
+
+import jakarta.mail.internet.MimeMessage;
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.awt.Color;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Service for sending emails
+ * Service for sending emails and generating PDF invoices.
  */
 @Service
 public class EmailService {
@@ -18,173 +38,305 @@ public class EmailService {
     private static final Logger logger = LoggerFactory.getLogger(EmailService.class);
 
     @Autowired
-    private RestTemplate restTemplate;
-
-    private final String NODE_MAIL_SERVER_URL = "http://localhost:5001/api";
-
-    @Autowired
     private JavaMailSender mailSender;
 
+    @Autowired
+    private TemplateEngine templateEngine;
+
+    @Value("${spring.mail.username}")
+    private String fromEmail;
+
+    private static final String LOGO_PATH = "static/images/logo.png";
+
     /**
-     * Send password reset email with reset link
-     * 
-     * @param recipientEmail User's email address
-     * @param username       User's username
-     * @param resetLink      Link containing reset token
-     * @return true if email sent successfully, false otherwise
+     * Send password reset email
      */
     public boolean sendPasswordResetEmail(String recipientEmail, String username, String resetLink) {
         try {
             SimpleMailMessage message = new SimpleMailMessage();
-            message.setFrom("noreply@sanathanaparampara.com");
+            message.setFrom(fromEmail);
             message.setTo(recipientEmail);
             message.setSubject("Sanatana Parampara - Password Reset Request");
-
-            String emailBody = buildPasswordResetEmailBody(username, resetLink, recipientEmail);
-            message.setText(emailBody);
+            message.setText(buildPasswordResetEmailBody(username, resetLink, recipientEmail));
 
             mailSender.send(message);
-            logger.info("Password reset email sent successfully to: {}", recipientEmail);
+            logger.info("Password reset email sent to: {}", recipientEmail);
             return true;
-
         } catch (Exception e) {
-            logger.error("Failed to send password reset email to: {}", recipientEmail, e);
+            logger.error("Failed to send password reset email", e);
             return false;
         }
     }
 
-    /**
-     * Build the email body for password reset
-     */
     private String buildPasswordResetEmailBody(String username, String resetLink, String email) {
         return "Hello " + username + ",\n\n" +
                 "We received a request to reset your password. Click the link below to reset your password:\n\n" +
                 resetLink + "\n\n" +
                 "This link will expire in 24 hours.\n\n" +
-                "Your Account Details:\n" +
-                "- Username: " + username + "\n" +
-                "- Email: " + email + "\n\n" +
-                "If you did not request a password reset, please ignore this email.\n\n" +
                 "Best regards,\n" +
                 "Sanatana Parampara Support Team";
     }
 
     /**
      * Send account credentials via email
-     * 
-     * @param recipientEmail User's email
-     * @param username       User's username
-     * @param password       User's password
-     * @return true if email sent successfully
      */
     public boolean sendCredentialsEmail(String recipientEmail, String username, String password) {
         try {
             SimpleMailMessage message = new SimpleMailMessage();
-            message.setFrom("noreply@sanathanaparampara.com");
+            message.setFrom(fromEmail);
             message.setTo(recipientEmail);
             message.setSubject("Sanatana Parampara - Your Account Credentials");
+            message.setText("Hello " + username + ",\n\nYour account credentials:\nEmail: " + recipientEmail
+                    + "\nUsername: " + username + "\nPassword: " + password);
 
-            String emailBody = "Hello " + username + ",\n\n" +
-                    "Here are your account credentials:\n\n" +
-                    "Email: " + recipientEmail + "\n" +
-                    "Username: " + username + "\n" +
-                    "Password: " + password + "\n\n" +
-                    "Please keep these credentials secure and change your password after first login.\n\n" +
-                    "Best regards,\n" +
-                    "Sanatana Parampara Support Team";
-
-            message.setText(emailBody);
             mailSender.send(message);
-            logger.info("Credentials email sent successfully to: {}", recipientEmail);
+            logger.info("Credentials email sent to: {}", recipientEmail);
             return true;
-
         } catch (Exception e) {
-            logger.error("Failed to send credentials email to: {}", recipientEmail, e);
+            logger.error("Failed to send credentials email", e);
             return false;
         }
     }
 
     /**
-     * Send contact thank you email via Node.js Mail Server
+     * Send contact thank you email
      */
     public boolean sendContactThankYou(String name, String email) {
         try {
-            java.util.Map<String, String> payload = new java.util.HashMap<>();
-            payload.put("name", name);
-            payload.put("email", email);
+            MimeMessage mimeMessage = mailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
 
-            logger.info("Forwarding contact thank you email request to Node.js server for: {}", email);
-            ResponseEntity<String> response = restTemplate.postForEntity(
-                    NODE_MAIL_SERVER_URL + "/send-contact-thankyou",
-                    payload,
-                    String.class);
+            Context context = new Context();
+            context.setVariable("name", name);
 
-            if (response.getStatusCode().is2xxSuccessful()) {
-                logger.info("Node.js server successfully handled contact thank you email for: {}", email);
-                return true;
-            } else {
-                logger.error("Node.js server failed to send contact thank you email. Status: {}",
-                        response.getStatusCode());
-                return false;
+            boolean logoExists = checkLogoExists();
+            context.setVariable("logoExists", logoExists);
+
+            String htmlContent = templateEngine.process("email/contact-thankyou", context);
+
+            helper.setFrom(fromEmail);
+            helper.setTo(email);
+            helper.setSubject("Thank you for reaching us!");
+            helper.setText(htmlContent, true);
+
+            if (logoExists) {
+                helper.addInline("logo", new ClassPathResource(LOGO_PATH));
             }
+
+            mailSender.send(mimeMessage);
+            logger.info("Contact thank you email sent to: {}", email);
+            return true;
         } catch (Exception e) {
-            logger.error("Error forwarding contact thank you email to Node.js server", e);
+            logger.error("Error sending contact thank you email", e);
             return false;
         }
     }
 
     /**
-     * Send subscription confirmation email via Node.js Mail Server
+     * Send subscription confirmation email
      */
     public boolean sendSubscriptionConfirmation(String email) {
         try {
-            java.util.Map<String, String> payload = new java.util.HashMap<>();
-            payload.put("email", email);
+            MimeMessage mimeMessage = mailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
 
-            logger.info("Forwarding subscription confirmation request to Node.js server for: {}", email);
-            ResponseEntity<String> response = restTemplate.postForEntity(
-                    NODE_MAIL_SERVER_URL + "/send-subscription-confirmation",
-                    payload,
-                    String.class);
+            Context context = new Context();
+            boolean logoExists = checkLogoExists();
+            context.setVariable("logoExists", logoExists);
 
-            if (response.getStatusCode().is2xxSuccessful()) {
-                logger.info("Node.js server successfully handled subscription for: {}", email);
-                return true;
-            } else {
-                logger.error("Node.js server failed to send subscription confirmation. Status: {}",
-                        response.getStatusCode());
-                return false;
+            String htmlContent = templateEngine.process("email/subscription-confirmation", context);
+
+            helper.setFrom(fromEmail);
+            helper.setTo(email);
+            helper.setSubject("Thank you for subscribing!");
+            helper.setText(htmlContent, true);
+
+            if (logoExists) {
+                helper.addInline("logo", new ClassPathResource(LOGO_PATH));
             }
+
+            mailSender.send(mimeMessage);
+            logger.info("Subscription confirmation email sent to: {}", email);
+            return true;
         } catch (Exception e) {
-            logger.error("Error forwarding subscription confirmation to Node.js server", e);
+            logger.error("Error sending subscription email", e);
             return false;
         }
     }
 
     /**
-     * Send order confirmation email via Node.js Mail Server
+     * Send order confirmation email with PDF invoice
      */
-    public boolean sendOrderConfirmation(java.util.Map<String, Object> orderData) {
+    public boolean sendOrderConfirmation(Map<String, Object> orderData) {
         try {
             String email = (String) orderData.get("email");
-            logger.info("Forwarding order confirmation request to Node.js server for: {}", email);
+            String orderIdStr = String.valueOf(orderData.getOrDefault("orderId", orderData.getOrDefault("id", "N/A")));
 
-            ResponseEntity<String> response = restTemplate.postForEntity(
-                    NODE_MAIL_SERVER_URL + "/send-confirmation",
-                    orderData,
-                    String.class);
+            MimeMessage mimeMessage = mailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
 
-            if (response.getStatusCode().is2xxSuccessful()) {
-                logger.info("Node.js server successfully handled order confirmation for: {}", email);
-                return true;
-            } else {
-                logger.error("Node.js server failed to send order confirmation. Status: {}", response.getStatusCode());
-                return false;
+            // Prepare Thymeleaf context
+            Context context = new Context();
+            context.setVariables(orderData);
+            context.setVariable("orderId", orderIdStr);
+            boolean logoExists = checkLogoExists();
+            context.setVariable("logoExists", logoExists);
+
+            String htmlContent = templateEngine.process("email/order-confirmation", context);
+
+            helper.setFrom(fromEmail);
+            helper.setTo(email);
+            helper.setSubject("Order Confirmation #" + orderIdStr + " - Sanatana Parampare");
+            helper.setText(htmlContent, true);
+
+            if (logoExists) {
+                helper.addInline("logo", new ClassPathResource(LOGO_PATH));
             }
+
+            // Generate PDF attachment
+            byte[] pdfBytes = generateInvoicePDF(orderData);
+            helper.addAttachment("invoice_" + orderIdStr + ".pdf", new ByteArrayResource(pdfBytes));
+
+            mailSender.send(mimeMessage);
+            logger.info("Order confirmation email with PDF sent to: {}", email);
+            return true;
         } catch (Exception e) {
-            logger.error("Error forwarding order confirmation to Node.js server", e);
+            logger.error("Error sending order confirmation email", e);
             return false;
         }
+    }
+
+    /**
+     * Generate Invoice PDF using OpenPDF
+     */
+    private byte[] generateInvoicePDF(Map<String, Object> orderData) throws Exception {
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        Document document = new Document(PageSize.A4);
+        PdfWriter.getInstance(document, outputStream);
+        document.open();
+
+        // 1. Header with Logo and Company Info
+        PdfPTable headerTable = new PdfPTable(2);
+        headerTable.setWidthPercentage(100);
+        headerTable.setWidths(new float[] { 1, 2 });
+
+        // Logo
+        if (checkLogoExists()) {
+            InputStream is = new ClassPathResource(LOGO_PATH).getInputStream();
+            Image logo = Image.getInstance(is.readAllBytes());
+            logo.scaleToFit(50, 50);
+            PdfPCell logoCell = new PdfPCell(logo);
+            logoCell.setBorder(Rectangle.NO_BORDER);
+            headerTable.addCell(logoCell);
+        } else {
+            headerTable.addCell(new PdfPCell(new Phrase("")));
+        }
+
+        // Company Details
+        PdfPCell detailsCell = new PdfPCell();
+        detailsCell.setBorder(Rectangle.NO_BORDER);
+        detailsCell.setHorizontalAlignment(Element.ALIGN_RIGHT);
+        detailsCell
+                .addElement(new Paragraph("Sanatana Parampare", FontFactory.getFont(FontFactory.HELVETICA_BOLD, 16)));
+        detailsCell.addElement(new Paragraph("123, Traditional Street, Heritage City",
+                FontFactory.getFont(FontFactory.HELVETICA, 10)));
+        detailsCell
+                .addElement(new Paragraph("Karnataka, India - 560001", FontFactory.getFont(FontFactory.HELVETICA, 10)));
+        headerTable.addCell(detailsCell);
+        document.add(headerTable);
+
+        document.add(new Paragraph("\n"));
+        document.add(new LineSeparator());
+        document.add(new Paragraph("\n"));
+
+        // 2. Invoice Meta data
+        document.add(new Paragraph("INVOICE", FontFactory.getFont(FontFactory.HELVETICA_BOLD, 18)));
+        String orderId = String.valueOf(orderData.getOrDefault("orderId", orderData.getOrDefault("id", "N/A")));
+        document.add(new Paragraph("Invoice Number: INV-" + orderId));
+        document.add(new Paragraph("Invoice Date: " + new SimpleDateFormat("dd/MM/yyyy").format(new Date())));
+        document.add(new Paragraph("Customer Email: " + orderData.get("email")));
+        document.add(new Paragraph("\n"));
+
+        // 3. Items Table
+        PdfPTable table = new PdfPTable(5);
+        table.setWidthPercentage(100);
+        table.setWidths(new float[] { 3, 2, 1, 2, 2 });
+
+        // Header
+        addTableHeader(table, "Item");
+        addTableHeader(table, "Weight");
+        addTableHeader(table, "Qty");
+        addTableHeader(table, "Price");
+        addTableHeader(table, "Total");
+
+        // Items
+        @SuppressWarnings("unchecked")
+        List<Map<String, Object>> items = (List<Map<String, Object>>) orderData.get("items");
+        if (items != null) {
+            for (Map<String, Object> item : items) {
+                table.addCell(String.valueOf(item.get("name")));
+                String weight = item.getOrDefault("weightValue", "-") + " " + item.getOrDefault("weightUnit", "");
+                table.addCell(weight);
+                table.addCell(String.valueOf(item.get("quantity")));
+                double price = parseDouble(item.get("price"));
+                int qty = parseInt(item.get("quantity"));
+                table.addCell("Rs. " + String.format("%.2f", price));
+                table.addCell("Rs. " + String.format("%.2f", price * qty));
+            }
+        }
+        document.add(table);
+        document.add(new Paragraph("\n"));
+
+        // 4. Totals
+        PdfPTable totalsTable = new PdfPTable(2);
+        totalsTable.setWidthPercentage(40);
+        totalsTable.setHorizontalAlignment(Element.ALIGN_RIGHT);
+
+        addTotalRow(totalsTable, "Subtotal:", "Rs. " + String.format("%.2f", parseDouble(orderData.get("subtotal"))));
+        addTotalRow(totalsTable, "Shipping:",
+                "Rs. " + String.format("%.2f", parseDouble(orderData.get("shippingCost"))));
+
+        double discount = parseDouble(orderData.get("discountAmount"));
+        if (discount > 0) {
+            addTotalRow(totalsTable, "Discount:", "-Rs. " + String.format("%.2f", discount));
+        }
+
+        addTotalRow(totalsTable, "Grand Total:", "Rs. " + String.format("%.2f", parseDouble(orderData.get("total"))),
+                true);
+
+        document.add(totalsTable);
+
+        document.close();
+        return outputStream.toByteArray();
+    }
+
+    private void addTableHeader(PdfPTable table, String headerTitle) {
+        PdfPCell header = new PdfPCell();
+        header.setBackgroundColor(new Color(248, 248, 248));
+        header.setPhrase(new Phrase(headerTitle, FontFactory.getFont(FontFactory.HELVETICA_BOLD)));
+        header.setPadding(5);
+        table.addCell(header);
+    }
+
+    private void addTotalRow(PdfPTable table, String label, String value) {
+        addTotalRow(table, label, value, false);
+    }
+
+    private void addTotalRow(PdfPTable table, String label, String value, boolean bold) {
+        Font font = bold ? FontFactory.getFont(FontFactory.HELVETICA_BOLD) : FontFactory.getFont(FontFactory.HELVETICA);
+        PdfPCell labelCell = new PdfPCell(new Phrase(label, font));
+        labelCell.setBorder(Rectangle.NO_BORDER);
+        labelCell.setHorizontalAlignment(Element.ALIGN_RIGHT);
+        table.addCell(labelCell);
+
+        PdfPCell valueCell = new PdfPCell(new Phrase(value, font));
+        valueCell.setBorder(Rectangle.NO_BORDER);
+        valueCell.setHorizontalAlignment(Element.ALIGN_RIGHT);
+        table.addCell(valueCell);
+    }
+
+    private boolean checkLogoExists() {
+        return new ClassPathResource(LOGO_PATH).exists();
     }
 
     private Double parseDouble(Object value) {
