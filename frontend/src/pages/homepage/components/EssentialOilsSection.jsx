@@ -16,10 +16,10 @@ const EssentialOilsSection = () => (
     <div className="container mx-auto px-4">
       <div className="text-center mb-12">
         <h2 className="font-heading text-4xl font-bold text-accent mb-4">
-          Edible Oils
+          Wood Pressed Oils
         </h2>
         <p className="font-body text-lg text-muted-foreground max-w-2xl mx-auto">
-          Discover our range of pure, traditional Edible oils for your daily needs.
+          Discover our range of pure, traditional Wood-pressed oils for your daily needs.
         </p>
       </div>
       <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-8">

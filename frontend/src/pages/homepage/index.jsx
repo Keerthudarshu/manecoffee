@@ -8,6 +8,7 @@ import FeaturedProductsSection from './components/FeaturedProductsSection';
 import ShopByCategorySection from './components/ShopByCategorySection';
 import CategoryProductsSection from './components/CategoryProductsSection';
 import EssentialOilsSection from './components/EssentialOilsSection';
+import EdibleOilsSection from './components/EdibleOilsSection';
 
 
 import NewsletterSection from './components/NewsletterSection';
@@ -127,6 +128,9 @@ const Homepage = () => {
 
           {/* Essential Oils Section - Pure traditional oils */}
           <EssentialOilsSection />
+
+          {/* Edible Oils Section - New section with special oils */}
+          <EdibleOilsSection />
 
           {/* Newsletter Section */}
           <NewsletterSection />
