@@ -43,7 +43,7 @@ public class EmailService {
     @Autowired
     private TemplateEngine templateEngine;
 
-    @Value("${spring.mail.username}")
+    @Value("${mail.from.email}")
     private String fromEmail;
 
     private static final String LOGO_PATH = "static/images/logo.png";
