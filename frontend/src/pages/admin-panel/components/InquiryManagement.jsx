@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Mail, Phone, User, Calendar, MessageSquare, Search, Filter, Trash2 } from 'lucide-react';
 import Icon from '../../../components/AppIcon';
 import { API_CONFIG } from '../../../config/apiConfig';
+import apiClient from '../../../services/api';
 
 const InquiryManagement = () => {
     const [inquiries, setInquiries] = useState([]);
@@ -15,18 +16,16 @@ const InquiryManagement = () => {
 
     const fetchInquiries = async () => {
         try {
-            const response = await fetch('${API_CONFIG.BASE_URL}/api/contact/all');
-            if (response.ok) {
-                const data = await response.json();
-                // Sort by date descending
-                const sorted = data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-                setInquiries(sorted);
+            const response = await apiClient.get('/contact/all');
+            // Sort by date descending
+            const data = response.data;
+            const sorted = data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+            setInquiries(sorted);
 
-                // After fetching, mark all unread inquiries as viewed
-                const unreadIds = sorted.filter(inq => !inq.viewed).map(inq => inq.id);
-                if (unreadIds.length > 0) {
-                    await markMultipleAsViewed(unreadIds);
-                }
+            // After fetching, mark all unread inquiries as viewed
+            const unreadIds = sorted.filter(inq => !inq.viewed).map(inq => inq.id);
+            if (unreadIds.length > 0) {
+                await markMultipleAsViewed(unreadIds);
             }
         } catch (error) {
             console.error('Error fetching inquiries:', error);
@@ -39,9 +38,7 @@ const InquiryManagement = () => {
         try {
             // Process marks sequentially to ensure database consistency
             for (const id of ids) {
-                await fetch(`http://localhost:8080/api/contact/mark-viewed/${id}`, {
-                    method: 'POST'
-                });
+                await apiClient.post(`/contact/mark-viewed/${id}`);
             }
         } catch (error) {
             console.error('Error marking inquiries as viewed:', error);
