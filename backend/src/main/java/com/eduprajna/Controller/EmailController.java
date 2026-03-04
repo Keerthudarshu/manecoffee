@@ -83,4 +83,18 @@ public class EmailController {
                     Map.of("success", false, "message", "Error: " + e.getMessage(), "stackTrace", sw.toString()));
         }
     }
+
+    @GetMapping("/test-email")
+    public ResponseEntity<?> testEmail(@RequestParam String to) {
+        try {
+            boolean sent = emailService.sendSubscriptionConfirmation(to);
+            if (sent) {
+                return ResponseEntity.ok(Map.of("message", "Test email sent successfully to " + to));
+            } else {
+                return ResponseEntity.internalServerError().body(Map.of("message", "Failed to send test email"));
+            }
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().body(Map.of("error", e.getMessage()));
+        }
+    }
 }

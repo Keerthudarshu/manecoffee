@@ -43,7 +43,7 @@ public class EmailService {
     @Autowired
     private TemplateEngine templateEngine;
 
-    @Value("${mail.from.email}")
+    @Value("${mail.from.email:techmindset@kvgengg.com}")
     private String fromEmail;
 
     private static final String LOGO_PATH = "static/images/logo.png";
