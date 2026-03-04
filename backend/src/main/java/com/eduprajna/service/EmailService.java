@@ -48,6 +48,11 @@ public class EmailService {
 
     private static final String LOGO_PATH = "static/images/logo.png";
 
+    @jakarta.annotation.PostConstruct
+    public void init() {
+        logger.info("EmailService initialized with sender: {}", fromEmail);
+    }
+
     /**
      * Send password reset email
      */
