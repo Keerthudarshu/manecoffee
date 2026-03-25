@@ -114,6 +114,14 @@ const Homepage = () => {
           {/* Hero Section - Product-focused slider with shopping CTAs */}
           <HeroSection />
 
+          {/* Essential Oils Section - Pure traditional oils */}
+          <EssentialOilsSection />
+
+          {/* Edible Oils Section - New section with special oils */}
+          <EdibleOilsSection />
+          {/* Shop by Category - Browse all product categories */}
+          <ShopByCategorySection />
+
           {/* Banner Showcase - Featured banner images and categories */}
           <BannerShowcase />
 
@@ -123,14 +131,7 @@ const Homepage = () => {
           {/* New Category-Based Product Section */}
           <CategoryProductsSection onAddToCart={handleAddToCart} />
 
-          {/* Shop by Category - Browse all product categories */}
-          <ShopByCategorySection />
 
-          {/* Essential Oils Section - Pure traditional oils */}
-          <EssentialOilsSection />
-
-          {/* Edible Oils Section - New section with special oils */}
-          <EdibleOilsSection />
 
           {/* Newsletter Section */}
           <NewsletterSection />
