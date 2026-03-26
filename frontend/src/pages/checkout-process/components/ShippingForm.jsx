@@ -210,6 +210,20 @@ const ShippingForm = ({ onNext, onAddressSelect, user, isLoading = false }) => {
       <h2 className="font-heading font-semibold text-xl text-foreground mb-6">
         Shipping Information
       </h2>
+
+      {/* Guidance Banner */}
+      <div className="bg-primary/10 border-l-4 border-primary p-4 mb-8 rounded-r-lg flex items-start space-x-3 animate-in fade-in slide-in-from-top-4 duration-500">
+        <div className="bg-primary text-primary-foreground p-1.5 rounded-full mt-0.5">
+          <Icon name="Info" size={16} />
+        </div>
+        <div>
+          <h3 className="font-heading font-bold text-primary text-sm uppercase tracking-wide">Step 1: Shipping Information</h3>
+          <p className="font-body text-foreground text-sm mt-1">
+            Please select a saved address or add a new one to proceed with your delivery.
+          </p>
+        </div>
+      </div>
+
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Saved Addresses */}
         {saved?.length > 0 && (
@@ -221,9 +235,11 @@ const ShippingForm = ({ onNext, onAddressSelect, user, isLoading = false }) => {
               {saved?.map((address) => (
                 <label
                   key={address?.id}
-                  className={`block p-4 border rounded-lg cursor-pointer transition-colors duration-200 ${selectedAddress === address?.id?.toString()
-                      ? 'border-primary bg-primary/5' : 'border-border hover:border-primary/50'
-                    }`}
+                  className={`block p-4 border-2 rounded-xl cursor-pointer transition-all duration-300 relative group ${
+                    selectedAddress === address?.id?.toString()
+                      ? 'border-primary bg-primary/5 selection-shadow ring-2 ring-primary/10' 
+                      : 'border-border hover:border-primary/40 hover:bg-muted/30'
+                  }`}
                 >
                   <input
                     type="radio"
@@ -236,14 +252,18 @@ const ShippingForm = ({ onNext, onAddressSelect, user, isLoading = false }) => {
                   <div className="flex items-start justify-between">
                     <div className="flex-1">
                       <div className="flex items-center space-x-2 mb-2">
-                        <span className="font-body font-medium text-foreground">
-                          {address?.addressType}
+                        <span className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider ${
+                          address?.addressType === 'Home' ? 'bg-blue-100 text-blue-700' : 'bg-green-100 text-green-700'
+                        }`}>
+                          {address?.addressType || 'Other'}
                         </span>
                         {address?.isDefault && (
-                          <span className="bg-primary/10 text-primary px-2 py-1 rounded text-xs font-caption">Default</span>
+                          <span className="bg-amber-100 text-amber-700 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider">
+                            Default
+                          </span>
                         )}
                       </div>
-                      <p className="font-body text-sm text-muted-foreground">
+                      <p className={`font-body text-sm transition-colors duration-300 ${selectedAddress === address?.id?.toString() ? 'text-foreground font-medium' : 'text-muted-foreground'}`}>
                         {address?.street}
                       </p>
                       <p className="font-body text-sm text-muted-foreground">
@@ -253,11 +273,15 @@ const ShippingForm = ({ onNext, onAddressSelect, user, isLoading = false }) => {
                         {address?.phone}
                       </p>
                     </div>
-                    <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${selectedAddress === address?.id?.toString()
-                        ? 'border-primary bg-primary' : 'border-border'
-                      }`}>
-                      {selectedAddress === address?.id?.toString() && (
-                        <div className="w-2 h-2 bg-primary-foreground rounded-full" />
+                    <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all duration-300 ${
+                      selectedAddress === address?.id?.toString()
+                        ? 'border-primary bg-primary text-primary-foreground' 
+                        : 'border-border group-hover:border-primary/50'
+                    }`}>
+                      {selectedAddress === address?.id?.toString() ? (
+                        <Icon name="Check" size={12} strokeWidth={3} />
+                      ) : (
+                        <div className="w-2 h-2 bg-transparent rounded-full" />
                       )}
                     </div>
                   </div>
@@ -352,7 +376,7 @@ const ShippingForm = ({ onNext, onAddressSelect, user, isLoading = false }) => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <Input
-                label="First Name"
+                label={<div className="flex items-center">First Name <span className="text-red-500 ml-1">*</span></div>}
                 type="text"
                 name="firstName"
                 value={formData?.firstName}
@@ -362,7 +386,7 @@ const ShippingForm = ({ onNext, onAddressSelect, user, isLoading = false }) => {
                 placeholder="Enter first name"
               />
               <Input
-                label="Last Name"
+                label={<div className="flex items-center">Last Name <span className="text-red-500 ml-1">*</span></div>}
                 type="text"
                 name="lastName"
                 value={formData?.lastName}
@@ -375,7 +399,7 @@ const ShippingForm = ({ onNext, onAddressSelect, user, isLoading = false }) => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <Input
-                label="Email Address"
+                label={<div className="flex items-center">Email Address <span className="text-red-500 ml-1">*</span></div>}
                 type="email"
                 name="email"
                 value={formData?.email}
@@ -385,7 +409,7 @@ const ShippingForm = ({ onNext, onAddressSelect, user, isLoading = false }) => {
                 placeholder="your.email@example.com"
               />
               <Input
-                label="Phone Number"
+                label={<div className="flex items-center">Phone Number <span className="text-red-500 ml-1">*</span></div>}
                 type="tel"
                 name="phone"
                 value={formData?.phone}
@@ -397,7 +421,7 @@ const ShippingForm = ({ onNext, onAddressSelect, user, isLoading = false }) => {
             </div>
 
             <Input
-              label="Address"
+              label={<div className="flex items-center">Street Address <span className="text-red-500 ml-1">*</span></div>}
               type="text"
               name="address"
               value={formData?.address}
@@ -418,7 +442,7 @@ const ShippingForm = ({ onNext, onAddressSelect, user, isLoading = false }) => {
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <Input
-                label="City"
+                label={<div className="flex items-center">City <span className="text-red-500 ml-1">*</span></div>}
                 type="text"
                 name="city"
                 value={formData?.city}
@@ -428,7 +452,7 @@ const ShippingForm = ({ onNext, onAddressSelect, user, isLoading = false }) => {
                 placeholder="Enter city"
               />
               <Select
-                label="State"
+                label={<div className="flex items-center">State <span className="text-red-500 ml-1">*</span></div>}
                 options={stateOptions}
                 value={formData?.state}
                 onChange={(value) => setFormData(prev => ({ ...prev, state: value }))}
@@ -437,7 +461,7 @@ const ShippingForm = ({ onNext, onAddressSelect, user, isLoading = false }) => {
                 placeholder="Select state"
               />
               <Input
-                label="Pincode"
+                label={<div className="flex items-center">Pincode <span className="text-red-500 ml-1">*</span></div>}
                 type="text"
                 name="pincode"
                 value={formData?.pincode}

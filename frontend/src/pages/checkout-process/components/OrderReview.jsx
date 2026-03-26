@@ -97,6 +97,19 @@ const OrderReview = ({
       <h2 className="font-heading font-semibold text-xl text-foreground mb-6">
         Review Your Order
       </h2>
+
+      {/* Guidance Banner */}
+      <div className="bg-primary/10 border-l-4 border-primary p-4 mb-6 rounded-r-lg flex items-start space-x-3 animate-in fade-in slide-in-from-top-4 duration-500">
+        <div className="bg-primary text-primary-foreground p-1.5 rounded-full mt-0.5">
+          <Icon name="Info" size={16} />
+        </div>
+        <div>
+          <h3 className="font-heading font-bold text-primary text-sm uppercase tracking-wide">Final Step: Order Review</h3>
+          <p className="font-body text-foreground text-sm mt-1">
+            Please review your details below. Once confirmed, click "Place Order" to finalize your purchase.
+          </p>
+        </div>
+      </div>
       <div className="space-y-6">
         {/* Shipping Information */}
         <div className="p-4 bg-muted/30 rounded-lg border border-border">
@@ -258,7 +271,7 @@ const OrderReview = ({
             loading={isProcessing}
             iconName="CheckCircle"
             iconPosition="right"
-            className="min-w-[140px]"
+            className="min-w-[160px] h-12 text-base shadow-lg animate-pulse-subtle"
             disabled={isProcessing}
           >
             {isProcessing ? 'Processing...' : 'Place Order'}

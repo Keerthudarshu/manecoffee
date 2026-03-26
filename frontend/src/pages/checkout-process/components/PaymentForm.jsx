@@ -161,16 +161,29 @@ const PaymentForm = ({ onNext, onBack, orderTotal, paymentMethod: initialPayment
       <h2 className="font-heading font-semibold text-xl text-foreground mb-6">
         Payment Method
       </h2>
+
+      {/* Guidance Banner */}
+      <div className="bg-primary/10 border-l-4 border-primary p-4 mb-6 rounded-r-lg flex items-start space-x-3 animate-in fade-in slide-in-from-top-4 duration-500">
+        <div className="bg-primary text-primary-foreground p-1.5 rounded-full mt-0.5">
+          <Icon name="Info" size={16} />
+        </div>
+        <div>
+          <h3 className="font-heading font-bold text-primary text-sm uppercase tracking-wide">Step 3: Payment Method</h3>
+          <p className="font-body text-foreground text-sm mt-1">
+            Choose your preferred payment method. Online payments are processed securely via Razorpay.
+          </p>
+        </div>
+      </div>
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Payment Methods */}
         <div className="space-y-3">
           {paymentMethods?.map((method) => (
             <label
               key={method?.id}
-              className={`block p-4 border rounded-lg cursor-pointer transition-colors duration-200 ${paymentMethod === method?.id
-                  ? 'border-primary bg-primary/5'
+              className={`block p-5 border-2 rounded-xl cursor-pointer transition-all duration-300 relative group ${paymentMethod === method?.id
+                  ? 'border-primary bg-primary/5 selection-shadow ring-2 ring-primary/10' 
                   : method?.available
-                    ? 'border-border hover:border-primary/50' : 'border-border bg-muted/50 cursor-not-allowed'
+                    ? 'border-border hover:border-primary/40 hover:bg-muted/30 shadow-sm' : 'border-border bg-muted/50 cursor-not-allowed opacity-60'
                 }`}
             >
               <input
@@ -210,11 +223,14 @@ const PaymentForm = ({ onNext, onBack, orderTotal, paymentMethod: initialPayment
                       +₹{method?.fee}
                     </span>
                   )}
-                  <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${paymentMethod === method?.id
-                      ? 'border-primary bg-primary' : 'border-border'
+                  <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all duration-300 ${paymentMethod === method?.id
+                      ? 'border-primary bg-primary text-primary-foreground font-bold' 
+                      : 'border-border group-hover:border-primary/50'
                     }`}>
-                    {paymentMethod === method?.id && (
-                      <div className="w-2 h-2 bg-primary-foreground rounded-full" />
+                    {paymentMethod === method?.id ? (
+                      <Icon name="Check" size={12} strokeWidth={3} />
+                    ) : (
+                      <div className="w-2 h-2 bg-transparent rounded-full" />
                     )}
                   </div>
                 </div>

@@ -92,6 +92,19 @@ const DeliveryOptions = ({ onNext, onBack, shippingAddress, user: parentUser, is
       <h2 className="font-heading font-semibold text-xl text-foreground mb-6">
         Delivery Options
       </h2>
+
+      {/* Guidance Banner */}
+      <div className="bg-primary/10 border-l-4 border-primary p-4 mb-6 rounded-r-lg flex items-start space-x-3 animate-in fade-in slide-in-from-top-4 duration-500">
+        <div className="bg-primary text-primary-foreground p-1.5 rounded-full mt-0.5">
+          <Icon name="Info" size={16} />
+        </div>
+        <div>
+          <h3 className="font-heading font-bold text-primary text-sm uppercase tracking-wide">Step 2: Delivery Options</h3>
+          <p className="font-body text-foreground text-sm mt-1">
+            Choose your preferred delivery speed. We offer free standard delivery on qualifying orders.
+          </p>
+        </div>
+      </div>
       {/* Location Info */}
       <div className="bg-muted/50 border border-border rounded-lg p-4 mb-6">
         <div className="flex items-center space-x-2 mb-2">
@@ -112,9 +125,10 @@ const DeliveryOptions = ({ onNext, onBack, shippingAddress, user: parentUser, is
         {deliveryOptions?.map((option) => (
           <label
             key={option?.id}
-            className={`block p-4 border rounded-lg cursor-pointer transition-colors duration-200 relative ${
+            className={`block p-5 border-2 rounded-xl cursor-pointer transition-all duration-300 relative group ${
               selectedOption === option?.id
-                ? 'border-primary bg-primary/5' :'border-border hover:border-primary/50'
+                ? 'border-primary bg-primary/5 selection-shadow ring-2 ring-primary/10' 
+                : 'border-border hover:border-primary/40 hover:bg-muted/30 shadow-sm'
             }`}
           >
             <input
@@ -153,12 +167,15 @@ const DeliveryOptions = ({ onNext, onBack, shippingAddress, user: parentUser, is
                 <p className="font-data font-semibold text-foreground">
                   {option?.price === 0 ? 'Free' : `₹${option?.price}`}
                 </p>
-                <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center mt-1 ${
+                <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all duration-300 ${
                   selectedOption === option?.id
-                    ? 'border-primary bg-primary' :'border-border'
+                    ? 'border-primary bg-primary text-primary-foreground font-bold' 
+                    : 'border-border group-hover:border-primary/50'
                 }`}>
-                  {selectedOption === option?.id && (
-                    <div className="w-2 h-2 bg-primary-foreground rounded-full" />
+                  {selectedOption === option?.id ? (
+                    <Icon name="Check" size={12} strokeWidth={3} />
+                  ) : (
+                    <div className="w-2 h-2 bg-transparent rounded-full" />
                   )}
                 </div>
               </div>
