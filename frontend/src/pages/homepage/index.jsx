@@ -120,22 +120,19 @@ const Homepage = () => {
 
           {/* Edible Oils Section - New section with special oils */}
           <EdibleOilsSection />
-
-          {/* Experience Tradition CTA */}
-          <ExperienceTraditionCTA />
           {/* Shop by Category - Browse all product categories */}
           <ShopByCategorySection />
-
           {/* New Category-Based Product Section */}
           <CategoryProductsSection onAddToCart={handleAddToCart} />
+          {/* Experience Tradition CTA */}
+          <ExperienceTraditionCTA />
 
-          {/* Banner Showcase - Featured banner images and categories */}
-          <BannerShowcase />
 
           {/* Featured Products - Best selling items with quick purchase */}
           <FeaturedProductsSection onAddToCart={handleAddToCart} />
 
-
+          {/* Banner Showcase - Featured banner images and categories */}
+          <BannerShowcase />
 
           {/* Newsletter Section */}
           <NewsletterSection />

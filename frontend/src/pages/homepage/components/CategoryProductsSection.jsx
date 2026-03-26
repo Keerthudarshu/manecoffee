@@ -119,12 +119,12 @@ const CategoryProductsSection = ({ onAddToCart }) => {
 
             <div className="container mx-auto px-4 relative z-10">
                 {/* Section Header */}
-                <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
-                    <div className="max-w-2xl">
+                <div className="flex flex-col items-center text-center mb-12">
+                    <div className="max-w-2xl mx-auto">
                         <h2 className="font-heading text-4xl font-bold text-primary mb-4">
                             Our Traditional Treasures
                         </h2>
-                        <p className="font-body text-lg text-muted-foreground">
+                        <p className="font-body text-lg text-muted-foreground mb-6">
                             Discover the authentic taste of tradition across our curated categories. Handpicked for quality and purity.
                         </p>
                     </div>
