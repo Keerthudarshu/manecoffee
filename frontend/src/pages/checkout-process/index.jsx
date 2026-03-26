@@ -436,7 +436,11 @@ const CheckoutProcess = () => {
 
     } catch (error) {
       console.error('Order placement failed:', error);
-      setError(error.message || 'Failed to place order. Please try again.');
+      const errorMessage = error.response?.data?.message || 
+                          (typeof error.response?.data === 'string' ? error.response.data : null) || 
+                          error.message || 
+                          'Failed to place order. Please try again.';
+      setError(errorMessage);
     } finally {
       setIsProcessing(false);
     }
