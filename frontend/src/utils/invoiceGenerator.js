@@ -1,7 +1,7 @@
 // Invoice generator utility
 export const generateInvoice = (order, user, settings = {}) => {
     const siteName = settings.siteName || "Deepus";
-    const brandEmail = settings.email || "support@sanatanaparampara.com";
+    const brandEmail = settings.email || "paramparestore@gmail.com";
     const brandPhone = settings.phone || "+91 99025 23333";
     const brandAddress = settings.address || "Bengaluru, India";
 
