@@ -2,7 +2,7 @@
 export const generateInvoice = (order, user, settings = {}) => {
     const siteName = settings.siteName || "Deepus";
     const brandEmail = settings.email || "support@sanatanaparampara.com";
-    const brandPhone = settings.phone || "+91 9845651468";
+    const brandPhone = settings.phone || "+91 99025 23333";
     const brandAddress = settings.address || "Bengaluru, India";
 
     // Resolve logo so it works in the new window/print context
@@ -300,41 +300,41 @@ export const generateInvoice = (order, user, settings = {}) => {
 };
 
 export const downloadInvoice = (order, user, settings = {}) => {
-  const invoiceHTML = generateInvoice(order, user, settings);
-  
-  // Create a more professional filename
-  const orderNumber = order.orderNumber || `NN-${new Date().getFullYear()}-${String(order.id || order.orderId).padStart(3, '0')}`;
-  const customerName = (order.customerName || user.name || 'Customer').replace(/[^a-z0-9]/gi, '_');
-  const filename = `Invoice_${orderNumber}_${customerName}.html`;
-  
-  const blob = new Blob([invoiceHTML], { type: 'text/html' });
-  const url = URL.createObjectURL(blob);
-  const link = document.createElement('a');
-  link.href = url;
-  link.download = filename;
-  link.click();
-  URL.revokeObjectURL(url);
+    const invoiceHTML = generateInvoice(order, user, settings);
+
+    // Create a more professional filename
+    const orderNumber = order.orderNumber || `NN-${new Date().getFullYear()}-${String(order.id || order.orderId).padStart(3, '0')}`;
+    const customerName = (order.customerName || user.name || 'Customer').replace(/[^a-z0-9]/gi, '_');
+    const filename = `Invoice_${orderNumber}_${customerName}.html`;
+
+    const blob = new Blob([invoiceHTML], { type: 'text/html' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = filename;
+    link.click();
+    URL.revokeObjectURL(url);
 };
 
 export const printInvoice = (order, user, settings = {}) => {
-  const invoiceHTML = generateInvoice(order, user, settings);
-  const printWindow = window.open('', '_blank', 'width=800,height=600');
-  
-  if (printWindow) {
-    printWindow.document.write(invoiceHTML);
-    printWindow.document.close();
-    
-    // Wait for content to load before printing
-    printWindow.onload = () => {
-      printWindow.focus();
-      printWindow.print();
-      
-      // Close window after printing (optional)
-      printWindow.onafterprint = () => {
-        printWindow.close();
-      };
-    };
-  } else {
-    alert('Please allow pop-ups to print the invoice.');
-  }
+    const invoiceHTML = generateInvoice(order, user, settings);
+    const printWindow = window.open('', '_blank', 'width=800,height=600');
+
+    if (printWindow) {
+        printWindow.document.write(invoiceHTML);
+        printWindow.document.close();
+
+        // Wait for content to load before printing
+        printWindow.onload = () => {
+            printWindow.focus();
+            printWindow.print();
+
+            // Close window after printing (optional)
+            printWindow.onafterprint = () => {
+                printWindow.close();
+            };
+        };
+    } else {
+        alert('Please allow pop-ups to print the invoice.');
+    }
 };

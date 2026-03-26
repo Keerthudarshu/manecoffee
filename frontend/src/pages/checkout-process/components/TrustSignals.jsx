@@ -100,7 +100,7 @@ const TrustSignals = () => {
                 Call Us
               </p>
               <p className="font-data text-xs text-muted-foreground">
-                +91 80-4567-8900
+                +91 99025 23333
               </p>
             </div>
           </div>
