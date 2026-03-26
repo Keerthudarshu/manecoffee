@@ -480,6 +480,19 @@ const OrderManagement = () => {
               <h3 className="font-semibold mb-2">Shipping Details</h3>
               <div><strong>Address:</strong> {selectedOrder.shipping?.street || 'N/A'}, {selectedOrder.shipping?.city || ''}, {selectedOrder.shipping?.state || ''}, {selectedOrder.shipping?.pincode || ''}</div>
               <div><strong>Landmark:</strong> {selectedOrder.shipping?.landmark || 'N/A'}</div>
+              {selectedOrder.shipping?.latitude && selectedOrder.shipping?.longitude && (
+                <div className="mt-2 text-sm">
+                  <strong>Delivery Location:</strong>{' '}
+                  <a
+                    href={`https://www.google.com/maps?q=${selectedOrder.shipping.latitude},${selectedOrder.shipping.longitude}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary hover:underline"
+                  >
+                    View on Google Maps
+                  </a>
+                </div>
+              )}
             </div>
             <div className="mb-4">
               <h3 className="font-semibold mb-2">Price Breakdown</h3>

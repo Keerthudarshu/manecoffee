@@ -99,6 +99,8 @@ public class OrderService {
         shippingSnapshot.setPincode(address.getPincode());
         shippingSnapshot.setLandmark(address.getLandmark());
         shippingSnapshot.setAddressType(address.getAddressType());
+        shippingSnapshot.setLatitude(address.getLatitude());
+        shippingSnapshot.setLongitude(address.getLongitude());
         order.setShipping(shippingSnapshot);
         
         // 6. Calculate totals

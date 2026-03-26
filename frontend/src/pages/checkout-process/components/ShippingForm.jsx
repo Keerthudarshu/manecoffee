@@ -36,8 +36,12 @@ const ShippingForm = ({ onNext, onAddressSelect, user, isLoading = false }) => {
     city: '',
     state: '',
     pincode: '',
-    country: 'India'
+    country: 'India',
+    latitude: null,
+    longitude: null
   });
+  const [locationLoading, setLocationLoading] = useState(false);
+  const [locationError, setLocationError] = useState(null);
   const [errors, setErrors] = useState({});
   const [saveAddress, setSaveAddress] = useState(false);
 
@@ -155,9 +159,11 @@ const ShippingForm = ({ onNext, onAddressSelect, user, isLoading = false }) => {
               state: typeof formData.state === 'string' ? formData.state : formData.state?.value,
               pincode: formData.pincode,
               landmark: '',
-              addressType: 'Home',
-              default: saved?.length === 0
-            };
+               addressType: 'Home',
+               default: saved?.length === 0,
+               latitude: formData.latitude,
+               longitude: formData.longitude
+             };
             created = await userApi.addAddress(authUser.email, payload);
             setSaved(prev => [...prev, created]);
             console.log('New address saved to backend:', created);
@@ -173,11 +179,13 @@ const ShippingForm = ({ onNext, onAddressSelect, user, isLoading = false }) => {
           phone: formData.phone,
           street: formData.address + (formData.apartment ? `, ${formData.apartment}` : ''),
           city: formData.city,
-          state: typeof formData.state === 'string' ? formData.state : formData.state?.value,
-          pincode: formData.pincode,
-          landmark: '',
-          addressType: 'Home'
-        };
+           state: typeof formData.state === 'string' ? formData.state : formData.state?.value,
+           pincode: formData.pincode,
+           landmark: '',
+           addressType: 'Home',
+           latitude: formData.latitude,
+           longitude: formData.longitude
+         };
 
         if (onAddressSelect) onAddressSelect(addressToUse);
         onNext(addressToUse);
@@ -293,6 +301,54 @@ const ShippingForm = ({ onNext, onAddressSelect, user, isLoading = false }) => {
                 </Button>
               </div>
             )}
+
+            {/* Fetch Current Location Button */}
+            <div className="flex flex-col space-y-2">
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => {
+                  setLocationLoading(true);
+                  setLocationError(null);
+                  if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(
+                      (position) => {
+                        setFormData(prev => ({
+                          ...prev,
+                          latitude: position.coords.latitude,
+                          longitude: position.coords.longitude
+                        }));
+                        setLocationLoading(false);
+                        console.log('Location fetched:', position.coords);
+                      },
+                      (error) => {
+                        console.error('Error fetching location:', error);
+                        setLocationError('Failed to get location. Please allow location access.');
+                        setLocationLoading(false);
+                      }
+                    );
+                  } else {
+                    setLocationError('Geolocation is not supported by your browser.');
+                    setLocationLoading(false);
+                  }
+                }}
+                disabled={locationLoading}
+                iconName="MapPin"
+                iconPosition="left"
+                className="w-full sm:w-auto"
+              >
+                {locationLoading ? 'Fetching Location...' : 'Use Current Location'}
+              </Button>
+              {formData.latitude && (
+                <p className="text-xs text-green-600 flex items-center">
+                  <span className="w-2 h-2 bg-green-500 rounded-full mr-2" />
+                  Location Captured ({formData.latitude.toFixed(4)}, {formData.longitude.toFixed(4)})
+                </p>
+              )}
+              {locationError && (
+                <p className="text-xs text-red-500">{locationError}</p>
+              )}
+            </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <Input

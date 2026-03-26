@@ -12,14 +12,15 @@ const CategoryProductsSection = ({ onAddToCart }) => {
     const scrollRef = useRef(null);
 
     const categories = [
-        { name: 'Chemical Free Jaggery', icon: 'Candy' },
+        { name: 'Wood Pressed Oils', icon: 'Droplets' },
         { name: 'Essential Oils', icon: 'Droplets' },
         { name: 'Ghee', icon: 'Heart' },
         { name: 'Honey', icon: 'Flower' },
         { name: 'Papads', icon: 'Cookie' },
         { name: 'Pickles', icon: 'Jar' },
-        { name: 'Spice Powders', icon: 'Sparkles' },
-        { name: 'Wood Pressed Oils', icon: 'Droplets' }
+        { name: 'Chemical Free Jaggery', icon: 'Candy' },
+        { name: 'Spice Powders', icon: 'Sparkles' }
+
     ];
 
     const mapProductData = (dbProduct) => {

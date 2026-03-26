@@ -4,10 +4,10 @@ import Icon from '../../../components/AppIcon';
 
 const NewHeroSection = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  
+
   const heroSlides = [
     {
-      title: "साम्राज्य का पुरातन स्वाद",
+      title: "ಸನಾತನ ಪರಂಪರೆ",
       subtitle: "SANATANA PARAMPARE",
       description: "Experience the purest traditional foods following ancient Indian wisdom. Chemical-free, preservative-free, made with love.",
       cta: "Discover Pure Heritage",
@@ -47,9 +47,8 @@ const NewHeroSection = () => {
         {heroSlides.map((slide, index) => (
           <div
             key={index}
-            className={`absolute inset-0 transition-opacity duration-1000 ${
-              index === currentSlide ? 'opacity-100' : 'opacity-0'
-            }`}
+            className={`absolute inset-0 transition-opacity duration-1000 ${index === currentSlide ? 'opacity-100' : 'opacity-0'
+              }`}
           >
             <img
               src={slide.backgroundImage}
@@ -75,7 +74,7 @@ const NewHeroSection = () => {
           <h1 className="font-heading text-6xl md:text-8xl font-bold mb-4 tracking-wide">
             {heroSlides[currentSlide].title}
           </h1>
-          
+
           {/* Subtitle */}
           <h2 className="font-heading text-xl md:text-2xl font-medium mb-6 tracking-widest text-green-100">
             {heroSlides[currentSlide].subtitle}
@@ -94,7 +93,7 @@ const NewHeroSection = () => {
             >
               {heroSlides[currentSlide].cta}
             </Link>
-            
+
             <Link
               to="/about"
               className="border-2 border-white text-white hover:bg-white hover:text-primary px-8 py-4 rounded-full font-heading font-semibold text-lg transition-all duration-300 hover:scale-105"
@@ -128,7 +127,7 @@ const NewHeroSection = () => {
       >
         <Icon name="ChevronLeft" size={24} />
       </button>
-      
+
       <button
         onClick={nextSlide}
         className="absolute right-6 top-1/2 transform -translate-y-1/2 z-20 bg-white/20 hover:bg-white/30 text-white p-3 rounded-full backdrop-blur-sm transition-all duration-300"
@@ -142,9 +141,8 @@ const NewHeroSection = () => {
           <button
             key={index}
             onClick={() => setCurrentSlide(index)}
-            className={`w-3 h-3 rounded-full transition-all duration-300 ${
-              index === currentSlide ? 'bg-white' : 'bg-white/50'
-            }`}
+            className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentSlide ? 'bg-white' : 'bg-white/50'
+              }`}
           />
         ))}
       </div>
