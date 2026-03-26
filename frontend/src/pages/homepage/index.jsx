@@ -9,6 +9,7 @@ import ShopByCategorySection from './components/ShopByCategorySection';
 import CategoryProductsSection from './components/CategoryProductsSection';
 import EssentialOilsSection from './components/EssentialOilsSection';
 import EdibleOilsSection from './components/EdibleOilsSection';
+import ExperienceTraditionCTA from './components/ExperienceTraditionCTA';
 
 
 import NewsletterSection from './components/NewsletterSection';
@@ -119,17 +120,20 @@ const Homepage = () => {
 
           {/* Edible Oils Section - New section with special oils */}
           <EdibleOilsSection />
+
+          {/* Experience Tradition CTA */}
+          <ExperienceTraditionCTA />
           {/* Shop by Category - Browse all product categories */}
           <ShopByCategorySection />
+
+          {/* New Category-Based Product Section */}
+          <CategoryProductsSection onAddToCart={handleAddToCart} />
 
           {/* Banner Showcase - Featured banner images and categories */}
           <BannerShowcase />
 
           {/* Featured Products - Best selling items with quick purchase */}
           <FeaturedProductsSection onAddToCart={handleAddToCart} />
-
-          {/* New Category-Based Product Section */}
-          <CategoryProductsSection onAddToCart={handleAddToCart} />
 
 
 

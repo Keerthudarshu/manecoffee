@@ -49,11 +49,11 @@ const BannerShowcase = () => {
               Traditional Flavors, Authentic Quality
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Discover our premium collection of traditional Indian food products, 
+              Discover our premium collection of traditional Indian food products,
               made with love and following ancient recipes for authentic taste.
             </p>
           </div>
-          
+
           {/* <div className="max-w-6xl mx-auto">
             <BannerImageSlider 
               images={bannerImages} 
@@ -78,8 +78,8 @@ const BannerShowcase = () => {
 
                 {/* Image Slider */}
                 <div className="h-48">
-                  <BannerImageSlider 
-                    images={category.images} 
+                  <BannerImageSlider
+                    images={category.images}
                     className="h-full w-full"
                     autoSlide={category.images.length > 1}
                     interval={4000}
@@ -94,7 +94,7 @@ const BannerShowcase = () => {
                   <p className="text-gray-600 mb-4">
                     {category.description}
                   </p>
-                  <Link 
+                  <Link
                     to={category.link}
                     className="inline-flex items-center text-orange-600 hover:text-orange-700 font-semibold group-hover:underline"
                   >
@@ -109,26 +109,6 @@ const BannerShowcase = () => {
           ))}
         </div>
 
-        {/* Call to Action */}
-        <div className="mt-16 text-center">
-          <div className="bg-gradient-to-r from-orange-500 to-red-500 rounded-2xl p-8 text-white">
-            <h3 className="text-3xl font-bold mb-4">
-              Experience the Taste of Tradition
-            </h3>
-            <p className="text-xl mb-6 opacity-90">
-              Shop our complete collection of premium traditional products
-            </p>
-            <Link 
-              to="/product-collection-grid"
-              className="inline-flex items-center px-8 py-3 bg-white text-orange-600 font-semibold rounded-lg hover:bg-orange-50 transition-colors"
-            >
-              Shop All Products
-              <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-              </svg>
-            </Link>
-          </div>
-        </div>
       </div>
     </section>
   );
