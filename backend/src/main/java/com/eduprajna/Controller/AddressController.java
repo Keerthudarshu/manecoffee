@@ -58,6 +58,8 @@ public class AddressController {
                             existing.setLandmark(body.getLandmark());
                             existing.setAddressType(body.getAddressType());
                             existing.setDefault(body.isDefault());
+                            existing.setLatitude(body.getLatitude());
+                            existing.setLongitude(body.getLongitude());
                             return ResponseEntity.ok(addressService.save(existing));
                         })
                         .orElse(ResponseEntity.status(404).body(Map.of("message", "Address not found"))))
