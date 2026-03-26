@@ -245,7 +245,6 @@ public class CheckoutController {
      * This endpoint finalizes the order and clears the cart
      */
     @PostMapping("/place-order")
-    @Transactional
     public ResponseEntity<?> placeOrder(@RequestParam("email") String email) {
         try {
             logger.debug("Placing order for user: {}", email);
