@@ -5,6 +5,7 @@ import Button from '../../../components/ui/Button';
 import { Checkbox } from '../../../components/ui/Checkbox';
 import { useAuth } from '../../../contexts/AuthContext';
 import userApi from '../../../services/userApi';
+import Icon from '../../../components/AppIcon';
 
 /**
  * ShippingForm Component - Step 1 of Checkout Process
