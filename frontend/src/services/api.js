@@ -1,9 +1,8 @@
 import axios from 'axios';
 import { API_CONFIG } from '../config/apiConfig';
 
-// Base URL from environment variables (Vite uses import.meta.env)
-// Default to include `/api` for existing calls that use paths like `/products`
-const baseURL = `${API_CONFIG.BASE_URL}/api`;
+// Base URL from environment variables
+const baseURL = API_CONFIG.BASE_URL;
 
 export const apiClient = axios.create({
   baseURL,

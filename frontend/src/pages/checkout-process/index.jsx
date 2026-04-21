@@ -79,12 +79,8 @@ const CheckoutProcess = () => {
   const addTestItems = async () => {
     try {
       // First, try to get existing products from the backend
-      const response = await fetch('http://localhost:8080/api/admin/products');
-      let availableProducts = [];
-
-      if (response.ok) {
-        availableProducts = await response.json();
-      }
+      const response = await apiClient.get('/admin/products');
+      let availableProducts = response.data || [];
 
       // If no products exist in backend, create some test products first
       if (availableProducts.length === 0) {
@@ -117,16 +113,10 @@ const CheckoutProcess = () => {
         // Add products to backend
         for (const product of testProducts) {
           try {
-            const createResponse = await fetch('http://localhost:8080/api/admin/products', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify(product)
-            });
+            const createResponse = await apiClient.post('/admin/products', product);
 
-            if (createResponse.ok) {
-              const createdProduct = await createResponse.json();
+            if (createResponse.status === 200 || createResponse.status === 201) {
+              const createdProduct = createResponse.data;
               availableProducts.push(createdProduct);
               console.log('Created product:', createdProduct);
             }

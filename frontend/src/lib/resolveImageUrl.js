@@ -10,7 +10,7 @@
  */
 import { API_CONFIG } from '../config/apiConfig';
 
-const API_ORIGIN = `${API_CONFIG.BASE_URL}/api`;
+const API_ORIGIN = API_CONFIG.BASE_URL;
 export function resolveImageUrl(input) {
   // Handle null, undefined, or empty strings
   if (!input || typeof input !== 'string' || input.trim() === '') {
@@ -70,7 +70,7 @@ export function resolveImageUrl(input) {
     return `${API_CONFIG.BASE_URL}${url}`;
   }
 
-  // /uploads/ paths - map to http://localhost:8080
+  // /uploads/ paths - map to base URL
   if (url.startsWith('/uploads/')) {
     return `${API_CONFIG.BASE_URL}${url}`;
 
