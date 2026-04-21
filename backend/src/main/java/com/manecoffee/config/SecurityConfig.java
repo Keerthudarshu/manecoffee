@@ -89,7 +89,9 @@ public class SecurityConfig {
 
         // EXACT frontend origin
         config.setAllowedOrigins(List.of(
-                "http://13.49.228.120"));
+                "http://manecoffeee.com",
+                "https://manecoffeee.com"
+        ));
 
         config.setAllowedMethods(List.of(
                 "GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"));
