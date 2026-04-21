@@ -3,14 +3,14 @@ import Icon from '../../../components/AppIcon';
 
 const TestimonialsSection = () => {
   const [activeTestimonial, setActiveTestimonial] = useState(0);
-  
+
   const testimonials = [
     {
       id: 1,
       name: 'Priya Sharma',
       location: 'Bangalore, Karnataka',
       rating: 5,
-      text: 'The wood-pressed coconut oil from Sanatana Parampare has transformed our cooking. The authentic taste and aroma remind me of my grandmother\'s kitchen. Pure quality!',
+      text: 'The wood-pressed coconut oil from Mane Coffee has transformed our cooking. The authentic taste and aroma remind me of my grandmother\'s kitchen. Pure quality!',
       product: 'Wood Pressed Coconut Oil',
       avatar: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=80&h=80&fit=crop&crop=face'
     },
@@ -125,7 +125,7 @@ const TestimonialsSection = () => {
             >
               <Icon name="ChevronLeft" size={20} />
             </button>
-            
+
             <button
               onClick={nextTestimonial}
               className="bg-white hover:bg-primary hover:text-white text-primary p-3 rounded-full shadow-lg transition-all duration-300 border border-primary/20"
@@ -140,9 +140,8 @@ const TestimonialsSection = () => {
               <button
                 key={index}
                 onClick={() => setActiveTestimonial(index)}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                  index === activeTestimonial ? 'bg-primary w-8' : 'bg-muted'
-                }`}
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${index === activeTestimonial ? 'bg-primary w-8' : 'bg-muted'
+                  }`}
               />
             ))}
           </div>
@@ -154,17 +153,17 @@ const TestimonialsSection = () => {
             <Icon name="Shield" size={32} className="text-primary mx-auto mb-3" />
             <div className="font-heading font-semibold text-sm text-foreground">Certified Pure</div>
           </div>
-          
+
           <div className="text-center bg-white rounded-2xl p-6 shadow-lg border border-border">
             <Icon name="Truck" size={32} className="text-primary mx-auto mb-3" />
             <div className="font-heading font-semibold text-sm text-foreground">Fast Delivery</div>
           </div>
-          
+
           <div className="text-center bg-white rounded-2xl p-6 shadow-lg border border-border">
             <Icon name="Leaf" size={32} className="text-primary mx-auto mb-3" />
             <div className="font-heading font-semibold text-sm text-foreground">100% Natural</div>
           </div>
-          
+
           <div className="text-center bg-white rounded-2xl p-6 shadow-lg border border-border">
             <Icon name="Heart" size={32} className="text-primary mx-auto mb-3" />
             <div className="font-heading font-semibold text-sm text-foreground">Made with Love</div>

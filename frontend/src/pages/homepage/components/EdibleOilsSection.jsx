@@ -39,34 +39,36 @@ const EdibleOilsSection = () => {
     }, []);
 
     return (
-        <section className="py-16 bg-white">
+        <section className="py-16 lg:py-24 bg-white">
             <div className="container mx-auto px-4">
-                <div className="text-center mb-12">
-                    <h2 className="font-heading text-4xl font-bold text-accent mb-4">
-                        Edible Oils
+                <div className="text-center mb-16">
+                    <h2 className="font-heading text-4xl lg:text-5xl font-bold text-[#120d07] mb-6">
+                        <span className="text-[#C9A227]">Mane Coffee Products</span>
                     </h2>
-                    <p className="font-body text-lg text-muted-foreground max-w-2xl mx-auto">
-                        Experience the purity of our premium edible oils, crafted for health and wellness.
+                    <div className="w-24 h-1 bg-[#C9A227] mx-auto mb-6 rounded-full"></div>
+                    <p className="font-body text-lg text-[#120d07]/60 max-w-2xl mx-auto">
+                        Experience the purity of our premium Mane Coffee products, crafted for health and wellness using traditional methods.
                     </p>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 max-w-6xl mx-auto">
                     {edibleOils.map((oil) => (
                         <a
                             key={oil.id}
                             href={`/product-detail-page/${oil.id}`}
-                            className="flex flex-col bg-gray-50 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden cursor-pointer group"
+                            className="group flex flex-col bg-[#120d07]/5 rounded-3xl shadow-sm hover:shadow-gold-lg transition-all duration-500 overflow-hidden cursor-pointer transform hover:-translate-y-2"
                             style={{ textDecoration: 'none' }}
                         >
-                            <div className="flex-1 w-full aspect-[4/5] bg-gray-100 flex items-center justify-center overflow-hidden">
+                            <div className="relative w-full aspect-[4/5] flex items-center justify-center overflow-hidden">
                                 <img
                                     src={oil.img}
                                     alt={oil.name}
-                                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                                     loading="lazy"
                                 />
+                                <div className="absolute inset-0 bg-gradient-to-t from-[#120d07]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                             </div>
-                            <div className="p-6 flex items-center justify-center bg-white">
-                                <span className="font-heading text-xl font-semibold text-foreground text-center group-hover:text-primary transition-colors">
+                            <div className="p-8 flex items-center justify-center bg-white border-t border-[#C9A227]/5">
+                                <span className="font-heading text-xl font-bold text-[#120d07] text-center group-hover:text-[#C9A227] transition-colors duration-300">
                                     {oil.name}
                                 </span>
                             </div>

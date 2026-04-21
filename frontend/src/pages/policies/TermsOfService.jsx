@@ -5,13 +5,13 @@ const TermsOfService = () => {
     return (
         <PolicyLayout
             title="Terms of Service"
-            description="Read the terms and conditions for using Sanatana Parampare's website and services."
+            description="Read the terms and conditions for using Mane Coffee's website and services."
             keywords="terms of service, terms and conditions, legal agreement, website usage"
         >
             <section className="mb-8">
                 <h2 className="text-2xl font-semibold mb-4 text-secondary">1. Acceptance of Terms</h2>
                 <p>
-                    By accessing and using the Sanatana Parampare website, you agree to comply with and be bound by these Terms of Service. If you do not agree, please do not use our services.
+                    By accessing and using the Mane Coffee website, you agree to comply with and be bound by these Terms of Service. If you do not agree, please do not use our services.
                 </p>
             </section>
 
@@ -37,14 +37,14 @@ const TermsOfService = () => {
             <section className="mb-8">
                 <h2 className="text-2xl font-semibold mb-4 text-secondary">4. Intellectual Property</h2>
                 <p>
-                    All content on this website, including text, graphics, logos, and images, is the property of Sanatana Parampare and is protected by copyright and intellectual property laws.
+                    All content on this website, including text, graphics, logos, and images, is the property of Mane Coffee and is protected by copyright and intellectual property laws.
                 </p>
             </section>
 
             <section className="mb-8">
                 <h2 className="text-2xl font-semibold mb-4 text-secondary">5. Limitation of Liability</h2>
                 <p>
-                    Sanatana Parampare shall not be liable for any direct, indirect, or incidental damages arising out of your use of or inability to use the website or its products.
+                    Mane Coffee shall not be liable for any direct, indirect, or incidental damages arising out of your use of or inability to use the website or its products.
                 </p>
             </section>
 

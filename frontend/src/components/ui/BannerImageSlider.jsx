@@ -65,20 +65,20 @@ const BannerImageSlider = ({ images, autoSlide = true, interval = 4000, classNam
         <>
           <button
             onClick={goToPrevious}
-            className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-20 hover:bg-opacity-30 rounded-full p-2 transition-all duration-200 backdrop-blur-sm"
+            className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-[#C9A227]/20 hover:bg-[#C9A227]/40 rounded-full p-2 transition-all duration-200 backdrop-blur-md border border-white/10"
             aria-label="Previous image"
           >
-            <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-6 h-6 text-[#F0C040]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
             </svg>
           </button>
           
           <button
             onClick={goToNext}
-            className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-20 hover:bg-opacity-30 rounded-full p-2 transition-all duration-200 backdrop-blur-sm"
+            className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-[#C9A227]/20 hover:bg-[#C9A227]/40 rounded-full p-2 transition-all duration-200 backdrop-blur-md border border-white/10"
             aria-label="Next image"
           >
-            <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-6 h-6 text-[#F0C040]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
           </button>
@@ -94,8 +94,8 @@ const BannerImageSlider = ({ images, autoSlide = true, interval = 4000, classNam
               onClick={() => goToSlide(index)}
               className={`w-3 h-3 rounded-full transition-all duration-200 ${
                 index === currentIndex
-                  ? 'bg-white scale-110'
-                  : 'bg-white bg-opacity-50 hover:bg-opacity-75'
+                  ? 'bg-[#C9A227] scale-125'
+                  : 'bg-white/40 hover:bg-white/60'
               }`}
               aria-label={`Go to image ${index + 1}`}
             />

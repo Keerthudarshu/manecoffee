@@ -10,7 +10,7 @@ const blogPosts = [
     {
         id: 'heritage-story',
         title: "Preserving India's Ancient Culinary Wisdom",
-        excerpt: "Discover the journey of Sanatana Parampare and our mission to protect traditional food preparation methods in the modern era.",
+        excerpt: "Discover the journey of Mane Coffee and our mission to protect traditional food preparation methods in the modern era.",
         image: "/assets/images/parampara.jpg",
         date: "May 15, 2024",
         category: "Our Heritage",
@@ -36,7 +36,7 @@ const blogPosts = [
     },
     {
         id: 'purity-authenticity',
-        title: "What Purity Means at Sanatana Parampare",
+        title: "What Purity Means at Mane Coffee",
         excerpt: "A deep dive into our commitment to 100% natural heritage foods without chemical additives or preservatives.",
         image: "/assets/images/store.jpg",
         date: "July 5, 2024",
@@ -72,10 +72,10 @@ const BlogIndex = () => {
     return (
         <>
             <Helmet>
-                <title>Our Blog - Sanatana Parampare | Traditional Indian Food Insights</title>
+                <title>Our Blog - Mane Coffee | Traditional Indian Food Insights</title>
                 <meta name="description" content="Explore stories about Indian culinary heritage, traditional processing methods, and the benefits of pure, natural food products." />
-                <meta name="keywords" content="blog sanatana parampare, traditional food blog, indian culinary heritage, healthy living, authentic spice powders, wood pressed oils" />
-                <meta property="og:title" content="Our Blog - Sanatana Parampare | Traditional Indian Food Insights" />
+                <meta name="keywords" content="blog Mane Coffee, traditional food blog, indian culinary heritage, healthy living, authentic spice powders, wood pressed oils" />
+                <meta property="og:title" content="Our Blog - Mane Coffee | Traditional Indian Food Insights" />
                 <meta property="og:description" content="Discover the secrets behind traditional Indian food preparation and its many benefits." />
                 <meta property="og:type" content="website" />
                 <link rel="canonical" href="https://sanatanaparampare.com/blog" />

@@ -39,7 +39,7 @@ const TraditionalProcessSection = () => {
       {/* Background Elements */}
       <div className="absolute inset-0 bg-gradient-to-r from-green-50/50 to-transparent"></div>
       <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-primary/5 to-transparent"></div>
-      
+
       <div className="container mx-auto px-4 relative z-10">
         {/* Section Header */}
         <div className="text-center mb-16">
@@ -48,7 +48,7 @@ const TraditionalProcessSection = () => {
           </h2>
           <div className="w-24 h-1 bg-accent mx-auto mb-6"></div>
           <p className="font-body text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            From farm to table, every step follows ancient wisdom to bring you the purest, 
+            From farm to table, every step follows ancient wisdom to bring you the purest,
             most authentic products that honor our culinary heritage.
           </p>
         </div>
@@ -58,9 +58,8 @@ const TraditionalProcessSection = () => {
           {processes.map((process, index) => (
             <div
               key={index}
-              className={`flex flex-col lg:flex-row items-center gap-12 ${
-                index % 2 === 1 ? 'lg:flex-row-reverse' : ''
-              }`}
+              className={`flex flex-col lg:flex-row items-center gap-12 ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''
+                }`}
             >
               {/* Image Side */}
               <div className="lg:w-1/2">
@@ -70,12 +69,12 @@ const TraditionalProcessSection = () => {
                     alt={process.title}
                     className="w-full h-80 object-cover rounded-3xl shadow-2xl group-hover:scale-105 transition-transform duration-500"
                   />
-                  
+
                   {/* Step Number Overlay */}
                   <div className="absolute -top-6 -left-6 w-24 h-24 bg-gradient-to-r from-primary to-accent rounded-full flex items-center justify-center text-white font-heading font-bold text-2xl shadow-xl">
                     {process.step}
                   </div>
-                  
+
                   {/* Icon Overlay */}
                   <div className="absolute bottom-6 right-6 w-16 h-16 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg">
                     <Icon name={process.icon} size={28} className="text-primary" />
@@ -91,12 +90,12 @@ const TraditionalProcessSection = () => {
                     <span className="w-2 h-2 bg-primary rounded-full"></span>
                     Step {process.step}
                   </div>
-                  
+
                   {/* Title */}
                   <h3 className="font-heading text-3xl font-bold text-foreground mb-6">
                     {process.title}
                   </h3>
-                  
+
                   {/* Description */}
                   <p className="font-body text-lg text-muted-foreground leading-relaxed mb-8">
                     {process.description}
@@ -116,7 +115,7 @@ const TraditionalProcessSection = () => {
                         </div>
                       </>
                     )}
-                    
+
                     {index === 1 && (
                       <>
                         <div className="flex items-center gap-3">
@@ -129,7 +128,7 @@ const TraditionalProcessSection = () => {
                         </div>
                       </>
                     )}
-                    
+
                     {index === 2 && (
                       <>
                         <div className="flex items-center gap-3">
@@ -142,7 +141,7 @@ const TraditionalProcessSection = () => {
                         </div>
                       </>
                     )}
-                    
+
                     {index === 3 && (
                       <>
                         <div className="flex items-center gap-3">
@@ -169,9 +168,9 @@ const TraditionalProcessSection = () => {
               Experience the Traditional Difference
             </h3>
             <p className="font-body text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-              Join thousands of families who trust Sanatana Parampare for authentic, pure, and traditional food products.
+              Join thousands of families who trust Mane Coffee for authentic, pure, and traditional food products.
             </p>
-            
+
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Link
                 to="/product-collection-grid"
@@ -179,7 +178,7 @@ const TraditionalProcessSection = () => {
               >
                 Shop Our Products
               </Link>
-              
+
               <Link
                 to="/about"
                 className="border-2 border-white text-white hover:bg-white hover:text-primary px-8 py-4 rounded-full font-heading font-semibold text-lg transition-all duration-300"

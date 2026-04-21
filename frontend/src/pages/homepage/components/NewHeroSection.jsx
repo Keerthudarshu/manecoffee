@@ -8,7 +8,7 @@ const NewHeroSection = () => {
   const heroSlides = [
     {
       title: "ಸನಾತನ ಪರಂಪರೆ",
-      subtitle: "SANATANA PARAMPARE",
+      subtitle: "Mane Coffee",
       description: "Experience the purest traditional foods following ancient Indian wisdom. Chemical-free, preservative-free, made with love.",
       cta: "Discover Pure Heritage",
       backgroundImage: "/assets/banner/gee1.jpeg",

@@ -12,13 +12,13 @@ import SavedItems from './components/SavedItems';
 import Button from '../../components/ui/Button';
 
 const ShoppingCart = () => {
-  const { 
-    cartItems, 
-    savedItems, 
-    updateQuantity, 
-    removeFromCart, 
-    saveForLater, 
-    moveToCart, 
+  const {
+    cartItems,
+    savedItems,
+    updateQuantity,
+    removeFromCart,
+    saveForLater,
+    moveToCart,
     removeFromSaved,
     addToCart
   } = useCart();
@@ -34,7 +34,7 @@ const ShoppingCart = () => {
   }, 0);
   const discount = appliedCoupon ? appliedCoupon?.discount : 0;
   const discountedSubtotal = subtotal - discount;
-  
+
   // Shipping calculation based on location
   const getShippingCost = () => {
     if (shippingLocation === 'bengaluru') {
@@ -44,7 +44,7 @@ const ShoppingCart = () => {
     }
     return 0;
   };
-  
+
   const shipping = getShippingCost();
   const total = discountedSubtotal + shipping;
 
@@ -121,12 +121,12 @@ const ShoppingCart = () => {
   return (
     <>
       <Helmet>
-        <title>Shopping Cart - Sanatana Parampare | Review Your Natural Products</title>
+        <title>Shopping Cart - Mane Coffee | Review Your Natural Products</title>
         <meta name="description" content="Review and modify your cart items. Secure checkout with natural and organic food products. Free shipping available on orders above ₹499 in Bengaluru." />
-        <meta name="keywords" content="shopping cart, natural products, organic food, checkout, free shipping, Sanatana Parampare" />
+        <meta name="keywords" content="shopping cart, natural products, organic food, checkout, free shipping, Mane Coffee" />
       </Helmet>
       <div className="min-h-screen bg-background">
-        <Header 
+        <Header
           cartItemCount={cartItems?.length}
           cartItems={cartItems}
           onSearch={(query) => console.log('Search:', query)}

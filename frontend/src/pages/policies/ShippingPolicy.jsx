@@ -5,13 +5,13 @@ const ShippingPolicy = () => {
     return (
         <PolicyLayout
             title="Shipping Policy"
-            description="Learn about Sanatana Parampare's shipping methods, costs, and delivery times for our traditional Indian food products."
+            description="Learn about Mane Coffee's shipping methods, costs, and delivery times for our traditional Indian food products."
             keywords="shipping policy, delivery time, shipping costs, international shipping, local delivery"
         >
             <section className="mb-8">
                 <h2 className="text-2xl font-semibold mb-4 text-secondary">1. Shipping Methods & Delivery Times</h2>
                 <p className="mb-4">
-                    At Sanatana Parampare, we take great care in ensuring that your traditional food products reach you in the best possible condition. We partner with reliable courier services to ensure timely and safe delivery.
+                    At Mane Coffee, we take great care in ensuring that your traditional food products reach you in the best possible condition. We partner with reliable courier services to ensure timely and safe delivery.
                 </p>
                 <ul className="list-disc pl-6 space-y-2">
                     <li><strong>Domestic Shipping (India):</strong> Deliveries typically take 3-7 business days depending on your location.</li>

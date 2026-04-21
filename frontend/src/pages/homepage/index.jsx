@@ -7,7 +7,6 @@ import FeaturedProductsSection from './components/FeaturedProductsSection';
 
 import ShopByCategorySection from './components/ShopByCategorySection';
 import CategoryProductsSection from './components/CategoryProductsSection';
-import EssentialOilsSection from './components/EssentialOilsSection';
 import EdibleOilsSection from './components/EdibleOilsSection';
 import ExperienceTraditionCTA from './components/ExperienceTraditionCTA';
 
@@ -85,18 +84,18 @@ const Homepage = () => {
   return (
     <>
       <Helmet>
-        <title>Sanatana Parampare - Buy Premium Traditional Indian Food Products Online</title>
+        <title>Mane Coffee - Buy Premium Traditional Indian Food Products Online</title>
         <meta
           name="description"
-          content="Shop premium traditional Indian food products online at Sanatana Parampare. Buy wood-pressed oils, spice powders, pickles, pure ghee, honey & more. Free delivery above ₹499. Authentic quality guaranteed."
+          content="Shop premium traditional Indian food products online at Mane Coffee. Buy wood-pressed oils, spice powders, pickles, pure ghee, honey & more. Free delivery above ₹499. Authentic quality guaranteed."
         />
-        <meta name="keywords" content="buy traditional indian food online, wood pressed oils, spice powders, pickles, pure ghee, honey, jaggery, papads, organic food products, sanatana parampare shop, traditional food delivery" />
-        <meta property="og:title" content="Sanatana Parampare - Buy Premium Traditional Indian Food Products Online" />
+        <meta name="keywords" content="buy traditional indian food online, wood pressed oils, spice powders, pickles, pure ghee, honey, jaggery, papads, organic food products, Mane Coffee shop, traditional food delivery" />
+        <meta property="og:title" content="Mane Coffee - Buy Premium Traditional Indian Food Products Online" />
         <meta property="og:description" content="Shop premium traditional Indian food products online. Wood-pressed oils, spice powders, pickles, pure ghee & more with free delivery above ₹499." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://sanatanaparampare.com/homepage" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Sanatana Parampare - Buy Traditional Indian Food Online" />
+        <meta name="twitter:title" content="Mane Coffee - Buy Traditional Indian Food Online" />
         <meta name="twitter:description" content="Shop premium traditional Indian food products online. Wood-pressed oils, spice powders, pickles, pure ghee & more with free delivery." />
         <link rel="canonical" href="https://sanatanaparampare.com/homepage" />
       </Helmet>
@@ -114,9 +113,6 @@ const Homepage = () => {
         <main>
           {/* Hero Section - Product-focused slider with shopping CTAs */}
           <HeroSection />
-
-          {/* Essential Oils Section - Pure traditional oils */}
-          <EssentialOilsSection />
 
           {/* Edible Oils Section - New section with special oils */}
           <EdibleOilsSection />

@@ -17,7 +17,7 @@ const Settings = () => {
   const [categories, setCategories] = useState([]);
   const [newCategory, setNewCategory] = useState('');
   const [storeSettings, setStoreSettings] = useState({
-    siteName: 'Sanatana Parampare',
+    siteName: 'Mane Coffee',
     currency: 'INR',
     shippingFee: '50',
     freeShippingThreshold: '500',

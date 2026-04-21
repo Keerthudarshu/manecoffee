@@ -121,7 +121,7 @@ const UserAuth = () => {
                 {isLogin ? 'Welcome Back' : 'Create Account'}
               </h1>
               <p className="text-muted-foreground">
-                {isLogin ? 'Sign in to your account' : 'Join Sanatana Parampare family'}
+                {isLogin ? 'Sign in to your account' : 'Join Mane Coffee family'}
               </p>
               {location.state?.message && (
                 <p className="text-primary text-sm font-medium mt-2">

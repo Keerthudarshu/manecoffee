@@ -15,9 +15,9 @@ export const generateInvoice = (order, user, settings = {}) => {
             return settings.logoPath;
         }
         if (typeof window !== "undefined") {
-            return `${window.location.origin}/assets/images/logo.png`;
+            return `${window.location.origin}/assets/images/logo.jpeg`;
         }
-        return "/assets/images/logo.png";
+        return "/assets/images/logo.jpeg";
     };
     const logoPath = resolveLogo();
 

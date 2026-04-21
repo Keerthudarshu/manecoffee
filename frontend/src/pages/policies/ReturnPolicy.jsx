@@ -5,7 +5,7 @@ const ReturnPolicy = () => {
     return (
         <PolicyLayout
             title="Return & Refund Policy"
-            description="Understand our return, replacement, and refund process for products purchased from Sanatana Parampare."
+            description="Understand our return, replacement, and refund process for products purchased from Mane Coffee."
             keywords="return policy, refund, replacement, food safety, damaged products"
         >
             <section className="mb-8">

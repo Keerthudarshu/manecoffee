@@ -101,9 +101,9 @@ const CategoriesPage = () => {
   return (
     <>
       <Helmet>
-        <title>Categories - Sanatana Parampare | Browse Traditional Food Categories</title>
-        <meta name="description" content="Browse all product categories at Sanatana Parampare. From wood-pressed oils to traditional spices, discover authentic Indian food products organized by category." />
-        <meta name="keywords" content="product categories, traditional food categories, wood pressed oils, spice powders, pickles, ghee honey, sanatana parampare categories" />
+        <title>Categories - Mane Coffee | Browse Traditional Food Categories</title>
+        <meta name="description" content="Browse all product categories at Mane Coffee. From wood-pressed oils to traditional spices, discover authentic Indian food products organized by category." />
+        <meta name="keywords" content="product categories, traditional food categories, wood pressed oils, spice powders, pickles, ghee honey, Mane Coffee categories" />
       </Helmet>
 
       <div className="min-h-screen bg-background">

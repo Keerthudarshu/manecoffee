@@ -122,11 +122,11 @@ Vinayaka layout, Vijayanagar,
   return (
     <>
       <Helmet>
-        <title>Contact Us - Sanatana Parampare | Get in Touch for Traditional Food Products</title>
-        <meta name="description" content="Contact Sanatana Parampare for queries about traditional Indian food products. Call, WhatsApp, or email us. Located in Bengaluru with nationwide delivery." />
-        <meta name="keywords" content="contact sanatana parampare, customer support, traditional food queries, bengaluru location, whatsapp support, email contact" />
-        <meta property="og:title" content="Contact Sanatana Parampare - Traditional Food Products Support" />
-        <meta property="og:description" content="Get in touch with Sanatana Parampare for all your traditional food product needs. Multiple contact options available." />
+        <title>Contact Us - Mane Coffee | Get in Touch for Traditional Food Products</title>
+        <meta name="description" content="Contact Mane Coffee for queries about traditional Indian food products. Call, WhatsApp, or email us. Located in Bengaluru with nationwide delivery." />
+        <meta name="keywords" content="contact Mane Coffee, customer support, traditional food queries, bengaluru location, whatsapp support, email contact" />
+        <meta property="og:title" content="Contact Mane Coffee - Traditional Food Products Support" />
+        <meta property="og:description" content="Get in touch with Mane Coffee for all your traditional food product needs. Multiple contact options available." />
         <meta property="og:type" content="website" />
         <link rel="canonical" href="https://sanatanaparampare.com/contact" />
       </Helmet>
@@ -339,7 +339,7 @@ Vinayaka layout, Vijayanagar,
                         allowFullScreen=""
                         loading="lazy"
                         referrerPolicy="no-referrer-when-downgrade"
-                        title="Sanatana Parampare Location"
+                        title="Mane Coffee Location"
                       ></iframe>
                     </div>
                   </div>
@@ -385,7 +385,7 @@ Vinayaka layout, Vijayanagar,
                 Ready to Experience Traditional Flavors?
               </h2>
               <p className="font-body text-xl text-white/90 mb-8 max-w-3xl mx-auto">
-                Join thousands of satisfied customers who trust Sanatana Parampare for authentic,
+                Join thousands of satisfied customers who trust Mane Coffee for authentic,
                 pure, and traditional food products.
               </p>
               <Link

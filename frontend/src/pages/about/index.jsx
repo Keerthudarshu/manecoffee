@@ -61,10 +61,10 @@ const AboutPage = () => {
   return (
     <>
       <Helmet>
-        <title>About Us - Sanatana Parampare | Traditional Indian Food Heritage</title>
-        <meta name="description" content="Discover Sanatana Parampare's journey in preserving traditional Indian food heritage. Learn about our commitment to purity, authenticity, and ancient wisdom in every product." />
-        <meta name="keywords" content="about sanatana parampare, traditional indian food, authentic recipes, natural products, wood pressed oils, ancient wisdom, heritage foods" />
-        <meta property="og:title" content="About Sanatana Parampare - Preserving Traditional Food Heritage" />
+        <title>About Us - Mane Coffee | Traditional Indian Food Heritage</title>
+        <meta name="description" content="Discover Mane Coffee's journey in preserving traditional Indian food heritage. Learn about our commitment to purity, authenticity, and ancient wisdom in every product." />
+        <meta name="keywords" content="about Mane Coffee, traditional indian food, authentic recipes, natural products, wood pressed oils, ancient wisdom, heritage foods" />
+        <meta property="og:title" content="About Mane Coffee - Preserving Traditional Food Heritage" />
         <meta property="og:description" content="Experience the purest traditional foods following ancient Indian wisdom. Handcrafted with love using time-honored recipes and natural ingredients." />
         <meta property="og:type" content="website" />
         <link rel="canonical" href="https://sanatanaparampare.com/about" />
@@ -86,7 +86,7 @@ const AboutPage = () => {
                   <h1 className="font-heading text-4xl lg:text-5xl font-bold text-primary mb-6">
                     ಸನಾತನ ಪರಂಪರೆ
                     <br />
-                    <span className="text-3xl lg:text-4xl text-accent">Sanatana Parampare</span>
+                    <span className="text-3xl lg:text-4xl text-accent">Mane Coffee</span>
                   </h1>
                   <p className="font-body text-lg text-muted-foreground mb-8 leading-relaxed">
                     Experience the purest traditional foods following ancient Indian wisdom.
@@ -113,7 +113,7 @@ const AboutPage = () => {
                 <div className="relative">
                   <img
                     src="/assets/images/store.jpg"
-                    alt="Sanatana Parampare Store"
+                    alt="Mane Coffee Store"
                     className="w-full h-80 object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent"></div>
@@ -132,7 +132,7 @@ const AboutPage = () => {
                 <div className="w-24 h-1 bg-accent mx-auto mb-8"></div>
                 <div className="space-y-6 text-left">
                   <p className="font-body text-lg text-muted-foreground leading-relaxed">
-                    <strong className="text-primary">Sanatana Parampare</strong> was born from a deep reverence for India's
+                    <strong className="text-primary">Mane Coffee</strong> was born from a deep reverence for India's
                     ancient culinary wisdom. Our journey began with a simple yet profound mission: to preserve and
                     share the authentic flavors that have nourished generations of Indian families.
                   </p>
@@ -236,7 +236,7 @@ const AboutPage = () => {
                   <div key={num} className="overflow-hidden rounded-xl shadow-lg group relative">
                     <img
                       src={`/assets/store/store${num}.jpg`}
-                      alt={`Sanatana Parampare Store ${num}`}
+                      alt={`Mane Coffee Store ${num}`}
                       className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105"
                     />
                   </div>

@@ -27,7 +27,7 @@ const FilterChips = ({ activeFilters, onRemoveFilter, onClearAll }) => {
         'kitchen-essentials': 'Kitchen Essentials'
       },
       brands: {
-        'sanatana-parampare': "Sanatana Parampare",
+        'sanatana-parampare': "Mane Coffee",
         'traditional-tastes': 'Traditional Tastes',
         'organic-origins': 'Organic Origins',
         'homemade-heritage': 'Homemade Heritage'
@@ -39,23 +39,23 @@ const FilterChips = ({ activeFilters, onRemoveFilter, onClearAll }) => {
 
   const getAllActiveFilters = () => {
     const filters = [];
-    
+
     activeFilters?.priceRange?.forEach(value => {
       filters?.push({ type: 'priceRange', value, label: getFilterLabel('priceRange', value) });
     });
-    
+
     activeFilters?.dietary?.forEach(value => {
       filters?.push({ type: 'dietary', value, label: getFilterLabel('dietary', value) });
     });
-    
+
     activeFilters?.categories?.forEach(value => {
       filters?.push({ type: 'categories', value, label: getFilterLabel('categories', value) });
     });
-    
+
     activeFilters?.brands?.forEach(value => {
       filters?.push({ type: 'brands', value, label: getFilterLabel('brands', value) });
     });
-    
+
     return filters;
   };
 

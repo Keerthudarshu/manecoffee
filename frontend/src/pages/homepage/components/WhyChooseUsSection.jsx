@@ -55,7 +55,7 @@ const WhyChooseUsSection = () => {
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="font-heading text-5xl font-bold text-primary mb-4">
-            Why Choose Sanatana Parampare?
+            Why Choose Mane Coffee?
           </h2>
           <div className="w-24 h-1 bg-accent mx-auto mb-6"></div>
           <p className="font-body text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
@@ -79,14 +79,14 @@ const WhyChooseUsSection = () => {
               <h3 className="font-heading text-xl font-bold text-foreground mb-4">
                 {feature.title}
               </h3>
-              
+
               <p className="font-body text-muted-foreground leading-relaxed">
                 {feature.description}
               </p>
 
               {/* Decorative Element */}
               <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-primary/10 to-transparent rounded-bl-full rounded-tr-2xl"></div>
-              
+
               {/* Hover Effect Border */}
               <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-primary/20 transition-all duration-300"></div>
             </div>
@@ -104,7 +104,7 @@ const WhyChooseUsSection = () => {
                 Premium Products
               </div>
             </div>
-            
+
             <div className="group">
               <div className="font-heading text-4xl font-bold mb-2 group-hover:scale-110 transition-transform duration-300">
                 10,000+
@@ -113,7 +113,7 @@ const WhyChooseUsSection = () => {
                 Happy Families
               </div>
             </div>
-            
+
             <div className="group">
               <div className="font-heading text-4xl font-bold mb-2 group-hover:scale-110 transition-transform duration-300">
                 50+
@@ -122,7 +122,7 @@ const WhyChooseUsSection = () => {
                 Traditional Recipes
               </div>
             </div>
-            
+
             <div className="group">
               <div className="font-heading text-4xl font-bold mb-2 group-hover:scale-110 transition-transform duration-300">
                 100%

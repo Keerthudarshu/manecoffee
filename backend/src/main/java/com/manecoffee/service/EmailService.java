@@ -46,7 +46,7 @@ public class EmailService {
     @Value("${mail.from.email:${spring.mail.username}}")
     private String fromEmail;
 
-    private static final String LOGO_PATH = "static/images/logo.png";
+    private static final String LOGO_PATH = "static/images/logo.jpeg";
 
     @jakarta.annotation.PostConstruct
     public void init() {
@@ -218,7 +218,7 @@ public class EmailService {
 
             helper.setFrom(fromEmail);
             helper.setTo(email);
-            helper.setSubject("Order Confirmation #" + orderIdStr + " - Sanatana Parampare");
+            helper.setSubject("Order Confirmation #" + orderIdStr + " - Mane Coffee");
             helper.setText(htmlContent, true);
 
             if (logoExists) {
@@ -282,7 +282,7 @@ public class EmailService {
             logo.setAlignment(Element.ALIGN_CENTER);
             logoContainer.addElement(logo);
         }
-        
+
         PdfPCell logoOuterCell = new PdfPCell(logoContainer);
         logoOuterCell.setBorder(Rectangle.NO_BORDER);
         logoOuterCell.setBackgroundColor(darkBg);
@@ -351,7 +351,7 @@ public class EmailService {
         addMetaColumn(metaTable, "DUE DATE", dueDate, headerGray, textNormal);
 
         document.add(metaTable);
-        
+
         // Horizontal line separator
         document.add(new Paragraph("\n"));
         LineSeparator sep = new LineSeparator();
@@ -373,7 +373,8 @@ public class EmailService {
         PdfPCell fromDetails = new PdfPCell();
         fromDetails.setBorder(Rectangle.NO_BORDER);
         fromDetails.addElement(new Paragraph("sanathana-parampara", textNormal));
-        fromDetails.addElement(new Paragraph("Anand Vihari No - 87, 2nd main road, 2nd stage, Vinayaka layout,", textNormal));
+        fromDetails.addElement(
+                new Paragraph("Anand Vihari No - 87, 2nd main road, 2nd stage, Vinayaka layout,", textNormal));
         fromDetails.addElement(new Paragraph("Vijayanagar, Bengaluru - 560040", textNormal));
         fromDetails.addElement(new Paragraph("support@sanatanaparampara.com", textNormal));
         fromDetails.addElement(new Paragraph("+91 99025 23333", textNormal));
@@ -397,7 +398,8 @@ public class EmailService {
         PdfPCell toDetails = new PdfPCell();
         toDetails.setBorder(Rectangle.NO_BORDER);
 
-        String customerName = String.valueOf(orderData.getOrDefault("name", orderData.getOrDefault("firstName", "Customer")));
+        String customerName = String
+                .valueOf(orderData.getOrDefault("name", orderData.getOrDefault("firstName", "Customer")));
         String customerEmail = String.valueOf(orderData.getOrDefault("email", ""));
         String customerPhone = String.valueOf(orderData.getOrDefault("phone", ""));
         String customerAddress = String.valueOf(orderData.getOrDefault("street", ""));
@@ -406,10 +408,15 @@ public class EmailService {
         String customerPincode = String.valueOf(orderData.getOrDefault("pincode", ""));
 
         toDetails.addElement(new Paragraph(customerName, textNormal));
-        if (!customerAddress.isEmpty()) toDetails.addElement(new Paragraph(customerAddress, textNormal));
-        if (!customerCity.isEmpty()) toDetails.addElement(new Paragraph(customerCity + ", " + customerState + " - " + customerPincode, textNormal));
-        if (!customerEmail.isEmpty()) toDetails.addElement(new Paragraph(customerEmail, textNormal));
-        if (!customerPhone.isEmpty()) toDetails.addElement(new Paragraph(customerPhone, textNormal));
+        if (!customerAddress.isEmpty())
+            toDetails.addElement(new Paragraph(customerAddress, textNormal));
+        if (!customerCity.isEmpty())
+            toDetails.addElement(
+                    new Paragraph(customerCity + ", " + customerState + " - " + customerPincode, textNormal));
+        if (!customerEmail.isEmpty())
+            toDetails.addElement(new Paragraph(customerEmail, textNormal));
+        if (!customerPhone.isEmpty())
+            toDetails.addElement(new Paragraph(customerPhone, textNormal));
 
         toTable.addCell(toDetails);
 
@@ -442,13 +449,16 @@ public class EmailService {
                 }
 
                 addModernTableCell(table, itemName, Element.ALIGN_LEFT, textNormal, borderColor);
-                addModernTableCell(table, String.valueOf(item.get("quantity")), Element.ALIGN_CENTER, textNormal, borderColor);
+                addModernTableCell(table, String.valueOf(item.get("quantity")), Element.ALIGN_CENTER, textNormal,
+                        borderColor);
 
                 double price = parseDouble(item.get("price"));
                 int qty = parseInt(item.get("quantity"));
 
-                addModernTableCell(table, "\u20B9" + String.format("%.2f", price), Element.ALIGN_RIGHT, textNormal, borderColor);
-                addModernTableCell(table, "\u20B9" + String.format("%.2f", price * qty), Element.ALIGN_RIGHT, textNormal, borderColor);
+                addModernTableCell(table, "\u20B9" + String.format("%.2f", price), Element.ALIGN_RIGHT, textNormal,
+                        borderColor);
+                addModernTableCell(table, "\u20B9" + String.format("%.2f", price * qty), Element.ALIGN_RIGHT,
+                        textNormal, borderColor);
             }
         }
         document.add(table);
@@ -458,8 +468,9 @@ public class EmailService {
         PdfPTable totalsTable = new PdfPTable(2);
         totalsTable.setWidthPercentage(40);
         totalsTable.setHorizontalAlignment(Element.ALIGN_RIGHT);
-        
-        // Remove left and right borders from the totals table itself so it aligns nicely
+
+        // Remove left and right borders from the totals table itself so it aligns
+        // nicely
         totalsTable.getDefaultCell().setBorder(Rectangle.NO_BORDER);
 
         double subtotal = parseDouble(orderData.get("subtotal"));
@@ -467,21 +478,28 @@ public class EmailService {
         double discountAmount = parseDouble(orderData.get("discountAmount"));
         double total = parseDouble(orderData.get("total"));
 
-        addModernTotalRow(totalsTable, "Subtotal", "\u20B9" + String.format("%.2f", subtotal), textNormal, lightBg, borderColor, false);
-        addModernTotalRow(totalsTable, "Shipping", "\u20B9" + String.format("%.2f", shippingCost), textNormal, lightBg, borderColor, false);
+        addModernTotalRow(totalsTable, "Subtotal", "\u20B9" + String.format("%.2f", subtotal), textNormal, lightBg,
+                borderColor, false);
+        addModernTotalRow(totalsTable, "Shipping", "\u20B9" + String.format("%.2f", shippingCost), textNormal, lightBg,
+                borderColor, false);
         if (discountAmount > 0) {
-            addModernTotalRow(totalsTable, "Discount", "-\u20B9" + String.format("%.2f", discountAmount), textNormal, lightBg, borderColor, false);
+            addModernTotalRow(totalsTable, "Discount", "-\u20B9" + String.format("%.2f", discountAmount), textNormal,
+                    lightBg, borderColor, false);
         }
-        addModernTotalRow(totalsTable, "Total Due", "\u20B9" + String.format("%.2f", total), whiteBold, darkBg, darkBg, true);
+        addModernTotalRow(totalsTable, "Total Due", "\u20B9" + String.format("%.2f", total), whiteBold, darkBg, darkBg,
+                true);
 
         document.add(totalsTable);
         document.add(new Paragraph("\n\n"));
 
         // 7. Footer
         String payMethod = String.valueOf(orderData.getOrDefault("paymentMethod", "N/A"));
-        if (payMethod.equalsIgnoreCase("cod")) payMethod = "Cash on Delivery";
-        else if (payMethod.equalsIgnoreCase("upi")) payMethod = "UPI";
-        else if (payMethod.equalsIgnoreCase("card")) payMethod = "Card";
+        if (payMethod.equalsIgnoreCase("cod"))
+            payMethod = "Cash on Delivery";
+        else if (payMethod.equalsIgnoreCase("upi"))
+            payMethod = "UPI";
+        else if (payMethod.equalsIgnoreCase("card"))
+            payMethod = "Card";
 
         String orderStatus = String.valueOf(orderData.getOrDefault("status", "pending"));
 
@@ -502,7 +520,8 @@ public class EmailService {
         c2.setBorder(Rectangle.NO_BORDER);
         footerInfo.addCell(c2);
 
-        Paragraph pThank = new Paragraph("Thank you for your order. Please contact us for any clarification.", textNormal);
+        Paragraph pThank = new Paragraph("Thank you for your order. Please contact us for any clarification.",
+                textNormal);
         PdfPCell c3 = new PdfPCell(pThank);
         c3.setBorder(Rectangle.NO_BORDER);
         c3.setPaddingTop(5);
@@ -537,7 +556,8 @@ public class EmailService {
         table.addCell(outer);
     }
 
-    private void addModernTableHeader(PdfPTable table, String text, int alignment, Color bg, Font font, Color borderCol) {
+    private void addModernTableHeader(PdfPTable table, String text, int alignment, Color bg, Font font,
+            Color borderCol) {
         PdfPCell cell = new PdfPCell(new Phrase(text, font));
         cell.setBackgroundColor(bg);
         cell.setBorderColor(borderCol);
@@ -563,7 +583,8 @@ public class EmailService {
         table.addCell(cell);
     }
 
-    private void addModernTotalRow(PdfPTable table, String label, String value, Font font, Color bg, Color borderCol, boolean isFinal) {
+    private void addModernTotalRow(PdfPTable table, String label, String value, Font font, Color bg, Color borderCol,
+            boolean isFinal) {
         PdfPCell labelCell = new PdfPCell(new Phrase(label, font));
         labelCell.setBackgroundColor(bg);
         labelCell.setBorderColor(borderCol);
@@ -580,7 +601,6 @@ public class EmailService {
         table.addCell(labelCell);
         table.addCell(valueCell);
     }
-
 
     private boolean checkLogoExists() {
         return new ClassPathResource(LOGO_PATH).exists();
@@ -610,4 +630,3 @@ public class EmailService {
         }
     }
 }
-

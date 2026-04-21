@@ -5,13 +5,13 @@ const PrivacyPolicy = () => {
     return (
         <PolicyLayout
             title="Privacy Policy"
-            description="We value your privacy. Learn how Sanatana Parampare collects, uses, and protects your personal information."
+            description="We value your privacy. Learn how Mane Coffee collects, uses, and protects your personal information."
             keywords="privacy policy, data protection, personal information, cookies, security"
         >
             <section className="mb-8">
                 <h2 className="text-2xl font-semibold mb-4 text-secondary">1. Information We Collect</h2>
                 <p className="mb-4">
-                    When you visit Sanatana Parampare, we collect certain information to provide you with a better shopping experience:
+                    When you visit Mane Coffee, we collect certain information to provide you with a better shopping experience:
                 </p>
                 <ul className="list-disc pl-6 space-y-2">
                     <li><strong>Personal Information:</strong> Name, email address, phone number, and shipping address when you create an account or place an order.</li>

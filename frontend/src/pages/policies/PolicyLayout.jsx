@@ -13,7 +13,7 @@ const PolicyLayout = ({ title, children, description, keywords }) => {
     return (
         <>
             <Helmet>
-                <title>{title} - Sanatana Parampare</title>
+                <title>{title} - Mane Coffee</title>
                 <meta name="description" content={description || `Read our ${title} to understand our commitment to your satisfaction and privacy.`} />
                 {keywords && <meta name="keywords" content={keywords} />}
             </Helmet>

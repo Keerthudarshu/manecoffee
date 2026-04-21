@@ -47,11 +47,11 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-card border-t border-border">
+    <footer className="bg-[#120d07] border-t border-[#C9A227]/20 text-[#f5e6c8]">
       {/* Popular Searches Section */}
-      <div className="border-b border-border py-8">
+      <div className="border-b border-[#C9A227]/10 py-8">
         <div className="container mx-auto px-4">
-          <h3 className="font-heading font-semibold text-lg text-foreground mb-4">
+          <h3 className="font-heading font-bold text-lg text-[#C9A227] mb-4">
             Popular Searches
           </h3>
           <div className="flex flex-wrap gap-2">
@@ -59,7 +59,7 @@ const Footer = () => {
               <Link
                 key={index}
                 to={`/product-collection-grid?search=${encodeURIComponent(search)}`}
-                className="bg-muted hover:bg-primary hover:text-primary-foreground px-3 py-1 rounded-full text-sm font-caption transition-colors duration-200"
+                className="bg-[#C9A227]/10 hover:bg-[#C9A227] text-[#f5e6c8]/80 hover:text-[#120d07] px-3 py-1 rounded-full text-sm font-caption transition-all duration-300 border border-[#C9A227]/20"
               >
                 {search}
               </Link>
@@ -76,26 +76,26 @@ const Footer = () => {
               <Link to="/homepage" className="flex items-center space-x-3 mb-4 group">
                 <div className="w-10 h-10 flex items-center justify-center">
                   <img
-                    src="/assets/images/logo.png"
-                    alt="Sanatana Parampare"
+                    src="/assets/images/logo.jpeg"
+                    alt="Mane Coffee"
                     className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-110"
                   />
                 </div>
-                <span className="font-heading font-bold text-xl text-foreground">
-                  Sanatana Parampare
+                <span className="font-heading font-bold text-xl text-[#C9A227]">
+                  Mane Coffee
                 </span>
               </Link>
-              <p className="font-body text-muted-foreground mb-6 max-w-md">
+              <p className="font-body text-[#f5e6c8]/60 mb-6 max-w-md">
                 Experience the purest traditional foods following ancient wisdom. Handcrafted with love using time-honored recipes and natural ingredients. Discover authentic Indian heritage flavors.
               </p>
 
               {/* Contact Info */}
               <div className="space-y-3">
                 <div className="flex items-center space-x-3">
-                  <Icon name="Phone" size={16} className="text-primary" />
+                  <Icon name="Phone" size={16} className="text-[#C9A227]" />
                   <a
                     href={`tel:${contactInfo?.phone}`}
-                    className="font-body text-sm text-foreground hover:text-primary transition-colors duration-200"
+                    className="font-body text-sm text-[#f5e6c8]/80 hover:text-[#C9A227] transition-colors duration-200"
                   >
                     {contactInfo?.phone}
                   </a>
@@ -112,17 +112,17 @@ const Footer = () => {
                   </a>
                 </div>
                 <div className="flex items-center space-x-3">
-                  <Icon name="Mail" size={16} className="text-primary" />
+                  <Icon name="Mail" size={16} className="text-[#C9A227]" />
                   <a
                     href={`mailto:${contactInfo?.email}`}
-                    className="font-body text-sm text-foreground hover:text-primary transition-colors duration-200"
+                    className="font-body text-sm text-[#f5e6c8]/80 hover:text-[#C9A227] transition-colors duration-200"
                   >
                     {contactInfo?.email}
                   </a>
                 </div>
                 <div className="flex items-start space-x-3">
-                  <Icon name="MapPin" size={16} className="text-primary mt-0.5" />
-                  <span className="font-body text-sm text-muted-foreground">
+                  <Icon name="MapPin" size={16} className="text-[#C9A227] mt-0.5" />
+                  <span className="font-body text-sm text-[#f5e6c8]/60">
                     {contactInfo?.address}
                   </span>
                 </div>
@@ -131,7 +131,7 @@ const Footer = () => {
 
             {/* Company Links */}
             <div>
-              <h4 className="font-heading font-semibold text-foreground mb-4">
+              <h4 className="font-heading font-bold text-[#C9A227] mb-4 uppercase text-xs tracking-widest">
                 Company
               </h4>
               <ul className="space-y-3">
@@ -139,7 +139,7 @@ const Footer = () => {
                   <li key={index}>
                     <Link
                       to={link?.path}
-                      className="font-body text-sm text-muted-foreground hover:text-primary transition-colors duration-200"
+                      className="font-body text-sm text-[#f5e6c8]/60 hover:text-[#C9A227] transition-colors duration-200"
                     >
                       {link?.label}
                     </Link>
@@ -150,7 +150,7 @@ const Footer = () => {
 
             {/* Customer Service */}
             <div>
-              <h4 className="font-heading font-semibold text-foreground mb-4">
+              <h4 className="font-heading font-bold text-[#C9A227] mb-4 uppercase text-xs tracking-widest">
                 Customer Service
               </h4>
               <ul className="space-y-3">
@@ -158,7 +158,7 @@ const Footer = () => {
                   <li key={index}>
                     <Link
                       to={link?.path}
-                      className="font-body text-sm text-muted-foreground hover:text-primary transition-colors duration-200"
+                      className="font-body text-sm text-[#f5e6c8]/60 hover:text-[#C9A227] transition-colors duration-200"
                     >
                       {link?.label}
                     </Link>
@@ -169,7 +169,7 @@ const Footer = () => {
 
             {/* Policies */}
             <div>
-              <h4 className="font-heading font-semibold text-foreground mb-4">
+              <h4 className="font-heading font-bold text-[#C9A227] mb-4 uppercase text-xs tracking-widest">
                 Policies
               </h4>
               <ul className="space-y-3">
@@ -177,7 +177,7 @@ const Footer = () => {
                   <li key={index}>
                     <Link
                       to={link?.path}
-                      className="font-body text-sm text-muted-foreground hover:text-primary transition-colors duration-200"
+                      className="font-body text-sm text-[#f5e6c8]/60 hover:text-[#C9A227] transition-colors duration-200"
                     >
                       {link?.label}
                     </Link>
@@ -193,15 +193,15 @@ const Footer = () => {
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
             {/* Copyright */}
-            <p className="font-caption text-sm text-muted-foreground text-center md:text-left">
-              © {currentYear} sanathana-parampara. All rights reserved.
+            <p className="font-caption text-sm text-[#f5e6c8]/40 text-center md:text-left">
+              © {currentYear} Mane Coffee. All rights reserved.
               <span className="mx-2">|</span>
               Developed by{' '}
               <a
                 href="https://www.pjntech.com/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-primary hover:underline font-semibold"
+                className="text-[#C9A227] hover:underline font-bold"
               >
                 PJN Technologies
               </a>
@@ -218,7 +218,7 @@ const Footer = () => {
                   href={social?.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-8 h-8 bg-muted hover:bg-primary hover:text-primary-foreground rounded-full flex items-center justify-center transition-colors duration-200"
+                  className="w-8 h-8 bg-[#C9A227]/10 hover:bg-[#C9A227] text-[#C9A227] hover:text-[#120d07] rounded-full flex items-center justify-center transition-all duration-300 border border-[#C9A227]/20"
                   aria-label={`Follow us on ${social?.name}`}
                 >
                   <Icon name={social?.icon} size={16} />

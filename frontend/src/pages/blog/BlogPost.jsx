@@ -13,19 +13,19 @@ const blogData = {
         date: "May 15, 2024",
         category: "Our Heritage",
         readTime: "5 min read",
-        author: "Team Sanatana Parampare",
+        author: "Team Mane Coffee",
         image: "/assets/images/parampara.jpg",
         content: [
-            { type: 'paragraph', text: "India's culinary landscape is more than just food; it's a profound science known as 'Ahara Vidya' that has been passed down through millennia. At Sanatana Parampare, we believe that the health of a society is deeply rooted in the purity of the food it consumes, and the methods used to prepare it." },
-            { type: 'heading', text: "The Genesis of Sanatana Parampare" },
+            { type: 'paragraph', text: "India's culinary landscape is more than just food; it's a profound science known as 'Ahara Vidya' that has been passed down through millennia. At Mane Coffee, we believe that the health of a society is deeply rooted in the purity of the food it consumes, and the methods used to prepare it." },
+            { type: 'heading', text: "The Genesis of Mane Coffee" },
             { type: 'paragraph', text: "Our journey began when we noticed a disconnect between the food available in modern markets and the authentic meals we remembered from our childhood—meals that were not only delicious but filled with vitality. This realization sparked a mission: to bridge the gap between ancient wisdom and contemporary living." },
             { type: 'image', src: "/assets/images/store.jpg", alt: "Our traditional store" },
-            { type: 'paragraph', text: "Sanatana Parampare was born out of a commitment to bring back traditional purity. Every product we offer is a testament to our dedication to preserving ancestral knowledge. From the way our spices are ground to the methods used to extract our oils, tradition is at the heart of everything we do." },
+            { type: 'paragraph', text: "Mane Coffee was born out of a commitment to bring back traditional purity. Every product we offer is a testament to our dedication to preserving ancestral knowledge. From the way our spices are ground to the methods used to extract our oils, tradition is at the heart of everything we do." },
             { type: 'heading', text: "Purity Without Compromise" },
             { type: 'paragraph', text: "In today's fast-paced world, many traditional processes have been replaced by industrial shortcuts to save time and cost. However, these shortcuts often come at the expense of nutritional value and flavor. We refuse to compromise." },
-            { type: 'paragraph', text: "By choosing Sanatana Parampare, you're not just buying food; you're supporting a legacy of purity, health, and a deep respect for our natural heritage." }
+            { type: 'paragraph', text: "By choosing Mane Coffee, you're not just buying food; you're supporting a legacy of purity, health, and a deep respect for our natural heritage." }
         ],
-        seoDescription: "Discover how Sanatana Parampare preserves ancient Indian culinary wisdom through authentic recipes and traditional methods.",
+        seoDescription: "Discover how Mane Coffee preserves ancient Indian culinary wisdom through authentic recipes and traditional methods.",
         seoKeywords: "indian tradition, culinary heritage, ancient wisdom, pure food, authentic recipes"
     },
     'wood-pressed-oils': {
@@ -43,7 +43,7 @@ const blogData = {
             { type: 'paragraph', text: "This 'cold' process preserves the natural antioxidants, vitamins, and minerals that seeds are famous for. The wood of the churner also acts as a natural insulator, prevents heat absorption during the process." },
             { type: 'heading', text: "Benefits of Wood Pressed Oils" },
             { type: 'paragraph', text: "1. Rich in Vitamin E and Heart-Healthy Fats\n2. Maintain Natural Aroma and Character\n3. Zero Residual Chemicals or Solvents\n4. Better Taste for Your Cooking" },
-            { type: 'paragraph', text: "At Sanatana Parampare, our wood-pressed oils are extracted exactly the way nature intended—pure, potent, and incredibly healthy." }
+            { type: 'paragraph', text: "At Mane Coffee, our wood-pressed oils are extracted exactly the way nature intended—pure, potent, and incredibly healthy." }
         ],
         seoDescription: "Examine the benefits of wood-pressed oils and why the traditional Ghani method is superior for your health.",
         seoKeywords: "wood pressed oil, ghani oil online, cold pressed oil benefits, healthy cooking oils, pure peanut oil"
@@ -78,10 +78,10 @@ const BlogPost = () => {
     return (
         <>
             <Helmet>
-                <title>{post.title} - Sanatana Parampare Blog</title>
+                <title>{post.title} - Mane Coffee Blog</title>
                 <meta name="description" content={post.seoDescription} />
                 <meta name="keywords" content={post.seoKeywords} />
-                <meta property="og:title" content={`${post.title} - Sanatana Parampare`} />
+                <meta property="og:title" content={`${post.title} - Mane Coffee`} />
                 <meta property="og:description" content={post.seoDescription} />
                 <meta property="og:image" content={post.image} />
                 <meta property="og:type" content="article" />

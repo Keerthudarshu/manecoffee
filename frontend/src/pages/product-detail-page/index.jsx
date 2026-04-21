@@ -182,7 +182,7 @@ const ProductDetailPage = () => {
           rating: productData?.rating || productData?.ratingValue || 0,
           reviewCount: productData?.reviewCount || 0,
           category: productData?.category || productData?.categoryId,
-          brand: productData?.brand || productData?.manufacturer || 'Sanatana Parampare'
+          brand: productData?.brand || productData?.manufacturer || 'Mane Coffee'
         };
 
         setProduct(normalizedProduct);

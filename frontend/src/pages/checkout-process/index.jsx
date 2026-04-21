@@ -98,7 +98,7 @@ const CheckoutProcess = () => {
             price: 399.0,
             originalPrice: 450.0,
             category: "Sweets",
-            brand: "Sanatana Parampare",
+            brand: "Mane Coffee",
             stock: 100,
             isActive: true
           },
@@ -108,7 +108,7 @@ const CheckoutProcess = () => {
             price: 280.0,
             originalPrice: 320.0,
             category: "Pickles",
-            brand: "Sanatana Parampare",
+            brand: "Mane Coffee",
             stock: 50,
             isActive: true
           }
@@ -362,7 +362,7 @@ const CheckoutProcess = () => {
         key: keyId,
         amount: r.amount, // amount in paise
         currency: r.currency || 'INR',
-        name: 'Sanatana Parampare',
+        name: 'Mane Coffee',
         description: 'Order Payment',
         order_id: r.razorpay_order_id,
         prefill: {
@@ -436,10 +436,10 @@ const CheckoutProcess = () => {
 
     } catch (error) {
       console.error('Order placement failed:', error);
-      const errorMessage = error.response?.data?.message || 
-                          (typeof error.response?.data === 'string' ? error.response.data : null) || 
-                          error.message || 
-                          'Failed to place order. Please try again.';
+      const errorMessage = error.response?.data?.message ||
+        (typeof error.response?.data === 'string' ? error.response.data : null) ||
+        error.message ||
+        'Failed to place order. Please try again.';
       setError(errorMessage);
     } finally {
       setIsProcessing(false);

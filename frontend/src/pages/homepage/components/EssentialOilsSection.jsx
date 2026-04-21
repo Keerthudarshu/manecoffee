@@ -1,4 +1,5 @@
 import React from 'react';
+import Icon from '../../../components/AppIcon';
 
 const essentialOils = [
   { id: 39, name: 'Groundnut Oil', img: '/assets/images/esential oils/Ground nut oil bottle.png' },
@@ -12,36 +13,43 @@ const essentialOils = [
 ];
 
 const EssentialOilsSection = () => (
-  <section className="py-16 bg-gray-50">
+  <section className="py-16 lg:py-24 bg-[#120d07]/5">
     <div className="container mx-auto px-4">
-      <div className="text-center mb-12">
-        <h2 className="font-heading text-4xl font-bold text-accent mb-4">
-          Wood Pressed Oils
+      <div className="text-center mb-16">
+        <h2 className="font-heading text-4xl lg:text-5xl font-bold text-[#120d07] mb-6">
+          <span className="text-[#C9A227]">Wood Pressed</span> Oils
         </h2>
-        <p className="font-body text-lg text-muted-foreground max-w-2xl mx-auto">
-          Discover our range of pure, traditional Wood-pressed oils for your daily needs.
+        <div className="w-24 h-1 bg-[#C9A227] mx-auto mb-6 rounded-full"></div>
+        <p className="font-body text-lg text-[#120d07]/70 max-w-2xl mx-auto">
+          Discover our range of pure, traditional Wood-pressed oils crafted for health and wellness using ancient extraction methods.
         </p>
       </div>
-      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
         {essentialOils.map((oil, idx) => (
           <a
             key={oil.id}
             href={`/product-detail-page/${oil.id}`}
-            className="flex flex-col bg-white rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden cursor-pointer"
+            className="group flex flex-col bg-white rounded-3xl border border-[#C9A227]/10 shadow-sm hover:shadow-gold-lg transition-all duration-500 overflow-hidden cursor-pointer transform hover:-translate-y-2"
             style={{ textDecoration: 'none' }}
           >
-            <div className="flex-1 w-full aspect-[4/5] bg-gray-100 flex items-center justify-center">
+            <div className="relative w-full aspect-[4/5] bg-[#120d07]/5 flex items-center justify-center overflow-hidden">
               <img
                 src={oil.img}
                 alt={oil.name}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 loading="lazy"
               />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#120d07]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             </div>
-            <div className="p-6 flex items-center justify-center">
-              <span className="font-heading text-lg font-semibold text-foreground text-center">
+            <div className="p-6 flex flex-col items-center justify-center bg-white border-t border-[#C9A227]/5">
+              <span className="font-heading text-lg font-bold text-[#120d07] text-center group-hover:text-[#C9A227] transition-colors duration-300">
                 {oil.name}
               </span>
+              <div className="mt-3 flex items-center justify-center opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+                <span className="text-xs font-bold text-[#C9A227] uppercase tracking-widest flex items-center">
+                  Shop Now <Icon name="ArrowRight" size={12} className="ml-1" />
+                </span>
+              </div>
             </div>
           </a>
         ))}

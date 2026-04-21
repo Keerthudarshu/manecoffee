@@ -72,32 +72,32 @@ const CartDrawer = ({ isOpen, onClose, cartItems = [], onUpdateQuantity, onRemov
                     </div>
                     
                     <div className="flex-1 min-w-0">
-                      <h3 className="font-body font-medium text-sm text-foreground truncate">
+                      <h3 className="font-body font-bold text-sm text-[#f5e6c8] truncate">
                         {item?.name}
                       </h3>
-                      <p className="font-caption text-xs text-muted-foreground">
+                      <p className="font-caption text-xs text-[#f5e6c8]/60">
                         {item?.variant}
                       </p>
-                      <div className="flex items-center justify-between mt-2">
+                      <div className="flex items-center justify-between mt-3">
                         <div className="flex items-center gap-2">
                           <button
                             onClick={() => handleQuantityChange(item?.id, item?.quantity - 1)}
-                            className="w-6 h-6 rounded-full border border-border flex items-center justify-center hover:bg-muted transition-colors duration-200"
+                            className="w-7 h-7 rounded-full border border-[#f5e6c8]/20 flex items-center justify-center text-[#f5e6c8] hover:bg-[#f5e6c8]/10 transition-colors duration-200"
                           >
                             <Icon name="Minus" size={12} />
                           </button>
-                          <span className="font-data text-sm font-medium w-8 text-center">
+                          <span className="font-data text-sm font-bold w-8 text-center text-[#f5e6c8]">
                             {item?.quantity}
                           </span>
                           <button
                             onClick={() => handleQuantityChange(item?.id, item?.quantity + 1)}
-                            className="w-6 h-6 rounded-full border border-border flex items-center justify-center hover:bg-muted transition-colors duration-200"
+                            className="w-7 h-7 rounded-full border border-[#f5e6c8]/20 flex items-center justify-center text-[#f5e6c8] hover:bg-[#f5e6c8]/10 transition-colors duration-200"
                           >
                             <Icon name="Plus" size={12} />
                           </button>
                         </div>
                         <div className="text-right">
-                          <p className="font-data font-semibold text-sm text-foreground">
+                          <p className="font-data font-bold text-base text-[#F0C040]">
                             ₹{(item?.price * item?.quantity)?.toFixed(2)}
                           </p>
                         </div>
@@ -122,8 +122,8 @@ const CartDrawer = ({ isOpen, onClose, cartItems = [], onUpdateQuantity, onRemov
             <div className="border-t border-border p-4 space-y-4">
               {/* Shipping Notice */}
               {subtotal < 499 && (
-                <div className="bg-warning/10 border border-warning/20 rounded-lg p-3">
-                  <p className="font-caption text-xs text-warning-foreground">
+                <div className="bg-[#C9A227]/10 border border-[#C9A227]/30 rounded-lg p-3">
+                  <p className="font-caption text-xs text-[#C9A227] font-bold">
                     Add ₹{(499 - subtotal)?.toFixed(2)} more for free shipping!
                   </p>
                 </div>
@@ -132,23 +132,23 @@ const CartDrawer = ({ isOpen, onClose, cartItems = [], onUpdateQuantity, onRemov
               {/* Order Summary */}
               <div className="space-y-2">
                 <div className="flex justify-between font-body text-sm">
-                  <span className="text-muted-foreground">Subtotal</span>
-                  <span className="font-data font-medium">₹{subtotal?.toFixed(2)}</span>
+                  <span className="text-[#f5e6c8]/60 font-medium">Subtotal</span>
+                  <span className="font-data font-bold text-[#f5e6c8]">₹{subtotal?.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between font-body text-sm">
-                  <span className="text-muted-foreground">Shipping</span>
-                  <span className="font-data font-medium">
-                    {shipping === 0 ? 'Free' : `₹${shipping?.toFixed(2)}`}
+                  <span className="text-[#f5e6c8]/60 font-medium">Shipping</span>
+                  <span className="font-data font-bold text-[#f5e6c8]">
+                    {shipping === 0 ? <span className="text-green-400">Free</span> : `₹${shipping?.toFixed(2)}`}
                   </span>
                 </div>
-                <div className="flex justify-between font-heading font-semibold text-base pt-2 border-t border-border">
+                <div className="flex justify-between font-heading font-bold text-lg pt-2 border-t border-[#f5e6c8]/10 text-[#F0C040]">
                   <span>Total</span>
                   <span className="font-data">₹{total?.toFixed(2)}</span>
                 </div>
               </div>
               
               {/* Action Buttons */}
-              <div className="space-y-2">
+              <div className="space-y-3">
                 <Button
                   variant="default"
                   fullWidth
@@ -156,11 +156,16 @@ const CartDrawer = ({ isOpen, onClose, cartItems = [], onUpdateQuantity, onRemov
                     onClose();
                     navigate('/checkout-process');
                   }}
+                  className="bg-[#C9A227] hover:bg-[#F0C040] text-[#120d07] font-bold py-4 rounded-xl shadow-gold-md"
                 >
                   Proceed to Checkout
                 </Button>
-                <Link to="/shopping-cart" onClick={onClose}>
-                  <Button variant="outline" fullWidth>
+                <Link to="/shopping-cart" onClick={onClose} className="block">
+                  <Button 
+                    variant="outline" 
+                    fullWidth
+                    className="border-[#f5e6c8]/20 text-[#f5e6c8] hover:bg-[#f5e6c8]/10 py-3 rounded-xl"
+                  >
                     View Cart
                   </Button>
                 </Link>

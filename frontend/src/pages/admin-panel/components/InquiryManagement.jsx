@@ -156,7 +156,7 @@ const InquiryManagement = () => {
 
                                         <div className="flex items-center justify-end space-x-3 pt-2">
                                             <a
-                                                href={`mailto:${inquiry.email}?subject=RE: ${inquiry.subject || 'Inquiry from Sanatana Parampare'}`}
+                                                href={`mailto:${inquiry.email}?subject=RE: ${inquiry.subject || 'Inquiry from Mane Coffee'}`}
                                                 className="flex items-center space-x-2 bg-primary text-primary-foreground px-4 py-2 rounded-lg text-sm font-medium hover:bg-primary/90 transition-colors"
                                             >
                                                 <Mail size={16} />
