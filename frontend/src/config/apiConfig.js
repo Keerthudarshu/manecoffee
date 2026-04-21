@@ -18,7 +18,7 @@ const getDefaultApiUrl = () => {
   }
 
   // Running on the production server → use the server IP
-  return 'http://56.228.81.193:8080';
+  return 'http://13.49.228.120:8080';
 };
 
 const API_BASE =

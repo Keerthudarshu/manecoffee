@@ -89,7 +89,7 @@ public class SecurityConfig {
 
         // EXACT frontend origin
         config.setAllowedOrigins(List.of(
-                "http://56.228.81.193"));
+                "http://13.49.228.120"));
 
         config.setAllowedMethods(List.of(
                 "GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"));
@@ -104,4 +104,3 @@ public class SecurityConfig {
         return source;
     }
 }
-
