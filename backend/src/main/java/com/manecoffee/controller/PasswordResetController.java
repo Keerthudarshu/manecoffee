@@ -16,7 +16,6 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/api/password")
-@CrossOrigin(origins = "http://localhost:3000")
 public class PasswordResetController {
     
     private static final Logger logger = LoggerFactory.getLogger(PasswordResetController.class);

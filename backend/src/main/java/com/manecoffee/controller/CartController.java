@@ -23,7 +23,6 @@ import com.manecoffee.service.UserService;
 
 @RestController
 @RequestMapping("/api/cart")
-@CrossOrigin(origins = { "http://localhost:3000", "http://127.0.0.1:3000" }, allowCredentials = "true")
 public class CartController {
     private static final Logger logger = LoggerFactory.getLogger(CartController.class);
 

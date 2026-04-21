@@ -89,7 +89,6 @@ public class SecurityConfig {
 
         // EXACT frontend origin
         config.setAllowedOrigins(List.of(
-                "http://manecoffeee.com",
                 "https://manecoffeee.com"
         ));
 
