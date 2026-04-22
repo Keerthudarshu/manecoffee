@@ -148,14 +148,14 @@ const FeaturedProductsSection = ({ onAddToCart }) => {
   };
 
   return (
-    <section className="py-16 bg-white">
+    <section className="py-16 bg-[#efe5d7]">
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-12">
-          <h2 className="font-heading text-4xl font-bold text-[#120d07] mb-4">
+          <h2 className="font-heading text-4xl font-bold text-[#2a1f0e] mb-4">
             Featured Products
           </h2>
-          <p className="font-body text-lg text-[#120d07]/70 max-w-2xl mx-auto">
+          <p className="font-body text-lg text-[#2a1f0e]/70 max-w-2xl mx-auto">
             Handpicked premium products loved by our customers. Order online with fast delivery.
           </p>
         </div>
@@ -168,7 +168,7 @@ const FeaturedProductsSection = ({ onAddToCart }) => {
               onClick={() => setActiveCategory(category.id)}
               className={`flex items-center gap-2 px-6 py-3 rounded-full font-bold transition-all duration-300 border ${activeCategory === category.id
                 ? 'bg-[#C9A227] text-white shadow-gold-md border-[#C9A227]'
-                : 'bg-white text-[#120d07] border-[#120d07]/10 hover:border-[#C9A227] hover:text-[#C9A227]'
+                : 'bg-white text-[#1e1509] border-[#1e1509]/10 hover:border-[#C9A227] hover:text-[#C9A227]'
                 }`}
             >
               <Icon name={category.icon} size={18} />
@@ -240,7 +240,7 @@ const FeaturedProductsSection = ({ onAddToCart }) => {
                         src={product.image}
                         alt={product.name}
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                        loading="lazy"
+                        loading="eager"
                         onError={(e) => {
                           e.target.src = 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&h=400&fit=crop&auto=format&q=80';
                         }}
@@ -256,7 +256,7 @@ const FeaturedProductsSection = ({ onAddToCart }) => {
                       {/* Stock Status */}
                       <div className="absolute top-3 right-3 flex flex-col gap-2">
                         {currentDiscount > 0 && (
-                          <span className="bg-[#120d07] text-[#F0C040] px-3 py-1 rounded-full text-[11px] font-black shadow-lg border border-[#C9A227]/30">
+                          <span className="bg-[#1e1509] text-[#F0C040] px-3 py-1 rounded-full text-[11px] font-black shadow-lg border border-[#C9A227]/30">
                             {currentDiscount}% OFF
                           </span>
                         )}
@@ -269,10 +269,10 @@ const FeaturedProductsSection = ({ onAddToCart }) => {
                       </div>
 
                       {/* Quick Add Button with Better Design */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#120d07]/80 via-[#120d07]/20 to-transparent flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#1e1509]/80 via-[#1e1509]/20 to-transparent flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
                         <button
                           onClick={() => handleQuickAdd(product)}
-                          className="bg-white text-[#120d07] px-8 py-3 rounded-xl font-bold hover:bg-[#C9A227] hover:text-white transition-all duration-300 flex items-center gap-3 shadow-xl border border-white/30 transform translate-y-4 group-hover:translate-y-0"
+                          className="bg-white text-[#1e1509] px-8 py-3 rounded-xl font-bold hover:bg-[#C9A227] hover:text-white transition-all duration-300 flex items-center gap-3 shadow-xl border border-white/30 transform translate-y-4 group-hover:translate-y-0"
                         >
                           <Icon name="ShoppingCart" size={18} />
                           Quick Add
@@ -281,7 +281,7 @@ const FeaturedProductsSection = ({ onAddToCart }) => {
 
                       {/* Wishlist Button */}
                       <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300">
-                        <button className="w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-[#120d07] hover:bg-[#C9A227] hover:text-white transition-all duration-300 shadow-lg border border-white/30">
+                        <button className="w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-[#1e1509] hover:bg-[#C9A227] hover:text-white transition-all duration-300 shadow-lg border border-white/30">
                           <Icon name="Heart" size={16} />
                         </button>
                       </div>
@@ -290,7 +290,7 @@ const FeaturedProductsSection = ({ onAddToCart }) => {
                     {/* Product Info */}
                     <div className="p-5">
                       <div className="mb-3">
-                        <h3 className="font-heading text-lg font-semibold text-foreground mb-1 line-clamp-2">
+                        <h3 className="font-heading text-lg font-semibold text-[#2a1f0e] mb-1 line-clamp-2">
                           {product.name}
                         </h3>
                         <p className="text-sm text-muted-foreground">{product.category}</p>
@@ -329,7 +329,7 @@ const FeaturedProductsSection = ({ onAddToCart }) => {
                                   onClick={() => handleVariantSelect(product.id, idx)}
                                   className={`text-xs font-bold px-3 py-1.5 rounded-md border transition-all duration-200 ${isSelected
                                     ? 'bg-[#C9A227] text-white border-[#C9A227] shadow-sm'
-                                    : 'bg-white text-[#120d07] border-[#120d07]/10 hover:border-[#C9A227]'
+                                    : 'bg-white text-[#1e1509] border-[#1e1509]/10 hover:border-[#C9A227]'
                                     }`}
                                 >
                                   {variant.label}
@@ -343,7 +343,7 @@ const FeaturedProductsSection = ({ onAddToCart }) => {
                       {/* Price */}
                       <div className="flex items-center justify-between mb-4">
                         <div className="flex items-center gap-2">
-                          <span className="font-heading text-xl font-bold text-[#120d07]">
+                          <span className="font-heading text-xl font-bold text-[#2a1f0e]">
                             ₹{currentPrice}
                           </span>
                           {currentOriginalPrice > currentPrice && (
@@ -361,7 +361,7 @@ const FeaturedProductsSection = ({ onAddToCart }) => {
                       <div className="flex gap-2">
                         <Link
                           to={`/product-detail-page/${product.id}`}
-                          className="flex-1 bg-[#120d07]/5 text-[#120d07] text-center py-3 rounded-lg font-bold hover:bg-[#120d07] hover:text-white transition-all duration-300"
+                          className="flex-1 bg-[#1e1509]/5 text-[#1e1509] text-center py-3 rounded-lg font-bold hover:bg-[#1e1509] hover:text-white transition-all duration-300"
                         >
                           View Details
                         </Link>

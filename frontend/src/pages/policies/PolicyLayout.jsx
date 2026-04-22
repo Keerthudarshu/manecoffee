@@ -2,7 +2,7 @@ import React from 'react';
 import Header from '../../components/ui/Header';
 import Footer from '../homepage/components/Footer';
 import Breadcrumb from '../../components/ui/Breadcrumb';
-import { Helmet } from 'react-helmet-async';
+import SEO from '../../components/SEO';
 
 const PolicyLayout = ({ title, children, description, keywords }) => {
     const breadcrumbItems = [
@@ -12,11 +12,11 @@ const PolicyLayout = ({ title, children, description, keywords }) => {
 
     return (
         <>
-            <Helmet>
-                <title>{title} - Mane Coffee</title>
-                <meta name="description" content={description || `Read our ${title} to understand our commitment to your satisfaction and privacy.`} />
-                {keywords && <meta name="keywords" content={keywords} />}
-            </Helmet>
+            <SEO 
+                title={title}
+                description={description || `Read our ${title} to understand our commitment to your satisfaction and privacy.`}
+                keywords={keywords}
+            />
 
             <div className="min-h-screen bg-background">
                 <Header />

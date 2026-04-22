@@ -3,8 +3,16 @@ import React, { useState, useEffect } from 'react';
 const BannerImageSlider = ({ images, autoSlide = true, interval = 4000, className = "" }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Auto-slide functionality
+  // Auto-slide and Preload functionality
   useEffect(() => {
+    // Preload all images
+    if (images && images.length > 0) {
+      images.forEach(image => {
+        const img = new Image();
+        img.src = image;
+      });
+    }
+
     if (!autoSlide || images.length <= 1) return;
 
     const timer = setInterval(() => {
@@ -12,7 +20,7 @@ const BannerImageSlider = ({ images, autoSlide = true, interval = 4000, classNam
     }, interval);
 
     return () => clearInterval(timer);
-  }, [autoSlide, interval, images.length]);
+  }, [autoSlide, interval, images]);
 
   const goToSlide = (index) => {
     setCurrentIndex(index);
@@ -49,6 +57,7 @@ const BannerImageSlider = ({ images, autoSlide = true, interval = 4000, classNam
               src={image}
               alt={`Banner ${index + 1}`}
               className="w-full h-full object-cover"
+              loading="eager"
               onError={(e) => {
                 e.target.src = '/assets/images/no_image.png';
               }}

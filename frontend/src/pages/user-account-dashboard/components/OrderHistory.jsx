@@ -155,7 +155,7 @@ const OrderHistory = () => {
         siteName: "Mane Coffee",
         companyAddress: "Natural & Organic Products Hub, Bangalore, India",
         companyPhone: "+91 7892783668",
-        companyEmail: "info@sanatanaparampare.com"
+        companyEmail: "info@manecoffeee.com"
       };
 
       // Enhanced customer data mapping with better fallbacks

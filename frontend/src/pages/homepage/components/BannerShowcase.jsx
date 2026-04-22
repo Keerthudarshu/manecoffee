@@ -4,64 +4,52 @@ import BannerImageSlider from '../../../components/ui/BannerImageSlider';
 
 const BannerShowcase = () => {
   const bannerImages = [
-    '/assets/banner/gee1.jpeg',
-    '/assets/banner/gee2.png',
-    '/assets/banner/gee3.avif',
-    '/assets/banner/masala.jpg',
-    '/assets/banner/pickles.jpeg',
-    '/assets/banner/pickles1.webp',
-    '/assets/banner/pickels2.webp'
+    '/assets/banner/1.png',
+    '/assets/banner/2.png',
+    '/assets/banner/3.png',
+    '/assets/banner/4.png'
   ];
 
   const featuredCategories = [
     {
-      title: "Premium Ghee Collection",
-      description: "Pure A2 cow ghee and traditional ghee varieties",
+      title: "Arabica Coffee",
+      description: "Premium Arabica beans from the high-altitude estates of Coorg",
       images: [
-        '/assets/banner/ghee1.png'
+        '/assets/banner/Arabica.png'
       ],
-      link: "/product-collection-grid?category=3",
+      link: "/product-collection-grid?category=1",
       badge: "Premium Quality"
     },
     {
-      title: "Traditional Spices",
-      description: "Hand-ground masalas and spice powders",
-      images: ['/assets/banner/masala.png'],
+      title: "Robusta Coffee",
+      description: "Strong and bold Robusta beans with an intense flavor and high caffeine",
+      images: ['/assets/banner/robusta.png'],
       link: "/product-collection-grid?category=7",
       badge: "Fresh Ground"
     },
     {
-      title: "Homemade Pickles",
-      description: "Authentic traditional pickle varieties",
-      images: ['/assets/banner/pickles.png'],
+      title: "Arabica + Robusta",
+      description: "A perfectly balanced blend of Arabica and Robusta for the ideal daily brew",
+      images: ['/assets/banner/arabicaand robusta.png'],
       link: "/product-collection-grid?category=6",
-      badge: "Homemade"
+      badge: "Mane Special"
     }
   ];
 
   return (
-    <section className="py-16 bg-gradient-to-b from-orange-50 to-white">
+    <section className="py-16 bg-gradient-to-b from-amber-50/50 to-white">
       <div className="container mx-auto px-4">
         {/* Main Banner Slider */}
         <div className="mb-16">
           <div className="text-center mb-8">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Traditional Flavors, Authentic Quality
+            <h2 className="text-4xl font-bold text-[#2a1f0e] mb-4">
+              Premium Coffee, Authentic Taste
             </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Discover our premium collection of traditional Indian food products,
-              made with love and following ancient recipes for authentic taste.
+            <p className="text-lg text-[#2a1f0e]/70 max-w-2xl mx-auto">
+              Experience the rich legacy of Coorg's finest coffee beans,
+              expertly roasted and blended for the perfect cup.
             </p>
           </div>
-
-          {/* <div className="max-w-6xl mx-auto">
-            <BannerImageSlider 
-              images={bannerImages} 
-              className="h-96 w-full"
-              autoSlide={true}
-              interval={3000}
-            />
-          </div> */}
         </div>
 
         {/* Featured Categories */}
@@ -71,7 +59,7 @@ const BannerShowcase = () => {
               <div className="relative bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform group-hover:scale-105">
                 {/* Category Badge */}
                 <div className="absolute top-4 left-4 z-10">
-                  <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-orange-100 text-orange-800">
+                  <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-[#C9A227]/10 text-[#C9A227]">
                     {category.badge}
                   </span>
                 </div>
@@ -88,15 +76,15 @@ const BannerShowcase = () => {
 
                 {/* Content */}
                 <div className="p-6">
-                  <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-orange-600 transition-colors">
+                   <h3 className="text-xl font-bold text-[#2a1f0e] mb-2 group-hover:text-[#C9A227] transition-colors">
                     {category.title}
                   </h3>
-                  <p className="text-gray-600 mb-4">
+                  <p className="text-[#2a1f0e]/70 mb-4">
                     {category.description}
                   </p>
                   <Link
                     to={category.link}
-                    className="inline-flex items-center text-orange-600 hover:text-orange-700 font-semibold group-hover:underline"
+                    className="inline-flex items-center text-[#C9A227] hover:text-[#2a1f0e] font-semibold group-hover:underline"
                   >
                     Explore Collection
                     <svg className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">

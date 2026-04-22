@@ -9,72 +9,38 @@ const ShopByCategorySection = () => {
   const categories = [
     {
       id: 1,
-      name: 'Wood Pressed Oils',
+      name: 'Arabica',
       productCount: 25,
-      image: ['/assets/banner/Wood Pressed Oils.png'],
-      icon: 'Droplets',
-      description: 'Cold pressed, chemical-free oils',
-      featured: ['Coconut Oil', 'Sesame Oil', 'Groundnut Oil'],
+      image: ['/assets/banner/Arabica.png'],
+      icon: 'Coffee',
+      description: 'Premium Arabica beans from the high-altitude estates of Coorg',
+      featured: ['Single Origin', 'Medium Roast', 'Whole Bean'],
       startingPrice: 180,
-      badge: 'Best Seller'
-    },
-    {
-      id: 7,
-      name: 'Spice Powders',
-      productCount: 42,
-      image: ['/assets/banner/masala.png'],
-      icon: 'Sparkles',
-      description: 'Traditional masalas & spice blends',
-      featured: ['Sambar Powder', 'Rasam Powder', 'Garam Masala'],
-      startingPrice: 85,
-      badge: 'Authentic'
-    },
-    {
-      id: 6,
-      name: 'Pickles',
-      productCount: 18,
-      image: ['/assets/banner/pickles.png'],
-      icon: 'Jar',
-      description: 'Homemade traditional pickles',
-      featured: ['Mango Pickle', 'Lemon Pickle', 'Mixed Veg'],
-      startingPrice: 120,
-      badge: 'Homemade'
-    },
-    {
-      id: 3,
-      name: 'Ghee',
-      productCount: 12,
-      image: [
-        '/assets/banner/ghee1.png'
-      ],
-      icon: 'Heart',
-      description: 'Pure A2 ghee & wild honey',
-      featured: ['Pure Ghee', 'Wild Honey', 'A2 Cow Ghee'],
-      startingPrice: 450,
       badge: 'Premium'
     },
     {
-      id: 8,
-      name: 'Chemical Free Jaggery',
-      productCount: 8,
-      image: ['/assets/banner/Jaggery_Sweeteners.jpeg'],
-      icon: 'Candy',
-      description: 'Chemical-free natural sweeteners',
-      featured: ['Powder Jaggery', 'Solid Jaggery', 'Palm Jaggery'],
-      startingPrice: 95,
-      badge: 'Natural'
+      id: 7,
+      name: 'Robusta',
+      productCount: 42,
+      image: ['/assets/banner/robusta.png'],
+      icon: 'Zap',
+      description: 'Strong and bold Robusta beans with an intense flavor and high caffeine',
+      featured: ['Dark Roast', 'High Caffeine', 'Bold Flavor'],
+      startingPrice: 85,
+      badge: 'Strong'
     },
     {
-      id: 5,
-      name: 'Papads',
-      productCount: 15,
-      image: ['/assets/banner/papad.jpeg'],
-      icon: 'Cookie',
-      description: 'Handmade papads & traditional items',
-      featured: ['Rice Papad', 'Urad Papad', 'Ragi Items'],
-      startingPrice: 65,
-      badge: 'Handmade'
+      id: 6,
+      name: 'Arabica+Robusta',
+      productCount: 18,
+      image: ['/assets/banner/arabicaand robusta.png'],
+      icon: 'Layers',
+      description: 'A perfectly balanced blend of Arabica and Robusta for the ideal daily brew',
+      featured: ['Balanced Flavor', 'Filter Coffee', 'Daily Brew'],
+      startingPrice: 120,
+      badge: 'Mane Special'
     }
+
   ];
 
   // Handler for adding to cart/wishlist (example)
@@ -86,7 +52,7 @@ const ShopByCategorySection = () => {
   };
 
   return (
-    <section className="py-16 bg-white">
+    <section className="py-16 bg-[#efe5d7]">
       <div className="container mx-auto px-4">
         {/* Popup Notification */}
         <Popup
@@ -119,7 +85,7 @@ const ShopByCategorySection = () => {
                   src={category.image}
                   alt={category.name}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                  loading="lazy"
+                  loading="eager"
                 />
 
                 {/* Enhanced Overlay */}
@@ -157,7 +123,7 @@ const ShopByCategorySection = () => {
               {/* Content */}
               <div className="p-6">
                 {/* Category Name */}
-                <h3 className="font-heading text-xl font-bold text-foreground mb-2">
+                <h3 className="font-heading text-xl font-bold text-[#2a1f0e] mb-2">
                   {category.name}
                 </h3>
 

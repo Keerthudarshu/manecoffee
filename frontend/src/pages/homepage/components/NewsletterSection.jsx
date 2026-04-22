@@ -59,7 +59,7 @@ const NewsletterSection = () => {
             <Icon name="Check" size={32} color="white" />
           </div>
           <h2 className="font-heading font-bold text-3xl text-[#120d07] mb-4">
-            Welcome to the Family!
+            Welcome to the Coffee Club!
           </h2>
           <p className="font-body text-lg text-[#120d07]/70 mb-6">
             Thank you for subscribing! Check your email for a special welcome offer.
@@ -78,17 +78,17 @@ const NewsletterSection = () => {
   }
 
   return (
-    <section className="py-16 lg:py-20 bg-[#120d07]/5">
+    <section className="py-16 lg:py-20 bg-[#efe5d7]">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Content */}
             <div className="text-center lg:text-left">
-              <h2 className="font-heading font-bold text-3xl lg:text-4xl text-[#F0C040] mb-4">
-                Join Our Natural Family
+              <h2 className="font-heading font-bold text-3xl lg:text-4xl text-[#2a1f0e] mb-4">
+                Join Our Coffee Community
               </h2>
-              <p className="font-body text-lg text-white mb-6">
-                Subscribe to our newsletter and get exclusive access to new products, special offers, and traditional recipes straight to your inbox.
+              <p className="font-body text-lg text-[#2a1f0e]/70 mb-6">
+                Subscribe to our newsletter and get exclusive access to fresh harvests, roasting secrets, and brewing guides straight to your inbox.
               </p>
 
               {/* Benefits */}
@@ -102,7 +102,7 @@ const NewsletterSection = () => {
                       <h4 className="font-body font-bold text-[#F0C040]">
                         {benefit?.title}
                       </h4>
-                      <p className="font-caption text-sm text-white/70">
+                      <p className="font-caption text-sm text-[#2a1f0e]/60">
                         {benefit?.description}
                       </p>
                     </div>
@@ -121,7 +121,7 @@ const NewsletterSection = () => {
                   Get 10% Off Your First Order
                 </h3>
                 <p className="font-body text-[#120d07]/60">
-                  Plus exclusive recipes and health tips
+                  Plus exclusive brewing guides and Coorg heritage stories
                 </p>
               </div>
 

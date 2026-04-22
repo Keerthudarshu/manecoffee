@@ -1,5 +1,5 @@
 import React from 'react';
-import { Helmet } from 'react-helmet-async';
+import SEO from '../../components/SEO';
 import { Link } from 'react-router-dom';
 import Header from '../../components/ui/Header';
 import Footer from '../homepage/components/Footer';
@@ -14,61 +14,70 @@ const AboutPage = () => {
 
   const coreValues = [
     {
-      icon: 'Heart',
-      title: 'Purity & Authenticity',
-      description: 'Every product follows ancient traditional methods without any chemical additives or preservatives.'
+      icon: 'Coffee',
+      title: 'Coorg Heritage',
+      description: 'Grown in the mist-covered hills of Kodagu, our beans carry the unique spirit and soil of India’s coffee capital.'
     },
     {
       icon: 'Leaf',
-      title: 'Natural Heritage',
-      description: 'Preserving age-old recipes and techniques passed down through generations of Indian culinary wisdom.'
+      title: 'Sustainable Sourcing',
+      description: 'We partner directly with traditional estates that practice shade-grown cultivation to preserve biodiversity.'
     },
     {
-      icon: 'Users',
-      title: 'Family Trust',
-      description: 'Building lasting relationships with families who value quality, tradition, and authentic flavors.'
+      icon: 'Sparkles',
+      title: 'Artisan Roasting',
+      description: 'Our beans are slow-roasted in small batches to unlock the complex aromatic profiles of Arabica and Robusta.'
     },
     {
-      icon: 'Award',
-      title: 'Quality Promise',
-      description: 'Hand-selected ingredients, traditional processing, and rigorous quality checks ensure excellence.'
+      icon: 'Heart',
+      title: 'Perfect Blending',
+      description: 'Masterfully crafting the ideal balance between Arabica’s sweetness and Robusta’s bold strength.'
     }
   ];
 
   const traditionalProcesses = [
     {
-      icon: 'Hammer',
-      title: 'Wood Pressing',
-      description: 'Oils extracted using traditional wooden presses to preserve natural nutrients and authentic taste.'
-    },
-    {
-      icon: 'Sparkles',
-      title: 'Stone Grinding',
-      description: 'Spice powders ground using ancient stone mills to maintain essential oils and aromatic compounds.'
+      icon: 'Hands',
+      title: 'Selective Handpicking',
+      description: 'Only the ripest coffee cherries are hand-selected by skilled plantation workers to ensure peak flavor.'
     },
     {
       icon: 'Sun',
-      title: 'Natural Drying',
-      description: 'Sun-drying and traditional preservation methods without artificial chemicals or preservatives.'
+      title: 'Estate Sun-Drying',
+      description: 'Cherries are sun-dried on traditional brick yards to naturally develop their sweetness and body.'
     },
     {
-      icon: 'Hands',
-      title: 'Handcrafted',
-      description: 'Pickles, papads, and traditional foods lovingly prepared by skilled artisans following authentic recipes.'
+      icon: 'Flame',
+      title: 'Traditional Roasting',
+      description: 'Using time-honored roasting techniques that respect the bean’s origin and preserve essential coffee oils.'
+    },
+    {
+      icon: 'GlassWater',
+      title: 'Pure Kodagu Essence',
+      description: 'Processed without any artificial chicory or additives, delivering the pure taste of Coorg in every cup.'
     }
+  ];
+
+  const galleryImages = [
+    { src: '/assets/store/mane coffee store.png', alt: 'Mane Coffee Store Front' },
+    { src: '/assets/store/store1.png', alt: 'Mane Coffee Store Interior 1' },
+    { src: '/assets/store/store2.png', alt: 'Mane Coffee Store Interior 2' },
+    { src: '/assets/store/store3.png', alt: 'Mane Coffee Store Interior 3' },
+    { src: '/assets/store/store4.png', alt: 'Mane Coffee Store Interior 4' },
+    { src: '/assets/store/store5.png', alt: 'Mane Coffee Store Interior 5' },
+    { src: '/assets/store/store6.png', alt: 'Mane Coffee Store Interior 6' },
   ];
 
   return (
     <>
-      <Helmet>
-        <title>About Us - Mane Coffee | Traditional Indian Food Heritage</title>
-        <meta name="description" content="Discover Mane Coffee's journey in preserving traditional Indian food heritage. Learn about our commitment to purity, authenticity, and ancient wisdom in every product." />
-        <meta name="keywords" content="about Mane Coffee, traditional indian food, authentic recipes, natural products, wood pressed oils, ancient wisdom, heritage foods" />
-        <meta property="og:title" content="About Mane Coffee - Preserving Traditional Food Heritage" />
-        <meta property="og:description" content="Experience the purest traditional foods following ancient Indian wisdom. Handcrafted with love using time-honored recipes and natural ingredients." />
-        <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://sanatanaparampare.com/about" />
-      </Helmet>
+      <SEO 
+        title="About Us - Coorg's Finest Coffee Heritage"
+        description="Discover Mane Coffee's journey in preserving Coorg's rich coffee heritage. Experience the authentic taste of Arabica, Robusta, and artisan blends from the hills of Kodagu."
+        keywords="Coorg coffee, Kodagu coffee, Arabica coffee, Robusta coffee, artisan coffee blends, Indian coffee heritage, shade grown coffee, Mane Coffee story, about Mane Coffee"
+        canonical="/about"
+        ogTitle="About Mane Coffee - Preserving Coorg's Coffee Legacy"
+        ogDescription="Experience the purest coffee from the mist-covered hills of Coorg. Hand-picked, sun-dried, and slow-roasted for the perfect cup."
+      />
 
       <div className="min-h-screen bg-background">
         <Header />
@@ -79,44 +88,42 @@ const AboutPage = () => {
           </div>
 
           {/* Hero Section */}
-          <section className="py-16 bg-gradient-to-r from-primary/10 to-accent/10">
+          <section className="py-20 bg-[#efe5d7]">
             <div className="container mx-auto px-4">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <div>
-                  <h1 className="font-heading text-4xl lg:text-5xl font-bold text-primary mb-6">
-                    ಸನಾತನ ಪರಂಪರೆ
-                    <br />
-                    <span className="text-3xl lg:text-4xl text-accent">Mane Coffee</span>
+                <div className="order-2 lg:order-1">
+                  <h1 className="font-heading text-5xl lg:text-6xl font-bold text-[#8a6a1a] mb-8 leading-tight">
+                    Mane Coffee
                   </h1>
-                  <p className="font-body text-lg text-muted-foreground mb-8 leading-relaxed">
+                  <p className="font-body text-lg lg:text-xl text-[#1e1509]/80 mb-10 leading-relaxed max-w-2xl">
                     Experience the purest traditional foods following ancient Indian wisdom.
                     We preserve the timeless culinary heritage through authentic recipes,
                     natural ingredients, and traditional processing methods that have been
                     cherished for generations.
                   </p>
-                  <div className="flex flex-col sm:flex-row gap-4">
+                  <div className="flex flex-col sm:flex-row gap-5">
                     <Link
                       to="/product-collection-grid"
-                      className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-3 rounded-full font-heading font-semibold transition-all duration-300 text-center"
+                      className="bg-[#C9A227] text-[#120d07] hover:bg-[#F0C040] px-10 py-4 rounded-full font-heading font-bold transition-all duration-300 text-center text-lg shadow-xl hover:scale-105"
                     >
                       Explore Products
                     </Link>
                     <Link
                       to="/contact"
-                      className="border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground px-8 py-3 rounded-full font-heading font-semibold transition-all duration-300 text-center"
+                      className="border-2 border-[#C9A227] text-[#C9A227] hover:bg-[#C9A227] hover:text-[#120d07] px-10 py-4 rounded-full font-heading font-bold transition-all duration-300 text-center text-lg shadow-xl hover:scale-105"
                     >
                       Connect With Us
                     </Link>
                   </div>
                 </div>
 
-                <div className="relative">
+                <div className="order-1 lg:order-2 relative group">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-[#C9A227] to-[#F0C040] rounded-2xl blur opacity-10 group-hover:opacity-30 transition duration-1000 group-hover:duration-200"></div>
                   <img
-                    src="/assets/images/store.jpg"
+                    src="/assets/images/mane coffee store.png"
                     alt="Mane Coffee Store"
-                    className="w-full h-80 object-cover"
+                    className="relative w-full h-[450px] object-cover rounded-xl shadow-2xl border border-[#C9A227]/20"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent"></div>
                 </div>
               </div>
             </div>
@@ -126,25 +133,19 @@ const AboutPage = () => {
           <section className="py-16 bg-white">
             <div className="container mx-auto px-4">
               <div className="max-w-4xl mx-auto text-center mb-16">
-                <h2 className="font-heading text-3xl lg:text-4xl font-bold text-primary mb-6">
-                  Our Heritage Story
+                <h2 className="font-heading text-3xl lg:text-4xl font-bold text-[#C9A227] mb-6">
+                  The Legacy of Coorg Coffee
                 </h2>
                 <div className="w-24 h-1 bg-accent mx-auto mb-8"></div>
-                <div className="space-y-6 text-left">
-                  <p className="font-body text-lg text-muted-foreground leading-relaxed">
-                    <strong className="text-primary">Mane Coffee</strong> was born from a deep reverence for India's
-                    ancient culinary wisdom. Our journey began with a simple yet profound mission: to preserve and
-                    share the authentic flavors that have nourished generations of Indian families.
+                <div className="space-y-6 text-left text-[#C9A227]/90">
+                  <p className="font-body text-lg leading-relaxed">
+                    <strong className="text-[#C9A227]">Mane Coffee</strong> was born in the heart of Kodagu (Coorg), a region where coffee isn't just a crop, but a way of life. Our journey began amidst the emerald hills and silver oak trees, where the cool mountain air creates the perfect environment for the world's finest shade-grown coffee.
                   </p>
-                  <p className="font-body text-lg text-muted-foreground leading-relaxed">
-                    In an era of mass production and artificial additives, we recognized the urgent need to protect
-                    traditional food preparation methods. Our founders, inspired by ancestral recipes and time-tested
-                    techniques, established a platform where purity meets tradition.
+                  <p className="font-body text-lg leading-relaxed">
+                    We specialize in the two pillars of Indian coffee: the smooth, aromatic <strong className="text-[#C9A227]">Arabica</strong> and the bold, full-bodied <strong className="text-[#C9A227]">Robusta</strong>. By working directly with estate owners who have nurtured these lands for generations, we bring you beans that reflect the unique "terroir" of Coorg.
                   </p>
-                  <p className="font-body text-lg text-muted-foreground leading-relaxed">
-                    Every product in our collection tells a story of heritage, craftsmanship, and unwavering commitment
-                    to quality. From wood-pressed oils extracted using century-old methods to spice powders ground on
-                    traditional stone mills, we ensure that every bite connects you to India's rich culinary legacy.
+                  <p className="font-body text-lg leading-relaxed">
+                    From our signature <strong className="text-[#C9A227]">Arabica+Robusta blends</strong> to our single-origin offerings, Mane Coffee is dedicated to preserving the artisan methods of Kodava coffee culture. Every batch is a tribute to the craftsmanship of the planters and the rich legacy of the hills.
                   </p>
                 </div>
               </div>
@@ -232,11 +233,11 @@ const AboutPage = () => {
                 </p>
               </div>
               <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                {[1, 2, 3, 4, 5, 6, 7].map(num => (
-                  <div key={num} className="overflow-hidden rounded-xl shadow-lg group relative">
+                {galleryImages.map((image, index) => (
+                  <div key={index} className="overflow-hidden rounded-xl shadow-lg group relative">
                     <img
-                      src={`/assets/store/store${num}.jpg`}
-                      alt={`Mane Coffee Store ${num}`}
+                      src={image.src}
+                      alt={image.alt}
                       className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105"
                     />
                   </div>
@@ -254,28 +255,28 @@ const AboutPage = () => {
               <div className="w-24 h-1 bg-white mx-auto mb-8"></div>
               <div className="max-w-4xl mx-auto">
                 <p className="font-body text-xl text-white/90 mb-8 leading-relaxed">
-                  We pledge to deliver products that honor the trust you place in us. Every item
-                  undergoes rigorous quality checks, and we stand behind the purity and authenticity
-                  of everything we offer.
+                  We pledge to deliver coffee that honors the rich traditions of Coorg. Every bean
+                  undergoes rigorous inspection, and we stand behind the freshness and authentic
+                  Kodagu flavor of every batch we roast.
                 </p>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
                   <div className="bg-white/10 rounded-lg p-6 backdrop-blur-sm">
                     <Icon name="Shield" size={32} className="mx-auto mb-4" />
-                    <h3 className="font-heading font-bold text-lg mb-2">100% Pure</h3>
-                    <p className="font-body text-white/80">No chemicals, preservatives, or artificial additives</p>
+                    <h3 className="font-heading font-bold text-lg mb-2">100% Pure Coffee</h3>
+                    <p className="font-body text-white/80">Zero chicory, additives, or artificial flavorings</p>
                   </div>
 
                   <div className="bg-white/10 rounded-lg p-6 backdrop-blur-sm">
-                    <Icon name="Award" size={32} className="mx-auto mb-4" />
-                    <h3 className="font-heading font-bold text-lg mb-2">Quality Tested</h3>
-                    <p className="font-body text-white/80">Rigorous testing ensures highest quality standards</p>
+                    <Icon name="Coffee" size={32} className="mx-auto mb-4" />
+                    <h3 className="font-heading font-bold text-lg mb-2">Freshly Roasted</h3>
+                    <p className="font-body text-white/80">Roasted in small batches for peak aromatic profile</p>
                   </div>
 
                   <div className="bg-white/10 rounded-lg p-6 backdrop-blur-sm">
-                    <Icon name="Heart" size={32} className="mx-auto mb-4" />
-                    <h3 className="font-heading font-bold text-lg mb-2">Made with Love</h3>
-                    <p className="font-body text-white/80">Handcrafted with care by skilled artisans</p>
+                    <Icon name="MapPin" size={32} className="mx-auto mb-4" />
+                    <h3 className="font-heading font-bold text-lg mb-2">Coorg Origin</h3>
+                    <p className="font-body text-white/80">Sourced directly from premium estates in Kodagu</p>
                   </div>
                 </div>
 

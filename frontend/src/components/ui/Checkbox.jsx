@@ -13,6 +13,7 @@ const Checkbox = React.forwardRef(({
     description,
     error,
     size = "default",
+    labelClassName,
     ...props
 }, ref) => {
     // Generate unique ID if not provided
@@ -42,10 +43,10 @@ const Checkbox = React.forwardRef(({
                 <label
                     htmlFor={checkboxId}
                     className={cn(
-                        "peer shrink-0 rounded-sm border border-primary ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground cursor-pointer transition-colors",
+                        "peer shrink-0 rounded-sm border border-[#8B5E2A] ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-[#8B5E2A] data-[state=checked]:text-white cursor-pointer transition-colors",
                         sizeClasses?.[size],
-                        checked && "bg-primary text-primary-foreground border-primary",
-                        indeterminate && "bg-primary text-primary-foreground border-primary",
+                        checked && "bg-[#8B5E2A] text-white border-[#8B5E2A]",
+                        indeterminate && "bg-[#8B5E2A] text-white border-[#8B5E2A]",
                         error && "border-destructive",
                         disabled && "cursor-not-allowed opacity-50"
                     )}
@@ -65,7 +66,8 @@ const Checkbox = React.forwardRef(({
                             htmlFor={checkboxId}
                             className={cn(
                                 "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer",
-                                error ? "text-destructive" : "text-foreground"
+                                error ? "text-destructive" : "text-[#2a1f0e]",
+                                labelClassName
                             )}
                         >
                             {label}

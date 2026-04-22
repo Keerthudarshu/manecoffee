@@ -58,7 +58,7 @@ const AdminLogin = () => {
               label="Admin Email"
               name="email"
               type="email"
-              placeholder="admin@sanatanaparampare.com"
+              placeholder="admin@manecoffeee.com"
               value={formData.email}
               onChange={handleChange}
               required

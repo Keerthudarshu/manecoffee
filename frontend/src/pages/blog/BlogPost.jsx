@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
+import SEO from '../../components/SEO';
 import Header from '../../components/ui/Header';
 import Footer from '../homepage/components/Footer';
 import Breadcrumb from '../../components/ui/Breadcrumb';
@@ -8,47 +8,63 @@ import Icon from '../../components/AppIcon';
 
 // Mock data for individual posts
 const blogData = {
-    'heritage-story': {
-        title: "Preserving India's Ancient Culinary Wisdom",
-        date: "May 15, 2024",
+    'coorg-coffee-guide': {
+        title: "The Ultimate Guide to Coorg's Arabica and Robusta",
+        date: "April 15, 2024",
+        category: "Coffee Education",
+        readTime: "6 min read",
+        author: "Mane Coffee Roasters",
+        image: "/assets/store/store1.png",
+        content: [
+            { type: 'paragraph', text: "In the mist-covered hills of Kodagu (Coorg), coffee isn't just a drink—it's a tradition. Understanding the two primary pillars of this heritage, Arabica and Robusta, is the first step for any coffee lover." },
+            { type: 'heading', text: "Arabica: The Aromatic Queen" },
+            { type: 'paragraph', text: "Grown at higher altitudes, our Coorg Arabica is known for its smooth, sweet profile. It carries subtle notes of chocolate and berries, with a bright acidity that defines premium specialty coffee. Because it thrives under the shade of silver oak and jackfruit trees, the beans mature slowly, developing complex aromatic compounds." },
+            { type: 'image', src: "/assets/store/store2.png", alt: "Freshly harvested Arabica beans from Coorg" },
+            { type: 'heading', text: "Robusta: The Bold Strength" },
+            { type: 'paragraph', text: "Kodagu is world-renowned for its high-quality Robusta. Unlike the bitter variants found elsewhere, Coorg Robusta is full-bodied, earthy, and intense. It offers a rich crema and a powerful caffeine kick, making it the perfect base for traditional Indian filter coffee or a strong morning espresso." },
+            { type: 'paragraph', text: "At Mane Coffee, we masterfully blend these two varieties to create our signature Arabica+Robusta mixes, bringing you the 'best of both worlds'—the aroma of the hills and the strength of the soil." }
+        ],
+        seoDescription: "Learn the differences between Arabica and Robusta coffee grown in Coorg and how Mane Coffee crafts the perfect blend.",
+        seoKeywords: "Arabica vs Robusta, Coorg coffee varieties, Kodagu coffee beans, best indian coffee blend, pure coffee powders"
+    },
+    'shade-grown-heritage': {
+        title: "Why Shade-Grown Coffee from Coorg is Superior",
+        date: "April 20, 2024",
         category: "Our Heritage",
         readTime: "5 min read",
-        author: "Team Mane Coffee",
-        image: "/assets/images/parampara.jpg",
+        author: "Kodagu Estate Desk",
+        image: "/assets/store/store4.png",
         content: [
-            { type: 'paragraph', text: "India's culinary landscape is more than just food; it's a profound science known as 'Ahara Vidya' that has been passed down through millennia. At Mane Coffee, we believe that the health of a society is deeply rooted in the purity of the food it consumes, and the methods used to prepare it." },
-            { type: 'heading', text: "The Genesis of Mane Coffee" },
-            { type: 'paragraph', text: "Our journey began when we noticed a disconnect between the food available in modern markets and the authentic meals we remembered from our childhood—meals that were not only delicious but filled with vitality. This realization sparked a mission: to bridge the gap between ancient wisdom and contemporary living." },
-            { type: 'image', src: "/assets/images/store.jpg", alt: "Our traditional store" },
-            { type: 'paragraph', text: "Mane Coffee was born out of a commitment to bring back traditional purity. Every product we offer is a testament to our dedication to preserving ancestral knowledge. From the way our spices are ground to the methods used to extract our oils, tradition is at the heart of everything we do." },
-            { type: 'heading', text: "Purity Without Compromise" },
-            { type: 'paragraph', text: "In today's fast-paced world, many traditional processes have been replaced by industrial shortcuts to save time and cost. However, these shortcuts often come at the expense of nutritional value and flavor. We refuse to compromise." },
-            { type: 'paragraph', text: "By choosing Mane Coffee, you're not just buying food; you're supporting a legacy of purity, health, and a deep respect for our natural heritage." }
+            { type: 'paragraph', text: "While much of the world's coffee is grown on open sun-scorched plantations, the coffee of Coorg tells a different story. Here, coffee bushes live in harmony with a diverse canopy of jungle trees, creating what we call 'Shade-Grown Heritage'." },
+            { type: 'heading', text: "Biodiversity in Every Bean" },
+            { type: 'paragraph', text: "The shade trees—jackfruit, rosewood, and wild fig—not only protect the coffee from direct sunlight but also provide a habitat for over 300 species of birds and bees. This ecosystem naturally enriches the soil, eliminating the need for heavy chemical fertilizers." },
+            { type: 'image', src: "/assets/store/store6.png", alt: "Lush shade-grown coffee estate in Kodagu" },
+            { type: 'heading', text: "The Microclimate Advantage" },
+            { type: 'paragraph', text: "The canopy maintains a consistent temperature and moisture level, allowing the coffee cherries to ripen at a natural, slower pace. This results in beans that are denser, more flavorful, and packed with the authentic 'terroir' of the Western Ghats." },
+            { type: 'paragraph', text: "By choosing Mane Coffee, you are supporting a sustainable farming legacy that has protected the Coorg landscape for over 150 years." }
         ],
-        seoDescription: "Discover how Mane Coffee preserves ancient Indian culinary wisdom through authentic recipes and traditional methods.",
-        seoKeywords: "indian tradition, culinary heritage, ancient wisdom, pure food, authentic recipes"
+        seoDescription: "Discover the benefits of shade-grown coffee and how the biodiversity of Coorg's estates produces India's finest beans.",
+        seoKeywords: "shade grown coffee Coorg, sustainable coffee farming, Kodagu estates, biodiversity in coffee, eco friendly coffee beans"
     },
-    'wood-pressed-oils': {
-        title: "The Magic of Wood Pressed Oils",
-        date: "June 2, 2024",
+    'traditional-sun-drying': {
+        title: "The Art of Sun-Drying: Preserving the Kodava Flavor",
+        date: "May 5, 2024",
         category: "Traditional Processes",
-        readTime: "4 min read",
-        author: "Health & Wellness Desk",
-        image: "/assets/store/store1.jpg",
+        readTime: "7 min read",
+        author: "Artisan Processing Unit",
+        image: "/assets/store/store5.png",
         content: [
-            { type: 'paragraph', text: "For centuries, cold-pressed oils extracted using wooden churners, known as 'Ghani', have been a staple in Indian households. Today, we're seeing a massive resurgence in the popularity of these oils, and for very good reason." },
-            { type: 'heading', text: "Why Wood Pressing Matters" },
-            { type: 'paragraph', text: "The primary difference between refined oils and wood-pressed oils lies in the temperature. Industrial extraction uses high heat and chemicals, which destroys the delicate nutritional profile of the seeds. In contrast, wooden churners operate at low speeds, ensuring the oil temperature never rises above a certain point." },
-            { type: 'image', src: "/assets/store/store2.jpg", alt: "Traditional wooden ghani" },
-            { type: 'paragraph', text: "This 'cold' process preserves the natural antioxidants, vitamins, and minerals that seeds are famous for. The wood of the churner also acts as a natural insulator, prevents heat absorption during the process." },
-            { type: 'heading', text: "Benefits of Wood Pressed Oils" },
-            { type: 'paragraph', text: "1. Rich in Vitamin E and Heart-Healthy Fats\n2. Maintain Natural Aroma and Character\n3. Zero Residual Chemicals or Solvents\n4. Better Taste for Your Cooking" },
-            { type: 'paragraph', text: "At Mane Coffee, our wood-pressed oils are extracted exactly the way nature intended—pure, potent, and incredibly healthy." }
+            { type: 'paragraph', text: "Modern industrial coffee processing often relies on mechanical dryers to speed up production. But at Mane Coffee, we stick to the time-honored Kodava method of sun-drying coffee cherries on traditional brick yards (kallu-kala)." },
+            { type: 'heading', text: "Nature's Slow Perfection" },
+            { type: 'paragraph', text: "Sun-drying is a slow, meticulous process that takes anywhere from 10 to 15 days. The coffee cherries are spread in thin layers and turned by hand several times a day to ensure even drying. This allow the natural sugars in the cherry fruit to soak into the bean, enhancing its body and sweetness." },
+            { type: 'image', src: "/assets/store/store3.png", alt: "Coffee cherries drying under the Coorg sun" },
+            { type: 'heading', text: "Why We Wait" },
+            { type: 'paragraph', text: "Mechanical drying can sometimes 'cook' the bean or strip it of its essential oils. Sun-drying, while labor-intensive, preserves the delicate volatile compounds that give Coorg coffee its signature earthy and spicy notes." },
+            { type: 'paragraph', text: "It is this patience and respect for nature's rhythm that makes every sip of Mane Coffee a pure, authentic experience." }
         ],
-        seoDescription: "Examine the benefits of wood-pressed oils and why the traditional Ghani method is superior for your health.",
-        seoKeywords: "wood pressed oil, ghani oil online, cold pressed oil benefits, healthy cooking oils, pure peanut oil"
+        seoDescription: "Examine the traditional sun-drying methods used in Coorg estates to produce authentic, flavorful coffee beans.",
+        seoKeywords: "coffee sun drying Coorg, traditional coffee processing, Kodava coffee culture, sun dried coffee beans, artisan coffee processing"
     }
-    // More posts would be added here
 };
 
 const BlogPost = () => {
@@ -77,16 +93,27 @@ const BlogPost = () => {
 
     return (
         <>
-            <Helmet>
-                <title>{post.title} - Mane Coffee Blog</title>
-                <meta name="description" content={post.seoDescription} />
-                <meta name="keywords" content={post.seoKeywords} />
-                <meta property="og:title" content={`${post.title} - Mane Coffee`} />
-                <meta property="og:description" content={post.seoDescription} />
-                <meta property="og:image" content={post.image} />
-                <meta property="og:type" content="article" />
-                <link rel="canonical" href={`https://sanatanaparampare.com/blog/${id}`} />
-            </Helmet>
+            <SEO 
+                title={post.title}
+                description={post.seoDescription}
+                keywords={`${post.seoKeywords}, Mane Coffee blog, Coorg coffee stories`}
+                canonical={`/blog/${id}`}
+                ogTitle={`${post.title} - Mane Coffee`}
+                ogDescription={post.seoDescription}
+                ogImage={post.image}
+                ogType="article"
+                structuredData={{
+                    "@context": "https://schema.org",
+                    "@type": "BlogPosting",
+                    "headline": post.title,
+                    "image": post.image,
+                    "datePublished": "2024-04-15",
+                    "author": {
+                        "@type": "Organization",
+                        "name": "Mane Coffee"
+                    }
+                }}
+            />
 
             <div className="min-h-screen bg-background">
                 <Header />

@@ -181,9 +181,9 @@ const PaymentForm = ({ onNext, onBack, orderTotal, paymentMethod: initialPayment
             <label
               key={method?.id}
               className={`block p-5 border-2 rounded-xl cursor-pointer transition-all duration-300 relative group ${paymentMethod === method?.id
-                  ? 'border-primary bg-primary/5 selection-shadow ring-2 ring-primary/10' 
-                  : method?.available
-                    ? 'border-border hover:border-primary/40 hover:bg-muted/30 shadow-sm' : 'border-border bg-muted/50 cursor-not-allowed opacity-60'
+                ? 'border-primary bg-primary/5 selection-shadow ring-2 ring-primary/10'
+                : method?.available
+                  ? 'border-border hover:border-primary/40 hover:bg-muted/30 shadow-sm' : 'border-border bg-muted/50 cursor-not-allowed opacity-60'
                 }`}
             >
               <input
@@ -199,10 +199,10 @@ const PaymentForm = ({ onNext, onBack, orderTotal, paymentMethod: initialPayment
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-3">
                   <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${paymentMethod === method?.id
-                      ? 'bg-primary text-primary-foreground'
-                      : method?.available
-                        ? 'bg-muted text-muted-foreground'
-                        : 'bg-muted/50 text-muted-foreground/50'
+                    ? 'bg-primary text-primary-foreground'
+                    : method?.available
+                      ? 'bg-muted text-muted-foreground'
+                      : 'bg-muted/50 text-muted-foreground/50'
                     }`}>
                     <Icon name={method?.icon} size={20} />
                   </div>
@@ -224,8 +224,8 @@ const PaymentForm = ({ onNext, onBack, orderTotal, paymentMethod: initialPayment
                     </span>
                   )}
                   <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all duration-300 ${paymentMethod === method?.id
-                      ? 'border-primary bg-primary text-primary-foreground font-bold' 
-                      : 'border-border group-hover:border-primary/50'
+                    ? 'border-primary bg-primary text-primary-foreground font-bold'
+                    : 'border-border group-hover:border-primary/50'
                     }`}>
                     {paymentMethod === method?.id ? (
                       <Icon name="Check" size={12} strokeWidth={3} />
@@ -323,7 +323,7 @@ const PaymentForm = ({ onNext, onBack, orderTotal, paymentMethod: initialPayment
               error={errors?.upiId}
               required
               placeholder="yourname@paytm"
-              description="Enter your UPI ID (e.g., 99025 23333@paytm)"
+              description="Enter your UPI ID (e.g., 90194 45168@paytm)"
             />
           </div>
         )}

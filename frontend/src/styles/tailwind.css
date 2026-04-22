@@ -13,30 +13,30 @@
     /* Extracted from logo: deep espresso dark + rich gold */
 
     /* Backgrounds */
-    --color-background: #120d07;          /* deep espresso black */
-    --color-surface: #1e1509;             /* dark roast brown */
-    --color-surface-2: #2a1f0e;           /* medium roast */
-    --color-surface-3: #3a2c14;           /* lighter roast */
+    --color-background: #efe5d7;          /* light parchment brown */
+    --color-surface: #fdf8e7;             /* off-white coffee cream */
+    --color-surface-2: #e8d0a0;           /* light tan */
+    --color-surface-3: #c4a97a;           /* medium tan */
 
     /* Foreground / Text */
-    --color-foreground: #f5e6c8;          /* warm cream */
-    --color-foreground-muted: #c4a97a;    /* muted gold-beige */
+    --color-foreground: #1e1509;          /* dark roast brown text */
+    --color-foreground-muted: #5a421e;    /* muted coffee brown */
 
     /* Border */
-    --color-border: #3d2e14;              /* dark gold border */
-    --color-border-gold: #8a6a28;         /* gold border */
+    --color-border: #d7bea8;              /* soft brown border */
+    --color-border-gold: #C9A227;         /* gold border */
 
     /* Input */
-    --color-input: #2a1f0e;
+    --color-input: #ffffff;
     --color-ring: #C9A227;                /* gold focus ring */
 
     /* Card */
-    --color-card: #1e1509;
-    --color-card-foreground: #f5e6c8;
+    --color-card: #ffffff;
+    --color-card-foreground: #1e1509;
 
     /* Popover */
-    --color-popover: #2a1f0e;
-    --color-popover-foreground: #f5e6c8;
+    --color-popover: #ffffff;
+    --color-popover-foreground: #1e1509;
 
     /* Muted */
     --color-muted: #2a1f0e;
@@ -77,8 +77,8 @@
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
-    background-color: #120d07;
-    color: #f5e6c8;
+    background-color: #efe5d7;
+    color: #1e1509;
   }
 
   /* Custom scrollbar */

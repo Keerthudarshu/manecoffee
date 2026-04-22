@@ -46,10 +46,10 @@ const ProductGrid = ({
               />
             </svg>
           </div>
-          <h3 className="font-heading font-semibold text-xl text-foreground">
+          <h3 className="font-heading font-semibold text-xl text-[#2a1f0e]">
             No products found
           </h3>
-          <p className="font-body text-muted-foreground">
+          <p className="font-body text-[#2a1f0e]/60">
             Try adjusting your filters or search terms to find what you're looking for.
           </p>
         </div>

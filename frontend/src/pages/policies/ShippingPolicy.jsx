@@ -48,7 +48,7 @@ const ShippingPolicy = () => {
             <section className="mb-8">
                 <h2 className="text-2xl font-semibold mb-4 text-secondary">5. Shipping Restrictions</h2>
                 <p>
-                    Currently, we ship to most locations across India. For international shipping inquiries, please contact our customer support team at hello@sanatanaparampare.com.
+                    Currently, we ship to most locations across India. For international shipping inquiries, please contact our customer support team at hello@manecoffeee.com.
                 </p>
             </section>
         </PolicyLayout>

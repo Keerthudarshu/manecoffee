@@ -1,5 +1,5 @@
 import React from 'react';
-import { Helmet } from 'react-helmet-async';
+import SEO from '../../components/SEO';
 import { Link } from 'react-router-dom';
 import Header from '../../components/ui/Header';
 import Footer from '../homepage/components/Footer';
@@ -8,58 +8,31 @@ import Icon from '../../components/AppIcon';
 
 const blogPosts = [
     {
-        id: 'heritage-story',
-        title: "Preserving India's Ancient Culinary Wisdom",
-        excerpt: "Discover the journey of Mane Coffee and our mission to protect traditional food preparation methods in the modern era.",
-        image: "/assets/images/parampara.jpg",
-        date: "May 15, 2024",
+        id: 'coorg-coffee-guide',
+        title: "The Ultimate Guide to Coorg's Arabica and Robusta",
+        excerpt: "Understand the soul of Kodagu coffee. From the aromatic sweetness of Arabica to the bold strength of Robusta, discover which blend defines your morning.",
+        image: "/assets/store/store1.png",
+        date: "April 15, 2024",
+        category: "Coffee Education",
+        readTime: "6 min read"
+    },
+    {
+        id: 'shade-grown-heritage',
+        title: "Why Shade-Grown Coffee from Coorg is Superior",
+        excerpt: "Explore how the biodiversity of Kodagu's high-altitude hills creates a unique microclimate for producing India's finest, most sustainable beans.",
+        image: "/assets/store/store2.png",
+        date: "April 20, 2024",
         category: "Our Heritage",
         readTime: "5 min read"
     },
     {
-        id: 'wood-pressed-oils',
-        title: "The Magic of Wood Pressed Oils",
-        excerpt: "Learn why traditional wood pressing methods are superior for extracting oils that maintain natural nutrients and authentic taste.",
-        image: "/assets/store/store1.jpg",
-        date: "June 2, 2024",
-        category: "Traditional Processes",
-        readTime: "4 min read"
-    },
-    {
-        id: 'stone-ground-spices',
-        title: "Stone Grinding: An Ancient Secret for Better Spices",
-        excerpt: "How traditional stone mills preserve essential oils and aromatic compounds in your favorite spices.",
-        image: "/assets/store/store3.jpg",
-        date: "June 20, 2024",
-        category: "Cooking Tips",
-        readTime: "6 min read"
-    },
-    {
-        id: 'purity-authenticity',
-        title: "What Purity Means at Mane Coffee",
-        excerpt: "A deep dive into our commitment to 100% natural heritage foods without chemical additives or preservatives.",
-        image: "/assets/images/store.jpg",
-        date: "July 5, 2024",
-        category: "Quality Promise",
-        readTime: "3 min read"
-    },
-    {
-        id: 'handcrafted-pickles',
-        title: "The Art of Handcrafted Pickles",
-        excerpt: "Exploring the time-honored techniques used by our artisans to create authentic Indian pickles.",
-        image: "/assets/store/store5.jpg",
-        date: "July 18, 2024",
+        id: 'traditional-sun-drying',
+        title: "The Art of Sun-Drying: Preserving the Kodava Flavor",
+        excerpt: "Learn about the time-honored traditional processing methods where coffee cherries are naturally dried under the Coorg sun to lock in the pure essence.",
+        image: "/assets/store/store3.png",
+        date: "May 5, 2024",
         category: "Traditional Processes",
         readTime: "7 min read"
-    },
-    {
-        id: 'natural-heritage',
-        title: "Connecting with Your Culinary Roots",
-        excerpt: "How choosing traditional foods helps preserve ancient Indian wisdom and promotes a healthier lifestyle.",
-        image: "/assets/store/store7.jpg",
-        date: "August 1, 2024",
-        category: "Natural Heritage",
-        readTime: "5 min read"
     }
 ];
 
@@ -71,15 +44,14 @@ const BlogIndex = () => {
 
     return (
         <>
-            <Helmet>
-                <title>Our Blog - Mane Coffee | Traditional Indian Food Insights</title>
-                <meta name="description" content="Explore stories about Indian culinary heritage, traditional processing methods, and the benefits of pure, natural food products." />
-                <meta name="keywords" content="blog Mane Coffee, traditional food blog, indian culinary heritage, healthy living, authentic spice powders, wood pressed oils" />
-                <meta property="og:title" content="Our Blog - Mane Coffee | Traditional Indian Food Insights" />
-                <meta property="og:description" content="Discover the secrets behind traditional Indian food preparation and its many benefits." />
-                <meta property="og:type" content="website" />
-                <link rel="canonical" href="https://sanatanaparampare.com/blog" />
-            </Helmet>
+            <SEO 
+                title="Our Blog - Coorg Coffee Heritage & Insights"
+                description="Explore stories about Coorg's rich coffee heritage, traditional processing methods, and the science behind Arabica and Robusta beans."
+                keywords="Coorg coffee blog, Arabica vs Robusta, Kodagu coffee heritage, sustainable coffee farming, artisan coffee roasting, pure coffee India, Mane Coffee blog"
+                canonical="/blog"
+                ogTitle="Our Blog - Mane Coffee | Coorg Coffee Insights"
+                ogDescription="Discover the secrets behind Coorg's finest coffee and its traditional journey from estate to cup."
+            />
 
             <div className="min-h-screen bg-background">
                 <Header />
@@ -95,8 +67,8 @@ const BlogIndex = () => {
                                 Our Blog
                             </h1>
                             <p className="font-body text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                                Nourishing your mind with stories of tradition, purity, and the ancient wisdom
-                                hidden within India's rich culinary heritage.
+                                Exploring the mist-covered hills of Kodagu through stories of heritage coffee,
+                                artisan roasting, and the pure essence of Coorg's finest beans.
                             </p>
                         </div>
                     </section>
@@ -162,9 +134,9 @@ const BlogIndex = () => {
                                 <div className="absolute top-0 right-0 p-4 opacity-10">
                                     <Icon name="Mail" size={120} />
                                 </div>
-                                <h2 className="font-heading text-3xl font-bold mb-6">Stay Connected</h2>
+                                <h2 className="font-heading text-3xl font-bold mb-6">Join the Coffee Club</h2>
                                 <p className="font-body text-xl mb-8 text-white/90">
-                                    Subscribe to our newsletter for traditional recipes, wellness tips, and exclusive blog updates.
+                                    Subscribe to our newsletter for coffee brewing guides, estate updates from Coorg, and exclusive blog stories.
                                 </p>
                                 <form className="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto">
                                     <input

@@ -6,9 +6,9 @@ const Footer = () => {
   const currentYear = new Date()?.getFullYear();
 
   const popularSearches = [
-    "Organic Spices", "Handmade Sweets", "Traditional Pickles", "Pure Ghee",
-    "Coconut Oil", "Mango Pickle", "Mysore Pak", "Sambar Powder",
-    "Cashew Mix", "Natural Honey", "Sesame Oil", "Turmeric Powder"
+    "Arabica Coffee", "Robusta Coffee", "Filter Coffee", "Roasted Beans",
+    "Instant Coffee", "Coorg Special", "Green Coffee", "Coffee Powder",
+    "Premium Blend", "Dark Roast", "Medium Roast", "Espresso Beans"
   ];
 
   const footerLinks = {
@@ -40,14 +40,14 @@ const Footer = () => {
   ];
 
   const contactInfo = {
-    phone: "+91 99025 23333",
-    whatsapp: "+91 99025 23333",
-    email: "paramparestore@gmail.com",
-    address: "Anand Vihari No - 87 2nd main road, 2nd stage Vinayaka layout, Vijayanagar,Bengaluru - 560040"
+    phone: "+91 90194 45168",
+    whatsapp: "+91 90194 45168",
+    email: "support@manecoffeee.com",
+    address: "Chennangi Village and Chennayan Kote Post, Polibetta Chennangi, Virajpet, Kodagu, Karnataka- 571215"
   };
 
   return (
-    <footer className="bg-[#120d07] border-t border-[#C9A227]/20 text-[#f5e6c8]">
+    <footer className="bg-[#d7bea8] border-t border-[#C9A227]/20 text-[#1e1509]">
       {/* Popular Searches Section */}
       <div className="border-b border-[#C9A227]/10 py-8">
         <div className="container mx-auto px-4">
@@ -59,7 +59,7 @@ const Footer = () => {
               <Link
                 key={index}
                 to={`/product-collection-grid?search=${encodeURIComponent(search)}`}
-                className="bg-[#C9A227]/10 hover:bg-[#C9A227] text-[#f5e6c8]/80 hover:text-[#120d07] px-3 py-1 rounded-full text-sm font-caption transition-all duration-300 border border-[#C9A227]/20"
+                className="bg-[#C9A227]/10 hover:bg-[#C9A227] text-[#1e1509]/80 hover:text-white px-3 py-1 rounded-full text-sm font-caption transition-all duration-300 border border-[#C9A227]/20"
               >
                 {search}
               </Link>
@@ -86,7 +86,7 @@ const Footer = () => {
                 </span>
               </Link>
               <p className="font-body text-[#f5e6c8]/60 mb-6 max-w-md">
-                Experience the purest traditional foods following ancient wisdom. Handcrafted with love using time-honored recipes and natural ingredients. Discover authentic Indian heritage flavors.
+                Experience the rich legacy of Coorg's finest coffee beans, expertly roasted and blended for the perfect cup. Handcrafted with passion using time-honored methods to bring you the authentic taste of tradition in every sip.
               </p>
 
               {/* Contact Info */}
@@ -196,15 +196,7 @@ const Footer = () => {
             <p className="font-caption text-sm text-[#f5e6c8]/40 text-center md:text-left">
               © {currentYear} Mane Coffee. All rights reserved.
               <span className="mx-2">|</span>
-              Developed by{' '}
-              <a
-                href="https://www.pjntech.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[#C9A227] hover:underline font-bold"
-              >
-                PJN Technologies
-              </a>
+
             </p>
 
             {/* Social Links */}
@@ -232,9 +224,7 @@ const Footer = () => {
                 We accept:
               </span>
               <div className="flex items-center space-x-1">
-                <div className="w-8 h-5 bg-muted rounded border flex items-center justify-center">
-                  <span className="font-caption text-xs font-bold">COD</span>
-                </div>
+
                 <div className="w-8 h-5 bg-muted rounded border flex items-center justify-center">
                   <Icon name="CreditCard" size={12} />
                 </div>

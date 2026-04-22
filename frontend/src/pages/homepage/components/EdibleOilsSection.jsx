@@ -3,9 +3,9 @@ import productApi from '../../../services/productApi';
 
 const EdibleOilsSection = () => {
     const [edibleOils, setEdibleOils] = useState([
-        { id: 101, name: 'Almond Oil', img: '/assets/images/edible oils/Almond.png' },
-        { id: 102, name: 'Deepam Oil', img: '/assets/images/edible oils/Deepam.png' },
-        { id: 103, name: 'Castor Oil', img: '/assets/images/edible oils/castor.png' },
+        { id: 101, name: 'Arabica', img: '/assets/images/coffee/Arabica.png' },
+        { id: 102, name: 'Robusta', img: '/assets/images/coffee/Robusta.png' },
+        { id: 103, name: 'Arabica + Robusta', img: '/assets/images/coffee/Arabica+robusta.png' },
     ]);
 
     useEffect(() => {
@@ -39,14 +39,14 @@ const EdibleOilsSection = () => {
     }, []);
 
     return (
-        <section className="py-16 lg:py-24 bg-white">
+        <section className="py-16 lg:py-24 bg-[#efe5d7]">
             <div className="container mx-auto px-4">
                 <div className="text-center mb-16">
-                    <h2 className="font-heading text-4xl lg:text-5xl font-bold text-[#120d07] mb-6">
+                    <h2 className="font-heading text-4xl lg:text-5xl font-bold text-[#2a1f0e] mb-6">
                         <span className="text-[#C9A227]">Mane Coffee Products</span>
                     </h2>
                     <div className="w-24 h-1 bg-[#C9A227] mx-auto mb-6 rounded-full"></div>
-                    <p className="font-body text-lg text-[#120d07]/60 max-w-2xl mx-auto">
+                    <p className="font-body text-lg text-[#2a1f0e]/60 max-w-2xl mx-auto">
                         Experience the purity of our premium Mane Coffee products, crafted for health and wellness using traditional methods.
                     </p>
                 </div>
@@ -68,7 +68,7 @@ const EdibleOilsSection = () => {
                                 <div className="absolute inset-0 bg-gradient-to-t from-[#120d07]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                             </div>
                             <div className="p-8 flex items-center justify-center bg-white border-t border-[#C9A227]/5">
-                                <span className="font-heading text-xl font-bold text-[#120d07] text-center group-hover:text-[#C9A227] transition-colors duration-300">
+                                <span className="font-heading text-xl font-bold text-[#2a1f0e] text-center group-hover:text-[#C9A227] transition-colors duration-300">
                                     {oil.name}
                                 </span>
                             </div>

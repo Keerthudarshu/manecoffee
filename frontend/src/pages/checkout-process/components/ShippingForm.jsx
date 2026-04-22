@@ -160,11 +160,11 @@ const ShippingForm = ({ onNext, onAddressSelect, user, isLoading = false }) => {
               state: typeof formData.state === 'string' ? formData.state : formData.state?.value,
               pincode: formData.pincode,
               landmark: '',
-               addressType: 'Home',
-               default: saved?.length === 0,
-               latitude: formData.latitude,
-               longitude: formData.longitude
-             };
+              addressType: 'Home',
+              default: saved?.length === 0,
+              latitude: formData.latitude,
+              longitude: formData.longitude
+            };
             created = await userApi.addAddress(authUser.email, payload);
             setSaved(prev => [...prev, created]);
             console.log('New address saved to backend:', created);
@@ -180,13 +180,13 @@ const ShippingForm = ({ onNext, onAddressSelect, user, isLoading = false }) => {
           phone: formData.phone,
           street: formData.address + (formData.apartment ? `, ${formData.apartment}` : ''),
           city: formData.city,
-           state: typeof formData.state === 'string' ? formData.state : formData.state?.value,
-           pincode: formData.pincode,
-           landmark: '',
-           addressType: 'Home',
-           latitude: formData.latitude,
-           longitude: formData.longitude
-         };
+          state: typeof formData.state === 'string' ? formData.state : formData.state?.value,
+          pincode: formData.pincode,
+          landmark: '',
+          addressType: 'Home',
+          latitude: formData.latitude,
+          longitude: formData.longitude
+        };
 
         if (onAddressSelect) onAddressSelect(addressToUse);
         onNext(addressToUse);
@@ -236,11 +236,10 @@ const ShippingForm = ({ onNext, onAddressSelect, user, isLoading = false }) => {
               {saved?.map((address) => (
                 <label
                   key={address?.id}
-                  className={`block p-4 border-2 rounded-xl cursor-pointer transition-all duration-300 relative group ${
-                    selectedAddress === address?.id?.toString()
-                      ? 'border-primary bg-primary/5 selection-shadow ring-2 ring-primary/10' 
+                  className={`block p-4 border-2 rounded-xl cursor-pointer transition-all duration-300 relative group ${selectedAddress === address?.id?.toString()
+                      ? 'border-primary bg-primary/5 selection-shadow ring-2 ring-primary/10'
                       : 'border-border hover:border-primary/40 hover:bg-muted/30'
-                  }`}
+                    }`}
                 >
                   <input
                     type="radio"
@@ -253,9 +252,8 @@ const ShippingForm = ({ onNext, onAddressSelect, user, isLoading = false }) => {
                   <div className="flex items-start justify-between">
                     <div className="flex-1">
                       <div className="flex items-center space-x-2 mb-2">
-                        <span className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider ${
-                          address?.addressType === 'Home' ? 'bg-blue-100 text-blue-700' : 'bg-green-100 text-green-700'
-                        }`}>
+                        <span className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider ${address?.addressType === 'Home' ? 'bg-blue-100 text-blue-700' : 'bg-green-100 text-green-700'
+                          }`}>
                           {address?.addressType || 'Other'}
                         </span>
                         {address?.isDefault && (
@@ -274,11 +272,10 @@ const ShippingForm = ({ onNext, onAddressSelect, user, isLoading = false }) => {
                         {address?.phone}
                       </p>
                     </div>
-                    <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all duration-300 ${
-                      selectedAddress === address?.id?.toString()
-                        ? 'border-primary bg-primary text-primary-foreground' 
+                    <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all duration-300 ${selectedAddress === address?.id?.toString()
+                        ? 'border-primary bg-primary text-primary-foreground'
                         : 'border-border group-hover:border-primary/50'
-                    }`}>
+                      }`}>
                       {selectedAddress === address?.id?.toString() ? (
                         <Icon name="Check" size={12} strokeWidth={3} />
                       ) : (
@@ -417,7 +414,7 @@ const ShippingForm = ({ onNext, onAddressSelect, user, isLoading = false }) => {
                 onChange={handleInputChange}
                 error={errors?.phone}
                 required
-                placeholder="+91 99025 23333"
+                placeholder="+91 90194 45168"
               />
             </div>
 

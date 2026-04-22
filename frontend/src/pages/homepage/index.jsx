@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Helmet } from 'react-helmet';
+import SEO from '../../components/SEO';
 import Header from '../../components/ui/Header';
 import HeroSection from './components/HeroSection';
 import BannerShowcase from './components/BannerShowcase';
@@ -83,22 +83,15 @@ const Homepage = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Mane Coffee - Buy Premium Traditional Indian Food Products Online</title>
-        <meta
-          name="description"
-          content="Shop premium traditional Indian food products online at Mane Coffee. Buy wood-pressed oils, spice powders, pickles, pure ghee, honey & more. Free delivery above ₹499. Authentic quality guaranteed."
-        />
-        <meta name="keywords" content="buy traditional indian food online, wood pressed oils, spice powders, pickles, pure ghee, honey, jaggery, papads, organic food products, Mane Coffee shop, traditional food delivery" />
-        <meta property="og:title" content="Mane Coffee - Buy Premium Traditional Indian Food Products Online" />
-        <meta property="og:description" content="Shop premium traditional Indian food products online. Wood-pressed oils, spice powders, pickles, pure ghee & more with free delivery above ₹499." />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://sanatanaparampare.com/homepage" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Mane Coffee - Buy Traditional Indian Food Online" />
-        <meta name="twitter:description" content="Shop premium traditional Indian food products online. Wood-pressed oils, spice powders, pickles, pure ghee & more with free delivery." />
-        <link rel="canonical" href="https://sanatanaparampare.com/homepage" />
-      </Helmet>
+      <SEO 
+        title="Premium Coorg Coffee, Arabica & Robusta Online"
+        description="Experience the finest shade-grown coffee from the mist-covered hills of Coorg. Shop premium Arabica, Robusta, and signature estate blends roasted for the ultimate flavor. Free delivery above ₹499."
+        keywords="Coorg coffee, Kodagu coffee, buy coffee online India, Arabica beans, Robusta beans, filter coffee powder, artisan coffee roasting, shade grown coffee, Mane Coffee, best coffee from Coorg"
+        canonical="/"
+        ogTitle="Mane Coffee | Premium Coorg Coffee, Arabica & Robusta"
+        ogDescription="Experience the finest shade-grown coffee from the mist-covered hills of Coorg. Premium Arabica, Robusta, and signature blends."
+        ogType="website"
+      />
 
       <div className="min-h-screen bg-background">
         {/* Header */}

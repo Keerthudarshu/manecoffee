@@ -61,7 +61,7 @@ public class EmailService {
             SimpleMailMessage message = new SimpleMailMessage();
             message.setFrom(fromEmail);
             message.setTo(recipientEmail);
-            message.setSubject("Sanatana Parampara - Password Reset Request");
+            message.setSubject("Mane Coffee - Password Reset Request");
             message.setText(buildPasswordResetEmailBody(username, resetLink, recipientEmail));
 
             mailSender.send(message);
@@ -79,7 +79,7 @@ public class EmailService {
                 resetLink + "\n\n" +
                 "This link will expire in 24 hours.\n\n" +
                 "Best regards,\n" +
-                "Sanatana Parampara Support Team";
+                "Mane Coffee Support Team";
     }
 
     /**
@@ -90,7 +90,7 @@ public class EmailService {
             SimpleMailMessage message = new SimpleMailMessage();
             message.setFrom(fromEmail);
             message.setTo(recipientEmail);
-            message.setSubject("Sanatana Parampara - Your Account Credentials");
+            message.setSubject("Mane Coffee - Your Account Credentials");
             message.setText("Hello " + username + ",\n\nYour account credentials:\nEmail: " + recipientEmail
                     + "\nUsername: " + username + "\nPassword: " + password);
 
@@ -314,11 +314,11 @@ public class EmailService {
         invoiceLabel.setAlignment(Element.ALIGN_RIGHT);
         rightHeaderCell.addElement(invoiceLabel);
 
-        Paragraph emailLabel = new Paragraph("support@sanatanaparampara.com", whiteNormal);
+        Paragraph emailLabel = new Paragraph("support@manecoffeee.com", whiteNormal);
         emailLabel.setAlignment(Element.ALIGN_RIGHT);
         rightHeaderCell.addElement(emailLabel);
 
-        Paragraph phoneLabel = new Paragraph("+91 99025 23333", whiteNormal);
+        Paragraph phoneLabel = new Paragraph("+91 90194 45168", whiteNormal);
         phoneLabel.setAlignment(Element.ALIGN_RIGHT);
         rightHeaderCell.addElement(phoneLabel);
 
@@ -374,10 +374,10 @@ public class EmailService {
         fromDetails.setBorder(Rectangle.NO_BORDER);
         fromDetails.addElement(new Paragraph("sanathana-parampara", textNormal));
         fromDetails.addElement(
-                new Paragraph("Anand Vihari No - 87, 2nd main road, 2nd stage, Vinayaka layout,", textNormal));
-        fromDetails.addElement(new Paragraph("Vijayanagar, Bengaluru - 560040", textNormal));
-        fromDetails.addElement(new Paragraph("support@sanatanaparampara.com", textNormal));
-        fromDetails.addElement(new Paragraph("+91 99025 23333", textNormal));
+                new Paragraph("Chennangi Village and Chennayan Kote Post, Polibetta Chennangi,", textNormal));
+        fromDetails.addElement(new Paragraph("Virajpet, Kodagu, Karnataka- 571215", textNormal));
+        fromDetails.addElement(new Paragraph("support@manecoffeee.com", textNormal));
+        fromDetails.addElement(new Paragraph("+91 90194 45168", textNormal));
         fromTable.addCell(fromDetails);
 
         PdfPCell fromCellOuter = new PdfPCell(fromTable);

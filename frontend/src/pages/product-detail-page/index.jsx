@@ -1,6 +1,7 @@
 import '../../styles/oil-essentials-sticker.css';
 import React, { useState, useEffect } from 'react';
 import { useSearchParams, useParams } from 'react-router-dom';
+import SEO from '../../components/SEO';
 import { useCart } from '../../contexts/CartContext';
 import Header from '../../components/ui/Header';
 import Breadcrumb from '../../components/ui/Breadcrumb';
@@ -368,9 +369,45 @@ const ProductDetailPage = () => {
     );
   }
 
+  const productSchema = {
+    "@context": "https://schema.org/",
+    "@type": "Product",
+    "name": product?.name,
+    "image": product?.images,
+    "description": product?.description,
+    "brand": {
+      "@type": "Brand",
+      "name": "Mane Coffee"
+    },
+    "offers": {
+      "@type": "Offer",
+      "url": `https://manecoffeee.com/product-detail-page?id=${productId}`,
+      "priceCurrency": "INR",
+      "price": product?.variants?.[0]?.price || 0,
+      "availability": product?.variants?.[0]?.stockQuantity > 0 ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
+      "itemCondition": "https://schema.org/NewCondition"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": product?.rating || 4.5,
+      "reviewCount": product?.reviewCount || 10
+    }
+  };
+
   return (
     <div className="min-h-screen bg-background">
-      <Header
+      <SEO 
+        title={product?.name}
+        description={product?.shortDescription}
+        keywords={`${product?.name}, Coorg coffee, buy ${product?.name} online, Mane Coffee ${product?.category}`}
+        canonical={`/product-detail-page?id=${productId}`}
+        ogTitle={`${product?.name} - Mane Coffee`}
+        ogDescription={product?.shortDescription}
+        ogImage={product?.images?.[0]}
+        ogType="product"
+        structuredData={productSchema}
+      />
+      <Header 
         cartItemCount={getCartItemCount()}
         cartItems={cartItems}
         onSearch={() => { }}

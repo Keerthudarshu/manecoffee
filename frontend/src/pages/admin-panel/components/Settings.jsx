@@ -21,7 +21,7 @@ const Settings = () => {
     currency: 'INR',
     shippingFee: '50',
     freeShippingThreshold: '500',
-    contactEmail: 'paramparestore@gmail.com'
+    contactEmail: 'support@manecoffeee.com'
   });
 
   const [loading, setLoading] = useState({

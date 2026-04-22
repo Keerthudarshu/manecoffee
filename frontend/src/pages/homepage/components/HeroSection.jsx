@@ -3,19 +3,18 @@
 import React, { useState, useEffect } from 'react';
 
 const desktopImages = [
-    '/assets/banner/second.png',
     '/assets/banner/3.png',
-    '/assets/banner/4.png',
-    '/assets/banner/5.png',
-    '/assets/banner/6.png'
+    '/assets/banner/1.png',
+    '/assets/banner/2.png',
+    '/assets/banner/4.png'
 
 
 ];
 const mobileImages = [
-    '/assets/banner/mobilefirst.png',
-    '/assets/banner/mobileseccond.png',
-    '/assets/banner/mobilethird.png',
-    '/assets/banner/mobilefourth.png'
+    '/assets/banner/mobile1.png',
+    '/assets/banner/mobile2.png',
+    '/assets/banner/mobile3.png',
+    '/assets/banner/mobile4.png'
 
 ];
 
@@ -35,23 +34,35 @@ const HeroSection = () => {
     const [current, setCurrent] = useState(0);
 
     useEffect(() => {
+        // Preload all images
+        sliderImages.forEach(image => {
+            const img = new Image();
+            img.src = image;
+        });
+
         const timer = setInterval(() => {
             setCurrent((prev) => (prev + 1) % sliderImages.length);
         }, 4000);
         return () => clearInterval(timer);
-    }, [sliderImages.length]);
+    }, [sliderImages]);
 
     const nextSlide = () => setCurrent((prev) => (prev + 1) % sliderImages.length);
     const prevSlide = () => setCurrent((prev) => (prev - 1 + sliderImages.length) % sliderImages.length);
 
     return (
-        <section className="relative h-[85vh] md:h-[90vh] overflow-hidden flex items-center justify-center bg-gradient-to-br from-[#120d07] to-[#2a1f0e]">
-            <img
-                src={sliderImages[current]}
-                alt={`Hero Slide ${current + 1}`}
-                className="w-full h-full object-cover transition-all duration-1000 absolute inset-0"
-                style={{ zIndex: 1 }}
-            />
+        <section className="relative h-[85vh] md:h-[90vh] overflow-hidden flex items-center justify-center bg-gradient-to-br from-[#efe5d7] to-[#d7bea8]">
+            {sliderImages.map((image, index) => (
+                <img
+                    key={index}
+                    src={image}
+                    alt={`Hero Slide ${index + 1}`}
+                    className={`w-full h-full object-cover transition-opacity duration-1000 absolute inset-0 ${index === current ? 'opacity-100' : 'opacity-0'
+                        }`}
+                    style={{ zIndex: index === current ? 1 : 0 }}
+                    loading="eager"
+                    fetchPriority={index === 0 ? "high" : "auto"}
+                />
+            ))}
             {/* Navigation Arrows */}
             {sliderImages.length > 1 && (
                 <>

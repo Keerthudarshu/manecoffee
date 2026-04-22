@@ -26,7 +26,7 @@ const ReturnPolicy = () => {
                     Any issues must be reported within 24-48 hours of receiving the shipment.
                 </p>
                 <p>
-                    To report an issue, please email us at <strong>returns@sanatanaparampare.com</strong> with your order number and clear photos of the product and packaging.
+                    To report an issue, please email us at <strong>returns@manecoffeee.com</strong> with your order number and clear photos of the product and packaging.
                 </p>
             </section>
 

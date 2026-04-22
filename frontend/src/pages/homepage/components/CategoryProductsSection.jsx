@@ -11,17 +11,7 @@ const CategoryProductsSection = ({ onAddToCart }) => {
     const [error, setError] = useState(null);
     const scrollRef = useRef(null);
 
-    const categories = [
-        { name: 'Wood Pressed Oils', icon: 'Droplets' },
-        { name: 'Essential Oils', icon: 'Droplets' },
-        { name: 'Ghee', icon: 'Heart' },
-        { name: 'Honey', icon: 'Flower' },
-        { name: 'Papads', icon: 'Cookie' },
-        { name: 'Pickles', icon: 'Jar' },
-        { name: 'Chemical Free Jaggery', icon: 'Candy' },
-        { name: 'Spice Powders', icon: 'Sparkles' }
-
-    ];
+    // Categories removed to display products directly
 
     const mapProductData = (dbProduct) => {
         const variants = dbProduct.variants || [];
@@ -77,19 +67,18 @@ const CategoryProductsSection = ({ onAddToCart }) => {
             try {
                 setLoading(true);
                 setError(null);
-                console.log(`Fetching products for category: ${activeCategory}`);
-                const data = await productApi.getByCategory(activeCategory, { limit: 8 });
+                const data = await productApi.getAll({ limit: 12 });
                 setProducts(Array.isArray(data) ? data.map(mapProductData) : []);
             } catch (err) {
-                console.error('Error fetching products by category:', err);
-                setError('Failed to load products for this category');
+                console.error('Error fetching all products:', err);
+                setError('Failed to load traditional products');
             } finally {
                 setLoading(false);
             }
         };
 
         fetchProducts();
-    }, [activeCategory]);
+    }, []);
 
     const scroll = (direction) => {
         if (scrollRef.current) {
@@ -113,72 +102,32 @@ const CategoryProductsSection = ({ onAddToCart }) => {
     };
 
     return (
-        <section className="py-16 bg-background relative overflow-hidden">
+        <section className="py-16 bg-[#efe5d7] relative overflow-hidden">
             {/* Decorative background elements */}
-            <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full -mr-32 -mt-32 blur-3xl"></div>
-            <div className="absolute bottom-0 left-0 w-64 h-64 bg-accent/5 rounded-full -ml-32 -mb-32 blur-3xl"></div>
+            <div className="absolute top-0 right-0 w-64 h-64 bg-[#C9A227]/10 rounded-full -mr-32 -mt-32 blur-3xl"></div>
+            <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#2a1f0e]/5 rounded-full -ml-32 -mb-32 blur-3xl"></div>
 
             <div className="container mx-auto px-4 relative z-10">
                 {/* Section Header */}
                 <div className="flex flex-col items-center text-center mb-12">
                     <div className="max-w-2xl mx-auto">
-                        <h2 className="font-heading text-4xl font-bold text-primary mb-4">
+                        <h2 className="font-heading text-4xl font-bold text-[#2a1f0e] mb-4">
                             Our Traditional Treasures
                         </h2>
-                        <p className="font-body text-lg text-muted-foreground mb-6">
+                        <p className="font-body text-lg text-[#2a1f0e]/70 mb-6">
                             Discover the authentic taste of tradition across our curated categories. Handpicked for quality and purity.
                         </p>
                     </div>
                     <Link
-                        to={`/product-collection-grid?category=${encodeURIComponent(activeCategory)}`}
-                        className="flex items-center text-primary font-semibold hover:text-accent transition-colors duration-300 group"
+                        to="/product-collection-grid"
+                        className="flex items-center text-[#8B5E2A] font-semibold hover:text-[#2a1f0e] transition-colors duration-300 group"
                     >
-                        Explore All {activeCategory}
+                        Explore All Products
                         <Icon name="ArrowRight" size={20} className="ml-2 group-hover:translate-x-1 transition-transform" />
                     </Link>
                 </div>
 
-                {/* Category Scroll Container */}
-                <div className="relative mb-12 group/scroll">
-                    {/* Scroll Buttons - Hidden on mobile, visible on hover on desktop */}
-                    <button
-                        onClick={() => scroll('left')}
-                        className="absolute left-0 top-1/2 -translate-y-1/2 -ml-4 z-20 w-10 h-10 bg-white shadow-lg rounded-full flex items-center justify-center text-primary border border-border opacity-0 group-hover/scroll:opacity-100 transition-opacity hidden md:flex"
-                    >
-                        <Icon name="ChevronLeft" size={20} />
-                    </button>
-
-                    <div
-                        ref={scrollRef}
-                        className="flex items-center gap-4 overflow-x-auto pb-4 scrollbar-hide no-scrollbar"
-                        style={{ msOverflowStyle: 'none', scrollbarWidth: 'none' }}
-                    >
-                        {categories.map((cat) => (
-                            <button
-                                key={cat.name}
-                                onClick={() => setActiveCategory(cat.name)}
-                                className={`flex-shrink-0 flex flex-col sm:flex-row items-center gap-2 sm:gap-3 px-3 sm:px-6 py-3 sm:py-4 rounded-xl sm:rounded-2xl font-semibold transition-all duration-300 border-2 w-[calc(33.33%-0.5rem)] sm:w-auto ${activeCategory === cat.name
-                                    ? 'bg-primary text-white border-primary shadow-lg scale-105'
-                                    : 'bg-white text-muted-foreground border-border hover:border-primary/30 hover:bg-primary/5'
-                                    }`}
-                            >
-                                <div className={`p-1.5 sm:p-2 rounded-lg sm:rounded-xl ${activeCategory === cat.name ? 'bg-white/20' : 'bg-primary/5'}`}>
-                                    <Icon name={cat.icon} size={18} className={activeCategory === cat.name ? 'text-white' : 'text-primary'} />
-                                </div>
-                                <span className="text-[10px] sm:text-base text-center leading-tight whitespace-normal sm:whitespace-nowrap">
-                                    {cat.name}
-                                </span>
-                            </button>
-                        ))}
-                    </div>
-
-                    <button
-                        onClick={() => scroll('right')}
-                        className="absolute right-0 top-1/2 -translate-y-1/2 -mr-4 z-20 w-10 h-10 bg-white shadow-lg rounded-full flex items-center justify-center text-primary border border-border opacity-0 group-hover/scroll:opacity-100 transition-opacity hidden md:flex"
-                    >
-                        <Icon name="ChevronRight" size={20} />
-                    </button>
-                </div>
+                {/* Category Scroll Container Removed */}
 
                 {/* Products Display */}
                 {loading ? (

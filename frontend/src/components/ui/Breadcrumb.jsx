@@ -43,17 +43,17 @@ const Breadcrumb = ({ customItems = null }) => {
               <Icon 
                 name="ChevronRight" 
                 size={16} 
-                className="text-muted-foreground mx-2" 
+                className="text-[#C9A227]/40 mx-2" 
               />
             )}
             {index === breadcrumbs?.length - 1 ? (
-              <span className="font-body font-medium text-foreground">
+              <span className="font-body font-medium text-[#C9A227]">
                 {crumb?.label}
               </span>
             ) : (
               <Link
                 to={crumb?.path}
-                className="font-body text-muted-foreground hover:text-primary transition-colors duration-200"
+                className="font-body text-[#C9A227]/60 hover:text-[#C9A227] transition-colors duration-200"
               >
                 {crumb?.label}
               </Link>

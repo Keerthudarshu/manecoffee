@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
+import SEO from '../../components/SEO';
 import { Link } from 'react-router-dom';
 import Header from '../../components/ui/Header';
 import Footer from '../homepage/components/Footer';
@@ -26,14 +26,11 @@ const ContactPage = () => {
   ];
 
   const contactInfo = {
-    phone: "+91 99025 23333",
-    whatsapp: "+91 99025 23333",
-    email: "hello@sanatanaparampare.com",
-    supportEmail: "paramparestore@gmail.com",
-    address: `Anand Vihari No - 87, 
-2nd main road, 2nd stage,
-Vinayaka layout, Vijayanagar,
-    Bengaluru - 560040`
+    phone: "+91 90194 45168",
+    whatsapp: "+91 90194 45168",
+    email: "support@manecoffeee.com",
+    supportEmail: "support@manecoffeee.com",
+    address: `Chennangi Village and Chennayan Kote Post, Polibetta Chennangi, Virajpet, Kodagu, Karnataka- 571215`
   };
 
   const businessHours = [
@@ -121,15 +118,50 @@ Vinayaka layout, Vijayanagar,
 
   return (
     <>
-      <Helmet>
-        <title>Contact Us - Mane Coffee | Get in Touch for Traditional Food Products</title>
-        <meta name="description" content="Contact Mane Coffee for queries about traditional Indian food products. Call, WhatsApp, or email us. Located in Bengaluru with nationwide delivery." />
-        <meta name="keywords" content="contact Mane Coffee, customer support, traditional food queries, bengaluru location, whatsapp support, email contact" />
-        <meta property="og:title" content="Contact Mane Coffee - Traditional Food Products Support" />
-        <meta property="og:description" content="Get in touch with Mane Coffee for all your traditional food product needs. Multiple contact options available." />
-        <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://sanatanaparampare.com/contact" />
-      </Helmet>
+      <SEO 
+        title="Contact Us - Coorg Coffee Customer Support"
+        description="Get in touch with Mane Coffee for all your coffee queries. Whether you need help with your order or want to visit our Coorg estates, we're here to help."
+        keywords="contact Mane Coffee, coffee support, Coorg estate visit, buy coffee Kodagu, coffee order help, WhatsApp coffee support, Mane Coffee location"
+        canonical="/contact"
+        ogTitle="Contact Us | Mane Coffee - Coorg Coffee Support"
+        ogDescription="Reach out to Mane Coffee for any questions about our premium Coorg coffee blends or your orders."
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "LocalBusiness",
+          "name": "Mane Coffee",
+          "image": "https://manecoffeee.com/assets/images/logo.jpeg",
+          "telephone": "+91 90194 45168",
+          "email": "support@manecoffeee.com",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Chennangi Village, Chennayan Kote Post",
+            "addressLocality": "Virajpet, Kodagu",
+            "addressRegion": "Karnataka",
+            "postalCode": "571215",
+            "addressCountry": "IN"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": "12.2694",
+            "longitude": "75.9225"
+          },
+          "url": "https://manecoffeee.com/contact",
+          "openingHoursSpecification": [
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+              "opens": "09:00",
+              "closes": "18:00"
+            },
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": "Saturday",
+              "opens": "09:00",
+              "closes": "16:00"
+            }
+          ]
+        }}
+      />
 
       <div className="min-h-screen bg-background">
         <Header />
@@ -171,13 +203,13 @@ Vinayaka layout, Vijayanagar,
                     <h3 className="font-heading font-bold text-xl text-primary mb-3">
                       {channel.title}
                     </h3>
-                    <p className="font-body text-muted-foreground mb-4">
+                    <p className="font-body text-espresso-900/70 mb-4 font-medium">
                       {channel.description}
                     </p>
-                    <p className="font-body font-semibold text-foreground mb-3">
+                    <p className="font-body font-bold text-espresso-900 mb-3 text-lg">
                       {channel.contact}
                     </p>
-                    <p className="font-body text-sm text-accent mb-6">
+                    <p className="font-body text-sm text-[#8a6a1a] font-bold mb-6">
                       {channel.available}
                     </p>
                     <Link
@@ -250,7 +282,7 @@ Vinayaka layout, Vijayanagar,
                         name="phone"
                         value={formData.phone}
                         onChange={handleInputChange}
-                        placeholder="+91 99025 23333"
+                        placeholder="+91 90194 45168"
                       />
                       <Input
                         label="Subject"
@@ -263,7 +295,7 @@ Vinayaka layout, Vijayanagar,
                     </div>
 
                     <div>
-                      <label className="block font-heading font-medium text-foreground mb-2">
+                      <label className="block font-heading font-bold text-espresso-900 mb-2">
                         Message <span className="text-red-500">*</span>
                       </label>
                       <textarea
@@ -271,7 +303,7 @@ Vinayaka layout, Vijayanagar,
                         value={formData.message}
                         onChange={handleInputChange}
                         rows={5}
-                        className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent font-body"
+                        className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent font-body text-espresso-900 placeholder:text-espresso-900/40"
                         placeholder="Tell us about your query, feedback, or how we can assist you..."
                         required
                       ></textarea>
@@ -306,8 +338,8 @@ Vinayaka layout, Vijayanagar,
                       <div className="flex gap-4">
                         <Icon name="MapPin" size={24} className="text-accent flex-shrink-0 mt-1" />
                         <div>
-                          <h4 className="font-heading font-semibold text-foreground mb-2">Address</h4>
-                          <p className="font-body text-muted-foreground leading-relaxed">
+                          <h4 className="font-heading font-bold text-espresso-900 mb-2">Address</h4>
+                          <p className="font-body text-espresso-900/90 leading-relaxed font-bold">
                             {contactInfo.address}
                           </p>
                         </div>
@@ -319,9 +351,9 @@ Vinayaka layout, Vijayanagar,
                           <h4 className="font-heading font-semibold text-foreground mb-3">Business Hours</h4>
                           <div className="space-y-2">
                             {businessHours.map((schedule, index) => (
-                              <div key={index} className="flex justify-between items-center">
-                                <span className="font-body text-muted-foreground">{schedule.days}</span>
-                                <span className="font-body font-medium text-foreground">{schedule.hours}</span>
+                              <div key={index} className="flex justify-between items-center border-b border-espresso-900/10 pb-2">
+                                <span className="font-body text-espresso-900/80 font-semibold">{schedule.days}</span>
+                                <span className="font-body font-black text-espresso-900">{schedule.hours}</span>
                               </div>
                             ))}
                           </div>
@@ -332,7 +364,7 @@ Vinayaka layout, Vijayanagar,
                     {/* Interactive Map */}
                     <div className="mt-8 overflow-hidden rounded-lg h-64 lg:h-80 shadow-inner">
                       <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d243.00358392382697!2d77.52991475164892!3d12.968182535125827!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae3d0f974ab0f9%3A0xdbaa955b2992da79!2sSanatana%20Parampare!5e0!3m2!1sen!2sin!4v1772190902319!5m2!1sen!2sin"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15594.751892290857!2d75.92246138665506!3d12.269382324670724!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba5a4bfa1a1d829%3A0x3ba6a1bbfd528cec!2sChennaianakote%2C%20Karnataka%20571215!5e0!3m2!1sen!2sin!4v1776858525060!5m2!1sen!2sin"
                         width="100%"
                         height="100%"
                         style={{ border: 0 }}
@@ -346,28 +378,28 @@ Vinayaka layout, Vijayanagar,
 
                   {/* FAQ Quick Links */}
                   <div className="bg-white rounded-2xl shadow-lg p-8">
-                    <h3 className="font-heading text-2xl font-bold text-primary mb-6">
+                    <h3 className="font-heading text-2xl font-bold text-espresso-900 mb-6">
                       Quick Help
                     </h3>
 
                     <div className="space-y-4">
-                      <div className="border-l-4 border-accent pl-4">
-                        <h4 className="font-heading font-semibold text-foreground mb-2">Shipping Information</h4>
-                        <p className="font-body text-muted-foreground text-sm">
+                      <div className="border-l-4 border-[#C9A227] pl-4 bg-[#C9A227]/10 py-3 rounded-r-lg shadow-sm">
+                        <h4 className="font-heading font-bold text-espresso-900 mb-1">Shipping Information</h4>
+                        <p className="font-body text-espresso-900/90 text-sm font-semibold">
                           Free shipping above ₹499. Delivery within 2-5 business days.
                         </p>
                       </div>
 
-                      <div className="border-l-4 border-accent pl-4">
-                        <h4 className="font-heading font-semibold text-foreground mb-2">Return Policy</h4>
-                        <p className="font-body text-muted-foreground text-sm">
+                      <div className="border-l-4 border-[#C9A227] pl-4 bg-[#C9A227]/10 py-3 rounded-r-lg shadow-sm">
+                        <h4 className="font-heading font-bold text-espresso-900 mb-1">Return Policy</h4>
+                        <p className="font-body text-espresso-900/90 text-sm font-semibold">
                           Easy returns within 7 days of delivery for unopened products.
                         </p>
                       </div>
 
-                      <div className="border-l-4 border-accent pl-4">
-                        <h4 className="font-heading font-semibold text-foreground mb-2">Product Questions</h4>
-                        <p className="font-body text-muted-foreground text-sm">
+                      <div className="border-l-4 border-[#C9A227] pl-4 bg-[#C9A227]/10 py-3 rounded-r-lg shadow-sm">
+                        <h4 className="font-heading font-bold text-espresso-900 mb-1">Product Questions</h4>
+                        <p className="font-body text-espresso-900/90 text-sm font-semibold">
                           Need details about ingredients or traditional processes? We're here to help.
                         </p>
                       </div>

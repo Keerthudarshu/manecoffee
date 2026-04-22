@@ -26,7 +26,7 @@ const SortDropdown = ({ currentSort, onSortChange }) => {
     <div className="relative">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 px-4 py-2 bg-card border border-border rounded-lg hover:bg-muted transition-colors duration-200 font-body text-foreground"
+        className="flex items-center gap-2 px-4 py-2 bg-white border border-[#2a1f0e]/10 rounded-lg hover:bg-muted transition-colors duration-200 font-body text-[#2a1f0e]"
       >
         <Icon name="ArrowUpDown" size={16} />
         <span>Sort: {currentSortLabel}</span>
@@ -45,14 +45,14 @@ const SortDropdown = ({ currentSort, onSortChange }) => {
           />
           
           {/* Dropdown Menu */}
-          <div className="absolute top-full right-0 mt-2 w-64 bg-card border border-border rounded-lg shadow-warm-lg z-[1001] py-2">
+          <div className="absolute top-full right-0 mt-2 w-64 bg-white border border-[#2a1f0e]/10 rounded-lg shadow-warm-lg z-[1001] py-2">
             {sortOptions?.map((option) => (
               <button
                 key={option?.value}
                 onClick={() => handleSortSelect(option?.value)}
                 className={`w-full text-left px-4 py-2 font-body hover:bg-muted transition-colors duration-200 ${
                   currentSort === option?.value
-                    ? 'text-primary bg-primary/5' :'text-foreground'
+                    ? 'text-primary bg-primary/5' :'text-[#2a1f0e]'
                 }`}
               >
                 {option?.label}

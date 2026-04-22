@@ -168,7 +168,7 @@ const ProductCard = ({
   };
   return (
     <div
-      className="group bg-card rounded-lg border border-border hover:shadow-warm-md transition-all duration-300 overflow-hidden h-full flex flex-col cursor-pointer"
+      className="group bg-white rounded-lg border border-border hover:shadow-warm-md transition-all duration-300 overflow-hidden h-full flex flex-col cursor-pointer"
       onClick={handleCardClick}
       tabIndex={0}
       role="button"
@@ -236,7 +236,7 @@ const ProductCard = ({
         {/* Product Info */}
         <div className="p-4 space-y-3 flex-grow flex flex-col">
           {/* Product Name */}
-          <h3 className="font-body font-medium text-foreground hover:text-primary transition-colors duration-200 line-clamp-2 min-h-[2.5rem]">
+          <h3 className="font-body font-medium text-[#2a1f0e] hover:text-primary transition-colors duration-200 line-clamp-2 min-h-[2.5rem]">
             {product?.name}
           </h3>
 
@@ -283,7 +283,7 @@ const ProductCard = ({
             {/* Price */}
             <div className="space-y-2">
               <div className="flex items-baseline gap-2">
-              <span className="font-data font-bold text-lg text-foreground">
+              <span className="font-data font-bold text-lg text-[#2a1f0e]">
                 ₹{(parseFloat(selectedVariant?.salePrice || selectedVariant?.price || product?.salePrice || product?.price) || 0).toFixed(2)}
               </span>
               {originalPrice && originalPrice > currentPrice && (

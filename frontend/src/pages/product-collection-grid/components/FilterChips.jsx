@@ -10,27 +10,18 @@ const FilterChips = ({ activeFilters, onRemoveFilter, onClearAll }) => {
         '500-1000': '₹500 - ₹1000',
         'above-1000': 'Above ₹1000'
       },
-      dietary: {
-        'vegan': 'Vegan',
-        'gluten-free': 'Gluten Free',
-        'no-preservatives': 'No Preservatives',
-        'organic': 'Organic',
-        'handmade': 'Handmade',
-        'no-palm-oil': 'No Palm Oil'
+      weight: {
+        '250G': '250G',
+        '500G': '500G',
+        '750G': '750G'
       },
       categories: {
-        'sweets': 'Sweets',
-        'savouries': 'Savouries',
-        'pickles': 'Pickles',
-        'combos': 'Combos',
-        'summer-coolers': 'Summer Coolers',
-        'kitchen-essentials': 'Kitchen Essentials'
+        'Coffee': 'Coffee'
       },
-      brands: {
-        'sanatana-parampare': "Mane Coffee",
-        'traditional-tastes': 'Traditional Tastes',
-        'organic-origins': 'Organic Origins',
-        'homemade-heritage': 'Homemade Heritage'
+      coffeeType: {
+        'Arabica': 'Arabica',
+        'Robusta': 'Robusta',
+        'Arabica + Robusta': 'Arabica + Robusta'
       }
     };
 
@@ -44,16 +35,16 @@ const FilterChips = ({ activeFilters, onRemoveFilter, onClearAll }) => {
       filters?.push({ type: 'priceRange', value, label: getFilterLabel('priceRange', value) });
     });
 
-    activeFilters?.dietary?.forEach(value => {
-      filters?.push({ type: 'dietary', value, label: getFilterLabel('dietary', value) });
+    activeFilters?.weight?.forEach(value => {
+      filters?.push({ type: 'weight', value, label: getFilterLabel('weight', value) });
     });
 
     activeFilters?.categories?.forEach(value => {
       filters?.push({ type: 'categories', value, label: getFilterLabel('categories', value) });
     });
 
-    activeFilters?.brands?.forEach(value => {
-      filters?.push({ type: 'brands', value, label: getFilterLabel('brands', value) });
+    activeFilters?.coffeeType?.forEach(value => {
+      filters?.push({ type: 'coffeeType', value, label: getFilterLabel('coffeeType', value) });
     });
 
     return filters;

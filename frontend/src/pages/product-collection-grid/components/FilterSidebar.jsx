@@ -249,11 +249,11 @@ const FilterSidebar = ({
   };
 
 
-  const FilterSection = ({ title, sectionKey, children }) => (
-    <div className="border-b border-border pb-4 mb-4">
+  const FilterSection = ({ title, sectionKey, isLast, children }) => (
+    <div className={`${isLast ? '' : 'border-b border-[#2a1f0e]/10'} pb-4 mb-4`}>
       <button
         onClick={() => toggleSection(sectionKey)}
-        className="flex items-center justify-between w-full py-2 font-heading font-semibold text-foreground hover:text-primary transition-colors duration-200"
+        className="flex items-center justify-between w-full py-2 font-heading font-semibold text-[#2a1f0e] hover:text-primary transition-colors duration-200"
       >
         <span>{title}</span>
         <Icon 
@@ -269,11 +269,23 @@ const FilterSidebar = ({
     </div>
   );
 
+  const weightOptions = [
+    { id: '250G', label: '250G' },
+    { id: '500G', label: '500G' },
+    { id: '750G', label: '750G' }
+  ];
+
+  const coffeeTypeOptions = [
+    { id: 'Arabica', label: 'Arabica' },
+    { id: 'Robusta', label: 'Robusta' },
+    { id: 'Arabica + Robusta', label: 'Arabica + Robusta' }
+  ];
+
   const sidebarContent = (
     <div className="space-y-6">
       {/* Header */}
       <div className="flex items-center justify-between">
-        <h2 className="font-heading font-semibold text-lg text-foreground">
+        <h2 className="font-heading font-semibold text-lg text-[#2a1f0e]">
           Filters
         </h2>
         {isMobile && (
@@ -287,11 +299,11 @@ const FilterSidebar = ({
       </div>
 
       {/* Active Filters Count */}
-      {(filters?.priceRange?.length > 0 || filters?.dietary?.length > 0 || filters?.categories?.length > 0 || filters?.brands?.length > 0) && (
+      {(filters?.priceRange?.length > 0 || filters?.weight?.length > 0 || filters?.categories?.length > 0 || filters?.coffeeType?.length > 0) && (
         <div className="bg-primary/10 border border-primary/20 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <span className="font-body text-sm text-primary font-medium">
-              {filters?.priceRange?.length + filters?.dietary?.length + filters?.categories?.length + filters?.brands?.length} filters applied
+              {(filters?.priceRange?.length || 0) + (filters?.weight?.length || 0) + (filters?.categories?.length || 0) + (filters?.coffeeType?.length || 0)} filters applied
             </span>
             <Button
               variant="ghost"
@@ -322,47 +334,55 @@ const FilterSidebar = ({
         ))}
       </FilterSection>
 
-
-
-         {/*Categories */}
-    <FilterSection title="Categories" sectionKey="category">
-        {loading ? (
-          <div className="space-y-3">
-            {[1, 2, 3].map((i) => (
-              <div key={i} className="flex items-center space-x-3 animate-pulse">
-                <div className="w-4 h-4 bg-gray-200 rounded"></div>
-                <div className="h-4 bg-gray-200 rounded flex-1"></div>
-                <div className="w-6 h-4 bg-gray-200 rounded"></div>
-              </div>
-            ))}
-          </div>
-        ) : categories?.length > 0 ? (
-          categories.map((category) => (
-            <div key={category?.id} className="flex items-center justify-between">
-              <Checkbox
-                label={category?.label || category?.name || String(category?.id || 'Unknown')}
-                checked={isCategorySelected(category?.id)}
-                onChange={(e) => {
-                  if (e?.target?.checked) {
-                    addCategorySelection(category?.id);
-                  } else {
-                    removeCategorySelection(category?.id);
-                  }
-                }}
-              />
-              <span className="font-caption text-xs text-muted-foreground">
-                ({category?.count || 0})
-              </span>
-            </div>
-          ))
-        ) : (
-          <div className="text-sm text-muted-foreground text-center py-4">
-            No categories available
-          </div>
-        )}
+      {/* Weight Filter */}
+      <FilterSection title="Weight" sectionKey="weight">
+        {weightOptions.map((opt) => (
+          <Checkbox
+            key={opt.id}
+            label={opt.label}
+            checked={filters?.weight?.includes(opt.id)}
+            onChange={(e) => {
+              const newWeight = e.target.checked
+                ? [...(filters.weight || []), opt.id]
+                : (filters.weight || []).filter(id => id !== opt.id);
+              onFilterChange('weight', newWeight);
+            }}
+          />
+        ))}
       </FilterSection>
 
-      
+      {/* Product (Coffee Type) Filter */}
+      <FilterSection title="Product" sectionKey="coffeeType">
+        {coffeeTypeOptions.map((opt) => (
+          <Checkbox
+            key={opt.id}
+            label={opt.label}
+            checked={filters?.coffeeType?.includes(opt.id)}
+            onChange={(e) => {
+              const newType = e.target.checked
+                ? [...(filters.coffeeType || []), opt.id]
+                : (filters.coffeeType || []).filter(id => id !== opt.id);
+              onFilterChange('coffeeType', newType);
+            }}
+          />
+        ))}
+      </FilterSection>
+
+      {/* Category Section (Only Coffee) */}
+      <FilterSection title="Categories" sectionKey="category" isLast={true}>
+        <div className="flex items-center justify-between">
+          <Checkbox
+            label="Coffee"
+            checked={filters?.categories?.includes('Coffee')}
+            onChange={(e) => {
+              const newCats = e.target.checked
+                ? [...(filters.categories || []), 'Coffee']
+                : (filters.categories || []).filter(c => c !== 'Coffee');
+              onFilterChange('categories', newCats);
+            }}
+          />
+        </div>
+      </FilterSection>
     </div>
   );
 
@@ -372,7 +392,7 @@ const FilterSidebar = ({
         {isOpen && (
           <div className="fixed inset-0 bg-black/50 z-[1002]" onClick={onClose} />
         )}
-        <div className={`fixed top-0 right-0 h-full w-full max-w-sm bg-card shadow-warm-xl z-[1003] transform transition-transform duration-300 ${
+        <div className={`fixed top-0 right-0 h-full w-full max-w-sm bg-white shadow-warm-xl z-[1003] transform transition-transform duration-300 ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
         }`}>
           <div className="h-full overflow-y-auto p-6">
@@ -384,7 +404,7 @@ const FilterSidebar = ({
   }
 
   return (
-    <div className="w-full bg-card rounded-lg border border-border p-6 sticky top-24 max-h-[calc(100vh-8rem)] overflow-y-auto">
+    <div className="w-full px-6 pt-8 pb-20 sticky top-[116px] h-[calc(100vh-116px)] overflow-y-auto">
       {sidebarContent}
     </div>
   );

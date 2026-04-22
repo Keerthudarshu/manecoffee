@@ -1,8 +1,8 @@
 // Invoice generator utility
 export const generateInvoice = (order, user, settings = {}) => {
     const siteName = settings.siteName || "Deepus";
-    const brandEmail = settings.email || "paramparestore@gmail.com";
-    const brandPhone = settings.phone || "+91 99025 23333";
+    const brandEmail = settings.email || "support@manecoffeee.com";
+    const brandPhone = settings.phone || "+91 90194 45168";
     const brandAddress = settings.address || "Bengaluru, India";
 
     // Resolve logo so it works in the new window/print context

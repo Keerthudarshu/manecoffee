@@ -100,7 +100,7 @@ const TrustSignals = () => {
                 Call Us
               </p>
               <p className="font-data text-xs text-muted-foreground">
-                +91 99025 23333
+                +91 90194 45168
               </p>
             </div>
           </div>
@@ -112,7 +112,7 @@ const TrustSignals = () => {
                 WhatsApp
               </p>
               <p className="font-data text-xs text-muted-foreground">
-                +91 99025 23333
+                +91 90194 45168
               </p>
             </div>
           </div>
@@ -124,7 +124,7 @@ const TrustSignals = () => {
                 Email Support
               </p>
               <p className="font-data text-xs text-muted-foreground">
-                paramparestore@gmail.com
+                support@manecoffeee.com
               </p>
             </div>
           </div>

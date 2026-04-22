@@ -95,7 +95,7 @@ const Header = ({ isLoggedIn = false, onSearch = () => { } }) => {
   return (
     <>
       {/* Simplified Top Bar - Layer 1 */}
-      <div className="bg-[#120d07] text-[#f5e6c8] py-2 text-sm border-b border-[#C9A227]/20">
+      <div className="bg-[#efe5d7] text-[#1e1509] py-2 text-sm border-b border-[#C9A227]/20">
         <div className="container mx-auto px-4 flex items-center justify-between">
           <div className="flex items-center gap-6">
             <span className="flex items-center gap-2">

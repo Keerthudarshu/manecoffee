@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
+import SEO from '../../components/SEO';
 import Header from '../../components/ui/Header';
 import Footer from '../homepage/components/Footer';
 import Breadcrumb from '../../components/ui/Breadcrumb';
@@ -15,74 +15,41 @@ const CategoriesPage = () => {
   const categories = [
     {
       id: 1,
-      name: 'Wood Pressed Oils',
+      name: 'Arabica',
+      displayName: 'Arabica Coffee',
       productCount: 25,
-      image: '/assets/banner/Wood Pressed Oils.png',
-      icon: 'Droplets',
-      description: 'Cold pressed, chemical-free oils',
-      featured: ['Coconut Oil', 'Sesame Oil', 'Groundnut Oil'],
-      startingPrice: 180,
-      badge: 'Best Seller',
-      products: []
-    },
-    {
-      id: 7,
-      name: 'Spice Powders',
-      productCount: 42,
-      image: '/assets/banner/masala.png',
-      icon: 'Sparkles',
-      description: 'Traditional masalas & spice blends',
-      featured: ['Sambar Powder', 'Rasam Powder', 'Garam Masala'],
-      startingPrice: 85,
-      badge: 'Authentic',
-      products: []
-    },
-    {
-      id: 6,
-      name: 'Pickles',
-      productCount: 18,
-      image: '/assets/banner/pickles.png',
-      icon: 'Jar',
-      description: 'Homemade traditional pickles',
-      featured: ['Mango Pickle', 'Lemon Pickle', 'Mixed Veg'],
-      startingPrice: 120,
-      badge: 'Homemade',
-      products: []
-    },
-    {
-      id: 3,
-      name: 'Ghee',
-      productCount: 12,
-      image: '/assets/banner/ghee1.png',
-      icon: 'Heart',
-      description: 'Pure A2 ghee & wild honey',
-      featured: ['Pure Ghee', 'Wild Honey', 'A2 Cow Ghee'],
+      image: '/assets/banner/Arabica.png',
+      icon: 'Coffee',
+      description: 'Premium Arabica beans from the high-altitude estates of Coorg, known for their smooth, mild flavor and aromatic notes.',
+      featured: ['Single Origin', 'Medium Roast', 'Specialty Grade'],
       startingPrice: 450,
       badge: 'Premium',
       products: []
     },
     {
-      id: 8,
-      name: 'Chemical Free Jaggery',
-      productCount: 8,
-      image: '/assets/banner/Jaggery_Sweeteners.jpeg',
-      icon: 'Candy',
-      description: 'Chemical-free natural sweeteners',
-      featured: ['Powder Jaggery', 'Solid Jaggery', 'Palm Jaggery'],
-      startingPrice: 95,
-      badge: 'Natural',
+      id: 7,
+      name: 'Robusta',
+      displayName: 'Robusta Coffee',
+      productCount: 42,
+      image: '/assets/banner/robusta.png',
+      icon: 'Zap',
+      description: 'Strong and bold Robusta beans with an intense flavor, thick crema, and higher caffeine content for an energetic start.',
+      featured: ['Dark Roast', 'High Caffeine', 'Strong Crema'],
+      startingPrice: 320,
+      badge: 'Bold',
       products: []
     },
     {
-      id: 5,
-      name: 'Papads',
-      productCount: 15,
-      image: '/assets/banner/papad.jpeg',
-      icon: 'Cookie',
-      description: 'Handmade papads & traditional items',
-      featured: ['Rice Papad', 'Urad Papad', 'Ragi Items'],
-      startingPrice: 65,
-      badge: 'Handmade',
+      id: 6,
+      name: 'Arabica + Robusta',
+      displayName: 'Premium Blend',
+      productCount: 18,
+      image: '/assets/banner/arabicaand robusta.png',
+      icon: 'Layers',
+      description: 'A perfectly balanced blend of Arabica and Robusta, offering the aromatic sweetness of Arabica with the body and strength of Robusta.',
+      featured: ['House Blend', 'Filter Coffee', 'Daily Brew'],
+      startingPrice: 380,
+      badge: 'Mane Special',
       products: []
     }
   ];
@@ -100,11 +67,14 @@ const CategoriesPage = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Categories - Mane Coffee | Browse Traditional Food Categories</title>
-        <meta name="description" content="Browse all product categories at Mane Coffee. From wood-pressed oils to traditional spices, discover authentic Indian food products organized by category." />
-        <meta name="keywords" content="product categories, traditional food categories, wood pressed oils, spice powders, pickles, ghee honey, Mane Coffee categories" />
-      </Helmet>
+      <SEO 
+        title="Browse Coffee Categories"
+        description="Explore Mane Coffee's premium collections. From high-altitude Arabica to bold Robusta and artisan blends, find your perfect Coorg coffee by category."
+        keywords="coffee categories, Arabica coffee, Robusta beans, filter coffee powder, specialty coffee blends, Mane Coffee collections, buy coffee by type"
+        canonical="/categories"
+        ogTitle="Browse Coffee Categories - Mane Coffee"
+        ogDescription="Find your favorite Coorg coffee variety. Pure Arabica, bold Robusta, and signature blends."
+      />
 
       <div className="min-h-screen bg-background">
         <Header />

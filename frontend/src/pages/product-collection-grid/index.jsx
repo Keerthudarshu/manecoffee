@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useSearchParams } from 'react-router-dom';
+import SEO from '../../components/SEO';
 import { useCart } from '../../contexts/CartContext';
 import Header from '../../components/ui/Header';
 import Breadcrumb from '../../components/ui/Breadcrumb';
@@ -45,9 +46,9 @@ const ProductCollectionGrid = () => {
   // Filter state
   const [filters, setFilters] = useState({
     priceRange: [],
-    dietary: [],
+    weight: [],
     categories: [],
-    brands: []
+    coffeeType: []
   });
 
   // Auto-apply category filter from URL
@@ -157,57 +158,31 @@ const ProductCollectionGrid = () => {
       });
     }
 
-    if (filters?.dietary?.length > 0) {
+    if (filters?.weight?.length > 0) {
       filtered = filtered?.filter(product =>
-        filters?.dietary?.some(diet => product?.dietary?.includes(diet))
+        filters?.weight?.some(w => String(product?.weight || '').toLowerCase().includes(w.toLowerCase()))
       );
     }
 
     if (filters?.categories?.length > 0) {
-      const categoryMap = {
-        '1': 'Wood Pressed Oils',
-        '2': 'Essential Oils',
-        '3': 'Ghee',
-        '4': 'Honey',
-        '5': 'Papads',
-        '6': 'Pickles',
-        '7': 'Spice Powders',
-        '8': 'Chemical Free Jaggery',
-        '9': 'Other Food Products'
-      };
-      const beforeCategoryFilter = filtered.length;
       filtered = filtered?.filter(product => {
-        return filters?.categories?.some(categoryFilter => {
-          const filterCategory = categoryFilter.toLowerCase().trim();
-          // Try to match by name or by mapped ID
-          const mappedCategory = categoryMap[categoryFilter] ? categoryMap[categoryFilter].toLowerCase().trim() : null;
-          // Check product category fields
-          const productCategoryName = String(product?.category || '').toLowerCase().trim();
-          const productCategoryId = String(product?.categoryId || product?.category_id || '').toLowerCase().trim();
-          // Match by name or ID
-          return (
-            productCategoryName === filterCategory ||
-            productCategoryName.replace(/\s+/g, '-') === filterCategory.replace(/\s+/g, '-') ||
-            productCategoryName.includes(filterCategory) ||
-            filterCategory.includes(productCategoryName) ||
-            (mappedCategory && (
-              productCategoryName === mappedCategory ||
-              productCategoryName.replace(/\s+/g, '-') === mappedCategory.replace(/\s+/g, '-') ||
-              productCategoryName.includes(mappedCategory) ||
-              mappedCategory.includes(productCategoryName)
-            )) ||
-            productCategoryId === categoryFilter ||
-            productCategoryId === String(Object.keys(categoryMap).find(key => categoryMap[key].toLowerCase().trim() === filterCategory))
-          );
+        return filters?.categories?.some(cat => {
+          const productCat = String(product?.categoryName || product?.category || '').toLowerCase();
+          return productCat.includes(cat.toLowerCase());
         });
       });
-      console.log(`Category filter: ${beforeCategoryFilter} → ${filtered.length} products`);
     }
 
-    if (filters?.brands?.length > 0) {
-      filtered = filtered?.filter(product =>
-        filters?.brands?.includes(product?.brand)
-      );
+    if (filters?.coffeeType?.length > 0) {
+      filtered = filtered?.filter(product => {
+        const textToSearch = `${product.name} ${product.description}`.toLowerCase();
+        return filters?.coffeeType?.some(type => {
+          if (type === 'Arabica + Robusta') {
+            return textToSearch.includes('arabica') && textToSearch.includes('robusta');
+          }
+          return textToSearch.includes(type.toLowerCase());
+        });
+      });
     }
 
     // Apply sorting
@@ -260,9 +235,9 @@ const ProductCollectionGrid = () => {
   const handleClearAllFilters = () => {
     setFilters({
       priceRange: [],
-      dietary: [],
+      weight: [],
       categories: [],
-      brands: []
+      coffeeType: []
     });
   };
 
@@ -355,17 +330,17 @@ const ProductCollectionGrid = () => {
     { label: 'Products', path: '/product-collection-grid' }
   ];
 
-  // Category mapping for display
+  // Category mapping for display - Coffee Heritage
   const categoryMap = {
-    '1': { name: 'Wood Pressed Oils', badge: 'Best Seller' },
-    '2': { name: 'Essential Oils', badge: '' },
-    '3': { name: 'Ghee', badge: 'Premium' },
-    '4': { name: 'Honey', badge: '' },
-    '5': { name: 'Papads', badge: 'Handmade' },
-    '6': { name: 'Pickles', badge: 'Homemade' },
-    '7': { name: 'Spice Powders', badge: 'Authentic' },
-    '8': { name: 'Chemical Free Jaggery', badge: 'Natural' },
-    '9': { name: 'Other Food Products', badge: '' }
+    '1': { name: 'Signature Arabica', badge: 'Premium' },
+    '2': { name: 'Pure Robusta', badge: 'Strong' },
+    '3': { name: 'Artisan Blends', badge: 'Best Seller' },
+    '4': { name: 'Filter Coffee', badge: 'Traditional' },
+    '5': { name: 'Estate Specials', badge: 'Limited' },
+    '6': { name: 'Medium Roast', badge: 'Balanced' },
+    '7': { name: 'Dark Roast', badge: 'Intense' },
+    '8': { name: 'Green Coffee', badge: 'Healthy' },
+    '9': { name: 'Other Specials', badge: '' }
   };
 
   const categoryId = searchParams?.get('category');
@@ -385,56 +360,25 @@ const ProductCollectionGrid = () => {
   })();
 
   return (
-    <div className="min-h-screen bg-background">
+    <>
+      <SEO 
+        title={categoryTitle}
+        description={`Explore our ${categoryTitle} collection. Pure, shade-grown coffee from Coorg estates, roasted to bring out the authentic Kodagu flavor.`}
+        keywords={`buy ${categoryTitle}, Coorg coffee online, Arabica Robusta blends, Kodagu coffee beans, fresh roasted coffee India, Mane Coffee products`}
+        canonical="/product-collection-grid"
+        ogTitle={`${categoryTitle} - Mane Coffee Finest Collection`}
+        ogDescription={`Discover the best of ${categoryTitle} from the hills of Coorg. Premium quality beans delivered to your doorstep.`}
+      />
+      <div className="min-h-screen bg-[#efe5d7]">
       <Header 
         cartItemCount={getCartItemCount()}
         cartItems={cartItems}
         onSearch={(query) => console.log('Search:', query)}
       />
-      <main className="container mx-auto px-4 py-6">
-        <Breadcrumb customItems={breadcrumbItems} />
-
-        {/* Page Header */}
-        <div className="mb-6">
-          <div className="flex items-center gap-4 mb-2">
-            <h1 className="font-heading font-bold text-3xl text-foreground">
-              {categoryTitle}
-            </h1>
-            {categoryBadge && (
-              <span className="bg-accent text-white px-4 py-2 rounded-full text-sm font-semibold shadow border border-accent/20">
-                {categoryBadge}
-              </span>
-            )}
-          </div>
-          <p className="font-body text-muted-foreground">
-            Discover our collection of natural, handmade products crafted with love and tradition.
-          </p>
-        </div>
-        {/* Show parampara.jpg for All Products, Top-sticker.png for woodpressed oils */}
-        {(!searchParams.get('category') || categoryTitle === 'All Products') && (
-          <div className="mb-8">
-            <img
-              src="/assets/images/parampara.jpg"
-              alt="Parampara Sticker"
-              className="w-full h-auto object-cover rounded"
-              style={{ maxWidth: '100%', display: 'block' }}
-            />
-          </div>
-        )}
-        {isWoodPressedOils && (
-          <div className="mb-8">
-            <img
-              src="/assets/images/esential%20oils/Top-sticker.png"
-              alt="Top Sticker"
-              className="w-full h-auto object-cover rounded"
-              style={{ maxWidth: '100%', display: 'block' }}
-            />
-          </div>
-        )}
-
-        <div className="flex flex-col lg:flex-row gap-6">
+      <main className="w-full py-0">
+        <div className="flex flex-col lg:flex-row min-h-screen">
           {/* Desktop Sidebar */}
-          <div className="hidden lg:block w-80 flex-shrink-0">
+          <div className="hidden lg:block w-80 flex-shrink-0 border-r border-[#2a1f0e]/10 bg-white">
             <FilterSidebar
               isOpen={false}
               onClose={() => {}}
@@ -446,7 +390,26 @@ const ProductCollectionGrid = () => {
           </div>
 
           {/* Main Content */}
-          <div className="flex-1 space-y-6">
+          <div className="flex-1 px-8 py-4 space-y-6 overflow-y-auto">
+            <Breadcrumb customItems={breadcrumbItems} className="mb-4" />
+            
+            {/* Page Header */}
+            <div className="mb-8">
+              <div className="flex items-center gap-4 mb-2">
+                <h1 className="font-heading font-bold text-3xl text-[#2a1f0e]">
+                  {categoryTitle}
+                </h1>
+                {categoryBadge && (
+                  <span className="bg-accent text-white px-4 py-2 rounded-full text-sm font-semibold shadow border border-accent/20">
+                    {categoryBadge}
+                  </span>
+                )}
+              </div>
+              <p className="font-body text-[#2a1f0e]/70">
+                Discover our collection of natural, handmade products crafted with love and tradition.
+              </p>
+            </div>
+
             {/* Mobile Filter Button & Sort */}
             <div className="flex items-center justify-between">
               <Button
@@ -454,13 +417,13 @@ const ProductCollectionGrid = () => {
                 onClick={() => setIsMobileFilterOpen(true)}
                 iconName="Filter"
                 iconPosition="left"
-                className="lg:hidden"
+                className="lg:hidden text-[#2a1f0e] border-[#2a1f0e]/20"
               >
                 Filters
               </Button>
 
               <div className="flex items-center gap-4">
-                <span className="font-body text-sm text-muted-foreground">
+                <span className="font-body text-sm text-[#2a1f0e]/60">
                   {filteredProducts?.length} products
                 </span>
                 <SortDropdown
@@ -529,6 +492,7 @@ const ProductCollectionGrid = () => {
         onAddToCart={handleAddToCart}
       />
     </div>
+    </>
   );
 };
 
