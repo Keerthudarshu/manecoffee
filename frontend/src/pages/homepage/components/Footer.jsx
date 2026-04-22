@@ -47,7 +47,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-[#d7bea8] border-t border-[#C9A227]/20 text-[#1e1509]">
+    <footer className="bg-[#1e1509] border-t border-[#C9A227]/20 text-[#f5e6c8]">
       {/* Popular Searches Section */}
       <div className="border-b border-[#C9A227]/10 py-8">
         <div className="container mx-auto px-4">
@@ -59,7 +59,7 @@ const Footer = () => {
               <Link
                 key={index}
                 to={`/product-collection-grid?search=${encodeURIComponent(search)}`}
-                className="bg-[#C9A227]/10 hover:bg-[#C9A227] text-[#1e1509]/80 hover:text-white px-3 py-1 rounded-full text-sm font-caption transition-all duration-300 border border-[#C9A227]/20"
+                className="bg-[#C9A227]/10 hover:bg-[#C9A227] text-[#f5e6c8]/80 hover:text-[#1e1509] px-3 py-1 rounded-full text-sm font-caption transition-all duration-300 border border-[#C9A227]/20"
               >
                 {search}
               </Link>
@@ -210,7 +210,7 @@ const Footer = () => {
                   href={social?.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-8 h-8 bg-[#C9A227]/10 hover:bg-[#C9A227] text-[#C9A227] hover:text-[#120d07] rounded-full flex items-center justify-center transition-all duration-300 border border-[#C9A227]/20"
+                  className="w-8 h-8 bg-[#C9A227]/10 hover:bg-[#C9A227] text-[#C9A227] hover:text-[#1e1509] rounded-full flex items-center justify-center transition-all duration-300 border border-[#C9A227]/20"
                   aria-label={`Follow us on ${social?.name}`}
                 >
                   <Icon name={social?.icon} size={16} />

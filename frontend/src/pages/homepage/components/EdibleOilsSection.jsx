@@ -50,7 +50,7 @@ const EdibleOilsSection = () => {
                         Experience the purity of our premium Mane Coffee products, crafted for health and wellness using traditional methods.
                     </p>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 max-w-6xl mx-auto">
+                <div className="grid grid-cols-3 gap-3 md:gap-10 max-w-6xl mx-auto">
                     {edibleOils.map((oil) => (
                         <a
                             key={oil.id}
@@ -67,8 +67,8 @@ const EdibleOilsSection = () => {
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-[#120d07]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                             </div>
-                            <div className="p-8 flex items-center justify-center bg-white border-t border-[#C9A227]/5">
-                                <span className="font-heading text-xl font-bold text-[#2a1f0e] text-center group-hover:text-[#C9A227] transition-colors duration-300">
+                            <div className="p-2 sm:p-8 flex items-center justify-center bg-white border-t border-[#C9A227]/5">
+                                <span className="font-heading text-xs sm:text-xl font-bold text-[#2a1f0e] text-center group-hover:text-[#C9A227] transition-colors duration-300">
                                     {oil.name}
                                 </span>
                             </div>
