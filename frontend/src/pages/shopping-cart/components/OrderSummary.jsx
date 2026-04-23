@@ -3,6 +3,7 @@ import Icon from '../../../components/AppIcon';
 import { Link } from 'react-router-dom';
 import Button from '../../../components/ui/Button';
 import Input from '../../../components/ui/Input';
+import { resolveImageUrl } from '../../../lib/resolveImageUrl';
 
 const OrderSummary = ({ 
   subtotal, 
@@ -47,7 +48,7 @@ const OrderSummary = ({
           window.cartItems.map((item, idx) => (
             <div key={item.id || idx} className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-3">
-                <img src={item.image} alt={item.name} className="w-12 h-12 rounded object-cover border" />
+                <img src={resolveImageUrl(item.image)} alt={item.name} className="w-12 h-12 rounded object-cover border" />
                 <div>
                   <div className="font-heading font-medium text-sm text-foreground">
                     {item.name}

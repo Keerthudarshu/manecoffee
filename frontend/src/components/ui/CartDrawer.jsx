@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import Icon from '../AppIcon';
 import Image from '../AppImage';
 import Button from './Button';
+import { resolveImageUrl } from '../../lib/resolveImageUrl';
 
 const CartDrawer = ({ isOpen, onClose, cartItems = [], onUpdateQuantity, onRemoveItem }) => {
   const navigate = useNavigate();
@@ -65,39 +66,39 @@ const CartDrawer = ({ isOpen, onClose, cartItems = [], onUpdateQuantity, onRemov
                   <div key={item?.id} className="flex gap-3 p-3 bg-muted/50 rounded-lg">
                     <div className="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
                       <Image
-                        src={item?.image}
+                        src={resolveImageUrl(item?.image)}
                         alt={item?.name}
                         className="w-full h-full object-cover"
                       />
                     </div>
                     
                     <div className="flex-1 min-w-0">
-                      <h3 className="font-body font-bold text-sm text-[#f5e6c8] truncate">
+                      <h3 className="font-body font-bold text-sm text-foreground truncate">
                         {item?.name}
                       </h3>
-                      <p className="font-caption text-xs text-[#f5e6c8]/60">
+                      <p className="font-caption text-xs text-muted-foreground">
                         {item?.variant}
                       </p>
                       <div className="flex items-center justify-between mt-3">
                         <div className="flex items-center gap-2">
                           <button
                             onClick={() => handleQuantityChange(item?.id, item?.quantity - 1)}
-                            className="w-7 h-7 rounded-full border border-[#f5e6c8]/20 flex items-center justify-center text-[#f5e6c8] hover:bg-[#f5e6c8]/10 transition-colors duration-200"
+                            className="w-7 h-7 rounded-full border border-border flex items-center justify-center text-foreground hover:bg-accent hover:text-accent-foreground transition-colors duration-200"
                           >
                             <Icon name="Minus" size={12} />
                           </button>
-                          <span className="font-data text-sm font-bold w-8 text-center text-[#f5e6c8]">
+                          <span className="font-data text-sm font-bold w-8 text-center text-foreground">
                             {item?.quantity}
                           </span>
                           <button
                             onClick={() => handleQuantityChange(item?.id, item?.quantity + 1)}
-                            className="w-7 h-7 rounded-full border border-[#f5e6c8]/20 flex items-center justify-center text-[#f5e6c8] hover:bg-[#f5e6c8]/10 transition-colors duration-200"
+                            className="w-7 h-7 rounded-full border border-border flex items-center justify-center text-foreground hover:bg-accent hover:text-accent-foreground transition-colors duration-200"
                           >
                             <Icon name="Plus" size={12} />
                           </button>
                         </div>
                         <div className="text-right">
-                          <p className="font-data font-bold text-base text-[#F0C040]">
+                          <p className="font-data font-bold text-base text-primary">
                             ₹{(item?.price * item?.quantity)?.toFixed(2)}
                           </p>
                         </div>
@@ -122,8 +123,8 @@ const CartDrawer = ({ isOpen, onClose, cartItems = [], onUpdateQuantity, onRemov
             <div className="border-t border-border p-4 space-y-4">
               {/* Shipping Notice */}
               {subtotal < 499 && (
-                <div className="bg-[#C9A227]/10 border border-[#C9A227]/30 rounded-lg p-3">
-                  <p className="font-caption text-xs text-[#C9A227] font-bold">
+                <div className="bg-primary/10 border border-primary/30 rounded-lg p-3">
+                  <p className="font-caption text-xs text-primary font-bold">
                     Add ₹{(499 - subtotal)?.toFixed(2)} more for free shipping!
                   </p>
                 </div>
@@ -132,16 +133,16 @@ const CartDrawer = ({ isOpen, onClose, cartItems = [], onUpdateQuantity, onRemov
               {/* Order Summary */}
               <div className="space-y-2">
                 <div className="flex justify-between font-body text-sm">
-                  <span className="text-[#f5e6c8]/60 font-medium">Subtotal</span>
-                  <span className="font-data font-bold text-[#f5e6c8]">₹{subtotal?.toFixed(2)}</span>
+                  <span className="text-muted-foreground font-medium">Subtotal</span>
+                  <span className="font-data font-bold text-foreground">₹{subtotal?.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between font-body text-sm">
-                  <span className="text-[#f5e6c8]/60 font-medium">Shipping</span>
-                  <span className="font-data font-bold text-[#f5e6c8]">
-                    {shipping === 0 ? <span className="text-green-400">Free</span> : `₹${shipping?.toFixed(2)}`}
+                  <span className="text-muted-foreground font-medium">Shipping</span>
+                  <span className="font-data font-bold text-foreground">
+                    {shipping === 0 ? <span className="text-green-600">Free</span> : `₹${shipping?.toFixed(2)}`}
                   </span>
                 </div>
-                <div className="flex justify-between font-heading font-bold text-lg pt-2 border-t border-[#f5e6c8]/10 text-[#F0C040]">
+                <div className="flex justify-between font-heading font-bold text-lg pt-2 border-t border-border text-primary">
                   <span>Total</span>
                   <span className="font-data">₹{total?.toFixed(2)}</span>
                 </div>
@@ -156,7 +157,7 @@ const CartDrawer = ({ isOpen, onClose, cartItems = [], onUpdateQuantity, onRemov
                     onClose();
                     navigate('/checkout-process');
                   }}
-                  className="bg-[#C9A227] hover:bg-[#F0C040] text-[#120d07] font-bold py-4 rounded-xl shadow-gold-md"
+                  className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold py-4 rounded-xl shadow-md"
                 >
                   Proceed to Checkout
                 </Button>
@@ -164,7 +165,7 @@ const CartDrawer = ({ isOpen, onClose, cartItems = [], onUpdateQuantity, onRemov
                   <Button 
                     variant="outline" 
                     fullWidth
-                    className="border-[#f5e6c8]/20 text-[#f5e6c8] hover:bg-[#f5e6c8]/10 py-3 rounded-xl"
+                    className="border-border text-foreground hover:bg-accent py-3 rounded-xl"
                   >
                     View Cart
                   </Button>

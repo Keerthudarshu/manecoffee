@@ -2,6 +2,7 @@ import React from 'react';
 import Icon from '../../../components/AppIcon';
 import Image from '../../../components/AppImage';
 import Button from '../../../components/ui/Button';
+import { resolveImageUrl } from '../../../lib/resolveImageUrl';
 
 const CartItem = ({ item, onUpdateQuantity, onRemoveItem, onSaveForLater }) => {
   const handleQuantityChange = (newQuantity) => {
@@ -21,7 +22,7 @@ const CartItem = ({ item, onUpdateQuantity, onRemoveItem, onSaveForLater }) => {
         {/* Product Image */}
         <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-lg overflow-hidden flex-shrink-0">
           <Image
-            src={item?.image}
+            src={resolveImageUrl(item?.image)}
             alt={item?.name}
             className="w-full h-full object-cover"
           />
