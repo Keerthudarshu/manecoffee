@@ -25,12 +25,14 @@ public class OrderService {
     private final com.manecoffee.repository.ProductRepository productRepo;
     private final com.manecoffee.repository.ProductVariantRepository productVariantRepo;
     private final OrderStatusHistoryRepository orderStatusHistoryRepo;
+    private final EmailService emailService;
 
     public OrderService(OrderRepository orderRepo, CartItemRepository cartRepo,
                        CheckoutSelectionRepository selectionRepo, AddressRepository addressRepo,
                        com.manecoffee.repository.ProductRepository productRepo,
                        com.manecoffee.repository.ProductVariantRepository productVariantRepo,
-                       OrderStatusHistoryRepository orderStatusHistoryRepo) {
+                       OrderStatusHistoryRepository orderStatusHistoryRepo,
+                       EmailService emailService) {
         this.orderRepo = orderRepo;
         this.cartRepo = cartRepo;
         this.selectionRepo = selectionRepo;
@@ -38,6 +40,7 @@ public class OrderService {
         this.productRepo = productRepo;
         this.productVariantRepo = productVariantRepo;
         this.orderStatusHistoryRepo = orderStatusHistoryRepo;
+        this.emailService = emailService;
     }
 
     /**
@@ -199,6 +202,12 @@ public class OrderService {
         
         // 10. Update user's order count
         user.incrementTotalOrders();
+
+        // 11. Send admin notification for new order (non-blocking to order flow)
+        boolean adminEmailSent = emailService.sendAdminNewOrderNotification(savedOrder);
+        if (!adminEmailSent) {
+            logger.warn("Admin new order notification failed for order ID: {}", savedOrder.getId());
+        }
         
         return savedOrder;
     }

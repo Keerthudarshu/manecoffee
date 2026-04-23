@@ -3,6 +3,9 @@ package com.manecoffee.service;
 import com.lowagie.text.*;
 import com.lowagie.text.Font;
 import com.lowagie.text.Image;
+import com.manecoffee.entity.Order;
+import com.manecoffee.entity.OrderItem;
+import com.manecoffee.entity.ShippingSnapshot;
 import com.lowagie.text.pdf.PdfPCell;
 import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
@@ -22,6 +25,7 @@ import jakarta.mail.internet.MimeMessage;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.awt.Color;
+import java.time.format.DateTimeFormatter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -46,7 +50,14 @@ public class EmailService {
     @Value("${mail.from.email:${spring.mail.username}}")
     private String fromEmail;
 
+    @Value("${mail.admin.order-notification.to:hemanthgowda791@gmail.com}")
+    private String adminOrderNotificationEmail;
+
+    @Value("${app.admin.orders.url:http://localhost:5173/admin-panel}")
+    private String adminOrdersUrl;
+
     private static final String LOGO_PATH = "static/images/logo.jpeg";
+    private static final DateTimeFormatter ORDER_TIME_FORMAT = DateTimeFormatter.ofPattern("dd MMM yyyy hh:mm a");
 
     @jakarta.annotation.PostConstruct
     public void init() {
@@ -185,6 +196,92 @@ public class EmailService {
 
     private int htmlContentLength(String html) {
         return html != null ? html.length() : 0;
+    }
+
+    /**
+     * Send admin notification email when a new order is received.
+     */
+    public boolean sendAdminNewOrderNotification(Order order) {
+        if (order == null) {
+            return false;
+        }
+
+        try {
+            SimpleMailMessage message = new SimpleMailMessage();
+            message.setFrom(fromEmail);
+            message.setTo(adminOrderNotificationEmail);
+            message.setSubject("New Order Received #" + order.getId() + " - Mane Coffee");
+            message.setText(buildAdminNewOrderEmailBody(order));
+
+            mailSender.send(message);
+            logger.info("New order admin notification sent for order: {}", order.getId());
+            return true;
+        } catch (Exception e) {
+            logger.error("Failed to send new order admin notification for order: {}", order.getId(), e);
+            return false;
+        }
+    }
+
+    private String buildAdminNewOrderEmailBody(Order order) {
+        StringBuilder body = new StringBuilder();
+
+        body.append("New order has been received.\n\n");
+        body.append("Order ID: ").append(safe(order.getId())).append("\n");
+        body.append("Customer Name: ").append(safe(order.getUser() != null ? order.getUser().getName() : null)).append("\n");
+        body.append("Customer Email: ").append(safe(order.getUser() != null ? order.getUser().getEmail() : null)).append("\n");
+        body.append("Order Time: ")
+                .append(order.getCreatedAt() != null ? ORDER_TIME_FORMAT.format(order.getCreatedAt()) : "N/A")
+                .append("\n");
+        body.append("Payment Method: ").append(safe(order.getPaymentMethod())).append("\n");
+        body.append("Delivery Option: ").append(safe(order.getDeliveryOption())).append("\n");
+        body.append("Status: ").append(safe(order.getStatus())).append("\n\n");
+
+        ShippingSnapshot shipping = order.getShipping();
+        body.append("Shipping Details:\n");
+        if (shipping != null) {
+            body.append("- Name: ").append(safe(shipping.getName())).append("\n");
+            body.append("- Phone: ").append(safe(shipping.getPhone())).append("\n");
+            body.append("- Address: ")
+                    .append(safe(shipping.getStreet())).append(", ")
+                    .append(safe(shipping.getCity())).append(", ")
+                    .append(safe(shipping.getState())).append(" - ")
+                    .append(safe(shipping.getPincode()))
+                    .append("\n");
+        } else {
+            body.append("- N/A\n");
+        }
+
+        body.append("\nItems:\n");
+        if (order.getItems() != null && !order.getItems().isEmpty()) {
+            int index = 1;
+            for (OrderItem item : order.getItems()) {
+                body.append(index++)
+                        .append(". ")
+                        .append(safe(item.getProductName()))
+                        .append(" | Qty: ")
+                        .append(safe(item.getQuantity()))
+                        .append(" | Price: Rs ")
+                        .append(String.format("%.2f", item.getPrice() != null ? item.getPrice() : 0.0))
+                        .append("\n");
+            }
+        } else {
+            body.append("No items found\n");
+        }
+
+        body.append("\nAmount Summary:\n");
+        body.append("- Subtotal: Rs ").append(String.format("%.2f", order.getSubtotal() != null ? order.getSubtotal() : 0.0)).append("\n");
+        body.append("- Shipping: Rs ").append(String.format("%.2f", order.getShippingFee() != null ? order.getShippingFee() : 0.0)).append("\n");
+        body.append("- Discount: Rs ").append(String.format("%.2f", order.getDiscount() != null ? order.getDiscount() : 0.0)).append("\n");
+        body.append("- Total: Rs ").append(String.format("%.2f", order.getTotal() != null ? order.getTotal() : 0.0)).append("\n\n");
+
+        body.append("Open admin orders page:\n");
+        body.append(adminOrdersUrl).append("\n");
+
+        return body.toString();
+    }
+
+    private String safe(Object value) {
+        return value == null ? "N/A" : String.valueOf(value);
     }
 
     /**
