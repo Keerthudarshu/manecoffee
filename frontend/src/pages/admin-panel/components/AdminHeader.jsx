@@ -27,7 +27,7 @@ const AdminHeader = ({ user, onToggleSidebar }) => {
         {/* Title: full text on sm+; compact label on xs */}
         <div className="flex flex-col">
           <h1 className="hidden sm:block text-lg font-heading font-semibold text-foreground leading-tight">
-            sanathana-parampara - Admin
+            Mane Coffee - Admin
           </h1>
           <span className="sm:hidden text-sm font-semibold text-foreground">Admin</span>
         </div>

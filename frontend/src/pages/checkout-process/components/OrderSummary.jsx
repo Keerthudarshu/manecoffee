@@ -3,6 +3,7 @@ import Image from '../../../components/AppImage';
 import Input from '../../../components/ui/Input';
 import Button from '../../../components/ui/Button';
 import Icon from '../../../components/AppIcon';
+import { resolveImageUrl } from '../../../lib/resolveImageUrl';
 
 const OrderSummary = ({ 
   cartItems = [], 
@@ -123,7 +124,7 @@ const OrderSummary = ({
               <div key={item?.id} className="flex items-center space-x-3">
                 <div className="relative w-12 h-12 rounded-lg overflow-hidden flex-shrink-0">
                   <Image
-                    src={item?.image}
+                    src={resolveImageUrl(item?.image)}
                     alt={item?.name}
                     className="w-full h-full object-cover"
                   />

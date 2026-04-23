@@ -293,7 +293,7 @@ public class EmailService {
         companyNameCell.setBorder(Rectangle.NO_BORDER);
         companyNameCell.setBackgroundColor(darkBg);
         companyNameCell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-        companyNameCell.addElement(new Paragraph("sanathana-parampara", titleFont));
+        companyNameCell.addElement(new Paragraph("Mane Coffee", titleFont));
         companyNameCell.addElement(new Paragraph("Bengaluru, India", whiteNormal));
         logoTable.addCell(companyNameCell);
 
@@ -372,7 +372,7 @@ public class EmailService {
         fromTable.addCell(fromTitle);
         PdfPCell fromDetails = new PdfPCell();
         fromDetails.setBorder(Rectangle.NO_BORDER);
-        fromDetails.addElement(new Paragraph("sanathana-parampara", textNormal));
+        fromDetails.addElement(new Paragraph("Mane Coffee", textNormal));
         fromDetails.addElement(
                 new Paragraph("Chennangi Village and Chennayan Kote Post, Polibetta Chennangi,", textNormal));
         fromDetails.addElement(new Paragraph("Virajpet, Kodagu, Karnataka- 571215", textNormal));

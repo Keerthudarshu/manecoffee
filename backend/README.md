@@ -1,6 +1,6 @@
-# sanathana-parampara - Backend
+# Mane Coffee - Backend
 
-A Spring Boot REST API backend for sanathana-parampara organic products e-commerce platform.
+A Spring Boot REST API backend for Mane Coffee organic products e-commerce platform.
 
 ## 🚀 Features
 
@@ -31,13 +31,13 @@ A Spring Boot REST API backend for sanathana-parampara organic products e-commer
 2. **Database Setup**
    - Install MySQL and create a database:
    ```sql
-   CREATE DATABASE sanathana-parampara;
+   CREATE DATABASE Mane Coffee;
    ```
 
 3. **Configuration**
    Update `src/main/resources/application.properties`:
    ```properties
-   spring.datasource.url=jdbc:mysql://localhost:3306/sanathana-parampara
+   spring.datasource.url=jdbc:mysql://localhost:3306/Mane Coffee
    spring.datasource.username=your_username
    spring.datasource.password=your_password
    spring.jpa.hibernate.ddl-auto=update
@@ -71,7 +71,7 @@ src/main/java/com/eduprajna/
 ├── entity/            # JPA entity classes
 ├── repository/        # Data repository interfaces
 ├── service/           # Business logic services
-└── sanathana-paramparaApplication.java  # Main application class
+└── Mane CoffeeApplication.java  # Main application class
 
 src/main/resources/
 ├── application.properties  # Application configuration
@@ -136,13 +136,13 @@ The application implements:
 
 2. **Run the JAR**
    ```bash
-   java -jar target/sanathana-parampara-0.0.1-SNAPSHOT.jar
+   java -jar target/Mane Coffee-0.0.1-SNAPSHOT.jar
    ```
 
 3. **Docker Deployment** (Optional)
    ```dockerfile
    FROM openjdk:17-jdk-slim
-   COPY target/sanathana-parampara-0.0.1-SNAPSHOT.jar app.jar
+   COPY target/Mane Coffee-0.0.1-SNAPSHOT.jar app.jar
    EXPOSE 8080
    ENTRYPOINT ["java", "-jar", "/app.jar"]
    ```

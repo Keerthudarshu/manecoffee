@@ -13,7 +13,7 @@ mkdir -p /tmp/uploads
 chmod 755 /tmp/uploads
 
 # Get the JAR file name
-JAR_FILE="target/sanathana-parampara-0.0.1-SNAPSHOT.jar"
+JAR_FILE="target/Mane Coffee-0.0.1-SNAPSHOT.jar"
 
 # Check if JAR file exists
 if [ ! -f "$JAR_FILE" ]; then

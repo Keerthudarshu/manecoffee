@@ -1,6 +1,6 @@
-# sanathana-parampara - Frontend
+# Mane Coffee - Frontend
 
-A modern React-based e-commerce frontend application for sanathana-parampara organic products store.
+A modern React-based e-commerce frontend application for Mane Coffee organic products store.
 
 ## 🚀 Features
 

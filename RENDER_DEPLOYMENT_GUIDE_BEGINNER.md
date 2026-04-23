@@ -18,7 +18,7 @@ I've analyzed your code - everything is properly configured! Here's what you hav
 1. **Open Command Prompt/PowerShell**
 2. **Navigate to your project:**
    ```bash
-   cd "C:\Users\nishm\sanathana-parampara\Neenu_Natural2-nishmithaNew"
+   cd "C:\Users\nishm\Mane Coffee\Neenu_Natural2-nishmithaNew"
    ```
 
 3. **Make sure all files are committed to GitHub:**
@@ -69,7 +69,7 @@ I've analyzed your code - everything is properly configured! Here's what you hav
 1. **In Render Dashboard, click "New +" again**
 2. **Select "Web Service"**
 3. **Connect your GitHub repository:**
-   - Find your repository: `Nishukvgce/sanathana-parampara`
+   - Find your repository: `Nishukvgce/Mane Coffee`
    - Click "Connect"
 
 4. **Configure the service:**
@@ -84,7 +84,7 @@ I've analyzed your code - everything is properly configured! Here's what you hav
 5. **Build & Deploy Settings:**
    ```
    Build Command: chmod +x ./mvnw && ./mvnw clean package -DskipTests
-   Start Command: java -Dserver.port=$PORT -jar target/sanathana-parampara-0.0.1-SNAPSHOT.jar
+   Start Command: java -Dserver.port=$PORT -jar target/Mane Coffee-0.0.1-SNAPSHOT.jar
    ```
 
 6. **Instance Type:**

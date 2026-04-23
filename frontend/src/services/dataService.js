@@ -69,7 +69,7 @@ const saveOrdersToStorage = () => {
 
 // Settings data
 const settings = {
-  siteName: "sanathana-parampara",
+  siteName: "Mane Coffee",
   currency: "INR",
   shippingFee: 50,
   freeShippingThreshold: 500,

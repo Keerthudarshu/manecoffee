@@ -10,7 +10,7 @@ This guide will help you deploy your Spring Boot backend for **FREE** using Rend
 
 ## 🗄️ File Structure on Your C: Drive
 ```
-C:\Users\nishm\sanathana-parampara\Neenu_Natural2-nishmithaNew\
+C:\Users\nishm\Mane Coffee\Neenu_Natural2-nishmithaNew\
 ├── backend/                    # Your Spring Boot application
 │   ├── src/
 │   ├── target/
@@ -28,7 +28,7 @@ C:\Users\nishm\sanathana-parampara\Neenu_Natural2-nishmithaNew\
 ### Step 1: Prepare Your Repository
 1. **Commit all changes** to your GitHub repository:
    ```bash
-   cd "C:\Users\nishm\sanathana-parampara\Neenu_Natural2-nishmithaNew"
+   cd "C:\Users\nishm\Mane Coffee\Neenu_Natural2-nishmithaNew"
    git add .
    git commit -m "Prepare for Render deployment"
    git push origin main
@@ -71,7 +71,7 @@ C:\Users\nishm\sanathana-parampara\Neenu_Natural2-nishmithaNew\
   ```
 - **Start Command**:
   ```bash
-  java -Dserver.port=$PORT -jar target/sanathana-parampara-0.0.1-SNAPSHOT.jar
+  java -Dserver.port=$PORT -jar target/Mane Coffee-0.0.1-SNAPSHOT.jar
   ```
 
 **Plan:**
@@ -117,7 +117,7 @@ services:
     name: neenu-natural-backend
     env: java
     buildCommand: "chmod +x ./mvnw && ./mvnw clean package -DskipTests"
-    startCommand: "java -Dserver.port=$PORT -jar target/sanathana-parampara-0.0.1-SNAPSHOT.jar"
+    startCommand: "java -Dserver.port=$PORT -jar target/Mane Coffee-0.0.1-SNAPSHOT.jar"
 ```
 
 ### 2. `application-prod.properties` (Production Config)
@@ -161,7 +161,7 @@ chmod +x ./mvnw && ./mvnw clean package -DskipTests
 ### Issue 3: Build Fails with Memory Issues
 **Solution**: Use optimized JVM settings:
 ```bash
-java -Xmx512m -Xms256m -jar target/sanathana-parampara-0.0.1-SNAPSHOT.jar
+java -Xmx512m -Xms256m -jar target/Mane Coffee-0.0.1-SNAPSHOT.jar
 ```
 
 ### Issue 4: CORS Issues
@@ -189,7 +189,7 @@ spring.web.cors.allowed-origins=https://your-frontend-domain.vercel.app
 
 ```bash
 # 1. Navigate to project
-cd "C:\Users\nishm\sanathana-parampara\Neenu_Natural2-nishmithaNew"
+cd "C:\Users\nishm\Mane Coffee\Neenu_Natural2-nishmithaNew"
 
 # 2. Test build locally
 cd backend

@@ -2,7 +2,7 @@
 
 ## ✅ Completed: Frontend and Backend Separation
 
-The sanathana-parampara e-commerce project has been successfully reorganized into a proper full-stack structure with separate frontend and backend directories.
+The Mane Coffee e-commerce project has been successfully reorganized into a proper full-stack structure with separate frontend and backend directories.
 
 ## 📁 New Project Structure
 
@@ -51,7 +51,7 @@ Neenu_Natural2-nishmithaNew/
 │   │   │   └── ...
 │   │   ├── repository/         # Data repositories
 │   │   ├── service/            # Business logic services
-│   │   └── sanathana-paramparaApplication.java  # Main application
+│   │   └── Mane CoffeeApplication.java  # Main application
 │   ├── src/main/resources/
 │   │   └── application.properties  # Database configuration
 │   ├── pom.xml                 # Maven dependencies
@@ -79,7 +79,7 @@ Neenu_Natural2-nishmithaNew/
 - `.env` → `frontend/.env`
 
 ### ✅ Files Moved to `/backend/`
-- `sanathana-parampara/sanathana-parampara/` → `backend/` (All Spring Boot files)
+- `Mane Coffee/Mane Coffee/` → `backend/` (All Spring Boot files)
 - `src/main/java/` → `backend/src/main/java/` (Java source code)
 - `src/main/resources/` → `backend/src/main/resources/` (Config files)
 - `pom.xml` → `backend/pom.xml` (Maven configuration)

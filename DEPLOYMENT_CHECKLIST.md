@@ -24,7 +24,7 @@
 - [ ] Set root directory: `backend`
 - [ ] Runtime: Java
 - [ ] Build command: `chmod +x ./mvnw && ./mvnw clean package -DskipTests`
-- [ ] Start command: `java -Dserver.port=$PORT -jar target/sanathana-parampara-0.0.1-SNAPSHOT.jar`
+- [ ] Start command: `java -Dserver.port=$PORT -jar target/Mane Coffee-0.0.1-SNAPSHOT.jar`
 - [ ] Plan: Free
 
 ### 3. Environment Variables
@@ -62,7 +62,7 @@ chmod +x ./mvnw && ./mvnw clean package -DskipTests
 ### Memory Issues
 ```bash
 # Already optimized in start.sh
-java -Xmx512m -Xms256m -jar target/sanathana-parampara-0.0.1-SNAPSHOT.jar
+java -Xmx512m -Xms256m -jar target/Mane Coffee-0.0.1-SNAPSHOT.jar
 ```
 
 ### CORS Issues
@@ -82,4 +82,4 @@ java -Xmx512m -Xms256m -jar target/sanathana-parampara-0.0.1-SNAPSHOT.jar
 ✅ Full application workflow tested
 
 ---
-**File Location**: `C:\Users\nishm\sanathana-parampara\Neenu_Natural2-nishmithaNew\`
+**File Location**: `C:\Users\nishm\Mane Coffee\Neenu_Natural2-nishmithaNew\`

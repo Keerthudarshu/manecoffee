@@ -67,18 +67,25 @@ export function resolveImageUrl(input) {
 
   // Already has /api prefix but not full origin
   if (url.startsWith('/api/')) {
-    return `${API_CONFIG.BASE_URL}${url}`;
+    const origin = API_CONFIG.BASE_URL.replace(/\/api$/, '');
+    return `${origin}${url}`;
   }
 
   // /uploads/ paths - map to backend image serving endpoint
   if (url.startsWith('/uploads/')) {
     const filename = url.replace('/uploads/', '');
-    return `${API_CONFIG.BASE_URL}/admin/products/images/${filename}`;
+    const baseApiUrl = API_CONFIG.BASE_URL.endsWith('/api') ? API_CONFIG.BASE_URL : `${API_CONFIG.BASE_URL}/api`;
+    return `${baseApiUrl}/admin/products/images/${filename}`;
   }
 
   // Already has /admin or other prefixes
   if (url.startsWith('/admin/')) {
     return `${API_ORIGIN}${url}`;
+  }
+
+  // Static assets should not be prefixed with API base URL
+  if (url.startsWith('/assets/') || url.startsWith('/images/')) {
+    return url;
   }
 
   // Starts with / but not recognized
@@ -88,7 +95,8 @@ export function resolveImageUrl(input) {
   }
 
   // Relative path - add to /api prefix
-  return `${API_ORIGIN}/${url}`;
+  const origin = API_CONFIG.BASE_URL.replace(/\/api$/, '');
+  return `${origin}/api/${url.replace(/^\//, '')}`;
 }
 
 export default resolveImageUrl;

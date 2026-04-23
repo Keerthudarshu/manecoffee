@@ -2,7 +2,7 @@
 
 ## 📋 Pre-Deployment Checklist
 - [ ] All code committed to GitHub
-- [ ] Repository: `Nishukvgce/sanathana-parampara` is accessible
+- [ ] Repository: `Nishukvgce/Mane Coffee` is accessible
 - [ ] Files present: `backend/pom.xml`, `backend/build.sh`, `backend/render.yaml`
 
 ## 🗄️ Database Setup (5 mins)
@@ -18,12 +18,12 @@
 
 ## 🚀 Backend Deployment (10 mins)
 - [ ] Click "New +" → "Web Service"
-- [ ] Connect repository: `Nishukvgce/sanathana-parampara`
+- [ ] Connect repository: `Nishukvgce/Mane Coffee`
 - [ ] Name: `neenu-natural-backend`
 - [ ] Region: Oregon (US West) **SAME as database**
 - [ ] Root Directory: `backend`
 - [ ] Build Command: `chmod +x ./mvnw && ./mvnw clean package -DskipTests`
-- [ ] Start Command: `java -Dserver.port=$PORT -jar target/sanathana-parampara-0.0.1-SNAPSHOT.jar`
+- [ ] Start Command: `java -Dserver.port=$PORT -jar target/Mane Coffee-0.0.1-SNAPSHOT.jar`
 - [ ] Plan: FREE
 
 ## 🔑 Environment Variables (CRITICAL)

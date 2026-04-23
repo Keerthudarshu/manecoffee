@@ -105,19 +105,19 @@ const OrderManagement = () => {
     try {
       // Enhanced company settings
       const settings = {
-        siteName: "sanathana-parampara",
+        siteName: "Mane Coffee",
         companyAddress: "Natural & Organic Products Hub, Bangalore, India",
         companyPhone: "+91 7892783668",
-        companyEmail: "info@sanathana-parampara.com"
+        companyEmail: "info@Mane Coffee.com"
       };
-      
+
       // Enhanced customer data mapping with better fallbacks
       const customer = {
         name: order.shipping?.name || order.customerName || order.user?.name || 'Valued Customer',
         email: order.customerEmail || order.user?.email || order.shipping?.email || 'N/A',
         phone: order.shipping?.phone || order.customerPhone || order.user?.phone || 'N/A'
       };
-      
+
       // Enhanced order data with proper formatting matching backend structure
       const enhancedOrder = {
         ...order,
@@ -141,7 +141,7 @@ const OrderManagement = () => {
           pincode: 'N/A'
         }
       };
-      
+
       await new Promise(resolve => setTimeout(resolve, 500)); // Brief delay for UX
       downloadInvoice(enhancedOrder, customer, settings);
     } catch (error) {
@@ -157,19 +157,19 @@ const OrderManagement = () => {
     try {
       // Enhanced company settings
       const settings = {
-        siteName: "sanathana-parampara",
+        siteName: "Mane Coffee",
         companyAddress: "Natural & Organic Products Hub, Bangalore, India",
         companyPhone: "+91 7892783668",
-        companyEmail: "info@sanathana-parampara.com"
+        companyEmail: "info@Mane Coffee.com"
       };
-      
+
       // Enhanced customer data mapping with better fallbacks
       const customer = {
         name: order.shipping?.name || order.customerName || order.user?.name || 'Valued Customer',
         email: order.customerEmail || order.user?.email || order.shipping?.email || 'N/A',
         phone: order.shipping?.phone || order.customerPhone || order.user?.phone || 'N/A'
       };
-      
+
       // Enhanced order data with proper formatting matching backend structure
       const enhancedOrder = {
         ...order,
@@ -193,7 +193,7 @@ const OrderManagement = () => {
           pincode: 'N/A'
         }
       };
-      
+
       await new Promise(resolve => setTimeout(resolve, 300)); // Brief delay for UX
       printInvoice(enhancedOrder, customer, settings);
     } catch (error) {
@@ -391,11 +391,10 @@ const OrderManagement = () => {
                         <button
                           onClick={() => handleDownloadInvoice(order)}
                           disabled={processingInvoice === `download-${order.id}`}
-                          className={`p-1 transition-colors ${
-                            processingInvoice === `download-${order.id}`
+                          className={`p-1 transition-colors ${processingInvoice === `download-${order.id}`
                               ? 'text-muted-foreground cursor-not-allowed'
                               : 'text-primary hover:text-primary/80'
-                          }`}
+                            }`}
                           title="Download Invoice"
                         >
                           {processingInvoice === `download-${order.id}` ? (
@@ -407,11 +406,10 @@ const OrderManagement = () => {
                         <button
                           onClick={() => handlePrintInvoice(order)}
                           disabled={processingInvoice === `print-${order.id}`}
-                          className={`p-1 transition-colors ${
-                            processingInvoice === `print-${order.id}`
+                          className={`p-1 transition-colors ${processingInvoice === `print-${order.id}`
                               ? 'text-muted-foreground cursor-not-allowed'
                               : 'text-primary hover:text-primary/80'
-                          }`}
+                            }`}
                           title="Print Invoice"
                         >
                           {processingInvoice === `print-${order.id}` ? (

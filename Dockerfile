@@ -52,7 +52,7 @@ RUN apt-get update && \
 WORKDIR /app
 
 # Copy the built JAR from backend build stage
-COPY --from=backend-build /app/backend/target/sanathana-parampara-0.0.1-SNAPSHOT.jar app.jar
+COPY --from=backend-build /app/backend/target/Mane Coffee-0.0.1-SNAPSHOT.jar app.jar
 
 # Copy the built frontend from frontend build stage to serve as static content
 COPY --from=frontend-build /app/frontend/build ./static
