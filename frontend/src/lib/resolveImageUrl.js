@@ -70,10 +70,10 @@ export function resolveImageUrl(input) {
     return `${API_CONFIG.BASE_URL}${url}`;
   }
 
-  // /uploads/ paths - map to base URL
+  // /uploads/ paths - map to backend image serving endpoint
   if (url.startsWith('/uploads/')) {
-    return `${API_CONFIG.BASE_URL}${url}`;
-
+    const filename = url.replace('/uploads/', '');
+    return `${API_CONFIG.BASE_URL}/admin/products/images/${filename}`;
   }
 
   // Already has /admin or other prefixes

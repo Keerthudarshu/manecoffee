@@ -101,27 +101,34 @@ const ProductDetailPage = () => {
           shortDescription: productData?.shortDescription || productData?.description?.substring(0, 100) + '...',
           description: productData?.description || 'No description available.',
           images: (() => {
-            // Only use actual backend image data, no fallback images
+            let allImages = [];
+            // Extract main images
             if (productData?.images && Array.isArray(productData.images) && productData.images.length > 0) {
-              return productData.images.map(resolveImageUrl).filter(Boolean);
+              allImages = [...allImages, ...productData.images];
+            } else if (productData?.gallery && Array.isArray(productData.gallery) && productData.gallery.length > 0) {
+              allImages = [...allImages, ...productData.gallery];
+            } else if (productData?.imageUrl && productData.imageUrl.trim() !== '') {
+              allImages.push(productData.imageUrl);
+            } else if (productData?.image && productData.image.trim() !== '') {
+              allImages.push(productData.image);
+            } else if (productData?.image_path && productData.image_path.trim() !== '') {
+              allImages.push(productData.image_path);
+            } else if (productData?.thumbnailUrl && productData.thumbnailUrl.trim() !== '') {
+              allImages.push(productData.thumbnailUrl);
             }
-            if (productData?.gallery && Array.isArray(productData.gallery) && productData.gallery.length > 0) {
-              return productData.gallery.map(resolveImageUrl).filter(Boolean);
+            
+            // Extract variant images
+            if (normalizedVariants && Array.isArray(normalizedVariants)) {
+              normalizedVariants.forEach(v => {
+                if (v.imageUrls && Array.isArray(v.imageUrls)) {
+                  allImages = [...allImages, ...v.imageUrls];
+                }
+              });
             }
-            if (productData?.imageUrl && productData.imageUrl.trim() !== '') {
-              return [resolveImageUrl(productData.imageUrl)].filter(Boolean);
-            }
-            if (productData?.image && productData.image.trim() !== '') {
-              return [resolveImageUrl(productData.image)].filter(Boolean);
-            }
-            if (productData?.image_path && productData.image_path.trim() !== '') {
-              return [resolveImageUrl(productData.image_path)].filter(Boolean);
-            }
-            if (productData?.thumbnailUrl && productData.thumbnailUrl.trim() !== '') {
-              return [resolveImageUrl(productData.thumbnailUrl)].filter(Boolean);
-            }
-            // Return empty array if no actual image data found
-            return [];
+            
+            // Deduplicate and resolve
+            const uniqueImages = [...new Set(allImages.filter(Boolean))];
+            return uniqueImages.map(resolveImageUrl);
           })(),
           variants: normalizedVariants,
           badges: productData?.badges || [],
