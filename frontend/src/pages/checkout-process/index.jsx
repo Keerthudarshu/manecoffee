@@ -281,56 +281,8 @@ const CheckoutProcess = () => {
         throw new Error('Your cart is empty. Please add items before placing an order.');
       }
 
-      // If payment method is COD, proceed with server order placement
-      if (!paymentData || paymentData?.method === 'cod') {
-        const savedOrder = await checkoutApi.placeOrder(user.email);
-        console.log('Order placed successfully:', savedOrder);
-
-        clearCart();
-        console.log('DEBUG: savedOrder for COD:', savedOrder);
-
-        // Send order confirmation email
-        // Send order confirmation email
-        try {
-          console.log('Sending email confirmation with data:', {
-            email: user.email,
-            orderId: savedOrder.id || savedOrder.orderId,
-            itemsCount: cartItems.length
-          });
-
-          await apiClient.post('/send-confirmation', {
-            email: user.email,
-            orderId: savedOrder?.id || savedOrder?.orderId || (typeof savedOrder === 'number' || typeof savedOrder === 'string' ? savedOrder : 'N/A'),
-            items: cartItems.map(item => ({
-              name: item.name,
-              price: item.price,
-              quantity: item.quantity,
-              weightValue: item.weightValue || item.weight,
-              weightUnit: item.weightUnit || ''
-            })),
-            subtotal: subtotal,
-            shippingCost: shippingCost,
-            discountAmount: discountAmount,
-            total: total
-          });
-          console.log('Order confirmation email request sent');
-        } catch (emailErr) {
-          console.error('Failed to send order confirmation email:', emailErr);
-        }
-
-        setSuccessPopup({
-          open: true,
-          message: `Order placed successfully! Order ID: ${savedOrder.id || savedOrder.orderId || (typeof savedOrder === 'number' || typeof savedOrder === 'string' ? savedOrder : 'N/A')}.`,
-          orderId: savedOrder.id || savedOrder.orderId
-        });
-
-        // Navigation will happen after popup close or timeout
-        setTimeout(() => {
-          navigate('/user-account-dashboard?section=orders');
-        }, 3000);
-
-        setIsProcessing(false);
-        return;
+      if (!paymentData || !paymentData?.method) {
+        throw new Error('Please select an online payment method before placing the order.');
       }
 
       // For online payments (card/upi/wallet), create a Razorpay order and open checkout

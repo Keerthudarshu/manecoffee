@@ -84,7 +84,6 @@ const OrderReview = ({
 
   const getPaymentMethodDisplay = (method) => {
     const methodMap = {
-      'cod': 'Cash on Delivery',
       'upi': 'UPI Payment',
       'card': 'Credit/Debit Card',
       'netbanking': 'Net Banking'
@@ -192,11 +191,6 @@ const OrderReview = ({
             <p className="font-body font-medium text-foreground">
               {getPaymentMethodDisplay(paymentMethod?.method)}
             </p>
-            {paymentMethod?.method === 'cod' && (
-              <p className="font-body text-sm text-muted-foreground">
-                Pay ₹{orderTotal?.toFixed(2)} when your order is delivered
-              </p>
-            )}
             {paymentMethod?.method === 'upi' && paymentMethod?.upiId && (
               <p className="font-body text-sm text-muted-foreground">
                 UPI ID: {paymentMethod?.upiId}

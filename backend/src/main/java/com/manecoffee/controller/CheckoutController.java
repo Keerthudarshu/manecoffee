@@ -79,7 +79,7 @@ public class CheckoutController {
                         s.setUser(user);
                         // Set default values to avoid null constraint violations
                         s.setDeliveryOption("standard");
-                        s.setPaymentMethod("cod");
+                        s.setPaymentMethod("card");
                         return s;
                     });
 
@@ -151,7 +151,7 @@ public class CheckoutController {
      * Validate payment method
      */
     private boolean isValidPaymentMethod(String method) {
-        return method != null && (method.equals("cod") || method.equals("card") ||
+        return method != null && (method.equals("card") ||
                 method.equals("upi") || method.equals("wallet"));
     }
 
@@ -197,6 +197,12 @@ public class CheckoutController {
             // 6. Validate payment method is selected
             if (selection.getPaymentMethod() == null || selection.getPaymentMethod().trim().isEmpty()) {
                 return ResponseEntity.badRequest().body("No payment method selected. Please choose payment method.");
+            }
+            if ("cod".equalsIgnoreCase(selection.getPaymentMethod())) {
+                return ResponseEntity.badRequest().body("Cash on Delivery is not available. Please choose online payment.");
+            }
+            if ("cod".equalsIgnoreCase(selection.getPaymentMethod())) {
+                return ResponseEntity.badRequest().body("Cash on Delivery is not available. Please use online payment.");
             }
 
             // 7. Get cart items

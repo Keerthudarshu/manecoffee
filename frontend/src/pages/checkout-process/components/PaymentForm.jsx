@@ -11,9 +11,8 @@ import checkoutApi from '../../../services/checkoutApi';
  * PaymentForm Component - Step 3 of Checkout Process
  *
  * This component handles payment selection and passes the chosen method
- * to the parent checkout flow. It supports two choices: Cash on Delivery
- * and Online Payment (Razorpay). The actual payment UI (Razorpay) is
- * invoked at the final step by the checkout flow when 'online' is chosen.
+ * to the parent checkout flow. It supports online payment via Razorpay.
+ * The actual Razorpay checkout is invoked at the final step.
  *
  * Props:
  * - onNext: Function to proceed to next step
@@ -38,17 +37,8 @@ const PaymentForm = ({ onNext, onBack, orderTotal, paymentMethod: initialPayment
   const [savePaymentMethod, setSavePaymentMethod] = useState(false);
   const [errors, setErrors] = useState({});
 
-  // Simplified payment options: either Cash on Delivery or Online Payment
-  // Online Payment will be processed via Razorpay at the final step
+  // Only online payment is allowed; it will be processed via Razorpay
   const paymentMethods = [
-    {
-      id: 'cod',
-      name: 'Cash on Delivery',
-      description: 'Pay when your order is delivered',
-      icon: 'Banknote',
-      fee: 0,
-      available: true
-    },
     {
       id: 'online',
       name: 'Online Payment',
@@ -325,26 +315,6 @@ const PaymentForm = ({ onNext, onBack, orderTotal, paymentMethod: initialPayment
               placeholder="yourname@paytm"
               description="Enter your UPI ID (e.g., 90194 45168@paytm)"
             />
-          </div>
-        )}
-
-        {/* COD Information */}
-        {paymentMethod === 'cod' && (
-          <div className="p-4 bg-warning/10 border border-warning/20 rounded-lg">
-            <div className="flex items-start space-x-3">
-              <Icon name="Info" size={16} className="text-warning mt-0.5" />
-              <div>
-                <h4 className="font-body font-medium text-foreground mb-2">
-                  Cash on Delivery
-                </h4>
-                <ul className="font-body text-sm text-muted-foreground space-y-1">
-                  <li>• Pay ₹{orderTotal?.toFixed(2)} when your order is delivered</li>
-                  {/* <li>• Please keep exact change ready</li>
-                  <li>• COD available for orders up to ₹5,000</li>
-                  <li>• Additional verification may be required</li> */}
-                </ul>
-              </div>
-            </div>
           </div>
         )}
 
