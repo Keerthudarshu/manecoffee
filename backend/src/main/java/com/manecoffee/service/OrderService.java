@@ -107,11 +107,28 @@ public class OrderService {
         double subtotal = cart.stream()
             .mapToDouble(ci -> (ci.getPriceAtAdd() != null ? ci.getPriceAtAdd() : 0.0) * ci.getQuantity())
             .sum();
-        double shippingFee = "express".equalsIgnoreCase(selection.getDeliveryOption()) ? 100.0 : 50.0;
-        double total = subtotal + shippingFee;
+            
+        double shippingFee = 0.0;
+        if ("express".equalsIgnoreCase(selection.getDeliveryOption())) {
+            shippingFee = 100.0;
+        } else {
+            shippingFee = (subtotal >= 499) ? 0.0 : 49.0;
+        }
+
+        double discountAmount = 0.0;
+        String coupon = selection.getAppliedCoupon();
+        if ("FLAT10".equalsIgnoreCase(coupon) && subtotal >= 1499) {
+            discountAmount = subtotal * 0.10;
+        } else {
+            coupon = null;
+        }
+
+        double total = subtotal + shippingFee - discountAmount;
         
         order.setSubtotal(subtotal);
         order.setShippingFee(shippingFee);
+        order.setDiscount(discountAmount);
+        order.setAppliedCoupon(coupon);
         order.setTotal(total);
         
         // 7. Create order items and decrement stock in ProductVariant

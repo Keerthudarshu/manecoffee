@@ -114,6 +114,16 @@ public class CheckoutController {
                 logger.debug("Updated payment method: {}", paymentMethod);
             }
 
+            if (body.containsKey("appliedCoupon")) {
+                String coupon = (String) body.get("appliedCoupon");
+                // Allow null/empty to remove coupon
+                if (coupon != null && coupon.trim().isEmpty()) {
+                    coupon = null;
+                }
+                selection.setAppliedCoupon(coupon);
+                logger.debug("Updated applied coupon: {}", coupon);
+            }
+
             CheckoutSelection saved = selectionRepo.save(selection);
             logger.info("Checkout selection saved for user: {}", email);
             return ResponseEntity.ok(saved);
@@ -210,8 +220,27 @@ public class CheckoutController {
 
             // 9. Calculate totals
             double subtotal = items.stream().mapToDouble(i -> i.lineTotal).sum();
-            double shippingFee = "express".equalsIgnoreCase(selection.getDeliveryOption()) ? 100.0 : 50.0;
-            double total = subtotal + shippingFee;
+            
+            // Shipping logic: Free above 499 (for standard). Or 49.
+            // If express, maybe 100? Let's just follow frontend exactly:
+            // calculatedShipping = shipping || (calculatedSubtotal >= 499 ? 0 : 49);
+            double shippingFee = 0.0;
+            if ("express".equalsIgnoreCase(selection.getDeliveryOption())) {
+                shippingFee = 100.0;
+            } else {
+                shippingFee = (subtotal >= 499) ? 0.0 : 49.0;
+            }
+
+            // Discount logic: FLAT10 is 10% off if subtotal >= 1499
+            double discountAmount = 0.0;
+            String coupon = selection.getAppliedCoupon();
+            if ("FLAT10".equalsIgnoreCase(coupon) && subtotal >= 1499) {
+                discountAmount = subtotal * 0.10;
+            } else {
+                coupon = null; // invalid coupon or criteria not met
+            }
+
+            double total = subtotal + shippingFee - discountAmount;
 
             // 10. Build order review DTO
             OrderReviewDTO reviewDTO = new OrderReviewDTO();
@@ -221,6 +250,8 @@ public class CheckoutController {
             reviewDTO.paymentMethod = selection.getPaymentMethod();
             reviewDTO.subtotal = subtotal;
             reviewDTO.shippingFee = shippingFee;
+            reviewDTO.discount = discountAmount;
+            reviewDTO.appliedCoupon = coupon;
             reviewDTO.total = total;
 
             logger.info("Order review generated for user: {} with {} items, total: {}",

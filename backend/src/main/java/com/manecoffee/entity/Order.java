@@ -62,6 +62,12 @@ public class Order {
     @Column(nullable = false)
     private Double total;
 
+    @Column(name = "discount_amount")
+    private Double discount = 0.0;
+
+    @Column(name = "applied_coupon")
+    private String appliedCoupon;
+
     @Column(nullable = false)
     private OffsetDateTime createdAt = OffsetDateTime.now();
 
@@ -170,6 +176,22 @@ public class Order {
 
     public void setTotal(Double total) {
         this.total = total;
+    }
+
+    public Double getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(Double discount) {
+        this.discount = discount;
+    }
+
+    public String getAppliedCoupon() {
+        return appliedCoupon;
+    }
+
+    public void setAppliedCoupon(String appliedCoupon) {
+        this.appliedCoupon = appliedCoupon;
     }
 
     public OffsetDateTime getCreatedAt() {

@@ -21,6 +21,9 @@ public class CheckoutSelection {
     @Column(nullable = false)
     private String paymentMethod; // cod, card, upi, wallet
 
+    @Column(name = "applied_coupon")
+    private String appliedCoupon;
+
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
     public User getUser() { return user; }
@@ -31,6 +34,8 @@ public class CheckoutSelection {
     public void setDeliveryOption(String deliveryOption) { this.deliveryOption = deliveryOption; }
     public String getPaymentMethod() { return paymentMethod; }
     public void setPaymentMethod(String paymentMethod) { this.paymentMethod = paymentMethod; }
+    public String getAppliedCoupon() { return appliedCoupon; }
+    public void setAppliedCoupon(String appliedCoupon) { this.appliedCoupon = appliedCoupon; }
 }
 
 

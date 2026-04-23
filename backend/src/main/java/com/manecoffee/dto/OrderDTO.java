@@ -25,6 +25,8 @@ public class OrderDTO {
     private String returnStatus;
     private Double subtotal;
     private Double shippingFee;
+    private Double discount;
+    private String appliedCoupon;
     private Double total;
 
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
@@ -46,6 +48,8 @@ public class OrderDTO {
         this.status = order.getStatus();
         this.subtotal = order.getSubtotal();
         this.shippingFee = order.getShippingFee();
+        this.discount = order.getDiscount();
+        this.appliedCoupon = order.getAppliedCoupon();
         this.total = order.getTotal();
         this.createdAt = order.getCreatedAt();
         this.returnStatus = order.getReturnStatus();
@@ -145,6 +149,22 @@ public class OrderDTO {
 
     public void setShippingFee(Double shippingFee) {
         this.shippingFee = shippingFee;
+    }
+
+    public Double getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(Double discount) {
+        this.discount = discount;
+    }
+
+    public String getAppliedCoupon() {
+        return appliedCoupon;
+    }
+
+    public void setAppliedCoupon(String appliedCoupon) {
+        this.appliedCoupon = appliedCoupon;
     }
 
     public Double getTotal() {

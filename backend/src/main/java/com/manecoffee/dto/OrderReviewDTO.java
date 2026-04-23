@@ -9,6 +9,8 @@ public class OrderReviewDTO {
   public String paymentMethod;
   public Double subtotal;
   public Double shippingFee;
+  public Double discount;
+  public String appliedCoupon;
   public Double total;
 }
 
