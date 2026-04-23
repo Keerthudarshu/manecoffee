@@ -12,7 +12,7 @@ const ProductForm = ({ product, onSave, onCancel }) => {
     description: '',
     // variants: support quantity-based / variant pricing
     variants: [
-      { price: '', originalPrice: '', stockQuantity: '', weightValue: '', weightUnit: 'ML' }
+      { price: '', originalPrice: '', stockQuantity: '', weightValue: '', weightUnit: 'ML', imageUrls: [], imageFiles: [] }
     ],
     category: '',
     subcategory: '',
@@ -25,6 +25,7 @@ const ProductForm = ({ product, onSave, onCancel }) => {
   const [existingImageUrl, setExistingImageUrl] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [selectedVariantIndex, setSelectedVariantIndex] = useState(0);
 
   useEffect(() => {
     if (product && typeof product === 'object') {
@@ -35,7 +36,9 @@ const ProductForm = ({ product, onSave, onCancel }) => {
           originalPrice: v.originalPrice != null ? String(v.originalPrice) : '',
           stockQuantity: v.stockQuantity != null ? String(v.stockQuantity) : '',
           weightValue: v.weightValue != null ? String(v.weightValue) : '',
-          weightUnit: v.weightUnit || 'ML'
+          weightUnit: v.weightUnit || 'ML',
+          imageUrls: v.imageUrls || [],
+          imageFiles: []
         }))
         : [
           {
@@ -43,7 +46,9 @@ const ProductForm = ({ product, onSave, onCancel }) => {
             originalPrice: product.originalPrice ? String(product.originalPrice) : '',
             stockQuantity: product.stockQuantity ? String(product.stockQuantity) : '',
             weightValue: product.weight ? String(product.weight).replace(/[^0-9.]/g, '') : '',
-            weightUnit: 'ML'
+            weightUnit: 'ML',
+            imageUrls: [],
+            imageFiles: []
           }
         ];
 
@@ -63,7 +68,7 @@ const ProductForm = ({ product, onSave, onCancel }) => {
       setFormData({
         name: '',
         description: '',
-        variants: [{ price: '', originalPrice: '', stockQuantity: '', weightValue: '', weightUnit: 'ML' }],
+        variants: [{ price: '', originalPrice: '', stockQuantity: '', weightValue: '', weightUnit: 'ML', imageUrls: [], imageFiles: [] }],
         category: '',
         subcategory: '',
         ingredients: '',
@@ -136,6 +141,51 @@ const ProductForm = ({ product, onSave, onCancel }) => {
     }
   };
 
+  const handleVariantImageUpload = async (e, variantIndex) => {
+    const files = Array.from(e.target.files);
+    if (!files.length) return;
+    
+    try {
+      const processedFiles = [];
+      for (const file of files) {
+        if (file.size > 20 * 1024 * 1024) continue;
+        
+        if (file.size > 500 * 1024) {
+          const compressedFile = await compressImage(file);
+          processedFiles.push(new File([compressedFile], file.name, {
+            type: 'image/jpeg',
+            lastModified: Date.now(),
+          }));
+        } else {
+          processedFiles.push(file);
+        }
+      }
+      
+      setFormData(prev => {
+        const newVariants = [...prev.variants];
+        const v = newVariants[variantIndex];
+        v.imageFiles = [...(v.imageFiles || []), ...processedFiles];
+        return { ...prev, variants: newVariants };
+      });
+    } catch (error) {
+      console.error('Error processing variant images:', error);
+      setError('Error processing variant images.');
+    }
+  };
+
+  const removeVariantImage = (variantIndex, type, imageIndex) => {
+    setFormData(prev => {
+      const newVariants = [...prev.variants];
+      const v = newVariants[variantIndex];
+      if (type === 'url') {
+        v.imageUrls = v.imageUrls.filter((_, i) => i !== imageIndex);
+      } else {
+        v.imageFiles = v.imageFiles.filter((_, i) => i !== imageIndex);
+      }
+      return { ...prev, variants: newVariants };
+    });
+  };
+
   useEffect(() => {
     // Fetch categories from backend
     async function fetchCategories() {
@@ -161,7 +211,7 @@ const ProductForm = ({ product, onSave, onCancel }) => {
   const addVariant = () => {
     setFormData(prev => ({
       ...prev,
-      variants: [...(prev.variants || []), { price: '', originalPrice: '', stockQuantity: '', weightValue: '', weightUnit: 'ML' }]
+      variants: [...(prev.variants || []), { price: '', originalPrice: '', stockQuantity: '', weightValue: '', weightUnit: 'ML', imageUrls: [], imageFiles: [] }]
     }));
   };
 
@@ -213,7 +263,8 @@ const ProductForm = ({ product, onSave, onCancel }) => {
         originalPrice: v.originalPrice ? parseFloat(v.originalPrice) : parseFloat(v.price),
         stockQuantity: parseInt(v.stockQuantity),
         weightValue: v.weightValue,
-        weightUnit: v.weightUnit || 'ML'
+        weightUnit: v.weightUnit || 'ML',
+        imageUrls: v.imageUrls || []
       }));
 
       const first = variants[0] || { price: 0, originalPrice: 0, stockQuantity: 0 };
@@ -235,25 +286,38 @@ const ProductForm = ({ product, onSave, onCancel }) => {
       };
 
       if (product) {
-        // Edit mode: update product
-        if (imageFile) {
-          // If new image is uploaded, use FormData for update
-          const form = new FormData();
-          form.append('product', new Blob([JSON.stringify(productData)], { type: 'application/json' }));
-          form.append('image', imageFile);
-          await dataService.updateProductWithImage(product.id, form);
-        } else {
-          // Preserve existing imageUrl if no new image is uploaded
-          if (product?.imageUrl) {
-            productData.imageUrl = product.imageUrl;
-          }
-          await dataService.updateProduct(product.id, productData);
-        }
-      } else {
-        // Add mode: use FormData for image upload
         const form = new FormData();
         form.append('product', new Blob([JSON.stringify(productData)], { type: 'application/json' }));
-        form.append('image', imageFile);
+        if (imageFile) {
+          form.append('image', imageFile);
+        }
+        
+        // Append variant files
+        (formData.variants || []).forEach((v, index) => {
+          if (v.imageFiles && v.imageFiles.length > 0) {
+            v.imageFiles.forEach(file => {
+              form.append(`variantImages_${index}`, file);
+            });
+          }
+        });
+        
+        await dataService.updateProductWithImage(product.id, form);
+      } else {
+        const form = new FormData();
+        form.append('product', new Blob([JSON.stringify(productData)], { type: 'application/json' }));
+        if (imageFile) {
+          form.append('image', imageFile);
+        }
+        
+        // Append variant files
+        (formData.variants || []).forEach((v, index) => {
+          if (v.imageFiles && v.imageFiles.length > 0) {
+            v.imageFiles.forEach(file => {
+              form.append(`variantImages_${index}`, file);
+            });
+          }
+        });
+        
         await dataService.addProduct(form, true);
       }
       onSave();
@@ -416,31 +480,105 @@ const ProductForm = ({ product, onSave, onCancel }) => {
           </div>
 
 
-          {/* Product image upload: Only show when adding a new product */}
-          {!product && (
-            <div>
-              <label className="block text-sm font-medium text-foreground mb-1">
-                Product Image *
-              </label>
-              <input
-                type="file"
-                accept="image/*"
-                onChange={handleImageUpload}
-                className="block w-full text-sm text-foreground file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-primary file:text-primary-foreground hover:file:bg-primary/80"
-                required
-              />
-              {imageFile && (
-                <div className="mt-2">
-                  <span className="block text-xs text-muted-foreground mb-1">Image Preview:</span>
-                  <img
-                    src={URL.createObjectURL(imageFile)}
-                    alt="Preview"
-                    className="w-32 h-32 object-cover rounded border border-border"
+          {/* Product image upload */}
+          <div>
+            <label className="block text-sm font-medium text-foreground mb-1">
+              Main Product Image {product ? '' : '*'}
+            </label>
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleImageUpload}
+              className="block w-full text-sm text-foreground file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-primary file:text-primary-foreground hover:file:bg-primary/80"
+              required={!product}
+            />
+            {imageFile && (
+              <div className="mt-2">
+                <span className="block text-xs text-muted-foreground mb-1">Image Preview:</span>
+                <img
+                  src={URL.createObjectURL(imageFile)}
+                  alt="Preview"
+                  className="w-32 h-32 object-cover rounded border border-border"
+                />
+              </div>
+            )}
+            {product && product.imageUrl && !imageFile && (
+              <div className="mt-2">
+                <span className="block text-xs text-muted-foreground mb-1">Current Image:</span>
+                <img
+                  src={resolveImageUrl(product.imageUrl)}
+                  alt="Current"
+                  className="w-32 h-32 object-cover rounded border border-border"
+                />
+              </div>
+            )}
+          </div>
+          
+          {/* Variant Images Section */}
+          <div className="bg-muted/50 p-4 rounded-lg border border-border">
+            <h3 className="text-md font-medium mb-3">Variant Images</h3>
+            <p className="text-sm text-muted-foreground mb-4">Select a variant below to add or manage its specific images.</p>
+            
+            <div className="mb-4">
+              <label className="block text-sm font-medium text-foreground mb-1">Select Variant</label>
+              <select
+                value={selectedVariantIndex}
+                onChange={(e) => setSelectedVariantIndex(Number(e.target.value))}
+                className="w-full md:w-1/2 h-10 px-3 rounded-md border border-border bg-background text-foreground"
+              >
+                {(formData.variants || []).map((v, idx) => (
+                  <option key={idx} value={idx}>
+                    Variant {idx + 1}: {v.weightValue} {v.weightUnit} - ₹{v.price}
+                  </option>
+                ))}
+              </select>
+            </div>
+            
+            {formData.variants[selectedVariantIndex] && (
+              <div className="space-y-4">
+                <div>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    multiple
+                    onChange={(e) => handleVariantImageUpload(e, selectedVariantIndex)}
+                    className="block w-full text-sm text-foreground file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-primary file:text-primary-foreground hover:file:bg-primary/80"
                   />
                 </div>
-              )}
-            </div>
-          )}
+                
+                <div className="flex flex-wrap gap-4 mt-3">
+                  {/* Existing URLs */}
+                  {(formData.variants[selectedVariantIndex].imageUrls || []).map((url, i) => (
+                    <div key={`url-${i}`} className="relative group">
+                      <img src={resolveImageUrl(url)} alt={`Variant ${i}`} className="w-24 h-24 object-cover rounded border border-border" />
+                      <button
+                        type="button"
+                        onClick={() => removeVariantImage(selectedVariantIndex, 'url', i)}
+                        className="absolute -top-2 -right-2 bg-destructive text-destructive-foreground rounded-full p-1 shadow-md"
+                      >
+                        <X size={14} />
+                      </button>
+                    </div>
+                  ))}
+                  
+                  {/* New Files */}
+                  {(formData.variants[selectedVariantIndex].imageFiles || []).map((file, i) => (
+                    <div key={`file-${i}`} className="relative group">
+                      <img src={URL.createObjectURL(file)} alt={`New Variant ${i}`} className="w-24 h-24 object-cover rounded border border-border opacity-80" />
+                      <span className="absolute bottom-0 left-0 right-0 bg-black/60 text-white text-[10px] px-1 text-center truncate">New</span>
+                      <button
+                        type="button"
+                        onClick={() => removeVariantImage(selectedVariantIndex, 'file', i)}
+                        className="absolute -top-2 -right-2 bg-destructive text-destructive-foreground rounded-full p-1 shadow-md"
+                      >
+                        <X size={14} />
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
 
           <div>
             <label className="block text-sm font-medium text-foreground mb-1">

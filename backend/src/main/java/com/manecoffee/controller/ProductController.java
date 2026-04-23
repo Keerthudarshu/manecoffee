@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import java.util.ArrayList;
 
 import com.manecoffee.entity.Product;
 import com.manecoffee.entity.ProductVariant;
@@ -69,11 +71,33 @@ public class ProductController {
     @PostMapping(consumes = { "multipart/form-data" })
     public ResponseEntity<Product> create(
             @RequestPart("product") Product p,
-            @RequestParam(value = "image", required = false) MultipartFile imageFile) throws IOException {
+            MultipartHttpServletRequest request) throws IOException {
+            
+        MultipartFile imageFile = request.getFile("image");
         if (imageFile != null && !imageFile.isEmpty()) {
             String relativePath = storageService.store(imageFile);
             p.setImageUrl(relativePath);
         }
+        
+        if (p.getVariants() != null) {
+            for (int i = 0; i < p.getVariants().size(); i++) {
+                ProductVariant variant = p.getVariants().get(i);
+                List<MultipartFile> variantFiles = request.getFiles("variantImages_" + i);
+                if (variantFiles != null && !variantFiles.isEmpty()) {
+                    List<String> urls = new ArrayList<>();
+                    if (variant.getImageUrls() != null) {
+                        urls.addAll(variant.getImageUrls());
+                    }
+                    for (MultipartFile vf : variantFiles) {
+                        if (vf != null && !vf.isEmpty()) {
+                            urls.add(storageService.store(vf));
+                        }
+                    }
+                    variant.setImageUrls(urls);
+                }
+            }
+        }
+        
         Product saved = productService.save(p);
         return ResponseEntity.ok(saved);
     }
@@ -90,12 +114,34 @@ public class ProductController {
     public ResponseEntity<Product> updateMultipart(
             @PathVariable Long id,
             @RequestPart("product") Product p,
-            @RequestParam(value = "image", required = false) MultipartFile imageFile) throws IOException {
+            MultipartHttpServletRequest request) throws IOException {
         p.setId(id);
+        
+        MultipartFile imageFile = request.getFile("image");
         if (imageFile != null && !imageFile.isEmpty()) {
             String relativePath = storageService.store(imageFile);
             p.setImageUrl(relativePath);
         }
+        
+        if (p.getVariants() != null) {
+            for (int i = 0; i < p.getVariants().size(); i++) {
+                ProductVariant variant = p.getVariants().get(i);
+                List<MultipartFile> variantFiles = request.getFiles("variantImages_" + i);
+                if (variantFiles != null && !variantFiles.isEmpty()) {
+                    List<String> urls = new ArrayList<>();
+                    if (variant.getImageUrls() != null) {
+                        urls.addAll(variant.getImageUrls());
+                    }
+                    for (MultipartFile vf : variantFiles) {
+                        if (vf != null && !vf.isEmpty()) {
+                            urls.add(storageService.store(vf));
+                        }
+                    }
+                    variant.setImageUrls(urls);
+                }
+            }
+        }
+        
         return ResponseEntity.ok(productService.save(p));
     }
 
