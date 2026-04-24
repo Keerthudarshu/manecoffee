@@ -344,6 +344,7 @@ const ProductCollectionGrid = () => {
   };
 
   const categoryId = searchParams?.get('category');
+  const searchTerm = (searchParams?.get('search') || '').trim();
   const categoryTitle = categoryId && categoryMap[categoryId]?.name ? categoryMap[categoryId].name : (searchParams?.get('category')?.replace(/-/g, ' ')?.replace(/\b\w/g, l => l?.toUpperCase()) || 'All Products');
   const categoryBadge = categoryId && categoryMap[categoryId]?.badge ? categoryMap[categoryId].badge : '';
   // Detect if woodpressed oils category is selected
@@ -362,12 +363,18 @@ const ProductCollectionGrid = () => {
   return (
     <>
       <SEO 
-        title={categoryTitle}
-        description={`Explore our ${categoryTitle} collection. Pure, shade-grown coffee from Coorg estates, roasted to bring out the authentic Kodagu flavor.`}
-        keywords={`buy ${categoryTitle}, Coorg coffee online, Arabica Robusta blends, Kodagu coffee beans, fresh roasted coffee India, Mane Coffee products`}
+        title={searchTerm ? `${searchTerm} Coffee Products` : `${categoryTitle} Coffee Products`}
+        description={searchTerm
+          ? `Search results for "${searchTerm}" at Mane Coffee. Shop premium Coorg coffee beans, powders, and blends online.`
+          : `Shop ${categoryTitle} at Mane Coffee. Discover fresh Coorg coffee beans, filter coffee powder, and signature blends delivered across India.`}
+        keywords={searchTerm
+          ? `${searchTerm}, buy coffee online India, Coorg coffee, Mane Coffee`
+          : `buy ${categoryTitle}, Coorg coffee online, Arabica Robusta blends, filter coffee powder, Mane Coffee products`}
         canonical="/product-collection-grid"
-        ogTitle={`${categoryTitle} - Mane Coffee Finest Collection`}
-        ogDescription={`Discover the best of ${categoryTitle} from the hills of Coorg. Premium quality beans delivered to your doorstep.`}
+        ogTitle={searchTerm ? `${searchTerm} - Mane Coffee` : `${categoryTitle} - Mane Coffee Collection`}
+        ogDescription={searchTerm
+          ? `Browse "${searchTerm}" coffee products from Mane Coffee.`
+          : `Discover the best of ${categoryTitle} from the hills of Coorg.`}
       />
       <div className="min-h-screen bg-[#efe5d7]">
       <Header 

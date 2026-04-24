@@ -71,12 +71,12 @@ const AboutPage = () => {
   return (
     <>
       <SEO 
-        title="About Us - Coorg's Finest Coffee Heritage"
-        description="Discover Mane Coffee's journey in preserving Coorg's rich coffee heritage. Experience the authentic taste of Arabica, Robusta, and artisan blends from the hills of Kodagu."
-        keywords="Coorg coffee, Kodagu coffee, Arabica coffee, Robusta coffee, artisan coffee blends, Indian coffee heritage, shade grown coffee, Mane Coffee story, about Mane Coffee"
+        title="About Mane Coffee - Coorg Coffee Heritage and Story"
+        description="Learn about Mane Coffee's Coorg roots, shade-grown sourcing, and artisan roasting process. Discover how we craft premium Arabica, Robusta, and signature blends from Kodagu."
+        keywords="about Mane Coffee, Coorg coffee brand, Kodagu coffee heritage, shade grown coffee India, Arabica Robusta blends, artisan coffee roasting"
         canonical="/about"
-        ogTitle="About Mane Coffee - Preserving Coorg's Coffee Legacy"
-        ogDescription="Experience the purest coffee from the mist-covered hills of Coorg. Hand-picked, sun-dried, and slow-roasted for the perfect cup."
+        ogTitle="About Mane Coffee | Coorg Coffee Heritage"
+        ogDescription="From estate to cup, explore Mane Coffee's authentic Coorg coffee legacy and traditional craftsmanship."
       />
 
       <div className="min-h-screen bg-background">

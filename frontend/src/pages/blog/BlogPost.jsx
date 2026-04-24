@@ -91,6 +91,15 @@ const BlogPost = () => {
         { label: post.title, path: `/blog/${id}` }
     ];
 
+    const normalizedPublishedDate = new Date(post.date).toISOString();
+    const estimatedWordCount = post.content
+        .filter((item) => item.type === 'paragraph' || item.type === 'heading')
+        .map((item) => item.text || '')
+        .join(' ')
+        .trim()
+        .split(/\s+/)
+        .filter(Boolean).length;
+
     return (
         <>
             <SEO 
@@ -105,12 +114,28 @@ const BlogPost = () => {
                 structuredData={{
                     "@context": "https://schema.org",
                     "@type": "BlogPosting",
+                    "mainEntityOfPage": {
+                        "@type": "WebPage",
+                        "@id": `https://manecoffeee.com/blog/${id}`
+                    },
                     "headline": post.title,
-                    "image": post.image,
-                    "datePublished": "2024-04-15",
+                    "description": post.seoDescription,
+                    "image": `https://manecoffeee.com${post.image}`,
+                    "datePublished": normalizedPublishedDate,
+                    "dateModified": normalizedPublishedDate,
+                    "articleSection": post.category,
+                    "wordCount": estimatedWordCount,
                     "author": {
                         "@type": "Organization",
                         "name": "Mane Coffee"
+                    },
+                    "publisher": {
+                        "@type": "Organization",
+                        "name": "Mane Coffee",
+                        "logo": {
+                            "@type": "ImageObject",
+                            "url": "https://manecoffeee.com/assets/images/logo.jpeg"
+                        }
                     }
                 }}
             />

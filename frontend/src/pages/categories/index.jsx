@@ -68,12 +68,12 @@ const CategoriesPage = () => {
   return (
     <>
       <SEO 
-        title="Browse Coffee Categories"
-        description="Explore Mane Coffee's premium collections. From high-altitude Arabica to bold Robusta and artisan blends, find your perfect Coorg coffee by category."
-        keywords="coffee categories, Arabica coffee, Robusta beans, filter coffee powder, specialty coffee blends, Mane Coffee collections, buy coffee by type"
+        title="Coffee Categories - Arabica, Robusta and Blends"
+        description="Browse Mane Coffee categories including Arabica, Robusta, and signature blends. Find your ideal Coorg coffee taste profile and shop online."
+        keywords="coffee categories India, Arabica coffee online, Robusta coffee online, Coorg coffee blends, Mane Coffee categories"
         canonical="/categories"
-        ogTitle="Browse Coffee Categories - Mane Coffee"
-        ogDescription="Find your favorite Coorg coffee variety. Pure Arabica, bold Robusta, and signature blends."
+        ogTitle="Mane Coffee Categories | Arabica, Robusta, Blends"
+        ogDescription="Explore premium Coorg coffee collections by category."
       />
 
       <div className="min-h-screen bg-background">

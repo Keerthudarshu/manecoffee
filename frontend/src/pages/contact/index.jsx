@@ -119,12 +119,12 @@ const ContactPage = () => {
   return (
     <>
       <SEO 
-        title="Contact Us - Coorg Coffee Customer Support"
-        description="Get in touch with Mane Coffee for all your coffee queries. Whether you need help with your order or want to visit our Coorg estates, we're here to help."
-        keywords="contact Mane Coffee, coffee support, Coorg estate visit, buy coffee Kodagu, coffee order help, WhatsApp coffee support, Mane Coffee location"
+        title="Contact Mane Coffee - Customer Support and Store Location"
+        description="Contact Mane Coffee for order support, product help, wholesale queries, or store visit details. Reach us by phone, WhatsApp, or email."
+        keywords="contact Mane Coffee, Mane Coffee customer support, coffee order help, Coorg coffee contact, WhatsApp support Mane Coffee"
         canonical="/contact"
-        ogTitle="Contact Us | Mane Coffee - Coorg Coffee Support"
-        ogDescription="Reach out to Mane Coffee for any questions about our premium Coorg coffee blends or your orders."
+        ogTitle="Contact Mane Coffee | Support and Enquiries"
+        ogDescription="Need help with your order or products? Connect with Mane Coffee support quickly."
         structuredData={{
           "@context": "https://schema.org",
           "@type": "LocalBusiness",

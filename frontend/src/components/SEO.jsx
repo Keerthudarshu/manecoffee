@@ -25,7 +25,9 @@ const SEO = ({
   ogImage = '/assets/images/logo.jpeg',
   ogType = 'website',
   twitterCard = 'summary_large_image',
+  twitterSite,
   structuredData,
+  noIndex = false,
 }) => {
   const siteName = 'Mane Coffee';
   const fullTitle = title ? `${title} | ${siteName}` : siteName;
@@ -39,9 +41,12 @@ const SEO = ({
       <meta name="description" content={description} />
       {keywords && <meta name="keywords" content={keywords} />}
       <link rel="canonical" href={fullCanonical} />
+      <meta name="robots" content={noIndex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large'} />
+      <meta name="googlebot" content={noIndex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large'} />
 
       {/* Open Graph / Facebook */}
       <meta property="og:site_name" content={siteName} />
+      <meta property="og:locale" content="en_IN" />
       <meta property="og:type" content={ogType} />
       <meta property="og:title" content={ogTitle || fullTitle} />
       <meta property="og:description" content={ogDescription || description} />
@@ -50,6 +55,7 @@ const SEO = ({
 
       {/* Twitter */}
       <meta name="twitter:card" content={twitterCard} />
+      {twitterSite && <meta name="twitter:site" content={twitterSite} />}
       <meta name="twitter:title" content={ogTitle || fullTitle} />
       <meta name="twitter:description" content={ogDescription || description} />
       <meta name="twitter:image" content={ogImage.startsWith('http') ? ogImage : `${baseUrl}${ogImage}`} />

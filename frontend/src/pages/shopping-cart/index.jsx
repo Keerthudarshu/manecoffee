@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useCart } from '../../contexts/CartContext';
-import { Helmet } from 'react-helmet';
+import SEO from '../../components/SEO';
 import Header from '../../components/ui/Header';
 import Breadcrumb from '../../components/ui/Breadcrumb';
 import CartItem from './components/CartItem';
@@ -120,11 +120,12 @@ const ShoppingCart = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Shopping Cart - Mane Coffee | Review Your Natural Products</title>
-        <meta name="description" content="Review and modify your cart items. Secure checkout with natural and organic food products. Free shipping available on orders above ₹499 in Bengaluru." />
-        <meta name="keywords" content="shopping cart, natural products, organic food, checkout, free shipping, Mane Coffee" />
-      </Helmet>
+      <SEO
+        title="Shopping Cart"
+        description="Review your selected Mane Coffee products and proceed to secure checkout."
+        canonical="/shopping-cart"
+        noIndex={true}
+      />
       <div className="min-h-screen bg-background">
         <Header
           cartItemCount={cartItems?.length}

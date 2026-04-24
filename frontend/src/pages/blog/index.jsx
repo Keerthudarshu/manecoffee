@@ -45,12 +45,34 @@ const BlogIndex = () => {
     return (
         <>
             <SEO 
-                title="Our Blog - Coorg Coffee Heritage & Insights"
-                description="Explore stories about Coorg's rich coffee heritage, traditional processing methods, and the science behind Arabica and Robusta beans."
-                keywords="Coorg coffee blog, Arabica vs Robusta, Kodagu coffee heritage, sustainable coffee farming, artisan coffee roasting, pure coffee India, Mane Coffee blog"
+                title="Mane Coffee Blog - Coorg Coffee Guides and Brewing Tips"
+                description="Read Mane Coffee blog articles on Coorg coffee culture, Arabica vs Robusta, brewing tips, and traditional estate processing methods."
+                keywords="Mane Coffee blog, Coorg coffee guide, Arabica vs Robusta, coffee brewing tips India, Kodagu coffee stories"
                 canonical="/blog"
-                ogTitle="Our Blog - Mane Coffee | Coorg Coffee Insights"
-                ogDescription="Discover the secrets behind Coorg's finest coffee and its traditional journey from estate to cup."
+                ogTitle="Mane Coffee Blog | Coorg Coffee Insights"
+                ogDescription="Explore coffee guides, brewing knowledge, and stories from Coorg."
+                structuredData={{
+                    "@context": "https://schema.org",
+                    "@type": "Blog",
+                    "name": "Mane Coffee Blog",
+                    "url": "https://manecoffeee.com/blog",
+                    "publisher": {
+                        "@type": "Organization",
+                        "name": "Mane Coffee",
+                        "logo": {
+                            "@type": "ImageObject",
+                            "url": "https://manecoffeee.com/assets/images/logo.jpeg"
+                        }
+                    },
+                    "blogPost": blogPosts.map((post) => ({
+                        "@type": "BlogPosting",
+                        "headline": post.title,
+                        "url": `https://manecoffeee.com/blog/${post.id}`,
+                        "datePublished": new Date(post.date).toISOString(),
+                        "image": `https://manecoffeee.com${post.image}`,
+                        "description": post.excerpt
+                    }))
+                }}
             />
 
             <div className="min-h-screen bg-background">
