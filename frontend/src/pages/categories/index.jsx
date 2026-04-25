@@ -27,7 +27,7 @@ const CategoriesPage = () => {
       products: []
     },
     {
-      id: 7,
+      id: 3,
       name: 'Robusta',
       displayName: 'Robusta Coffee',
       productCount: 42,
@@ -40,7 +40,7 @@ const CategoriesPage = () => {
       products: []
     },
     {
-      id: 6,
+      id: 4,
       name: 'Arabica + Robusta',
       displayName: 'Premium Blend',
       productCount: 18,
