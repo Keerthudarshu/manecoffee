@@ -3,9 +3,9 @@ import productApi from '../../../services/productApi';
 
 const EdibleOilsSection = () => {
     const [edibleOils, setEdibleOils] = useState([
-        { id: 101, name: 'Arabica', img: '/assets/images/coffee/Arabica.png' },
-        { id: 102, name: 'Robusta', img: '/assets/images/coffee/Robusta.png' },
-        { id: 103, name: 'Arabica + Robusta', img: '/assets/images/coffee/Arabica+robusta.png' },
+        { id: 1, name: 'Arabica', img: '/assets/images/coffee/Arabica.png' },
+        { id: 3, name: 'Robusta', img: '/assets/images/coffee/Robusta.png' },
+        { id: 4, name: 'Arabica + Robusta', img: '/assets/images/coffee/Arabica+robusta.png' },
     ]);
 
     useEffect(() => {

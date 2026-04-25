@@ -10,34 +10,34 @@ const ShopByCategorySection = () => {
     {
       id: 1,
       name: 'Arabica',
-      productCount: 25,
+      productCount: 3,
       image: ['/assets/banner/Arabica.png'],
       icon: 'Coffee',
       description: 'Premium Arabica beans from the high-altitude estates of Coorg',
       featured: ['Single Origin', 'Medium Roast', 'Whole Bean'],
-      startingPrice: 180,
+      startingPrice: 749,
       badge: 'Premium'
     },
     {
-      id: 7,
+      id: 3,
       name: 'Robusta',
-      productCount: 42,
+      productCount: 3,
       image: ['/assets/banner/robusta.png'],
       icon: 'Zap',
       description: 'Strong and bold Robusta beans with an intense flavor and high caffeine',
       featured: ['Dark Roast', 'High Caffeine', 'Bold Flavor'],
-      startingPrice: 85,
+      startingPrice: 599,
       badge: 'Strong'
     },
     {
-      id: 6,
+      id: 4,
       name: 'Arabica+Robusta',
-      productCount: 18,
+      productCount: 3,
       image: ['/assets/banner/arabicaand robusta.png'],
       icon: 'Layers',
       description: 'A perfectly balanced blend of Arabica and Robusta for the ideal daily brew',
       featured: ['Balanced Flavor', 'Filter Coffee', 'Daily Brew'],
-      startingPrice: 120,
+      startingPrice: 799,
       badge: 'Mane Special'
     }
 
