@@ -33,10 +33,10 @@ const Footer = () => {
   };
 
   const socialLinks = [
-    { name: "Facebook", icon: "Facebook", url: "https://www.facebook.com/sanatanaparampare/" },
-    { name: "Instagram", icon: "Instagram", url: "https://www.instagram.com/parampare_store/?hl=en" },
+    { name: "Facebook", icon: "Facebook", url: "#" },
+    { name: "Instagram", icon: "Instagram", url: "#" },
     { name: "Twitter", icon: "Twitter", url: "#" },
-    { name: "YouTube", icon: "Youtube", url: "https://youtube.com/channel/UC1WQFhTsxmcU64-ocvXuM6w" }
+    { name: "YouTube", icon: "Youtube", url: "#" }
   ];
 
   const contactInfo = {
