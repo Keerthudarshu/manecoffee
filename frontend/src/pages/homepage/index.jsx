@@ -148,13 +148,7 @@ const Homepage = () => {
             </Suspense>
           </LazySection>
 
-          {/* Banner Showcase - Featured banner images and categories */}
-          <LazySection>
-            <Suspense fallback={<LoadingSkeleton />}>
-              <BannerShowcase />
-            </Suspense>
-          </LazySection>
-
+          
           {/* Shop by Category - Browse all product categories */}
           <ShopByCategorySection />
           

@@ -85,8 +85,7 @@ const Header = ({ isLoggedIn = false, onSearch = () => { } }) => {
   };
 
   const navigationItems = [
-    { label: 'Home', path: '/homepage', icon: 'Home' },
-    { label: 'Products', path: '/product-collection-grid', icon: 'Package' },
+        { label: 'Products', path: '/product-collection-grid', icon: 'Package' },
     { label: 'Categories', path: '/categories', icon: 'Grid', hasDropdown: true, isCategories: true },
     { label: 'About', path: '/about', icon: 'Info' },
     { label: 'Contact', path: '/contact', icon: 'Phone' },
@@ -131,11 +130,11 @@ const Header = ({ isLoggedIn = false, onSearch = () => { } }) => {
           <div className="flex items-center justify-between py-4">
             {/* Logo Section */}
             <Link to="/homepage" className="flex items-center group">
-              <div className="relative w-12 h-12 flex items-center justify-center">
+              <div className="relative w-20 h-20 flex items-center justify-center">
                 <img
                   src="/assets/images/logo.jpeg"
                   alt="Mane Coffee Logo"
-                  className="w-10 h-10 object-contain group-hover:scale-110 transition-transform duration-300"
+                  className="w-18 h-18 object-contain group-hover:scale-110 transition-transform duration-300"
                 />
               </div>
             </Link>

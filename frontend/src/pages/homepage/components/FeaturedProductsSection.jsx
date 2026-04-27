@@ -148,31 +148,32 @@ const FeaturedProductsSection = ({ onAddToCart }) => {
   };
 
   return (
-    <section className="py-16 bg-[#efe5d7]">
+    <section className="py-8 md:py-16 bg-[#efe5d7]">
       <div className="container mx-auto px-4">
         {/* Section Header */}
-        <div className="text-center mb-12">
-          <h2 className="font-heading text-4xl md:text-5xl font-bold text-[#2a1f0e] mb-4">
+        <div className="text-center mb-8 md:mb-12">
+          <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#2a1f0e] mb-3 md:mb-4">
             Our Best Selling Coffee
           </h2>
-          <p className="font-body text-lg text-[#2a1f0e]/70 max-w-3xl mx-auto">
+          <p className="font-body text-sm sm:text-base md:text-lg text-[#2a1f0e]/70 max-w-2xl md:max-w-3xl mx-auto px-2">
             Discover the perfect brew from our premium selection. Each blend is carefully crafted for the ultimate coffee experience.
           </p>
         </div>
 
         {/* Category Tabs */}
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
+        <div className="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4 mb-8 md:mb-12 px-2">
           {categories.map((category) => (
             <button
               key={category.id}
               onClick={() => setActiveCategory(category.id)}
-              className={`flex items-center gap-2 px-6 py-3 rounded-full font-bold transition-all duration-300 border ${activeCategory === category.id
+              className={`flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 md:px-6 py-2 sm:py-2.5 md:py-3 rounded-full font-bold text-xs sm:text-sm md:text-base transition-all duration-300 border ${activeCategory === category.id
                 ? 'bg-[#C9A227] text-white shadow-gold-md border-[#C9A227]'
                 : 'bg-white text-[#1e1509] border-[#1e1509]/10 hover:border-[#C9A227] hover:text-[#C9A227]'
                 }`}
             >
-              <Icon name={category.icon} size={18} />
-              {category.name}
+              <Icon name={category.icon} size={14} className="sm:size-16 md:size-18" />
+              <span className="hidden sm:inline">{category.name}</span>
+              <span className="sm:hidden">{category.name.split(' ')[0]}</span>
             </button>
           ))}
         </div>
@@ -232,74 +233,29 @@ const FeaturedProductsSection = ({ onAddToCart }) => {
                 return (
                   <div
                     key={product.id}
-                    className="flex-shrink-0 w-[280px] sm:w-[320px] group bg-white rounded-2xl shadow-lg border border-border hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 overflow-hidden"
+                    className="flex-shrink-0 w-[64vw] sm:w-[72vw] md:w-[80vw] lg:w-[320px] group bg-white rounded-xl md:rounded-2xl shadow-md md:shadow-lg border border-border hover:shadow-xl md:hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 md:hover:-translate-y-2 overflow-hidden"
                   >
                     {/* Product Image */}
                     <div className="relative aspect-square overflow-hidden bg-gradient-to-br from-muted/20 to-muted/40">
                       <img
                         src={product.image}
                         alt={product.name}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                        className="w-full h-full object-cover group-hover:scale-105 md:group-hover:scale-110 transition-transform duration-500"
                         loading="lazy"
                         decoding="async"
                         onError={(e) => {
-                          e.target.src = 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&h=400&fit=crop&auto=format&q=80';
+                          e.target.src =
+                            'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&h=400&fit=crop&auto=format&q=80';
                         }}
                       />
 
                       {/* Enhanced Badge */}
-                      <div className="absolute top-3 left-3">
-                        <span className="bg-[#C9A227] text-white px-4 py-2 rounded-full text-[11px] font-black uppercase tracking-wider shadow-md border border-[#F0C040]/30">
+                      <div className="absolute top-2 left-2 md:top-3 md:left-3">
+                        <span
+                          className="bg-[#C9A227] text-white px-2 py-1 md:px-4 md:py-2 rounded-full text-[9px] md:text-[11px] font-black uppercase tracking-wider shadow-md border border-[#F0C040]/30"
+                        >
                           {product.badge}
                         </span>
-                      </div>
-
-                      {/* Stock Status */}
-                      <div className="absolute top-3 right-3 flex flex-col gap-2">
-                        {currentDiscount > 0 && (
-                          <span className="bg-[#1e1509] text-[#F0C040] px-3 py-1 rounded-full text-[11px] font-black shadow-lg border border-[#C9A227]/30">
-                            {currentDiscount}% OFF
-                          </span>
-                        )}
-                        <div className={`px-3 py-1 rounded-full text-xs font-bold shadow-lg backdrop-blur-sm border ${product.inStock
-                          ? 'bg-green-500 text-black border-green-500/20'
-                          : 'bg-red-500 text-black border-red-500/20'
-                          }`}>
-                          {product.inStock ? 'In Stock' : 'Out of Stock'}
-                        </div>
-                      </div>
-
-                      {/* Quick Add Button with Better Design */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#1e1509]/80 via-[#1e1509]/20 to-transparent flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
-                        <button
-                          onClick={() => handleQuickAdd(product)}
-                          className="bg-white text-[#1e1509] px-8 py-3 rounded-xl font-bold hover:bg-[#C9A227] hover:text-white transition-all duration-300 flex items-center gap-3 shadow-xl border border-white/30 transform translate-y-4 group-hover:translate-y-0"
-                        >
-                          <Icon name="ShoppingCart" size={18} />
-                          Quick Add
-                        </button>
-                      </div>
-
-                      {/* Wishlist Button */}
-                      <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300">
-                        <button className="w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-[#1e1509] hover:bg-[#C9A227] hover:text-white transition-all duration-300 shadow-lg border border-white/30">
-                          <Icon name="Heart" size={16} />
-                        </button>
-                      </div>
-                    </div>
-
-                    {/* Product Info */}
-                    <div className="p-5">
-                      <div className="mb-3">
-                        <h3 className="font-heading text-lg font-semibold text-[#2a1f0e] mb-1 line-clamp-2">
-                          {product.name}
-                        </h3>
-                        <p className="text-sm text-[#C9A227] font-medium">
-                          {product.name.toLowerCase().includes('filter') ? 'Strong & Bold | Perfect for Filter Coffee' :
-                           product.name.toLowerCase().includes('robusta') ? 'Strong & Bold | Perfect for Filter Coffee' :
-                           product.name.toLowerCase().includes('arabica') ? 'Smooth & Rich | Premium Quality' :
-                           'Rich & Aromatic | Perfect Daily Brew'}
-                        </p>
                       </div>
 
                       {/* Rating */}
