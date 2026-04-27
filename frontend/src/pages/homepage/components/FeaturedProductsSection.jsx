@@ -152,11 +152,11 @@ const FeaturedProductsSection = ({ onAddToCart }) => {
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-12">
-          <h2 className="font-heading text-4xl font-bold text-[#2a1f0e] mb-4">
-            Featured Products
+          <h2 className="font-heading text-4xl md:text-5xl font-bold text-[#2a1f0e] mb-4">
+            Our Best Selling Coffee
           </h2>
-          <p className="font-body text-lg text-[#2a1f0e]/70 max-w-2xl mx-auto">
-            Handpicked premium products loved by our customers. Order online with fast delivery.
+          <p className="font-body text-lg text-[#2a1f0e]/70 max-w-3xl mx-auto">
+            Discover the perfect brew from our premium selection. Each blend is carefully crafted for the ultimate coffee experience.
           </p>
         </div>
 
@@ -240,7 +240,8 @@ const FeaturedProductsSection = ({ onAddToCart }) => {
                         src={product.image}
                         alt={product.name}
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                        loading="eager"
+                        loading="lazy"
+                        decoding="async"
                         onError={(e) => {
                           e.target.src = 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&h=400&fit=crop&auto=format&q=80';
                         }}
@@ -293,7 +294,12 @@ const FeaturedProductsSection = ({ onAddToCart }) => {
                         <h3 className="font-heading text-lg font-semibold text-[#2a1f0e] mb-1 line-clamp-2">
                           {product.name}
                         </h3>
-                        <p className="text-sm text-muted-foreground">{product.category}</p>
+                        <p className="text-sm text-[#C9A227] font-medium">
+                          {product.name.toLowerCase().includes('filter') ? 'Strong & Bold | Perfect for Filter Coffee' :
+                           product.name.toLowerCase().includes('robusta') ? 'Strong & Bold | Perfect for Filter Coffee' :
+                           product.name.toLowerCase().includes('arabica') ? 'Smooth & Rich | Premium Quality' :
+                           'Rich & Aromatic | Perfect Daily Brew'}
+                        </p>
                       </div>
 
                       {/* Rating */}
@@ -312,8 +318,30 @@ const FeaturedProductsSection = ({ onAddToCart }) => {
                           ))}
                         </div>
                         <span className="text-sm text-muted-foreground">
-                          {product.rating} ({product.reviews})
+                          {product.rating} ({product.reviews} reviews)
                         </span>
+                      </div>
+
+                      {/* Coffee Details */}
+                      <div className="mb-3 p-3 bg-[#efe5d7] rounded-lg">
+                        <div className="grid grid-cols-2 gap-2 text-xs">
+                          <div className="flex items-center gap-1">
+                            <span className="text-[#C9A227]">🌱</span>
+                            <span className="text-[#2a1f0e]">Origin: Coorg</span>
+                          </div>
+                          <div className="flex items-center gap-1">
+                            <span className="text-[#C9A227]">🔥</span>
+                            <span className="text-[#2a1f0e]">Roast: Medium-Dark</span>
+                          </div>
+                          <div className="flex items-center gap-1">
+                            <span className="text-[#C9A227]">☕</span>
+                            <span className="text-[#2a1f0e]">Taste: Strong, Bold</span>
+                          </div>
+                          <div className="flex items-center gap-1">
+                            <span className="text-[#C9A227]">🧊</span>
+                            <span className="text-[#2a1f0e]">Best for: Filter</span>
+                          </div>
+                        </div>
                       </div>
 
                       {/* Weight Options */}
@@ -348,30 +376,32 @@ const FeaturedProductsSection = ({ onAddToCart }) => {
                           </span>
                           {currentOriginalPrice > currentPrice && (
                             <span className="text-sm text-muted-foreground line-through">
-                              ₹{currentOriginalPrice}
+                              MRP ₹{currentOriginalPrice}
                             </span>
                           )}
                         </div>
                         <div className={`text-sm font-bold ${product.inStock ? 'text-green-600' : 'text-red-600'}`}>
-                          {product.inStock ? 'In Stock' : 'Out of Stock'}
+                          {product.inStock ? '✓ In Stock' : 'Out of Stock'}
                         </div>
                       </div>
 
                       {/* Actions */}
                       <div className="flex gap-2">
-                        <Link
-                          to={`/product-detail-page/${product.id}`}
-                          className="flex-1 bg-[#1e1509]/5 text-[#1e1509] text-center py-3 rounded-lg font-bold hover:bg-[#1e1509] hover:text-white transition-all duration-300"
-                        >
-                          View Details
-                        </Link>
                         <button
                           onClick={() => handleQuickAdd(product)}
                           disabled={!product.inStock}
-                          className="bg-[#C9A227] text-white px-4 py-3 rounded-lg hover:bg-[#F0C040] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                          className="flex-1 bg-[#C9A227] text-white py-3 rounded-lg font-bold hover:bg-[#F0C040] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                         >
-                          <Icon name="ShoppingCart" size={16} />
+                          🛒 Buy Now
                         </button>
+                        <a
+                          href="https://wa.me/919876543210?text=Hi%20Mane%20Coffee,%20I%20want%20to%20order%20{product.name}"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="bg-green-500 text-white px-4 py-3 rounded-lg hover:bg-green-400 transition-all duration-300"
+                        >
+                          <Icon name="MessageCircle" size={16} />
+                        </a>
                       </div>
                     </div>
                   </div>

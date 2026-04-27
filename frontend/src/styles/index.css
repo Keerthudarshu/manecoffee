@@ -1,10 +1,78 @@
+/* ─── Coffee Theme Color Variables ─── */
+:root {
+  /* Primary Colors - Based on Screenshot */
+  --color-primary: #C9A227;           /* Warm Gold/Accent */
+  --color-primary-light: #F0C040;     /* Lighter Gold */
+  --color-primary-dark: #8a6a1a;      /* Deeper Gold */
+  
+  /* Background Colors */
+  --color-background: #F5F5DC;        /* Light Beige/Off-white */
+  --color-background-secondary: #F8F8F8; /* Very Light Beige */
+  --color-surface: #FFFFFF;           /* White for cards */
+  --color-surface-2: #FAFAFA;         /* Light Gray Surface */
+  --color-surface-3: #F0F0F0;         /* Darker Surface */
+  
+  /* Text Colors */
+  --color-foreground: #2A1F0E;        /* Dark Brown for headings */
+  --color-foreground-secondary: #4A2C2A; /* Medium Brown */
+  --color-foreground-muted: #6B5D54;  /* Light Brown Text */
+  --color-muted: #8B7D74;             /* Muted Brown */
+  
+  /* Accent Colors */
+  --color-accent: #A0783A;            /* Medium Brown Amber */
+  --color-accent-light: #C4A97A;      /* Light Amber */
+  --color-accent-dark: #5C3D2E;       /* Dark Brown */
+  
+  /* Interactive States */
+  --color-primary-foreground: #FFFFFF;
+  --color-secondary: #E8D0A0;         /* Light Beige for buttons */
+  --color-secondary-foreground: #2A1F0E;
+  --color-accent-foreground: #FFFFFF;
+  
+  /* Status Colors */
+  --color-success: #10B981;
+  --color-success-foreground: #FFFFFF;
+  --color-warning: #F59E0B;
+  --color-warning-foreground: #FFFFFF;
+  --color-error: #EF4444;
+  --color-error-foreground: #FFFFFF;
+  --color-destructive: #DC2626;
+  --color-destructive-foreground: #FFFFFF;
+  
+  /* Border & Ring */
+  --color-border: #E5E5E5;
+  --color-input: #FFFFFF;
+  --color-ring: #C9A227;
+  
+  /* Component Specific */
+  --color-popover: #FFFFFF;
+  --color-popover-foreground: #2A1F0E;
+  --color-card: #FFFFFF;
+  --color-card-foreground: #2A1F0E;
+  
+  /* Custom Coffee Gradients */
+  --gradient-hero: linear-gradient(135deg, #5C3D2E 0%, #4A2C2A 50%, #2A1F0E 100%);
+  --gradient-card: linear-gradient(180deg, #FFFFFF 0%, #F8F8F8 100%);
+  --gradient-button: linear-gradient(135deg, #C9A227 0%, #A0783A 100%);
+  --gradient-subtle: linear-gradient(180deg, #F5F5DC 0%, #FAFAFA 100%);
+  
+  /* Shadow Effects */
+  --shadow-coffee: 0 4px 12px rgba(44, 28, 14, 0.1);
+  --shadow-coffee-md: 0 8px 24px rgba(44, 28, 14, 0.15);
+  --shadow-coffee-lg: 0 16px 40px rgba(44, 28, 14, 0.2);
+  --shadow-gold: 0 4px 12px rgba(201, 162, 39, 0.25);
+  
+  /* Border Radius */
+  --radius: 0.5rem;
+}
+
 body {
   margin: 0;
   padding: 0;
   font-family: Inter, sans-serif;
   overflow-x: hidden;
-  background-color: #efe5d7;
-  color: #1e1509;
+  background-color: var(--color-background);
+  color: var(--color-foreground);
 }
 
 * {
@@ -52,5 +120,156 @@ a {
 }
 
 a:hover {
-  color: #F0C040;
+  color: var(--color-primary-light);
+}
+
+/* ─── Coffee Theme Utility Classes ─── */
+
+/* Background Classes */
+.bg-coffee-primary { background-color: var(--color-background); }
+.bg-coffee-secondary { background-color: var(--color-background-secondary); }
+.bg-coffee-accent { background-color: var(--color-accent); }
+.bg-coffee-dark { background-color: var(--color-accent-dark); }
+
+/* Text Classes */
+.text-coffee-primary { color: var(--color-foreground); }
+.text-coffee-secondary { color: var(--color-foreground-secondary); }
+.text-coffee-muted { color: var(--color-foreground-muted); }
+.text-coffee-accent { color: var(--color-accent); }
+
+/* Border Classes */
+.border-coffee { border-color: var(--color-border); }
+.border-coffee-accent { border-color: var(--color-accent); }
+
+/* Shadow Classes */
+.shadow-coffee { box-shadow: var(--shadow-coffee); }
+.shadow-coffee-md { box-shadow: var(--shadow-coffee-md); }
+.shadow-coffee-lg { box-shadow: var(--shadow-coffee-lg); }
+.shadow-gold { box-shadow: var(--shadow-gold); }
+
+/* Gradient Classes */
+.bg-gradient-coffee { background: var(--gradient-hero); }
+.bg-gradient-card { background: var(--gradient-card); }
+.bg-gradient-button { background: var(--gradient-button); }
+.bg-gradient-subtle { background: var(--gradient-subtle); }
+
+/* Interactive States */
+.btn-coffee {
+  background: var(--gradient-button);
+  color: var(--color-primary-foreground);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius);
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow-coffee);
+}
+
+.btn-coffee:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-coffee-md);
+  background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-primary) 100%);
+}
+
+.btn-coffee-secondary {
+  background: var(--color-secondary);
+  color: var(--color-secondary-foreground);
+  border: 1px solid var(--color-accent);
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius);
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-coffee-secondary:hover {
+  background: var(--color-accent-light);
+  border-color: var(--color-accent);
+  transform: translateY(-1px);
+}
+
+/* Card Styles */
+.card-coffee {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-coffee);
+  transition: all 0.3s ease;
+}
+
+.card-coffee:hover {
+  box-shadow: var(--shadow-coffee-md);
+  transform: translateY(-2px);
+}
+
+/* Section Backgrounds */
+.section-coffee-light {
+  background: var(--gradient-subtle);
+  padding: 4rem 0;
+}
+
+.section-coffee-dark {
+  background: var(--gradient-hero);
+  color: var(--color-surface);
+  padding: 4rem 0;
+}
+
+/* Heading Styles */
+.heading-coffee {
+  color: var(--color-foreground);
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.subheading-coffee {
+  color: var(--color-foreground-secondary);
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+/* Form Elements */
+.input-coffee {
+  background: var(--color-input);
+  border: 1px solid var(--color-border);
+  color: var(--color-foreground);
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius);
+  transition: all 0.3s ease;
+}
+
+.input-coffee:focus {
+  border-color: var(--color-ring);
+  box-shadow: 0 0 0 2px rgba(201, 162, 39, 0.2);
+  outline: none;
+}
+
+/* Navigation */
+.nav-coffee {
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  box-shadow: var(--shadow-coffee);
+}
+
+.nav-link-coffee {
+  color: var(--color-foreground-secondary);
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-link-coffee:hover {
+  color: var(--color-primary);
+}
+
+/* Footer */
+.footer-coffee {
+  background: var(--color-accent-dark);
+  color: var(--color-surface);
+  padding: 3rem 0 1rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .section-coffee-light,
+  .section-coffee-dark {
+    padding: 2rem 0;
+  }
 }

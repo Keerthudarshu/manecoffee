@@ -18,34 +18,34 @@ const BannerShowcase = () => {
         '/assets/banner/Arabica.png'
       ],
       link: "/product-collection-grid?category=1",
-      badge: "Premium Quality"
+      badge: ""
     },
     {
       title: "Robusta Coffee",
       description: "Strong and bold Robusta beans with an intense flavor and high caffeine",
       images: ['/assets/banner/robusta.png'],
-      link: "/product-collection-grid?category=7",
-      badge: "Fresh Ground"
+      link: "/product-collection-grid?category=3",
+      badge: "  "
     },
     {
       title: "Arabica + Robusta",
       description: "A perfectly balanced blend of Arabica and Robusta for the ideal daily brew",
       images: ['/assets/banner/arabicaand robusta.png'],
-      link: "/product-collection-grid?category=6",
-      badge: "Mane Special"
+      link: "/product-collection-grid?category=4",
+      badge: ""
     }
   ];
 
   return (
-    <section className="py-16 bg-gradient-to-b from-amber-50/50 to-white">
+    <section className="section-coffee-light">
       <div className="container mx-auto px-4">
         {/* Main Banner Slider */}
         <div className="mb-16">
           <div className="text-center mb-8">
-            <h2 className="text-4xl font-bold text-[#2a1f0e] mb-4">
+            <h2 className="heading-coffee text-4xl">
               Premium Coffee, Authentic Taste
             </h2>
-            <p className="text-lg text-[#2a1f0e]/70 max-w-2xl mx-auto">
+            <p className="subheading-coffee text-lg max-w-2xl mx-auto">
               Experience the rich legacy of Coorg's finest coffee beans,
               expertly roasted and blended for the perfect cup.
             </p>
@@ -56,10 +56,10 @@ const BannerShowcase = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {featuredCategories.map((category, index) => (
             <div key={index} className="group">
-              <div className="relative bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform group-hover:scale-105">
+              <div className="card-coffee group">
                 {/* Category Badge */}
                 <div className="absolute top-4 left-4 z-10">
-                  <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-[#C9A227]/10 text-[#C9A227]">
+                  <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-primary/10 text-primary">
                     {category.badge}
                   </span>
                 </div>
@@ -76,15 +76,15 @@ const BannerShowcase = () => {
 
                 {/* Content */}
                 <div className="p-6">
-                   <h3 className="text-xl font-bold text-[#2a1f0e] mb-2 group-hover:text-[#C9A227] transition-colors">
+                   <h3 className="text-xl font-bold text-coffee-primary mb-2 group-hover:text-primary transition-colors">
                     {category.title}
                   </h3>
-                  <p className="text-[#2a1f0e]/70 mb-4">
+                  <p className="text-coffee-secondary mb-4">
                     {category.description}
                   </p>
                   <Link
                     to={category.link}
-                    className="inline-flex items-center text-[#C9A227] hover:text-[#2a1f0e] font-semibold group-hover:underline"
+                    className="inline-flex items-center text-primary hover:text-coffee-primary font-semibold group-hover:underline"
                   >
                     Explore Collection
                     <svg className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">

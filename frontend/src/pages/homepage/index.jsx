@@ -1,15 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
 import SEO from '../../components/SEO';
 import Header from '../../components/ui/Header';
 import HeroSection from './components/HeroSection';
-import BannerShowcase from './components/BannerShowcase';
-import FeaturedProductsSection from './components/FeaturedProductsSection';
+import { LazySection, LoadingSkeleton } from '../../components/LazyLoad';
+
+// Lazy load components that are below the fold
+const FeaturedProductsSection = lazy(() => import('./components/FeaturedProductsSection'));
+const WhyChooseManeCoffee = lazy(() => import('./components/WhyChooseManeCoffee'));
+const CustomerReviews = lazy(() => import('./components/CustomerReviews'));
+const OurStory = lazy(() => import('./components/OurStory'));
+const LimitedOffer = lazy(() => import('./components/LimitedOffer'));
+const BannerShowcase = lazy(() => import('./components/BannerShowcase'));
 
 import ShopByCategorySection from './components/ShopByCategorySection';
 import CategoryProductsSection from './components/CategoryProductsSection';
 import EdibleOilsSection from './components/EdibleOilsSection';
 import ExperienceTraditionCTA from './components/ExperienceTraditionCTA';
-
 
 import NewsletterSection from './components/NewsletterSection';
 import TrustCertificates from '../../components/TrustCertificates';
@@ -93,7 +99,7 @@ const Homepage = () => {
         ogType="website"
       />
 
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen bg-coffee-primary">
         {/* Header */}
         <Header
           cartItemCount={getCartItemCount()}
@@ -104,24 +110,56 @@ const Homepage = () => {
 
         {/* Main Content */}
         <main>
-          {/* Hero Section - Product-focused slider with shopping CTAs */}
+          {/* Hero Section - High-converting hero with strong CTA */}
           <HeroSection />
 
-          {/* Edible Oils Section - New section with special oils */}
-          <EdibleOilsSection />
-          {/* Shop by Category - Browse all product categories */}
-          <ShopByCategorySection />
-          {/* New Category-Based Product Section */}
-          <CategoryProductsSection onAddToCart={handleAddToCart} />
-          {/* Experience Tradition CTA */}
-          <ExperienceTraditionCTA />
+          {/* Best Sellers - Our top selling coffee products */}
+          <LazySection>
+            <Suspense fallback={<LoadingSkeleton />}>
+              <FeaturedProductsSection onAddToCart={handleAddToCart} />
+            </Suspense>
+          </LazySection>
 
+          {/* Why Choose Mane Coffee - Key benefits and trust factors */}
+          <LazySection>
+            <Suspense fallback={<LoadingSkeleton />}>
+              <WhyChooseManeCoffee />
+            </Suspense>
+          </LazySection>
 
-          {/* Featured Products - Best selling items with quick purchase */}
-          <FeaturedProductsSection onAddToCart={handleAddToCart} />
+          {/* Customer Reviews - Social proof and testimonials */}
+          <LazySection>
+            <Suspense fallback={<LoadingSkeleton />}>
+              <CustomerReviews />
+            </Suspense>
+          </LazySection>
+
+          {/* Our Story - Emotional connection and brand story */}
+          <LazySection>
+            <Suspense fallback={<LoadingSkeleton />}>
+              <OurStory />
+            </Suspense>
+          </LazySection>
+
+          {/* Limited Offer - Urgency and special deals */}
+          <LazySection>
+            <Suspense fallback={<LoadingSkeleton />}>
+              <LimitedOffer />
+            </Suspense>
+          </LazySection>
 
           {/* Banner Showcase - Featured banner images and categories */}
-          <BannerShowcase />
+          <LazySection>
+            <Suspense fallback={<LoadingSkeleton />}>
+              <BannerShowcase />
+            </Suspense>
+          </LazySection>
+
+          {/* Shop by Category - Browse all product categories */}
+          <ShopByCategorySection />
+          
+          {/* Category-Based Product Section */}
+          <CategoryProductsSection onAddToCart={handleAddToCart} />
 
           {/* Newsletter Section */}
           <NewsletterSection />

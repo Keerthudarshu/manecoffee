@@ -47,7 +47,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-[#1e1509] border-t border-[#C9A227]/20 text-[#f5e6c8]">
+    <footer className="footer-coffee border-t border-primary/20 text-[#f5e6c8]">
       {/* Popular Searches Section */}
       <div className="border-b border-[#C9A227]/10 py-8">
         <div className="container mx-auto px-4">
