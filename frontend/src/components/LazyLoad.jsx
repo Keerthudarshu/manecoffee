@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react';
 
 // Loading skeleton component
-const LoadingSkeleton = ({ height = "h-64", className = "" }) => (
+export const LoadingSkeleton = ({ height = "h-64", className = "" }) => (
   <div className={`animate-pulse ${height} ${className}`}>
     <div className="h-full bg-gray-200 rounded-lg"></div>
   </div>
