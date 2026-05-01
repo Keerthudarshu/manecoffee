@@ -258,6 +258,23 @@ const FeaturedProductsSection = ({ onAddToCart }) => {
                         </span>
                       </div>
 
+                      {/* Image Hover Actions (Quick Add & Wishlist) */}
+                      <div className="absolute bottom-4 left-0 right-0 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 px-4">
+                        <button
+                          onClick={(e) => { e.preventDefault(); handleQuickAdd(product); }}
+                          className="flex-1 bg-white text-black font-bold py-2.5 px-4 rounded-xl shadow-lg border border-gray-100 flex items-center justify-center gap-2 hover:bg-gray-50 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300"
+                        >
+                          <Icon name="ShoppingCart" size={16} /> Quick Add
+                        </button>
+                        <button
+                          onClick={(e) => { e.preventDefault(); /* Wishlist logic later */ }}
+                          className="w-10 h-10 bg-white text-black rounded-full shadow-lg border border-gray-100 flex items-center justify-center hover:bg-gray-50 hover:text-red-500 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 delay-75 flex-shrink-0"
+                          aria-label="Add to wishlist"
+                        >
+                          <Icon name="Heart" size={18} />
+                        </button>
+                      </div>
+
                       {/* Rating */}
                       <div className="flex items-center gap-2 mb-3">
                         <div className="flex items-center">
@@ -287,15 +304,22 @@ const FeaturedProductsSection = ({ onAddToCart }) => {
                           </div>
                           <div className="flex items-center gap-1">
                             <span className="text-[#C9A227]">🔥</span>
-                            <span className="text-[#2a1f0e]">Roast: Medium-Dark</span>
+                            <span className="text-[#2a1f0e]">Roast: {
+                              product.name.toLowerCase().includes('arabica') && !product.name.toLowerCase().includes('robusta') ? 'Medium' : 'Medium-Dark'
+                            }</span>
                           </div>
                           <div className="flex items-center gap-1">
                             <span className="text-[#C9A227]">☕</span>
-                            <span className="text-[#2a1f0e]">Taste: Strong, Bold</span>
+                            <span className="text-[#2a1f0e]">Taste: {
+                              product.name.toLowerCase().includes('arabica + robusta') || product.name.toLowerCase().includes('blend') ? 'Balanced, Smooth' :
+                              product.name.toLowerCase().includes('robusta') ? 'Strong, Bold' : 'Smooth, Aromatic'
+                            }</span>
                           </div>
                           <div className="flex items-center gap-1">
-                            <span className="text-[#C9A227]">🧊</span>
-                            <span className="text-[#2a1f0e]">Best for: Filter</span>
+                            <span className="text-[#C9A227]">✨</span>
+                            <span className="text-[#2a1f0e]">Best for: {
+                              product.name.toLowerCase().includes('robusta') && !product.name.toLowerCase().includes('arabica') ? 'Espresso/Milk' : 'Filter Coffee'
+                            }</span>
                           </div>
                         </div>
                       </div>
@@ -316,7 +340,7 @@ const FeaturedProductsSection = ({ onAddToCart }) => {
                                     : 'bg-white text-[#1e1509] border-[#1e1509]/10 hover:border-[#C9A227]'
                                     }`}
                                 >
-                                  {variant.label}
+                                  {variant.label.toUpperCase()}
                                 </button>
                               );
                             })}

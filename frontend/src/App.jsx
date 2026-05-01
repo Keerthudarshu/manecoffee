@@ -29,6 +29,7 @@ import TermsOfService from './pages/policies/TermsOfService';
 import BlogIndex from './pages/blog';
 import BlogPost from './pages/blog/BlogPost';
 import NotFound from './pages/NotFound';
+import ReviewsPage from './pages/reviews';
 
 // Protected Route Component
 const ProtectedAdminRoute = ({ children }) => {
@@ -85,6 +86,7 @@ function App() {
                   <Route path="/forgot-password" element={<ForgotPassword />} />
                   <Route path="/reset-password" element={<ForgotPassword />} />
                   <Route path="/user-account-dashboard" element={<UserAccountDashboard />} />
+                  <Route path="/reviews" element={<ReviewsPage />} />
                   <Route path="/about" element={<AboutPage />} />
                   <Route path="/contact" element={<ContactPage />} />
                   <Route path="/categories" element={<CategoriesPage />} />

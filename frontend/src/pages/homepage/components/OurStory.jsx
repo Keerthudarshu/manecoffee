@@ -144,23 +144,7 @@ const OurStory = () => {
           </div>
         </div>
 
-        {/* CTA Section */}
-        <div className="bg-gradient-to-r from-[#C9A227] to-[#F0C040] rounded-2xl p-8 md:p-12 text-center text-white">
-          <h3 className="text-3xl md:text-4xl font-bold mb-4">
-            Experience the Difference
-          </h3>
-          <p className="text-lg mb-8 max-w-2xl mx-auto">
-            Join thousands of coffee lovers who have discovered the authentic taste of Coorg coffee. Your perfect cup awaits.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-white text-[#C9A227] px-8 py-4 rounded-full font-bold hover:bg-gray-100 transition-all duration-300">
-              🛒 Shop Our Collection
-            </button>
-            <button className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-full font-bold hover:bg-white hover:text-[#C9A227] transition-all duration-300">
-              📖 Learn More About Coffee
-            </button>
-          </div>
-        </div>
+
       </div>
     </section>
   );

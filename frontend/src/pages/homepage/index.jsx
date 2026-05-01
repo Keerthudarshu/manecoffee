@@ -7,7 +7,7 @@ import { LazySection, LoadingSkeleton } from '../../components/LazyLoad';
 // Lazy load components that are below the fold
 const FeaturedProductsSection = lazy(() => import('./components/FeaturedProductsSection'));
 const WhyChooseManeCoffee = lazy(() => import('./components/WhyChooseManeCoffee'));
-const CustomerReviews = lazy(() => import('./components/CustomerReviews'));
+
 const OurStory = lazy(() => import('./components/OurStory'));
 const LimitedOffer = lazy(() => import('./components/LimitedOffer'));
 const BannerShowcase = lazy(() => import('./components/BannerShowcase'));
@@ -127,12 +127,7 @@ const Homepage = () => {
             </Suspense>
           </LazySection>
 
-          {/* Customer Reviews - Social proof and testimonials */}
-          <LazySection>
-            <Suspense fallback={<LoadingSkeleton />}>
-              <CustomerReviews />
-            </Suspense>
-          </LazySection>
+
 
           {/* Our Story - Emotional connection and brand story */}
           <LazySection>

@@ -76,7 +76,7 @@ const ShopByCategorySection = () => {
           {categories.map((category) => (
             <Link
               key={category.id}
-              to={`/product-collection-grid?category=${category.id}`}
+              to={`/product-detail-page/${category.id}`}
               className="group bg-white rounded-2xl shadow-lg border border-border hover:shadow-xl transition-all duration-500 hover:-translate-y-1 overflow-hidden"
             >
               {/* Image */}
