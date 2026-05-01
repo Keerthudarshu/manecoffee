@@ -283,7 +283,7 @@ const ProductInfo = ({ product, onAddToCart, onAddToWishlist, isInWishlist }) =>
             </div>
 
             <a
-              href={`https://wa.me/91 90194 45168?text=Hi%20Mane%20Coffee,%20I%20want%20to%20order%20${encodeURIComponent(product?.name || 'Coffee')}`}
+              href={`https://wa.me/919019445168?text=Hi%20Mane%20Coffee,%20I%20want%20to%20order%20${encodeURIComponent(product?.name || 'Coffee')}`}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center justify-center gap-2 w-full bg-[#25D366] hover:bg-[#128C7E] text-white font-bold py-3 px-4 rounded-xl transition-all duration-300 transform hover:scale-[1.02] shadow-md"

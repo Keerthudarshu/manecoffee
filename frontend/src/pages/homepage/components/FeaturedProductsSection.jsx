@@ -390,7 +390,7 @@ const FeaturedProductsSection = ({ onAddToCart }) => {
                           🛒 Buy Now
                         </button>
                         <a
-                          href="https://wa.me/91 90194 45168?text=Hi%20Mane%20Coffee,%20I%20want%20to%20order%20{product.name}"
+                          href="https://wa.me/919019445168?text=Hi%20Mane%20Coffee,%20I%20want%20to%20order%20{product.name}"
                           target="_blank"
                           rel="noopener noreferrer"
                           className="bg-green-500 text-white px-4 py-3 rounded-lg hover:bg-green-400 transition-all duration-300"
