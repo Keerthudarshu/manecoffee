@@ -44,7 +44,7 @@ const Footer = () => {
     phone: "+91 90194 45168",
     whatsapp: "+91 90194 45168",
     email: "support@manecoffeee.com",
-    address: "Chennangi Village and Chennayan Kote Post, Polibetta Chennangi, Virajpet, Kodagu, Karnataka- 571215"
+    address: "John layout, 1st Main Rd, Begur, Begur - Koppa Rd, Bettadasanapura, Bengaluru, Karnataka 560083"
   };
 
   return (

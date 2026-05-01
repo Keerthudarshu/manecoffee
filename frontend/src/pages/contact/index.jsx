@@ -30,7 +30,7 @@ const ContactPage = () => {
     whatsapp: "+91 90194 45168",
     email: "support@manecoffeee.com",
     supportEmail: "support@manecoffeee.com",
-    address: `Chennangi Village and Chennayan Kote Post, Polibetta Chennangi, Virajpet, Kodagu, Karnataka- 571215`
+    address: `John layout, 1st Main Rd, Begur, Begur - Koppa Rd, Bettadasanapura, Bengaluru, Karnataka 560083`
   };
 
   const businessHours = [
@@ -118,10 +118,10 @@ const ContactPage = () => {
 
   return (
     <>
-      <SEO 
+      <SEO
         title="Contact Mane Coffee - Customer Support and Store Location"
         description="Contact Mane Coffee for order support, product help, wholesale queries, or store visit details. Reach us by phone, WhatsApp, or email."
-        keywords="contact Mane Coffee, Mane Coffee customer support, coffee order help, Coorg coffee contact, WhatsApp support Mane Coffee"
+        keywords="contact Mane Coffee, Mane Coffee customer support, coffee order help, Coorg coffee contact, WhatsApp support Mane Coffee, boca coffee shop, boca raton coffee, cafe in boca raton, coffee boca, coffee boca raton fl, coffee shop boca, coffee shop in boca raton, coffee shops boca raton fl, coffee shops delray, coffee shops in boca, coffee shops in delray, coffee shops west palm beach, delray beach cafe, mane coffee boca, mane coffee boca raton, mane coffee boca raton fl, specialty coffees near me, gourmet coffee shop near me, coffee gourmet near me, coffee hangouts near me, coffee shops near me indoor seating, coffee with seating near me, fancy coffee shop near me, specialist coffee shops near me, speciality cafe near me, speciality coffee shop near me, specialty coffee around me, specialty coffee store near me"
         canonical="/contact"
         ogTitle="Contact Mane Coffee | Support and Enquiries"
         ogDescription="Need help with your order or products? Connect with Mane Coffee support quickly."
@@ -364,7 +364,7 @@ const ContactPage = () => {
                     {/* Interactive Map */}
                     <div className="mt-8 overflow-hidden rounded-lg h-64 lg:h-80 shadow-inner">
                       <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15594.751892290857!2d75.92246138665506!3d12.269382324670724!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba5a4bfa1a1d829%3A0x3ba6a1bbfd528cec!2sChennaianakote%2C%20Karnataka%20571215!5e0!3m2!1sen!2sin!4v1776858525060!5m2!1sen!2sin"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d995858.5981954223!2d76.45049189705321!3d12.838581915230742!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae6b000edfd73b%3A0x43d0fb7138b38b3a!2sGodara%20residency!5e0!3m2!1sen!2sin!4v1777638870540!5m2!1sen!2sin"
                         width="100%"
                         height="100%"
                         style={{ border: 0 }}

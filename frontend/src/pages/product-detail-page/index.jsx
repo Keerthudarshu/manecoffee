@@ -406,7 +406,7 @@ const ProductDetailPage = () => {
       <SEO 
         title={product?.name}
         description={product?.shortDescription}
-        keywords={`${product?.name}, Coorg coffee, buy ${product?.name} online, Mane Coffee ${product?.category}`}
+        keywords={`${product?.name}, Coorg coffee, buy ${product?.name} online, Mane Coffee ${product?.category}, specialty coffee, specialty coffee shop, coffee speciality, gourmet coffee shop, specialty coffee website, best cafe coffee, coffee bistros, café coffee shop, gourmet coffee cafe, mane coffee shop, the best specialty coffee, speciality gourmet coffee, speciality of coffee`}
         canonical={`/product-detail-page?id=${productId}`}
         ogTitle={`${product?.name} - Mane Coffee`}
         ogDescription={product?.shortDescription}

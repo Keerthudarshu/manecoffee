@@ -227,8 +227,10 @@ public class EmailService {
 
         body.append("New order has been received.\n\n");
         body.append("Order ID: ").append(safe(order.getId())).append("\n");
-        body.append("Customer Name: ").append(safe(order.getUser() != null ? order.getUser().getName() : null)).append("\n");
-        body.append("Customer Email: ").append(safe(order.getUser() != null ? order.getUser().getEmail() : null)).append("\n");
+        body.append("Customer Name: ").append(safe(order.getUser() != null ? order.getUser().getName() : null))
+                .append("\n");
+        body.append("Customer Email: ").append(safe(order.getUser() != null ? order.getUser().getEmail() : null))
+                .append("\n");
         body.append("Order Time: ")
                 .append(order.getCreatedAt() != null ? ORDER_TIME_FORMAT.format(order.getCreatedAt()) : "N/A")
                 .append("\n");
@@ -269,10 +271,15 @@ public class EmailService {
         }
 
         body.append("\nAmount Summary:\n");
-        body.append("- Subtotal: Rs ").append(String.format("%.2f", order.getSubtotal() != null ? order.getSubtotal() : 0.0)).append("\n");
-        body.append("- Shipping: Rs ").append(String.format("%.2f", order.getShippingFee() != null ? order.getShippingFee() : 0.0)).append("\n");
-        body.append("- Discount: Rs ").append(String.format("%.2f", order.getDiscount() != null ? order.getDiscount() : 0.0)).append("\n");
-        body.append("- Total: Rs ").append(String.format("%.2f", order.getTotal() != null ? order.getTotal() : 0.0)).append("\n\n");
+        body.append("- Subtotal: Rs ")
+                .append(String.format("%.2f", order.getSubtotal() != null ? order.getSubtotal() : 0.0)).append("\n");
+        body.append("- Shipping: Rs ")
+                .append(String.format("%.2f", order.getShippingFee() != null ? order.getShippingFee() : 0.0))
+                .append("\n");
+        body.append("- Discount: Rs ")
+                .append(String.format("%.2f", order.getDiscount() != null ? order.getDiscount() : 0.0)).append("\n");
+        body.append("- Total: Rs ").append(String.format("%.2f", order.getTotal() != null ? order.getTotal() : 0.0))
+                .append("\n\n");
 
         body.append("Open admin orders page:\n");
         body.append(adminOrdersUrl).append("\n");
@@ -471,8 +478,8 @@ public class EmailService {
         fromDetails.setBorder(Rectangle.NO_BORDER);
         fromDetails.addElement(new Paragraph("Mane Coffee", textNormal));
         fromDetails.addElement(
-                new Paragraph("Chennangi Village and Chennayan Kote Post, Polibetta Chennangi,", textNormal));
-        fromDetails.addElement(new Paragraph("Virajpet, Kodagu, Karnataka- 571215", textNormal));
+                new Paragraph("John layout, 1st Main Rd, Begur, Begur - Koppa Rd, Polibetta Chennangi,", textNormal));
+        fromDetails.addElement(new Paragraph("Bettadasanapura, Bengaluru, Karnataka 560083 ", textNormal));
         fromDetails.addElement(new Paragraph("support@manecoffeee.com", textNormal));
         fromDetails.addElement(new Paragraph("+91 90194 45168", textNormal));
         fromTable.addCell(fromDetails);

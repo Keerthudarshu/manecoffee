@@ -282,12 +282,12 @@ const FeaturedProductsSection = ({ onAddToCart }) => {
                       <h3 className="font-heading text-lg md:text-xl font-bold text-[#2a1f0e] mb-1">
                         {product.name}
                       </h3>
-                      
+
                       {/* Subtitle */}
                       <p className="text-sm font-medium text-[#C9A227] mb-3">
                         {product.name.toLowerCase().includes('arabica + robusta') || product.name.toLowerCase().includes('blend') ? 'Strong & Bold | Perfect for Filter Coffee' :
-                         product.name.toLowerCase().includes('robusta') ? 'Strong & Bold | Intense Flavor' : 
-                         'Smooth & Aromatic | Refined Taste'}
+                          product.name.toLowerCase().includes('robusta') ? 'Strong & Bold | Intense Flavor' :
+                            'Smooth & Aromatic | Refined Taste'}
                       </p>
 
                       {/* Rating */}
@@ -327,7 +327,7 @@ const FeaturedProductsSection = ({ onAddToCart }) => {
                             <span className="text-[#C9A227]">☕</span>
                             <span className="text-[#2a1f0e]">Taste: {
                               product.name.toLowerCase().includes('arabica + robusta') || product.name.toLowerCase().includes('blend') ? 'Balanced, Smooth' :
-                              product.name.toLowerCase().includes('robusta') ? 'Strong, Bold' : 'Smooth, Aromatic'
+                                product.name.toLowerCase().includes('robusta') ? 'Strong, Bold' : 'Smooth, Aromatic'
                             }</span>
                           </div>
                           <div className="flex items-center gap-1">
@@ -390,7 +390,7 @@ const FeaturedProductsSection = ({ onAddToCart }) => {
                           🛒 Buy Now
                         </button>
                         <a
-                          href="https://wa.me/919876543210?text=Hi%20Mane%20Coffee,%20I%20want%20to%20order%20{product.name}"
+                          href="https://wa.me/91 90194 45168?text=Hi%20Mane%20Coffee,%20I%20want%20to%20order%20{product.name}"
                           target="_blank"
                           rel="noopener noreferrer"
                           className="bg-green-500 text-white px-4 py-3 rounded-lg hover:bg-green-400 transition-all duration-300"

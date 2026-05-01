@@ -92,7 +92,7 @@ const Homepage = () => {
       <SEO 
         title="Premium Coorg Coffee, Arabica & Robusta Online"
         description="Experience the finest shade-grown coffee from the mist-covered hills of Coorg. Shop premium Arabica, Robusta, and signature estate blends roasted for the ultimate flavor. Free delivery above ₹499."
-        keywords="Coorg coffee, Kodagu coffee, buy coffee online India, Arabica beans, Robusta beans, filter coffee powder, artisan coffee roasting, shade grown coffee, Mane Coffee, best coffee from Coorg"
+        keywords="Coorg coffee, Kodagu coffee, buy coffee online India, Arabica beans, Robusta beans, filter coffee powder, artisan coffee roasting, shade grown coffee, Mane Coffee, best coffee from Coorg, specialty coffee, specialty coffee shop, coffee speciality, gourmet coffee shop, specialty coffee website, best cafe coffee, coffee bistros, café coffee shop, gourmet coffee cafe, mane coffee shop, the best specialty coffee, atmosphere coffee shop, best coffee stores near me, best coffeehouse near me, coffee shop indoor seating, coffee shop with indoor seating, indoor coffee shop, upscale coffee shop near me"
         canonical="/"
         ogTitle="Mane Coffee | Premium Coorg Coffee, Arabica & Robusta"
         ogDescription="Experience the finest shade-grown coffee from the mist-covered hills of Coorg. Premium Arabica, Robusta, and signature blends."

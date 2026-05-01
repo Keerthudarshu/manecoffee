@@ -17,6 +17,7 @@ const ReviewsPage = () => {
       <SEO 
         title="Customer Reviews - Mane Coffee"
         description="Read real feedback from our customers about their experience with Mane Coffee's premium Coorg coffee."
+        keywords="the best specialty coffee, gourmet coffee place, the speciality coffee shop, the specialty coffee, the specialty coffee shop, coffee specialty shop, coffee speciality shop, coffee shop specialty"
         canonical="/reviews"
       />
       

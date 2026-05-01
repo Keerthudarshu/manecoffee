@@ -369,7 +369,7 @@ const ProductCollectionGrid = () => {
           : `Shop ${categoryTitle} at Mane Coffee. Discover fresh Coorg coffee beans, filter coffee powder, and signature blends delivered across India.`}
         keywords={searchTerm
           ? `${searchTerm}, buy coffee online India, Coorg coffee, Mane Coffee`
-          : `buy ${categoryTitle}, Coorg coffee online, Arabica Robusta blends, filter coffee powder, Mane Coffee products`}
+          : `buy ${categoryTitle}, Coorg coffee online, Arabica Robusta blends, filter coffee powder, Mane Coffee products, blvd specialty coffee menu, coffee shop coffee menu, coffee shop coffee prices, coffee shop food menu, mane coffee menu, menu for cafe shop, specialty coffee menu, specialty coffee shop menu, specialty coffee cafe, specialty coffee house, speciality coffee bar, speciality coffee cafe, speciality coffee house, speciality gourmet coffee, speciality of coffee, a cafe specialty coffee, be speciality coffee, & specialty coffee`}
         canonical="/product-collection-grid"
         ogTitle={searchTerm ? `${searchTerm} - Mane Coffee` : `${categoryTitle} - Mane Coffee Collection`}
         ogDescription={searchTerm

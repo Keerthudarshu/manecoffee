@@ -47,7 +47,7 @@ const BlogIndex = () => {
             <SEO 
                 title="Mane Coffee Blog - Coorg Coffee Guides and Brewing Tips"
                 description="Read Mane Coffee blog articles on Coorg coffee culture, Arabica vs Robusta, brewing tips, and traditional estate processing methods."
-                keywords="Mane Coffee blog, Coorg coffee guide, Arabica vs Robusta, coffee brewing tips India, Kodagu coffee stories"
+                keywords="Mane Coffee blog, Coorg coffee guide, Arabica vs Robusta, coffee brewing tips India, Kodagu coffee stories, start a coffee shop, requirements to open a coffee shop, open a cafe shop, opening a specialty coffee shop, coffee for coffee shop, home speciality coffee, specialty coffee website"
                 canonical="/blog"
                 ogTitle="Mane Coffee Blog | Coorg Coffee Insights"
                 ogDescription="Explore coffee guides, brewing knowledge, and stories from Coorg."
