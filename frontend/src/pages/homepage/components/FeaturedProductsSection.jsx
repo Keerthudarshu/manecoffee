@@ -274,6 +274,21 @@ const FeaturedProductsSection = ({ onAddToCart }) => {
                           <Icon name="Heart" size={18} />
                         </button>
                       </div>
+                    </div>
+
+                    {/* Product Content */}
+                    <div className="p-4 md:p-5">
+                      {/* Product Name */}
+                      <h3 className="font-heading text-lg md:text-xl font-bold text-[#2a1f0e] mb-1">
+                        {product.name}
+                      </h3>
+                      
+                      {/* Subtitle */}
+                      <p className="text-sm font-medium text-[#C9A227] mb-3">
+                        {product.name.toLowerCase().includes('arabica + robusta') || product.name.toLowerCase().includes('blend') ? 'Strong & Bold | Perfect for Filter Coffee' :
+                         product.name.toLowerCase().includes('robusta') ? 'Strong & Bold | Intense Flavor' : 
+                         'Smooth & Aromatic | Refined Taste'}
+                      </p>
 
                       {/* Rating */}
                       <div className="flex items-center gap-2 mb-3">

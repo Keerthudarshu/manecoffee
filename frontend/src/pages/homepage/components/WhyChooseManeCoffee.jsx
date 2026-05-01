@@ -90,23 +90,7 @@ const WhyChooseManeCoffee = () => {
           </div>
         </div>
 
-        {/* CTA Section */}
-        <div className="mt-8 md:mt-12 text-center px-2">
-          <h3 className="text-xl sm:text-2xl font-bold text-[#2a1f0e] mb-3 md:mb-4">
-            Ready to Experience the Best Coffee?
-          </h3>
-          <p className="text-sm sm:text-base text-gray-600 mb-6 md:mb-8 max-w-2xl mx-auto px-2">
-            Join thousands of satisfied customers who have discovered the perfect balance of flavor, aroma, and quality in every cup.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center">
-            <button className="bg-[#C9A227] hover:bg-[#F0C040] text-white px-6 py-3 md:px-8 md:py-4 rounded-full font-bold transition-all duration-300 hover:scale-105 shadow-lg text-sm md:text-base w-full sm:w-auto">
-              Shop Our Collection
-            </button>
-            <button className="border-2 border-[#C9A227] text-[#C9A227] hover:bg-[#C9A227] hover:text-white px-6 py-3 md:px-8 md:py-4 rounded-full font-bold transition-all duration-300 hover:scale-105 text-sm md:text-base w-full sm:w-auto">
-              Learn More About Us
-            </button>
-          </div>
-        </div>
+
       </div>
     </section>
   );

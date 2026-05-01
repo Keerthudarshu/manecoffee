@@ -8,7 +8,7 @@ import { LazySection, LoadingSkeleton } from '../../components/LazyLoad';
 const FeaturedProductsSection = lazy(() => import('./components/FeaturedProductsSection'));
 const WhyChooseManeCoffee = lazy(() => import('./components/WhyChooseManeCoffee'));
 
-const OurStory = lazy(() => import('./components/OurStory'));
+
 const LimitedOffer = lazy(() => import('./components/LimitedOffer'));
 const BannerShowcase = lazy(() => import('./components/BannerShowcase'));
 
@@ -129,12 +129,7 @@ const Homepage = () => {
 
 
 
-          {/* Our Story - Emotional connection and brand story */}
-          <LazySection>
-            <Suspense fallback={<LoadingSkeleton />}>
-              <OurStory />
-            </Suspense>
-          </LazySection>
+
 
           {/* Limited Offer - Urgency and special deals */}
           <LazySection>

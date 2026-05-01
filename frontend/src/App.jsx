@@ -30,6 +30,7 @@ import BlogIndex from './pages/blog';
 import BlogPost from './pages/blog/BlogPost';
 import NotFound from './pages/NotFound';
 import ReviewsPage from './pages/reviews';
+import OurStoryPage from './pages/our-story';
 
 // Protected Route Component
 const ProtectedAdminRoute = ({ children }) => {
@@ -87,6 +88,7 @@ function App() {
                   <Route path="/reset-password" element={<ForgotPassword />} />
                   <Route path="/user-account-dashboard" element={<UserAccountDashboard />} />
                   <Route path="/reviews" element={<ReviewsPage />} />
+                  <Route path="/our-story" element={<OurStoryPage />} />
                   <Route path="/about" element={<AboutPage />} />
                   <Route path="/contact" element={<ContactPage />} />
                   <Route path="/categories" element={<CategoriesPage />} />
