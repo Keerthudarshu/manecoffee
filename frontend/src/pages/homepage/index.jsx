@@ -13,7 +13,7 @@ const LimitedOffer = lazy(() => import('./components/LimitedOffer'));
 const BannerShowcase = lazy(() => import('./components/BannerShowcase'));
 
 import ShopByCategorySection from './components/ShopByCategorySection';
-import CategoryProductsSection from './components/CategoryProductsSection';
+
 import EdibleOilsSection from './components/EdibleOilsSection';
 import ExperienceTraditionCTA from './components/ExperienceTraditionCTA';
 
@@ -147,8 +147,7 @@ const Homepage = () => {
           {/* Shop by Category - Browse all product categories */}
           <ShopByCategorySection />
           
-          {/* Category-Based Product Section */}
-          <CategoryProductsSection onAddToCart={handleAddToCart} />
+
 
           {/* Newsletter Section */}
           <NewsletterSection />
