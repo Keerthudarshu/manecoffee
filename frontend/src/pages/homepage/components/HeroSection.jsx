@@ -55,61 +55,33 @@ const HeroSection = () => {
     return (
         <>
             {/* Content Only Section - Both Mobile and Desktop */}
-            <section className="bg-gradient-to-br from-[#120d07] to-[#2a2218] py-8 md:py-12 px-4">
-                <div className="container mx-auto text-center text-white">
-                    {/* Trust Badge */}
-                    <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md rounded-full px-2 py-1 md:px-3 md:py-1.5 mb-3 md:mb-4 border border-white/30">
-                        <span className="text-yellow-300 text-xs md:text-sm">⭐</span>
-                        <span className="text-[10px] md:text-xs font-semibold">100% Natural | No Chemicals</span>
-                    </div>
+            {/* Content Only Section - Both Mobile and Desktop */}
+            <section style={{background:'#111', color:'white', padding:'60px 20px', textAlign:'center'}}>
+              <h1 style={{fontSize:'36px', fontWeight:700}}>
+                Experience Authentic Coorg Coffee at Home
+              </h1>
+              <p style={{fontSize:'18px', marginTop:'10px'}}>
+                Freshly Roasted | 100% Pure | No Chicory
+              </p>
 
-                    {/* Main Headline */}
-                    <h1 className="text-xl sm:text-2xl md:text-4xl lg:text-6xl font-bold mb-2 md:mb-4 leading-tight">
-                        Authentic Coorg Coffee
-                        <span className="block text-base sm:text-lg md:text-2xl lg:text-4xl mt-1 md:mt-2 text-yellow-300">
-                            Freshly Roasted, Delivered to Your Door
-                        </span>
-                    </h1>
+              <Link to="/product-collection-grid" 
+                 style={{display:'inline-block', marginTop:'20px', padding:'12px 30px', 
+                 background:'#c49b63', color:'#000', textDecoration:'none', fontWeight:600, borderRadius:'5px'}}>
+                 Shop Now
+              </Link>
+            </section>
 
-                    {/* Subheadline */}
-                    <p className="text-xs sm:text-sm md:text-base lg:text-lg mb-4 md:mb-6 max-w-2xl md:max-w-3xl mx-auto text-white/90 leading-relaxed px-2">
-                        Experience rich aroma and bold taste from premium Arabica & Robusta beans 
-                        sourced directly from Coorg estates.
-                    </p>
-
-                    {/* CTA Buttons */}
-                    <div className="flex flex-col sm:flex-row gap-2 md:gap-3 justify-center items-center mb-4 md:mb-6 px-4">
-                        <Link
-                            to="/product-collection-grid"
-                            className="inline-flex items-center gap-1.5 md:gap-2 bg-yellow-400 hover:bg-yellow-300 text-black font-bold px-4 py-2 md:px-6 md:py-2.5 rounded-full text-xs md:text-sm transition-all duration-300 transform hover:scale-105 shadow-xl w-full sm:w-auto justify-center"
-                        >
-                            <Icon name="ShoppingCart" size={12} className="md:size-16" />
-                            🛒 Shop Now
-                        </Link>
-                        
-                        <a
-                            href="https://wa.me/919876543210?text=Hi%20Mane%20Coffee,%20I%20want%20to%20order%20coffee"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1.5 md:gap-2 bg-green-500 hover:bg-green-400 text-white font-bold px-4 py-2 md:px-6 md:py-2.5 rounded-full text-xs md:text-sm transition-all duration-300 transform hover:scale-105 shadow-xl w-full sm:w-auto justify-center"
-                        >
-                            <Icon name="MessageCircle" size={12} className="md:size-16" />
-                            💬 Order on WhatsApp
-                        </a>
-                    </div>
-
-                    {/* Offer Banner */}
-                    <div className="inline-flex flex-col sm:flex-row items-center gap-1.5 md:gap-2 bg-red-600 text-white px-3 py-1.5 md:px-4 md:py-2 rounded-full font-bold text-xs md:text-sm animate-pulse max-w-xs sm:max-w-none">
-                        <div className="flex items-center gap-1.5">
-                            <span>🔥</span>
-                            <span>Limited Launch Offer – 10% OFF</span>
-                        </div>
-                        <div className="flex items-center gap-1.5">
-                            <span>🚚</span>
-                            <span>Free Delivery Above ₹499</span>
-                        </div>
-                    </div>
-                </div>
+            {/* Trust Badges Section */}
+            <section style={{display:'flex', justifyContent:'space-around', flexWrap:'wrap', gap:'20px', background:'#f9f9f9', padding:'20px', textAlign:'center', color:'#000'}}>
+              <div>
+                <h3 style={{fontSize:'18px', fontWeight:'600'}}>☕ Freshly Roasted</h3>
+              </div>
+              <div>
+                <h3 style={{fontSize:'18px', fontWeight:'600'}}>🌱 100% Natural</h3>
+              </div>
+              <div>
+                <h3 style={{fontSize:'18px', fontWeight:'600'}}>🚚 Fast Delivery</h3>
+              </div>
             </section>
 
             {/* Banner Only Section - Both Mobile and Desktop */}

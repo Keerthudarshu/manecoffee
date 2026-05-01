@@ -45,6 +45,8 @@ const ProductImageGallery = ({ images, productName }) => {
           }`}
           style={{ maxHeight: '380px', width: '100%', height: 'auto' }}
           onClick={() => setIsZoomed(!isZoomed)}
+          loading="eager"
+          fetchPriority="high"
         />
         
         {/* Navigation Arrows */}
@@ -88,6 +90,7 @@ const ProductImageGallery = ({ images, productName }) => {
                 src={image}
                 alt={`${productName} thumbnail ${index + 1}`}
                 className="w-full h-full object-cover"
+                loading="lazy"
               />
             </button>
           ))}

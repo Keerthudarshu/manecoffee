@@ -98,11 +98,19 @@ const ProductInfo = ({ product, onAddToCart, onAddToWishlist, isInWishlist }) =>
       <div className="space-y-6">
         {/* Product Info */}
         <div>
-          <h1 className="font-heading font-bold text-2xl lg:text-3xl text-foreground mb-2">
-            {product?.name}
-          </h1>
-          <p className="font-body text-muted-foreground">
-            {product?.shortDescription}
+          <h2 style={{fontSize:'24px', fontWeight:'bold', marginBottom:'15px'}}>
+            Authentic Coorg Filter Coffee – Rich Aroma & Bold Taste
+          </h2>
+
+          <ul style={{listStyleType:'none', padding:0, margin:0, marginBottom:'20px', display:'flex', flexDirection:'column', gap:'8px'}}>
+            <li>✔️ Premium quality beans sourced from Coorg</li>
+            <li>✔️ Strong, rich and aromatic flavor</li>
+            <li>✔️ No added chicory – 100% pure coffee</li>
+            <li>✔️ Perfect for traditional South Indian filter coffee</li>
+          </ul>
+
+          <p style={{color:'red', fontWeight:'bold', marginBottom:'20px'}}>
+            🔥 Limited Stock – Order Now
           </p>
 
         {/* Stock Status */}
@@ -173,9 +181,14 @@ const ProductInfo = ({ product, onAddToCart, onAddToWishlist, isInWishlist }) =>
                         : 'border-border bg-muted/50 opacity-50 cursor-not-allowed'
                   }`}
                 >
-                  {/* Weight Label */}
-                  <div className="font-heading font-bold text-foreground mb-2">
-                    {variant?.weight || `${variant?.weightValue}${variant?.weightUnit || 'g'}`}
+                  {/* Weight Label & Most Popular Badge */}
+                  <div className="font-heading font-bold text-foreground mb-2 flex flex-col items-start gap-1">
+                    <span>{variant?.weight || `${variant?.weightValue}${variant?.weightUnit || 'g'}`}</span>
+                    {(variant?.weight?.includes('500') || variant?.weightValue === '500' || variant?.weightValue === 500) && (
+                      <span className="text-[10px] bg-yellow-100 text-yellow-800 px-1.5 py-0.5 rounded-full font-bold uppercase tracking-wider flex items-center gap-1 border border-yellow-200">
+                        ⭐ Most Popular
+                      </span>
+                    )}
                   </div>
 
                   {/* Pricing Info */}
@@ -270,6 +283,40 @@ const ProductInfo = ({ product, onAddToCart, onAddToWishlist, isInWishlist }) =>
             >
             </Button>
           </div>
+
+          <a
+            href={`https://wa.me/919876543210?text=Hi%20Mane%20Coffee,%20I%20want%20to%20order%20${encodeURIComponent(product?.name || 'Coffee')}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center gap-2 w-full bg-[#25D366] hover:bg-[#128C7E] text-white font-bold py-3 px-4 rounded-xl transition-all duration-300 transform hover:scale-[1.02] shadow-md"
+          >
+            <Icon name="MessageCircle" size={20} />
+            Order via WhatsApp
+          </a>
+
+          {/* Trust + Conversion Boosters */}
+          <div className="grid grid-cols-2 gap-4 mt-6 pt-6 border-t border-border">
+            <div className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
+              <span className="text-green-600">✔️</span> Cash on Delivery
+            </div>
+            <div className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
+              <span className="text-green-600">✔️</span> Free shipping above ₹499
+            </div>
+            <div className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
+              <span className="text-green-600">✔️</span> Easy returns
+            </div>
+            <div className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
+              <span className="text-green-600">✔️</span> Secure Payments
+            </div>
+          </div>
+
+          <section style={{padding:'30px', marginTop:'20px', background:'#f9f9f9', borderRadius:'10px'}}>
+            <h3 style={{fontSize:'20px', fontWeight:'bold', marginBottom:'15px'}}>Customer Reviews</h3>
+
+            <p style={{marginBottom:'10px'}}>⭐⭐⭐⭐⭐ "Amazing aroma! Tastes just like Coorg coffee." – Rahul</p>
+            <p style={{marginBottom:'10px'}}>⭐⭐⭐⭐⭐ "Best filter coffee I’ve tried online." – Sneha</p>
+            <p>⭐⭐⭐⭐⭐ "Strong and fresh. Worth every rupee!" – Kiran</p>
+          </section>
         </div>
         {/* Stock Status */}
         <div className="flex items-center gap-2">

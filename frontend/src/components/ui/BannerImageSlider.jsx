@@ -57,7 +57,8 @@ const BannerImageSlider = ({ images, autoSlide = true, interval = 4000, classNam
               src={image}
               alt={`Banner ${index + 1}`}
               className="w-full h-full object-cover"
-              loading="eager"
+              loading={index === 0 ? "eager" : "lazy"}
+              fetchPriority={index === 0 ? "high" : "auto"}
               onError={(e) => {
                 e.target.src = '/assets/images/no_image.png';
               }}
