@@ -9,7 +9,7 @@ const FeaturedProductsSection = lazy(() => import('./components/FeaturedProducts
 const WhyChooseManeCoffee = lazy(() => import('./components/WhyChooseManeCoffee'));
 
 
-const LimitedOffer = lazy(() => import('./components/LimitedOffer'));
+
 const BannerShowcase = lazy(() => import('./components/BannerShowcase'));
 
 import ShopByCategorySection from './components/ShopByCategorySection';
@@ -131,12 +131,6 @@ const Homepage = () => {
 
 
 
-          {/* Limited Offer - Urgency and special deals */}
-          <LazySection>
-            <Suspense fallback={<LoadingSkeleton />}>
-              <LimitedOffer />
-            </Suspense>
-          </LazySection>
 
           
           {/* Shop by Category - Browse all product categories */}

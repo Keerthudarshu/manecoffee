@@ -37,10 +37,8 @@ const ShoppingCart = () => {
 
   // Shipping calculation based on location
   const getShippingCost = () => {
-    if (shippingLocation === 'bengaluru') {
-      return discountedSubtotal >= 499 ? 0 : 49;
-    } else if (shippingLocation === 'other') {
-      return discountedSubtotal >= 999 ? 0 : 99;
+    if (shippingLocation === 'bengaluru' || shippingLocation === 'other') {
+      return discountedSubtotal >= 2500 ? 0 : 99;
     }
     return 0;
   };

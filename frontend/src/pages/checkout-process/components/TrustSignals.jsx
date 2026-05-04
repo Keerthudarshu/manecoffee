@@ -11,7 +11,7 @@ const TrustSignals = () => {
     {
       icon: 'Truck',
       title: 'Free Shipping',
-      description: 'On orders above ₹499'
+      description: 'On orders above ₹2500'
     },
     {
       icon: 'RotateCcw',

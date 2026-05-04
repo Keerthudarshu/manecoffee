@@ -18,13 +18,13 @@ const WhyChooseManeCoffee = () => {
     {
       icon: 'XCircle',
       title: 'No Additives or Chemicals',
-      description: '100% pure coffee with no artificial flavors, preservatives, or chemicals',
+      description: 'Made with carefully selected coffee and 5–10% chicory. No artificial flavors, colors, or harmful chemicals.',
       emoji: '🚫'
     },
     {
       icon: 'Truck',
       title: 'Fast Delivery Across India',
-      description: 'Quick and reliable delivery to your doorstep within 3-5 business days',
+      description: 'Quick and reliable delivery to your doorstep within 3-7 business days',
       emoji: '🚚'
     }
   ];

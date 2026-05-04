@@ -138,7 +138,7 @@ const ShopByCategorySection = () => {
                     {category.featured.slice(0, 2).map((product, idx) => (
                       <span
                         key={idx}
-                        className="text-xs bg-muted text-muted-foreground px-2 py-1 rounded-full"
+                        className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full font-medium"
                       >
                         {product}
                       </span>

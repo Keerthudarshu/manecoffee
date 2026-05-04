@@ -9,7 +9,7 @@ import { resolveImageUrl } from '../../lib/resolveImageUrl';
 const CartDrawer = ({ isOpen, onClose, cartItems = [], onUpdateQuantity, onRemoveItem }) => {
   const navigate = useNavigate();
   const subtotal = cartItems?.reduce((sum, item) => sum + (item?.price * item?.quantity), 0);
-  const shipping = subtotal >= 499 ? 0 : 49;
+  const shipping = subtotal >= 2500 ? 0 : 99;
   const total = subtotal + shipping;
 
   const handleQuantityChange = (itemId, newQuantity) => {
@@ -122,13 +122,9 @@ const CartDrawer = ({ isOpen, onClose, cartItems = [], onUpdateQuantity, onRemov
           {cartItems?.length > 0 && (
             <div className="border-t border-border p-4 space-y-4">
               {/* Shipping Notice */}
-              {subtotal < 499 && (
-                <div className="bg-primary/10 border border-primary/30 rounded-lg p-3">
                   <p className="font-caption text-xs text-primary font-bold">
-                    Add ₹{(499 - subtotal)?.toFixed(2)} more for free shipping!
+                    Add ₹{(2500 - subtotal)?.toFixed(2)} more for free shipping!
                   </p>
-                </div>
-              )}
               
               {/* Order Summary */}
               <div className="space-y-2">

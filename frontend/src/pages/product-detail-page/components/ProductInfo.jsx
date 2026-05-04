@@ -298,7 +298,7 @@ const ProductInfo = ({ product, onAddToCart, onAddToWishlist, isInWishlist }) =>
                 <span className="text-green-600">✔️</span> Cash on Delivery
               </div>
               <div className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
-                <span className="text-green-600">✔️</span> Free shipping above ₹499
+                <span className="text-green-600">✔️</span> Free shipping above ₹2500
               </div>
               <div className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
                 <span className="text-green-600">✔️</span> Easy returns

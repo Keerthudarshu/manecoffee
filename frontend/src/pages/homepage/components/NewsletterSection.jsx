@@ -36,7 +36,7 @@ const NewsletterSection = () => {
     {
       icon: "Gift",
       title: "Exclusive Offers",
-      description: "Get 10% off on your first order"
+      description: "Get 11% off on your first order"
     },
     {
       icon: "Bell",
@@ -52,28 +52,28 @@ const NewsletterSection = () => {
 
   if (isSubscribed) {
     return (
-    <section className="py-16 lg:py-20 bg-[#120d07]/5">
-      <div className="container mx-auto px-4">
-        <div className="max-w-2xl mx-auto text-center">
-          <div className="w-16 h-16 bg-[#C9A227] rounded-full flex items-center justify-center mx-auto mb-6">
-            <Icon name="Check" size={32} color="white" />
+      <section className="py-16 lg:py-20 bg-[#120d07]/5">
+        <div className="container mx-auto px-4">
+          <div className="max-w-2xl mx-auto text-center">
+            <div className="w-16 h-16 bg-[#C9A227] rounded-full flex items-center justify-center mx-auto mb-6">
+              <Icon name="Check" size={32} color="white" />
+            </div>
+            <h2 className="font-heading font-bold text-3xl text-[#120d07] mb-4">
+              Welcome to the Coffee Club!
+            </h2>
+            <p className="font-body text-lg text-[#120d07]/70 mb-6">
+              Thank you for subscribing! Check your email for a special welcome offer.
+            </p>
+            <Button
+              variant="outline"
+              onClick={() => setIsSubscribed(false)}
+              className="border-[#C9A227] text-[#C9A227] hover:bg-[#C9A227] hover:text-white"
+            >
+              Subscribe Another Email
+            </Button>
           </div>
-          <h2 className="font-heading font-bold text-3xl text-[#120d07] mb-4">
-            Welcome to the Coffee Club!
-          </h2>
-          <p className="font-body text-lg text-[#120d07]/70 mb-6">
-            Thank you for subscribing! Check your email for a special welcome offer.
-          </p>
-          <Button
-            variant="outline"
-            onClick={() => setIsSubscribed(false)}
-            className="border-[#C9A227] text-[#C9A227] hover:bg-[#C9A227] hover:text-white"
-          >
-            Subscribe Another Email
-          </Button>
         </div>
-      </div>
-    </section>
+      </section>
     );
   }
 

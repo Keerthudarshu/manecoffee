@@ -4,7 +4,6 @@ const TrustCertificates = ({ className = "" }) => {
     const certificates = [
         { name: 'Emapana', src: '/assets/certificate/emapana.png' },
         { name: 'FSSAI', src: '/assets/certificate/fssai.png' },
-        { name: 'NABL', src: '/assets/certificate/nabl.png' },
         { name: 'Natural', src: '/assets/certificate/natural.png' }
     ];
 

@@ -34,7 +34,7 @@ const HeroSection = () => {
         // Only preload the first image, lazy load others
         const firstImage = new Image();
         firstImage.src = sliderImages[0];
-        
+
         // Preload next image after first loads
         firstImage.onload = () => {
             if (sliderImages.length > 1) {
@@ -56,32 +56,41 @@ const HeroSection = () => {
         <>
             {/* Content Only Section - Both Mobile and Desktop */}
             {/* Content Only Section - Both Mobile and Desktop */}
-            <section style={{background:'#111', color:'white', padding:'60px 20px', textAlign:'center'}}>
-              <h1 style={{fontSize:'36px', fontWeight:700}}>
-                Experience Authentic Coorg Coffee at Home
-              </h1>
-              <p style={{fontSize:'18px', marginTop:'10px'}}>
-                Freshly Roasted | 100% Pure | No Chicory
-              </p>
+            <section style={{
+                backgroundImage: 'linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(/assets/images/hero_bg.jpeg)',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                color: 'white',
+                padding: '100px 20px',
+                textAlign: 'center'
+            }}>
+                <h1 style={{ fontSize: '42px', fontWeight: 800, textShadow: '2px 2px 4px rgba(0,0,0,0.5)', marginBottom: '15px' }}>
+                    Experience Authentic Coorg Coffee at Home
+                </h1>
+                <p style={{ fontSize: '20px', marginTop: '10px', fontWeight: 500, letterSpacing: '1px' }}>
+                    Freshly Roasted | 100% Pure | No Chicory
+                </p>
 
-              <Link to="/product-collection-grid" 
-                 style={{display:'inline-block', marginTop:'20px', padding:'12px 30px', 
-                 background:'#c49b63', color:'#000', textDecoration:'none', fontWeight:600, borderRadius:'5px'}}>
-                 Shop Now
-              </Link>
+                <Link to="/product-collection-grid"
+                    style={{
+                        display: 'inline-block', marginTop: '20px', padding: '12px 30px',
+                        background: '#c49b63', color: '#000', textDecoration: 'none', fontWeight: 600, borderRadius: '5px'
+                    }}>
+                    Shop Now
+                </Link>
             </section>
 
             {/* Trust Badges Section */}
-            <section style={{display:'flex', justifyContent:'space-around', flexWrap:'wrap', gap:'20px', background:'#f9f9f9', padding:'20px', textAlign:'center', color:'#000'}}>
-              <div>
-                <h3 style={{fontSize:'18px', fontWeight:'600'}}>☕ Freshly Roasted</h3>
-              </div>
-              <div>
-                <h3 style={{fontSize:'18px', fontWeight:'600'}}>🌱 100% Natural</h3>
-              </div>
-              <div>
-                <h3 style={{fontSize:'18px', fontWeight:'600'}}>🚚 Fast Delivery</h3>
-              </div>
+            <section style={{ display: 'flex', justifyContent: 'space-around', flexWrap: 'wrap', gap: '20px', background: '#f9f9f9', padding: '20px', textAlign: 'center', color: '#000' }}>
+                <div>
+                    <h3 style={{ fontSize: '18px', fontWeight: '600' }}>☕ Freshly Roasted</h3>
+                </div>
+                <div>
+                    <h3 style={{ fontSize: '18px', fontWeight: '600' }}>🌱 100% Natural</h3>
+                </div>
+                <div>
+                    <h3 style={{ fontSize: '18px', fontWeight: '600' }}>🚚 Fast Delivery</h3>
+                </div>
             </section>
 
             {/* Banner Only Section - Both Mobile and Desktop */}

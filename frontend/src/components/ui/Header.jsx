@@ -85,7 +85,7 @@ const Header = ({ isLoggedIn = false, onSearch = () => { } }) => {
   };
 
   const navigationItems = [
-        { label: 'Products', path: '/product-collection-grid', icon: 'Package' },
+    { label: 'Products', path: '/product-collection-grid', icon: 'Package' },
     { label: 'Categories', path: '/categories', icon: 'Grid', hasDropdown: true, isCategories: true },
     { label: 'About', path: '/about', icon: 'Info' },
     { label: 'Contact', path: '/contact', icon: 'Phone' },
@@ -99,8 +99,8 @@ const Header = ({ isLoggedIn = false, onSearch = () => { } }) => {
           <div className="flex items-center gap-4 md:gap-6">
             <span className="flex items-center gap-2 whitespace-nowrap">
               <Icon name="Truck" size={14} className="text-primary" />
-              <span className="hidden xs:inline">Free Shipping ₹499+</span>
-              <span className="xs:hidden">₹499+ Shipping</span>
+              <span className="hidden xs:inline">Free Shipping ₹2500+</span>
+              <span className="xs:hidden">₹2500+ Shipping</span>
             </span>
             <span className="hidden md:flex items-center gap-2 whitespace-nowrap">
               <Icon name="Shield" size={14} className="text-primary" />
@@ -113,11 +113,6 @@ const Header = ({ isLoggedIn = false, onSearch = () => { } }) => {
             <span className="hidden lg:flex items-center gap-2 whitespace-nowrap">
               <span className="text-blue-600">🔒</span>
               Secure Payment
-            </span>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="bg-red-600 text-white px-3 py-1 rounded-full text-xs font-bold animate-pulse whitespace-nowrap">
-              🔥 Launch10 - 10% OFF
             </span>
           </div>
         </div>

@@ -32,7 +32,7 @@ const OrderSummary = ({
     }
   };
 
-  const freeShippingThreshold = shippingLocation === 'bengaluru' ? 499 : 999;
+  const freeShippingThreshold = 2500;
   const remainingForFreeShipping = Math.max(0, freeShippingThreshold - subtotal);
 
   return (
@@ -168,7 +168,7 @@ const OrderSummary = ({
               • FLAT10: 10% off on orders ≥₹1,499
             </p>
             <p className="font-caption text-xs text-muted-foreground">
-              • FREE50: Free shipping on orders ≥₹{freeShippingThreshold}
+              • FREE SHIPPING: Free shipping on orders ≥₹2500
             </p>
           </div>
         </div>
