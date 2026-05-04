@@ -320,7 +320,8 @@ const FeaturedProductsSection = ({ onAddToCart }) => {
                           <div className="flex items-center gap-1">
                             <span className="text-[#C9A227]">🔥</span>
                             <span className="text-[#2a1f0e]">Roast: {
-                              product.name.toLowerCase().includes('arabica') && !product.name.toLowerCase().includes('robusta') ? 'Medium' : 'Medium-Dark'
+                              product.name.toLowerCase().includes('arabica + robusta') || product.name.toLowerCase().includes('blend') ? 'Medium-Dark' :
+                                product.name.toLowerCase().includes('robusta') ? 'Medium' : 'Dark Roast'
                             }</span>
                           </div>
                           <div className="flex items-center gap-1">
@@ -333,7 +334,8 @@ const FeaturedProductsSection = ({ onAddToCart }) => {
                           <div className="flex items-center gap-1">
                             <span className="text-[#C9A227]">✨</span>
                             <span className="text-[#2a1f0e]">Best for: {
-                              product.name.toLowerCase().includes('robusta') && !product.name.toLowerCase().includes('arabica') ? 'Espresso/Milk' : 'Filter Coffee'
+                              product.name.toLowerCase().includes('arabica + robusta') || product.name.toLowerCase().includes('blend') ? 'Filter Coffee/Black Coffee' :
+                                product.name.toLowerCase().includes('robusta') ? 'Espresso/Filter Coffee' : 'Filter Coffee/Black coffee'
                             }</span>
                           </div>
                         </div>
