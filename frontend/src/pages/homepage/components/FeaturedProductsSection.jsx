@@ -64,9 +64,7 @@ const FeaturedProductsSection = ({ onAddToCart }) => {
       badge: dbProduct.badge || (categoryName === 'Special Offers' ? 'Offer' : 'Featured'),
       variants: variantObjects, // Store full variant objects
       category: dbProduct.category,
-      inStock: dbProduct.stockQuantity > 0 || (variantObjects.length > 0 && variantObjects.some(v => v.stockQuantity > 0)),
-      discount: discount,
-      stockQuantity: dbProduct.stockQuantity
+      discount: discount
     };
   };
 
@@ -377,8 +375,8 @@ const FeaturedProductsSection = ({ onAddToCart }) => {
                             </span>
                           )}
                         </div>
-                        <div className={`text-sm font-bold ${product.inStock ? 'text-green-600' : 'text-red-600'}`}>
-                          {product.inStock ? '✓ In Stock' : 'Out of Stock'}
+                        <div className="text-sm font-bold text-success">
+                          ✓ Ready to Ship
                         </div>
                       </div>
 
@@ -386,8 +384,7 @@ const FeaturedProductsSection = ({ onAddToCart }) => {
                       <div className="flex gap-2">
                         <button
                           onClick={() => handleQuickAdd(product)}
-                          disabled={!product.inStock}
-                          className="flex-1 bg-[#C9A227] text-white py-3 rounded-lg font-bold hover:bg-[#F0C040] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                          className="flex-1 bg-[#C9A227] text-white py-3 rounded-lg font-bold hover:bg-[#F0C040] transition-all duration-300"
                         >
                           🛒 Buy Now
                         </button>

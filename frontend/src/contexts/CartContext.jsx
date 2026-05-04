@@ -227,6 +227,7 @@ export const CartProvider = ({ children }) => {
             getNumericProductId(item.productId || item.id) === productId &&
             (item.variantId || 'default') === variantId
         );
+        const currentQty = existingItem ? parseInt(existingItem.quantity) || 0 : 0;
         const requestedQty = parseInt(quantity) || 1;
         let newQty = currentQty + requestedQty;
 

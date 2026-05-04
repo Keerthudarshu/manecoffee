@@ -60,7 +60,7 @@ const cartApi = {
       console.log('CartAPI: Successfully added product to cart');
       return res.data;
     } catch (error) {
-      console.error('CartAPI: Failed to add product to cart:', { email, productId, quantity }, {
+      console.error('CartAPI: Failed to add product to cart:', { email, productId: product?.productId, quantity }, {
         message: error.message,
         status: error.response?.status,
         data: error.response?.data
@@ -72,7 +72,7 @@ const cartApi = {
       }
       
       if (error.response?.status === 404) {
-        throw new Error('Product not found or out of stock');
+        throw new Error('Product not found or currently unavailable');
       }
       
       const errorMessage = error.response?.data?.message || 

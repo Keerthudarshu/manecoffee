@@ -142,14 +142,6 @@ const WishlistSection = ({ wishlistItems, onRemoveFromWishlist, onAddToCart }) =
                   )}
                 </button>
 
-                {/* Stock Status */}
-                {(item?.inStock === false) && (
-                  <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-                    <span className="bg-destructive text-destructive-foreground text-sm font-caption font-medium px-3 py-1 rounded">
-                      Out of Stock
-                    </span>
-                  </div>
-                )}
               </div>
 
               {/* Product Info */}
@@ -233,11 +225,10 @@ const WishlistSection = ({ wishlistItems, onRemoveFromWishlist, onAddToCart }) =
                     size="sm"
                     fullWidth
                     onClick={() => handleAddToCart(item)}
-                    disabled={item?.inStock === false}
                     iconName="ShoppingCart"
                     iconPosition="left"
                   >
-                    {item?.inStock === false ? 'Out of Stock' : 'Add to Cart'}
+                    Add to Cart
                   </Button>
                   <Link to={`/product-detail-page?id=${item?.id}`}>
                     <Button
