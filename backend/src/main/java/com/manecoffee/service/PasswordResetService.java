@@ -35,6 +35,9 @@ public class PasswordResetService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @org.springframework.beans.factory.annotation.Value("${app.frontend.url:https://manecoffeee.com}")
+    private String frontendUrl;
+
     /**
      * Generate password reset token for user email
      * Conditions:
@@ -215,8 +218,8 @@ public class PasswordResetService {
      * Build password reset link
      */
     private String buildResetLink(String token) {
-        // Adjust URL to your frontend domain
-        return "http://13.49.228.120/reset-password?token=" + token;
+        // Use configurable frontend URL
+        return frontendUrl + "/reset-password?token=" + token;
     }
 
     /**
