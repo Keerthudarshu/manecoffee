@@ -18,18 +18,6 @@ import {
 } from '../../../utils/csvExport';
 
 const Dashboard = () => {
-  const [stats, setStats] = useState({
-    totalProducts: 0,
-    totalUsers: 0,
-    totalOrders: 0,
-    totalRevenue: 0,
-    recentOrders: [],
-    lowStockProducts: [],
-    monthlyRevenue: 0,
-    weeklyOrders: 0,
-    topSellingProducts: [],
-    pendingOrders: 0,
-    completedOrders: 0,
     averageOrderValue: 0
   });
   const [loading, setLoading] = useState(true);
@@ -121,35 +109,6 @@ const Dashboard = () => {
         return st === 'delivered' || st === 'completed';
       }).length);
       
-      // Product analytics - check both product-level stock and variant-level stock
-      const lowStockProducts = [];
-      products.forEach(p => {
-        // Check if product has variants with low stock
-        if (p.variants && Array.isArray(p.variants) && p.variants.length > 0) {
-          p.variants.forEach(variant => {
-            if ((variant.stockQuantity || 0) < 10) {
-              lowStockProducts.push({
-                id: `${p.id}-${variant.weightValue}${variant.weightUnit}`,
-                productId: p.id,
-                name: p.name,
-                weight: `${variant.weightValue}${variant.weightUnit}`,
-                stockQuantity: variant.stockQuantity,
-                isVariant: true
-              });
-            }
-          });
-        } else if ((p.stockQuantity || 0) < 10) {
-          // Fallback to product-level stock if no variants
-          lowStockProducts.push({
-            id: p.id,
-            productId: p.id,
-            name: p.name,
-            weight: p.weight || 'N/A',
-            stockQuantity: p.stockQuantity,
-            isVariant: false
-          });
-        }
-      });
       const recentOrders = [...orders]
         .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
         .slice(0, 5);
@@ -188,7 +147,6 @@ const Dashboard = () => {
         pendingOrders,
         completedOrders,
         recentOrders,
-        lowStockProducts,
         topSellingProducts
       });
       
@@ -213,73 +171,6 @@ const Dashboard = () => {
     await loadDashboardData();
   };
 
-  const handleQuickRestockProduct = async (productId) => {
-    const restockAmount = prompt('Enter quantity to add to stock:');
-    if (restockAmount && !isNaN(restockAmount) && parseInt(restockAmount) > 0) {
-      try {
-        // Load current product details from backend
-        const productsRes = await dataService.getProducts();
-        const product = (productsRes?.data || []).find(p => p.id === productId);
-        if (!product) {
-          alert('Product not found. Please refresh and try again.');
-          return;
-        }
-
-        const addAmount = parseInt(restockAmount, 10);
-        let payload = { ...product };
-
-        // Find which variant was clicked (from the low stock alert)
-        const clickedAlert = stats.lowStockProducts.find(lsp => lsp.productId === productId);
-        
-        // Check if product has variants
-        if (product.variants && Array.isArray(product.variants) && product.variants.length > 0) {
-          // If a specific variant was clicked, update only that variant
-          if (clickedAlert && clickedAlert.isVariant) {
-            payload.variants = product.variants.map(variant => {
-              // Match variant by weight value and unit
-              const matchesVariant = variant.weightValue === clickedAlert.weight.replace(/[A-Z]/g, '').trim() ||
-                                     `${variant.weightValue}${variant.weightUnit}` === clickedAlert.weight;
-              
-              if (matchesVariant) {
-                return {
-                  ...variant,
-                  stockQuantity: (variant.stockQuantity || 0) + addAmount
-                };
-              }
-              return variant;
-            });
-          } else {
-            // No specific variant match - update all variants
-            payload.variants = product.variants.map(variant => ({
-              ...variant,
-              stockQuantity: (variant.stockQuantity || 0) + addAmount
-            }));
-          }
-          
-          // Update top-level stock with first variant's stock for backward compatibility
-          const firstVariant = payload.variants[0];
-          payload.stockQuantity = firstVariant.stockQuantity;
-        } else {
-          // Update product-level stock for non-variant products
-          payload.stockQuantity = (product.stockQuantity || 0) + addAmount;
-        }
-
-        payload.inStock = (payload.stockQuantity || 0) > 0;
-
-        // Persist to backend
-        await productApi.admin.update(productId, payload);
-
-        await loadDashboardData(); // Refresh data from backend
-        
-        const variantText = clickedAlert?.isVariant ? ` (${clickedAlert.weight})` : '';
-        alert(`Stock updated! ${product.name}${variantText} has been restocked with +${addAmount} items.`);
-      } catch (error) {
-        console.error('Error updating stock:', error);
-        alert('Failed to update stock. Please try again.');
-      }
-    }
-  };
-  
   const handleBulkRestock = () => {
     // Show modal or navigate to bulk stock management
     // alert('Bulk restock feature - would open a dedicated stock management interface');
@@ -480,7 +371,7 @@ const Dashboard = () => {
         <StatCard
           title="Total Products"
           value={stats.totalProducts}
-          subtitle={`${stats.lowStockProducts.length} low stock`}
+          subtitle="In catalog"
           icon={Package}
           color="primary"
         />
@@ -607,59 +498,7 @@ const Dashboard = () => {
             )}
           </div>
         </div>
-        {/* Stock Alerts */}
-        <div className="bg-card border border-border rounded-lg p-6">
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center">
-              <AlertTriangle className="w-5 h-5 mr-2 text-warning" />
-              <h2 className="text-lg font-heading font-semibold text-foreground">Stock Alerts</h2>
-              {stats.lowStockProducts.length > 0 && (
-                <span className="ml-2 bg-warning text-warning-foreground px-2 py-1 rounded-full text-xs font-medium">
-                  {stats.lowStockProducts.length}
-                </span>
-              )}
-            </div>
-            <button
-              onClick={handleBulkRestock}
-              className="flex items-center space-x-2 px-3 py-1 bg-primary/10 text-primary rounded-md text-sm hover:bg-primary/20 transition-colors"
-            >
-              <Plus className="w-4 h-4" />
-              {/* <span>+ Bulk</span> */}
-            </button>
-          </div>
-          <div className="space-y-3">
-            {stats.lowStockProducts.length > 0 ? (
-              stats.lowStockProducts.slice(0, 5).map((product) => (
-                <div key={product.id} className="flex items-center justify-between p-3 bg-warning/10 rounded-lg">
-                  <div className="flex-1">
-                    <p className="font-body font-medium text-foreground">{product.name}</p>
-                    <p className="text-sm text-muted-foreground">{product.weight}</p>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <div className="text-right">
-                      <p className={`font-body font-bold ${
-                        (product.stockQuantity || 0) <= 5 ? 'text-destructive' : 'text-warning'
-                      }`}>
-                        {product.stockQuantity || 0} left
-                      </p>
-                    </div>
-                    <button
-                      onClick={() => handleQuickRestockProduct(product.productId)}
-                      className="px-3 py-1 bg-primary text-primary-foreground rounded hover:bg-primary/90 transition-colors text-sm"
-                    >
-                      + Add
-                    </button>
-                  </div>
-                </div>
-              ))
-            ) : (
-              <div className="text-center py-8">
-                <Package className="w-8 h-8 text-success mx-auto mb-2" />
-                <p className="text-success font-medium">All products well stocked!</p>
-              </div>
-            )}
-          </div>
-        </div>
+        {/* Stock Alerts Removed */}
 
         {/* Recent Orders */}
         <div className="bg-card border border-border rounded-lg p-6">

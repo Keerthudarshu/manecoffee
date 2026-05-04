@@ -59,24 +59,7 @@ public class OrderService {
         }
         logger.debug("Found {} items in cart for user: {}", cart.size(), user.getEmail());
         
-        // 1b. Validate stock availability for all items before proceeding (use ProductVariant)
-        for (CartItem ci : cart) {
-            if (ci.getVariantId() == null) {
-                throw new IllegalStateException("Cart item missing variant information");
-            }
-            ProductVariant variant = productVariantRepo.findById(ci.getVariantId()).orElse(null);
-            if (variant == null) {
-                throw new IllegalStateException("Product variant not found for cart item");
-            }
-            int available = variant.getStockQuantity() != null ? variant.getStockQuantity() : 0;
-            int qty = ci.getQuantity() != null ? ci.getQuantity() : 0;
-            if (qty <= 0) {
-                throw new IllegalStateException("Invalid quantity for variant: " + variant.getId());
-            }
-            if (available < qty) {
-                throw new IllegalStateException("Insufficient stock for variant: " + variant.getId());
-            }
-        }
+        // 1b. Stock validation removed
         
         // 2. Get checkout selection
         CheckoutSelection selection = selectionRepo.findByUser(user)
@@ -179,14 +162,7 @@ public class OrderService {
             }
             orderItem.setWeightValue(weightValueHolder[0]);
             orderItem.setWeightUnit(weightUnitHolder[0]);
-            // Decrement stock for the purchased variant
-            if (variant != null) {
-                int available = variant.getStockQuantity() != null ? variant.getStockQuantity() : 0;
-                int qty = cartItem.getQuantity() != null ? cartItem.getQuantity() : 0;
-                int newQty = Math.max(available - qty, 0);
-                variant.setStockQuantity(newQty);
-                productVariantRepo.save(variant);
-            }
+            // Stock decrement removed
             // Do NOT update product stock fields here. All stock logic is handled by ProductVariant only.
             return orderItem;
         }).collect(Collectors.toList());

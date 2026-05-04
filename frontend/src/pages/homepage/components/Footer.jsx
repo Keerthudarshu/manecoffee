@@ -34,7 +34,7 @@ const Footer = () => {
 
   const socialLinks = [
     { name: "Facebook", icon: "Facebook", url: "#" },
-    { name: "Instagram", icon: "Instagram", url: "#" },
+    { name: "Instagram", icon: "Instagram", url: "https://www.instagram.com/mane_coffeee?igsh=MWcyc2g1OHJiMDB0aQ==" },
     { name: "Twitter", icon: "Twitter", url: "#" },
     { name: "YouTube", icon: "Youtube", url: "#" }
   ];

@@ -88,9 +88,7 @@ const ProductManagement = () => {
         image: resolveImageUrl(p?.imageUrl),
         imageUrl: p?.imageUrl || null, // keep original relative URL for edit form
         description: p?.description || 'No description available',
-        inStock: p?.inStock !== false, // Default to true if not specified
         weight: p?.weight || 'N/A',
-        stockQuantity: p?.stockQuantity ?? p?.quantity ?? 0,
         variants: p?.variants || [] // Include variants array for edit form
       }));
 
@@ -292,13 +290,7 @@ const ProductManagement = () => {
                 </div>
                 <span className="text-sm text-muted-foreground">{product.weight}</span>
               </div>
-              <div className="flex items-center justify-between text-sm">
-                <span className={`px-2 py-1 rounded-full ${
-                  product.inStock ? 'bg-success/10 text-success' : 'bg-destructive/10 text-destructive'
-                }`}>
-                  {product.inStock ? 'In Stock' : 'Out of Stock'}
-                </span>
-              </div>
+              {/* Stock status removed */}
             </div>
           </div>
         ))}

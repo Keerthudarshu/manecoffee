@@ -23,10 +23,6 @@ const ProductInfo = ({ product, onAddToCart, onAddToWishlist, isInWishlist }) =>
   const [selectedVariant, setSelectedVariant] = useState(initialVariant);
   const [quantity, setQuantity] = useState(1);
 
-  // Determine available stock from variant or product
-  const availableStock = (selectedVariant?.stock ?? selectedVariant?.stockQuantity ?? product?.stockQuantity ?? 0) || 0;
-  const inStock = availableStock > 0 && (product?.inStock ?? true);
-
   const handleVariantChange = (variant) => {
     setSelectedVariant(variant);
     setQuantity(1); // Reset quantity when variant changes
@@ -52,24 +48,12 @@ const ProductInfo = ({ product, onAddToCart, onAddToWishlist, isInWishlist }) =>
 
   const handleQuantityChange = (change) => {
     const newQuantity = quantity + change;
-    // Cap quantity between 1 and available stock
-    if (newQuantity >= 1 && newQuantity <= Math.max(availableStock, 0)) {
+    if (newQuantity >= 1) {
       setQuantity(newQuantity);
-    } else if (newQuantity > availableStock) {
-      alert('Stock limit exceeded');
-      setQuantity(Math.max(availableStock, 1));
     }
   };
 
   const handleAddToCart = () => {
-    if (!inStock || availableStock <= 0) {
-      alert('This product is out of stock');
-      return;
-    }
-    if (quantity > availableStock) {
-      alert('Stock limit exceeded');
-      return;
-    }
     // Provide comprehensive info for both server and guest carts
     onAddToCart({
       id: product?.id,
@@ -79,7 +63,6 @@ const ProductInfo = ({ product, onAddToCart, onAddToWishlist, isInWishlist }) =>
       price: selectedVariant?.price ?? 0,
       originalPrice: selectedVariant?.originalPrice ?? selectedVariant?.price ?? 0,
       image: product?.images?.[0] || product?.imageUrl || product?.image,
-      stockQuantity: availableStock,
       variantId: selectedVariant?.id,
       quantity: quantity,
       weight: selectedVariant?.weight,
@@ -110,16 +93,9 @@ const ProductInfo = ({ product, onAddToCart, onAddToWishlist, isInWishlist }) =>
           </ul>
 
           <p style={{ color: 'red', fontWeight: 'bold', marginBottom: '20px' }}>
-            🔥 Limited Stock – Order Now
+            🔥 Fresh Batch Available – Order Now
           </p>
 
-          {/* Stock Status */}
-          <div className="flex items-center gap-2">
-            <div className={`w-2 h-2 rounded-full ${inStock ? 'bg-success' : 'bg-destructive'}`}></div>
-            <span className={`text-sm font-medium ${inStock ? 'text-success' : 'text-destructive'}`}>
-              {inStock ? `In Stock (${availableStock} units available)` : 'Out of Stock'}
-            </span>
-          </div>
           {/* Product Badges */}
           <div className="flex flex-wrap gap-2">
             {product?.badges?.map((badge, index) => (
@@ -163,8 +139,7 @@ const ProductInfo = ({ product, onAddToCart, onAddToWishlist, isInWishlist }) =>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
               {allVariants.map((variant) => {
                 const isSelected = selectedVariant?.id === variant?.id;
-                const variantStock = variant?.stock ?? variant?.stockQuantity ?? 0;
-                const variantAvailable = variantStock > 0;
+                const variantAvailable = true;
                 const discount = computeDiscount(variant);
                 const per100Label = computePer100Label(variant);
 
@@ -218,11 +193,7 @@ const ProductInfo = ({ product, onAddToCart, onAddToWishlist, isInWishlist }) =>
                         </div>
                       )}
 
-                      {/* Stock Status */}
-                      <div className={`text-xs font-caption ${variantAvailable ? 'text-success' : 'text-destructive'
-                        }`}>
-                        {variantAvailable ? `${variantStock} in stock` : 'Out of stock'}
-                      </div>
+                      {/* Stock Status removed */}
                     </div>
 
                     {/* Selection Indicator */}
@@ -253,8 +224,7 @@ const ProductInfo = ({ product, onAddToCart, onAddToWishlist, isInWishlist }) =>
                 </span>
                 <button
                   onClick={() => handleQuantityChange(1)}
-                  disabled={quantity >= availableStock}
-                  className="w-10 h-10 flex items-center justify-center hover:bg-muted disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
+                  className="w-10 h-10 flex items-center justify-center hover:bg-muted transition-colors duration-200"
                 >
                   <Icon name="Plus" size={16} />
                 </button>
@@ -268,7 +238,6 @@ const ProductInfo = ({ product, onAddToCart, onAddToWishlist, isInWishlist }) =>
                 iconName="ShoppingCart"
                 iconPosition="left"
                 className="flex-1"
-                disabled={!inStock}
               >
                 Add to Cart
               </Button>
@@ -316,19 +285,7 @@ const ProductInfo = ({ product, onAddToCart, onAddToWishlist, isInWishlist }) =>
               <p>⭐⭐⭐⭐⭐ "Strong and fresh. Worth every rupee!" – Kiran</p>
             </section>
           </div>
-          {/* Stock Status */}
-          <div className="flex items-center gap-2">
-            <div className={`w-2 h-2 rounded-full ${inStock ? 'bg-success' : 'bg-destructive'}`}></div>
-            {inStock ? (
-              <span className="font-caption text-sm text-success font-medium">
-                In Stock ({availableStock} units available)
-              </span>
-            ) : (
-              <span className="font-caption text-sm text-destructive font-medium">
-                Out of Stock
-              </span>
-            )}
-          </div>
+          {/* Stock Status Removed */}
         </div>
         {/* Oil Essentials sticker for Wood Pressed Oils and Essential Oils - moved above tabs */}
         {(function () {

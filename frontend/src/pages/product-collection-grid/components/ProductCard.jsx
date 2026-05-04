@@ -14,11 +14,7 @@ const ProductCard = ({
   const [isImageLoading, setIsImageLoading] = useState(true);
   const [selectedVariant, setSelectedVariant] = useState(product?.variants?.[0] || null);
 
-  // Stock handling
-  const rawStock = (selectedVariant?.stock ?? product?.stockQuantity);
-  const hasExplicitStock = rawStock !== undefined && rawStock !== null;
-  const availableStock = hasExplicitStock ? Math.max(0, parseInt(rawStock, 10) || 0) : Number.POSITIVE_INFINITY;
-  const inStock = (product?.inStock !== false) && (hasExplicitStock ? availableStock > 0 : true);
+  const inStock = true;
 
   const calculateSavings = (originalPrice, salePrice) => {
     if (!originalPrice || !salePrice || originalPrice <= salePrice) return 0;
@@ -60,10 +56,6 @@ const ProductCard = ({
   // Always use selected variant if available
   const handleAddToCart = (e) => {
     e.stopPropagation();
-    if (!inStock || availableStock <= 0) {
-      alert('This product is out of stock');
-      return;
-    }
     let cartItem;
     if (selectedVariant) {
       const formatVariantLabel = (variant) => {
@@ -88,9 +80,7 @@ const ProductCard = ({
         variant: variantLabel,
         category: product.category,
         brand: product.brand,
-        weightValue: selectedVariant.weightValue,
-        weightUnit: selectedVariant.weightUnit,
-        ...(hasExplicitStock ? { stockQuantity: availableStock } : {})
+        weightUnit: selectedVariant.weightUnit
       };
     } else {
       let variantLabel = '';
@@ -120,9 +110,7 @@ const ProductCard = ({
         variant: variantLabel,
         category: product.category,
         brand: product.brand,
-        weightValue: weightValue,
-        weightUnit: weightUnit,
-        ...(hasExplicitStock ? { stockQuantity: availableStock } : {})
+        weightUnit: weightUnit
       };
     }
     onAddToCart(product, selectedVariant, 1);
@@ -133,10 +121,6 @@ const ProductCard = ({
   const handleAddToCartWithVariant = (e) => {
     e.stopPropagation();
     if (!selectedVariant) return; // Ensure a variant is selected
-    if (!inStock || availableStock <= 0) {
-      alert('This product is out of stock');
-      return;
-    }
 
     const cartItem = {
       id: selectedVariant.id || `${product.id}-${selectedVariant.weight || selectedVariant.weightValue || ''}`,
@@ -146,9 +130,7 @@ const ProductCard = ({
       originalPrice: selectedVariant.originalPrice || selectedVariant.price,
       image: product.image, // Consider if variants have different images
       variant: selectedVariant.weight || (selectedVariant.weightValue + (selectedVariant.weightUnit || '')),
-      category: product.category,
-      brand: product.brand,
-      ...(hasExplicitStock ? { stockQuantity: availableStock } : {})
+      brand: product.brand
     };
     onAddToCart(product, selectedVariant, 1);
     console.log('Added to cart:', cartItem);
@@ -311,12 +293,11 @@ const ProductCard = ({
             variant="default"
             fullWidth
             onClick={selectedVariant ? handleAddToCartWithVariant : handleAddToCart}
-            disabled={!inStock}
             iconName="ShoppingCart"
             iconPosition="left"
             iconSize={16}
           >
-            {inStock ? 'Add to Cart' : 'Out of Stock'}
+            Add to Cart
           </Button>
         </div>
       </div>

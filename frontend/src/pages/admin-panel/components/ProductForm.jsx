@@ -12,13 +12,12 @@ const ProductForm = ({ product, onSave, onCancel }) => {
     description: '',
     // variants: support quantity-based / variant pricing
     variants: [
-      { price: '', originalPrice: '', stockQuantity: '', weightValue: '', weightUnit: 'ML', imageUrls: [], imageFiles: [] }
+      { price: '', originalPrice: '', weightValue: '', weightUnit: 'ML', imageUrls: [], imageFiles: [] }
     ],
     category: '',
     subcategory: '',
     ingredients: '',
-    benefits: '',
-    inStock: true
+    benefits: ''
   });
   const [categories, setCategories] = useState([]);
   const [imageFile, setImageFile] = useState(null);
@@ -34,7 +33,6 @@ const ProductForm = ({ product, onSave, onCancel }) => {
         ? product.variants.map(v => ({
           price: v.price != null ? String(v.price) : '',
           originalPrice: v.originalPrice != null ? String(v.originalPrice) : '',
-          stockQuantity: v.stockQuantity != null ? String(v.stockQuantity) : '',
           weightValue: v.weightValue != null ? String(v.weightValue) : '',
           weightUnit: v.weightUnit || 'ML',
           imageUrls: v.imageUrls || [],
@@ -44,7 +42,6 @@ const ProductForm = ({ product, onSave, onCancel }) => {
           {
             price: product.price ? String(product.price) : '',
             originalPrice: product.originalPrice ? String(product.originalPrice) : '',
-            stockQuantity: product.stockQuantity ? String(product.stockQuantity) : '',
             weightValue: product.weight ? String(product.weight).replace(/[^0-9.]/g, '') : '',
             weightUnit: 'ML',
             imageUrls: [],
@@ -59,8 +56,7 @@ const ProductForm = ({ product, onSave, onCancel }) => {
         category: product.category ? (product.category.id || product.category) : '',
         subcategory: product.subcategory || '',
         ingredients: product.ingredients || '',
-        benefits: product.benefits || '',
-        inStock: typeof product.inStock === 'boolean' ? product.inStock : true
+        benefits: product.benefits || ''
       });
       // Do not set or show any image for edit mode
       setExistingImageUrl('');
@@ -68,12 +64,11 @@ const ProductForm = ({ product, onSave, onCancel }) => {
       setFormData({
         name: '',
         description: '',
-        variants: [{ price: '', originalPrice: '', stockQuantity: '', weightValue: '', weightUnit: 'ML', imageUrls: [], imageFiles: [] }],
+        variants: [{ price: '', originalPrice: '', weightValue: '', weightUnit: 'ML', imageUrls: [], imageFiles: [] }],
         category: '',
         subcategory: '',
         ingredients: '',
-        benefits: '',
-        inStock: true
+        benefits: ''
       });
       setExistingImageUrl('');
     }
@@ -211,7 +206,7 @@ const ProductForm = ({ product, onSave, onCancel }) => {
   const addVariant = () => {
     setFormData(prev => ({
       ...prev,
-      variants: [...(prev.variants || []), { price: '', originalPrice: '', stockQuantity: '', weightValue: '', weightUnit: 'ML', imageUrls: [], imageFiles: [] }]
+      variants: [...(prev.variants || []), { price: '', originalPrice: '', weightValue: '', weightUnit: 'ML', imageUrls: [], imageFiles: [] }]
     }));
   };
 
@@ -243,14 +238,14 @@ const ProductForm = ({ product, onSave, onCancel }) => {
 
     // Validate variants: at least one variant and required fields for each
     if (!formData.variants || !Array.isArray(formData.variants) || formData.variants.length === 0) {
-      setError('Please add at least one variant with price and stock');
+      setError('Please add at least one variant with price');
       setLoading(false);
       return;
     }
     for (let i = 0; i < formData.variants.length; i++) {
       const v = formData.variants[i];
-      if (!v.price || !v.stockQuantity || !v.weightValue) {
-        setError('Please provide price, stock and weight for all variants');
+      if (!v.price || !v.weightValue) {
+        setError('Please provide price and weight for all variants');
         setLoading(false);
         return;
       }
@@ -261,13 +256,12 @@ const ProductForm = ({ product, onSave, onCancel }) => {
       const variants = (formData.variants || []).map(v => ({
         price: parseFloat(v.price),
         originalPrice: v.originalPrice ? parseFloat(v.originalPrice) : parseFloat(v.price),
-        stockQuantity: parseInt(v.stockQuantity),
         weightValue: v.weightValue,
         weightUnit: v.weightUnit || 'ML',
         imageUrls: v.imageUrls || []
       }));
 
-      const first = variants[0] || { price: 0, originalPrice: 0, stockQuantity: 0 };
+      const first = variants[0] || { price: 0, originalPrice: 0 };
 
       const productData = {
         ...formData,
@@ -275,11 +269,9 @@ const ProductForm = ({ product, onSave, onCancel }) => {
         // keep legacy fields for APIs expecting them
         price: first.price,
         originalPrice: first.originalPrice,
-        stockQuantity: first.stockQuantity,
         variants,
         ingredients: formData.ingredients,
         benefits: formData.benefits,
-        inStock: !!formData.inStock,
         rating: product?.rating || 4.5,
         reviewCount: product?.reviewCount || 0,
         badges: product?.badges || []
@@ -399,10 +391,6 @@ const ProductForm = ({ product, onSave, onCancel }) => {
                 <div className="sm:col-span-1">
                   <label className="text-xs text-muted-foreground">Original Price</label>
                   <Input type="number" value={v.originalPrice} onChange={(e) => updateVariant(idx, 'originalPrice', e.target.value)} placeholder="0.00" />
-                </div>
-                <div className="sm:col-span-1">
-                  <label className="text-xs text-muted-foreground">Stock *</label>
-                  <Input type="number" value={v.stockQuantity} onChange={(e) => updateVariant(idx, 'stockQuantity', e.target.value)} placeholder="0" />
                 </div>
                 <div className="sm:col-span-2 flex gap-4 items-end">
                   <div className="min-w-[200px] flex-1">
@@ -604,18 +592,7 @@ const ProductForm = ({ product, onSave, onCancel }) => {
             />
           </div>
 
-          <div className="flex items-center space-x-2">
-            <input
-              type="checkbox"
-              name="inStock"
-              checked={formData.inStock}
-              onChange={handleChange}
-              className="w-4 h-4 text-primary border-border rounded"
-            />
-            <label className="text-sm font-medium text-foreground">
-              In Stock
-            </label>
-          </div>
+          {/* Stock fields removed */}
 
           {error && (
             <div className="bg-destructive/10 border border-destructive/20 rounded-lg p-3">

@@ -122,8 +122,7 @@ export const CartProvider = ({ children }) => {
           image: resolveImageUrl(it.productImage),
           price: it.productPrice,
           originalPrice: it.productPrice,
-          inStock: it.inStock !== false,
-          stockQuantity: it.stockQuantity ?? null,
+          inStock: true,
           category: it.category,
           brand: it.brand,
           addedDate: it.createdAt,
@@ -144,17 +143,7 @@ export const CartProvider = ({ children }) => {
       quantity: parseInt(quantity) || 1,
     };
 
-    const availableStock = sanitizedProduct.stock ?? sanitizedProduct.stockQuantity ?? null;
-    if (availableStock !== null) {
-      if (parseInt(availableStock) <= 0) {
-        showNotification('This product is out of stock', 'error');
-        return;
-      }
-      if (sanitizedProduct.quantity > parseInt(availableStock)) {
-        showNotification('Stock limit exceeded', 'error');
-        sanitizedProduct.quantity = parseInt(availableStock);
-      }
-    }
+    // Stock validation removed
 
     // Extract numeric product ID from composite IDs like "2-default"
     const getNumericProductId = (id) => {
@@ -200,7 +189,6 @@ export const CartProvider = ({ children }) => {
                   weight: apiResponse?.variantName || sanitizedProduct.weight || item.weight,
                   weightValue: apiResponse?.weightValue || sanitizedProduct.weightValue || item.weightValue,
                   weightUnit: apiResponse?.weightUnit || sanitizedProduct.weightUnit || item.weightUnit,
-                  stockQuantity: apiResponse?.stockQuantity ?? sanitizedProduct.stockQuantity ?? item.stockQuantity,
                 }
                 : item
             );
@@ -223,7 +211,6 @@ export const CartProvider = ({ children }) => {
                 weight: apiResponse?.variantName || sanitizedProduct.weight,
                 weightValue: apiResponse?.weightValue || sanitizedProduct.weightValue,
                 weightUnit: apiResponse?.weightUnit || sanitizedProduct.weightUnit,
-                stockQuantity: sanitizedProduct.stockQuantity,
               },
             ];
           }
@@ -240,13 +227,8 @@ export const CartProvider = ({ children }) => {
             getNumericProductId(item.productId || item.id) === productId &&
             (item.variantId || 'default') === variantId
         );
-        const currentQty = existingItem ? parseInt(existingItem.quantity) || 0 : 0;
         const requestedQty = parseInt(quantity) || 1;
         let newQty = currentQty + requestedQty;
-        if (availableStock !== null && newQty > parseInt(availableStock)) {
-          showNotification('Stock limit exceeded', 'error');
-          newQty = parseInt(availableStock);
-        }
 
         if (existingItem) {
           showNotification(`Updated ${sanitizedProduct.name} quantity in cart!`);
@@ -274,8 +256,7 @@ export const CartProvider = ({ children }) => {
               weight: sanitizedProduct.weight,
               weightValue: sanitizedProduct.weightValue,
               weightUnit: sanitizedProduct.weightUnit,
-              stockQuantity: sanitizedProduct.stockQuantity,
-              quantity: Math.max(1, Math.min(requestedQty, availableStock ?? requestedQty)),
+              quantity: requestedQty,
             },
           ];
         }
