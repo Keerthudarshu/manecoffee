@@ -18,6 +18,17 @@ import {
 } from '../../../utils/csvExport';
 
 const Dashboard = () => {
+  const [stats, setStats] = useState({
+    totalProducts: 0,
+    totalUsers: 0,
+    totalOrders: 0,
+    totalRevenue: 0,
+    recentOrders: [],
+    monthlyRevenue: 0,
+    weeklyOrders: 0,
+    topSellingProducts: [],
+    pendingOrders: 0,
+    completedOrders: 0,
     averageOrderValue: 0
   });
   const [loading, setLoading] = useState(true);
