@@ -100,10 +100,8 @@ const dataService = {
 
   async getAllUsers() {
     try {
-      const res = await fetch(`${API_CONFIG.BASE_URL}/api/admin/users`)
-        ;
-      if (!res.ok) throw new Error('Failed to fetch users');
-      return await res.json();
+      const res = await apiClient.get('/admin/users');
+      return res.data;
     } catch (error) {
       console.error('Error fetching users from API, using fallback:', error);
       return users;

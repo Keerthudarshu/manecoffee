@@ -14,11 +14,6 @@ const TrustSignals = () => {
       description: 'On orders above ₹2500'
     },
     {
-      icon: 'RotateCcw',
-      title: 'Easy Returns',
-      description: '7-day return policy'
-    },
-    {
       icon: 'Headphones',
       title: '24/7 Support',
       description: 'Customer service available'
@@ -129,16 +124,6 @@ const TrustSignals = () => {
             </div>
           </div>
         </div>
-      </div>
-      {/* Return Policy Link */}
-      <div className="text-center">
-        <a
-          href="/return-policy"
-          className="font-body text-sm text-primary hover:underline inline-flex items-center space-x-1"
-        >
-          <Icon name="FileText" size={14} />
-          <span>View Return & Refund Policy</span>
-        </a>
       </div>
     </div>
   );

@@ -17,7 +17,7 @@ const TestimonialsSection = () => {
     {
       id: 2,
       name: 'Rajesh Kumar',
-      location: 'Chennai, Tamil Nadu',
+      location: 'Bangalore, Tamil Nadu',
       rating: 5,
       text: 'Their sambar powder is exactly how my mother used to make it. The spice blend is perfect, and you can taste the authenticity in every grain. Highly recommended!',
       product: 'Traditional Sambar Powder',
@@ -26,7 +26,7 @@ const TestimonialsSection = () => {
     {
       id: 3,
       name: 'Meera Patel',
-      location: 'Mumbai, Maharashtra',
+      location: 'Bangalore, Maharashtra',
       rating: 5,
       text: 'The mango pickle is absolutely divine! It tastes just like the one my grandmother made. Chemical-free, pure ingredients, and delivered fresh to my doorstep.',
       product: 'Traditional Mango Pickle',
@@ -35,7 +35,7 @@ const TestimonialsSection = () => {
     {
       id: 4,
       name: 'Arjun Reddy',
-      location: 'Hyderabad, Telangana',
+      location: 'Bangalore, Telangana',
       rating: 5,
       text: 'The pure ghee is exceptional! You can smell the richness and feel the quality. Perfect for our traditional cooking and festivals. Worth every rupee!',
       product: 'Pure Traditional Ghee',
@@ -44,7 +44,7 @@ const TestimonialsSection = () => {
     {
       id: 5,
       name: 'Lakshmi Iyer',
-      location: 'Kochi, Kerala',
+      location: 'Bangalore, Kerala',
       rating: 5,
       text: 'Their sesame oil is the best I\'ve ever used. Cold-pressed, pure, and retains all the natural goodness. My family loves the authentic taste it brings to our food.',
       product: 'Wood Pressed Sesame Oil',

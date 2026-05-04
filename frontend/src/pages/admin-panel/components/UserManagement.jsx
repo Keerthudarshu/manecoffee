@@ -23,8 +23,10 @@ const UserManagement = () => {
 }, []);
 
   const filteredUsers = users.filter(user => {
-    return user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-           user.email.toLowerCase().includes(searchTerm.toLowerCase());
+    const name = user?.name?.toLowerCase() || '';
+    const email = user?.email?.toLowerCase() || '';
+    const search = searchTerm.toLowerCase();
+    return name.includes(search) || email.includes(search);
   });
 
   if (loading) {

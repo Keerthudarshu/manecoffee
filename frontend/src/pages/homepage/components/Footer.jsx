@@ -27,7 +27,6 @@ const Footer = () => {
     ],
     policies: [
       { label: "Shipping Policy", path: "/shipping-policy" },
-      { label: "Return Policy", path: "/return-policy" },
       { label: "Privacy Policy", path: "/privacy-policy" },
       { label: "Terms of Service", path: "/terms-of-service" }
     ]

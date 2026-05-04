@@ -386,16 +386,10 @@ const ContactPage = () => {
                       <div className="border-l-4 border-[#C9A227] pl-4 bg-[#C9A227]/10 py-3 rounded-r-lg shadow-sm">
                         <h4 className="font-heading font-bold text-espresso-900 mb-1">Shipping Information</h4>
                         <p className="font-body text-espresso-900/90 text-sm font-semibold">
-                          Free shipping above ₹499. Delivery within 2-5 business days.
+                          Free shipping above ₹2500. Delivery within 2-5 business days.
                         </p>
                       </div>
 
-                      <div className="border-l-4 border-[#C9A227] pl-4 bg-[#C9A227]/10 py-3 rounded-r-lg shadow-sm">
-                        <h4 className="font-heading font-bold text-espresso-900 mb-1">Return Policy</h4>
-                        <p className="font-body text-espresso-900/90 text-sm font-semibold">
-                          Easy returns within 7 days of delivery for unopened products.
-                        </p>
-                      </div>
 
                       <div className="border-l-4 border-[#C9A227] pl-4 bg-[#C9A227]/10 py-3 rounded-r-lg shadow-sm">
                         <h4 className="font-heading font-bold text-espresso-900 mb-1">Product Questions</h4>

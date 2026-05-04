@@ -3,7 +3,7 @@ import Icon from '../../../components/AppIcon';
 
 const CustomerReviews = () => {
   const [activeFilter, setActiveFilter] = useState('all');
-  
+
   const reviews = [
     {
       id: 1,
@@ -19,7 +19,7 @@ const CustomerReviews = () => {
     {
       id: 2,
       name: "Priya Sharma",
-      location: "Mumbai",
+      location: "Bangalore",
       rating: 5,
       date: "1 month ago",
       verified: true,
@@ -30,7 +30,7 @@ const CustomerReviews = () => {
     {
       id: 3,
       name: "Amit Patel",
-      location: "Delhi",
+      location: "Bangalore",
       rating: 5,
       date: "3 weeks ago",
       verified: true,
@@ -41,7 +41,7 @@ const CustomerReviews = () => {
     {
       id: 4,
       name: "Sneha Reddy",
-      location: "Hyderabad",
+      location: "Bangalore",
       rating: 4,
       date: "2 months ago",
       verified: true,
@@ -52,7 +52,7 @@ const CustomerReviews = () => {
     {
       id: 5,
       name: "Vikram Singh",
-      location: "Chennai",
+      location: "Bangalore",
       rating: 5,
       date: "1 week ago",
       verified: true,
@@ -63,7 +63,7 @@ const CustomerReviews = () => {
     {
       id: 6,
       name: "Anjali Nair",
-      location: "Kochi",
+      location: "Bangalore",
       rating: 5,
       date: "3 days ago",
       verified: true,
@@ -73,9 +73,9 @@ const CustomerReviews = () => {
     }
   ];
 
-  const filteredReviews = activeFilter === 'all' 
-    ? reviews 
-    : activeFilter === '5star' 
+  const filteredReviews = activeFilter === 'all'
+    ? reviews
+    : activeFilter === '5star'
       ? reviews.filter(r => r.rating === 5)
       : reviews.filter(r => r.verified);
 
@@ -106,31 +106,28 @@ const CustomerReviews = () => {
           <div className="flex flex-wrap justify-center gap-2 sm:gap-3 px-2">
             <button
               onClick={() => setActiveFilter('all')}
-              className={`px-4 py-1.5 sm:px-6 sm:py-2 rounded-full font-medium text-xs sm:text-sm transition-all duration-300 ${
-                activeFilter === 'all'
-                  ? 'bg-[#C9A227] text-white'
-                  : 'bg-white text-[#2a1f0e] hover:bg-[#C9A227] hover:text-white'
-              }`}
+              className={`px-4 py-1.5 sm:px-6 sm:py-2 rounded-full font-medium text-xs sm:text-sm transition-all duration-300 ${activeFilter === 'all'
+                ? 'bg-[#C9A227] text-white'
+                : 'bg-white text-[#2a1f0e] hover:bg-[#C9A227] hover:text-white'
+                }`}
             >
               All ({reviews.length})
             </button>
             <button
               onClick={() => setActiveFilter('5star')}
-              className={`px-4 py-1.5 sm:px-6 sm:py-2 rounded-full font-medium text-xs sm:text-sm transition-all duration-300 ${
-                activeFilter === '5star'
-                  ? 'bg-[#C9A227] text-white'
-                  : 'bg-white text-[#2a1f0e] hover:bg-[#C9A227] hover:text-white'
-              }`}
+              className={`px-4 py-1.5 sm:px-6 sm:py-2 rounded-full font-medium text-xs sm:text-sm transition-all duration-300 ${activeFilter === '5star'
+                ? 'bg-[#C9A227] text-white'
+                : 'bg-white text-[#2a1f0e] hover:bg-[#C9A227] hover:text-white'
+                }`}
             >
               5★ ({reviews.filter(r => r.rating === 5).length})
             </button>
             <button
               onClick={() => setActiveFilter('verified')}
-              className={`px-4 py-1.5 sm:px-6 sm:py-2 rounded-full font-medium text-xs sm:text-sm transition-all duration-300 ${
-                activeFilter === 'verified'
-                  ? 'bg-[#C9A227] text-white'
-                  : 'bg-white text-[#2a1f0e] hover:bg-[#C9A227] hover:text-white'
-              }`}
+              className={`px-4 py-1.5 sm:px-6 sm:py-2 rounded-full font-medium text-xs sm:text-sm transition-all duration-300 ${activeFilter === 'verified'
+                ? 'bg-[#C9A227] text-white'
+                : 'bg-white text-[#2a1f0e] hover:bg-[#C9A227] hover:text-white'
+                }`}
             >
               Verified Only ({reviews.filter(r => r.verified).length})
             </button>

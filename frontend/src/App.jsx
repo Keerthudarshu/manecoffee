@@ -23,7 +23,6 @@ import AboutPage from './pages/about';
 import ContactPage from './pages/contact';
 import CategoriesPage from './pages/categories';
 import ShippingPolicy from './pages/policies/ShippingPolicy';
-import ReturnPolicy from './pages/policies/ReturnPolicy';
 import PrivacyPolicy from './pages/policies/PrivacyPolicy';
 import TermsOfService from './pages/policies/TermsOfService';
 import BlogIndex from './pages/blog';
@@ -93,7 +92,6 @@ function App() {
                   <Route path="/contact" element={<ContactPage />} />
                   <Route path="/categories" element={<CategoriesPage />} />
                   <Route path="/shipping-policy" element={<ShippingPolicy />} />
-                  <Route path="/return-policy" element={<ReturnPolicy />} />
                   <Route path="/privacy-policy" element={<PrivacyPolicy />} />
                   <Route path="/terms-of-service" element={<TermsOfService />} />
                   <Route path="/blog" element={<BlogIndex />} />

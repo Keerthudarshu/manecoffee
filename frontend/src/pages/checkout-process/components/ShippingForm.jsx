@@ -50,7 +50,7 @@ const ShippingForm = ({ onNext, onAddressSelect, user, isLoading = false }) => {
     { value: 'karnataka', label: 'Karnataka' },
     { value: 'maharashtra', label: 'Maharashtra' },
     { value: 'tamil-nadu', label: 'Tamil Nadu' },
-    { value: 'delhi', label: 'Delhi' },
+    { value: 'Bangalore', label: 'Bangalore' },
     { value: 'gujarat', label: 'Gujarat' },
     { value: 'rajasthan', label: 'Rajasthan' },
     { value: 'west-bengal', label: 'West Bengal' },
@@ -237,8 +237,8 @@ const ShippingForm = ({ onNext, onAddressSelect, user, isLoading = false }) => {
                 <label
                   key={address?.id}
                   className={`block p-4 border-2 rounded-xl cursor-pointer transition-all duration-300 relative group ${selectedAddress === address?.id?.toString()
-                      ? 'border-primary bg-primary/5 selection-shadow ring-2 ring-primary/10'
-                      : 'border-border hover:border-primary/40 hover:bg-muted/30'
+                    ? 'border-primary bg-primary/5 selection-shadow ring-2 ring-primary/10'
+                    : 'border-border hover:border-primary/40 hover:bg-muted/30'
                     }`}
                 >
                   <input
@@ -273,8 +273,8 @@ const ShippingForm = ({ onNext, onAddressSelect, user, isLoading = false }) => {
                       </p>
                     </div>
                     <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all duration-300 ${selectedAddress === address?.id?.toString()
-                        ? 'border-primary bg-primary text-primary-foreground'
-                        : 'border-border group-hover:border-primary/50'
+                      ? 'border-primary bg-primary text-primary-foreground'
+                      : 'border-border group-hover:border-primary/50'
                       }`}>
                       {selectedAddress === address?.id?.toString() ? (
                         <Icon name="Check" size={12} strokeWidth={3} />

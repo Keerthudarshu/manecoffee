@@ -18,7 +18,7 @@ const CustomerReviewsSection = () => {
     {
       id: 2,
       name: 'Rajesh Kumar',
-      location: 'Chennai',
+      location: 'Bangalore',
       rating: 5,
       date: '1 month ago',
       product: 'Traditional Sambar Powder',
@@ -30,7 +30,7 @@ const CustomerReviewsSection = () => {
     {
       id: 3,
       name: 'Meera Patel',
-      location: 'Mumbai',
+      location: 'Bangalore',
       rating: 4,
       date: '3 weeks ago',
       product: 'Pure A2 Cow Ghee',
@@ -42,7 +42,7 @@ const CustomerReviewsSection = () => {
     {
       id: 4,
       name: 'Anil Reddy',
-      location: 'Hyderabad',
+      location: 'Bangalore',
       rating: 5,
       date: '1 week ago',
       product: 'Mango Pickle',
@@ -71,7 +71,7 @@ const CustomerReviewsSection = () => {
           <p className="font-body text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
             Real reviews from satisfied customers who love our authentic products
           </p>
-          
+
           {/* Trust Stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
             {stats.map((stat, index) => (
@@ -125,7 +125,7 @@ const CustomerReviewsSection = () => {
                     </div>
                   </div>
                 </div>
-                
+
                 {/* Rating */}
                 <div className="flex items-center gap-1">
                   {[...Array(5)].map((_, i) => (
@@ -133,11 +133,10 @@ const CustomerReviewsSection = () => {
                       key={i}
                       name="Star"
                       size={16}
-                      className={`${
-                        i < review.rating
-                          ? 'text-yellow-400 fill-current'
-                          : 'text-gray-300'
-                      }`}
+                      className={`${i < review.rating
+                        ? 'text-yellow-400 fill-current'
+                        : 'text-gray-300'
+                        }`}
                     />
                   ))}
                 </div>
@@ -164,7 +163,7 @@ const CustomerReviewsSection = () => {
                   <Icon name="ThumbsUp" size={16} />
                   <span className="text-sm">Helpful ({review.helpful})</span>
                 </button>
-                
+
                 <button className="text-primary hover:text-accent transition-colors duration-300 text-sm font-medium">
                   Reply
                 </button>
@@ -182,13 +181,13 @@ const CustomerReviewsSection = () => {
             <p className="font-body text-muted-foreground mb-6">
               We'd love to hear about your experience with our products. Your review helps other customers make informed choices.
             </p>
-            
+
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button className="bg-primary text-white px-8 py-3 rounded-xl font-semibold hover:bg-primary/90 transition-colors duration-300 flex items-center gap-2 justify-center">
                 <Icon name="Edit3" size={20} />
                 Write a Review
               </button>
-              
+
               <button className="border border-primary text-primary px-8 py-3 rounded-xl font-semibold hover:bg-primary/5 transition-colors duration-300 flex items-center gap-2 justify-center">
                 <Icon name="MessageCircle" size={20} />
                 View All Reviews
