@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Icon from '../../../components/AppIcon';
 import Popup from '../../../components/ui/Popup';
+import { getImage } from '../../../utils/image';
 
 const ShopByCategorySection = () => {
   const [popup, setPopup] = useState({ open: false, message: '', type: 'success' });
@@ -11,7 +12,7 @@ const ShopByCategorySection = () => {
       id: 1,
       name: 'Arabica',
       productCount: 3,
-      image: ['/assets/banner/Arabica.png'],
+      image: ["https://res.cloudinary.com/dletwba1e/image/upload/v1777961505/Arabica_cogrvg.png"],
       icon: 'Coffee',
       description: 'Premium Arabica beans from the high-altitude estates of Coorg',
       featured: ['Single Origin', 'Medium Roast', 'Whole Bean'],
@@ -22,7 +23,7 @@ const ShopByCategorySection = () => {
       id: 3,
       name: 'Robusta',
       productCount: 3,
-      image: ['/assets/banner/robusta.png'],
+      image: ["https://res.cloudinary.com/dletwba1e/image/upload/v1777961494/robusta_llxiu2.png"],
       icon: 'Zap',
       description: 'Strong and bold Robusta beans with an intense flavor and high caffeine',
       featured: ['Dark Roast', 'High Caffeine', 'Bold Flavor'],
@@ -33,7 +34,7 @@ const ShopByCategorySection = () => {
       id: 4,
       name: 'Arabica+Robusta',
       productCount: 3,
-      image: ['/assets/banner/arabicaand robusta.png'],
+      image: ["https://res.cloudinary.com/dletwba1e/image/upload/v1777961488/arabicaand_robusta_h5x2jr.png"],
       icon: 'Layers',
       description: 'A perfectly balanced blend of Arabica and Robusta for the ideal daily brew',
       featured: ['Balanced Flavor', 'Filter Coffee', 'Daily Brew'],

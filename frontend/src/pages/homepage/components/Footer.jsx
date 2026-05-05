@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Icon from '../../../components/AppIcon';
+import { getImage } from '../../../utils/image';
 
 const Footer = () => {
   const currentYear = new Date()?.getFullYear();
@@ -76,7 +77,7 @@ const Footer = () => {
               <Link to="/homepage" className="flex items-center space-x-3 mb-4 group">
                 <div className="w-10 h-10 flex items-center justify-center">
                   <img
-                    src="/assets/images/logo.jpeg"
+                    src={"https://res.cloudinary.com/dletwba1e/image/upload/v1777961167/logo_ejgfmx.jpg"}
                     alt="Mane Coffee"
                     className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-110"
                   />

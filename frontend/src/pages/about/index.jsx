@@ -5,6 +5,7 @@ import Header from '../../components/ui/Header';
 import Footer from '../homepage/components/Footer';
 import Breadcrumb from '../../components/ui/Breadcrumb';
 import Icon from '../../components/AppIcon';
+import { getImage } from '../../utils/image';
 
 const AboutPage = () => {
   const breadcrumbItems = [
@@ -59,18 +60,39 @@ const AboutPage = () => {
   ];
 
   const galleryImages = [
-    { src: '/assets/store/mane coffee store.png', alt: 'Mane Coffee Store Front' },
-    { src: '/assets/store/store1.png', alt: 'Mane Coffee Store Interior 1' },
-    { src: '/assets/store/store2.png', alt: 'Mane Coffee Store Interior 2' },
-    { src: '/assets/store/store3.png', alt: 'Mane Coffee Store Interior 3' },
-    { src: '/assets/store/store4.png', alt: 'Mane Coffee Store Interior 4' },
-    { src: '/assets/store/store5.png', alt: 'Mane Coffee Store Interior 5' },
-    { src: '/assets/store/store6.png', alt: 'Mane Coffee Store Interior 6' },
+    {
+      src: "https://res.cloudinary.com/dletwba1e/image/upload/f_auto,q_auto,w_800/v1777961135/mane_coffee_store_ld8xo1.png",
+      alt: "Mane Coffee Store Front"
+    },
+    {
+      src: "https://res.cloudinary.com/dletwba1e/image/upload/f_auto,q_auto,w_800/v1777961135/store1_vfoxtj.png",
+      alt: "Mane Coffee Store Interior 1"
+    },
+    {
+      src: "https://res.cloudinary.com/dletwba1e/image/upload/f_auto,q_auto,w_800/v1777961136/store2_l1llqn.png",
+      alt: "Mane Coffee Store Interior 2"
+    },
+    {
+      src: "https://res.cloudinary.com/dletwba1e/image/upload/f_auto,q_auto,w_800/v1777961136/store3_qqdjbg.png",
+      alt: "Mane Coffee Store Interior 3"
+    },
+    {
+      src: "https://res.cloudinary.com/dletwba1e/image/upload/f_auto,q_auto,w_800/v1777961135/store4_s817jp.png",
+      alt: "Mane Coffee Store Interior 4"
+    },
+    {
+      src: "https://res.cloudinary.com/dletwba1e/image/upload/f_auto,q_auto,w_800/v1777961136/store5_i9ueos.png",
+      alt: "Mane Coffee Store Interior 5"
+    },
+    {
+      src: "https://res.cloudinary.com/dletwba1e/image/upload/f_auto,q_auto,w_800/v1777961136/store6_r0znen.png",
+      alt: "Mane Coffee Store Interior 6"
+    }
   ];
 
   return (
     <>
-      <SEO 
+      <SEO
         title="About Mane Coffee - Coorg Coffee Heritage and Story"
         description="Learn about Mane Coffee's Coorg roots, shade-grown sourcing, and artisan roasting process. Discover how we craft premium Arabica, Robusta, and signature blends from Kodagu."
         keywords="about Mane Coffee, Coorg coffee brand, Kodagu coffee heritage, shade grown coffee India, Arabica Robusta blends, artisan coffee roasting"
@@ -120,7 +142,7 @@ const AboutPage = () => {
                 <div className="order-1 lg:order-2 relative group">
                   <div className="absolute -inset-1 bg-gradient-to-r from-[#C9A227] to-[#F0C040] rounded-2xl blur opacity-10 group-hover:opacity-30 transition duration-1000 group-hover:duration-200"></div>
                   <img
-                    src="/assets/images/mane coffee store.png"
+                    src="https://res.cloudinary.com/dletwba1e/image/upload/v1777961135/mane_coffee_store_ld8xo1.png"
                     alt="Mane Coffee Store"
                     className="relative w-full h-[450px] object-cover rounded-xl shadow-2xl border border-[#C9A227]/20"
                   />

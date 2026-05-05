@@ -1,21 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import BannerImageSlider from '../../../components/ui/BannerImageSlider';
+import { getImage } from '../../../utils/image';
 
 const BannerShowcase = () => {
   const bannerImages = [
-    '/assets/banner/1.png',
-    '/assets/banner/2.png',
-    '/assets/banner/3.png',
-    '/assets/banner/4.png'
+    "https://res.cloudinary.com/dletwba1e/image/upload/f_auto,q_auto,w_1200/v1777972840/3_ddyj3h.jpg",
+    "https://res.cloudinary.com/dletwba1e/image/upload/f_auto,q_auto,w_1200/v1777967742/1_x8c9mh.png",
+    "https://res.cloudinary.com/dletwba1e/image/upload/f_auto,q_auto,w_1200/v1777968591/2_fu8pv0.png",
+    "https://res.cloudinary.com/dletwba1e/image/upload/f_auto,q_auto,w_1200/v1777969531/4_sznvj7.jpg"
   ];
-
   const featuredCategories = [
     {
       title: "Arabica Coffee",
       description: "Premium Arabica beans from the high-altitude estates of Coorg",
       images: [
-        '/assets/banner/Arabica.png'
+        "https://res.cloudinary.com/dletwba1e/image/upload/f_auto,q_auto,w_600/v1777961505/Arabica_cogrvg.png"
       ],
       link: "/product-collection-grid?category=1",
       badge: ""
@@ -23,14 +23,14 @@ const BannerShowcase = () => {
     {
       title: "Robusta Coffee",
       description: "Strong and bold Robusta beans with an intense flavor and high caffeine",
-      images: ['/assets/banner/robusta.png'],
+      images: ["https://res.cloudinary.com/dletwba1e/image/upload/v1777961494/robusta_llxiu2.png"],
       link: "/product-collection-grid?category=3",
       badge: "  "
     },
     {
       title: "Arabica + Robusta",
       description: "A perfectly balanced blend of Arabica and Robusta for the ideal daily brew",
-      images: ['/assets/banner/arabicaand robusta.png'],
+      images: ["https://res.cloudinary.com/dletwba1e/image/upload/v1777961488/arabicaand_robusta_h5x2jr.png"],
       link: "/product-collection-grid?category=4",
       badge: ""
     }
@@ -76,7 +76,7 @@ const BannerShowcase = () => {
 
                 {/* Content */}
                 <div className="p-6">
-                   <h3 className="text-xl font-bold text-coffee-primary mb-2 group-hover:text-primary transition-colors">
+                  <h3 className="text-xl font-bold text-coffee-primary mb-2 group-hover:text-primary transition-colors">
                     {category.title}
                   </h3>
                   <p className="text-coffee-secondary mb-4">

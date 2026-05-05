@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Icon from '../../../components/AppIcon';
+import { getImage } from '../../../utils/image';
 
 const desktopImages = [
-    '/assets/banner/3.png',
-    '/assets/banner/1.png',
-    '/assets/banner/2.png',
-    '/assets/banner/4.png'
+    "https://res.cloudinary.com/dletwba1e/image/upload/f_auto,q_auto,w_1200/v1777972840/3_ddyj3h.jpg",
+    "https://res.cloudinary.com/dletwba1e/image/upload/v1777967742/1_x8c9mh.png",
+    "https://res.cloudinary.com/dletwba1e/image/upload/v1777968591/2_fu8pv0.png",
+    "https://res.cloudinary.com/dletwba1e/image/upload/v1777969531/4_sznvj7.jpg"
 ];
 const mobileImages = [
-    '/assets/banner/mobile1.png',
-    '/assets/banner/mobile2.png',
-    '/assets/banner/mobile3.png',
-    '/assets/banner/mobile4.png'
+    "https://res.cloudinary.com/dletwba1e/image/upload/f_auto,q_auto,w_768/v1777961483/mobile1_pydvyy.png",
+    "https://res.cloudinary.com/dletwba1e/image/upload/f_auto,q_auto,w_768/v1777961533/mobile2_lpylrh.png",
+    "https://res.cloudinary.com/dletwba1e/image/upload/f_auto,q_auto,w_768/v1777967792/mobile3_rnwd0r.png",
+    "https://res.cloudinary.com/dletwba1e/image/upload/f_auto,q_auto,w_768/v1777967769/mobile4_hrrvur.png"
 ];
 
 function useIsMobile() {
@@ -57,7 +58,7 @@ const HeroSection = () => {
             {/* Content Only Section - Both Mobile and Desktop */}
             {/* Content Only Section - Both Mobile and Desktop */}
             <section style={{
-                backgroundImage: 'linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(/assets/images/hero_bg.jpeg)',
+                backgroundImage: `linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url("https://res.cloudinary.com/dletwba1e/image/upload/f_auto,q_auto,w_1200/v1777961162/hero_bg_blewyr.jpg")`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
                 color: 'white',

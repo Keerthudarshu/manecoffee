@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Icon from '../AppIcon';
-
+import { getImage } from '../../utils/image';
 import Input from './Input';
 import AnnouncementBar from './AnnouncementBar';
 import MegaMenu from './MegaMenu';
@@ -127,7 +127,7 @@ const Header = ({ isLoggedIn = false, onSearch = () => { } }) => {
             <Link to="/homepage" className="flex items-center group">
               <div className="relative w-20 h-20 flex items-center justify-center">
                 <img
-                  src="/assets/images/logo.jpeg"
+                  src={"https://res.cloudinary.com/dletwba1e/image/upload/v1777961167/logo_ejgfmx.jpg"}
                   alt="Mane Coffee Logo"
                   className="w-18 h-18 object-contain group-hover:scale-110 transition-transform duration-300"
                 />

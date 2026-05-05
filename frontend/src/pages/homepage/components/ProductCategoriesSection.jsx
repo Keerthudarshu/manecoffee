@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Icon from '../../../components/AppIcon';
+import { getImage } from '../../../utils/image';
 
 const ProductCategoriesSection = () => {
   const productCategories = [
@@ -43,7 +44,7 @@ const ProductCategoriesSection = () => {
       subtitle: 'Pure & Natural',
       description: 'Traditional ghee and unprocessed wild honey',
       icon: 'Heart',
-      image: '/assets/banner/gee3.avif',
+      image: getImage('/assets/banner/gee3.avif', 500),
       products: ['Pure Ghee', 'Wild Honey', 'Farm Honey', 'A2 Ghee'],
       color: 'bg-gradient-to-br from-amber-100 to-yellow-100',
       textColor: 'text-amber-800'
@@ -54,7 +55,7 @@ const ProductCategoriesSection = () => {
       subtitle: 'Chemical Free',
       description: 'Natural sweeteners made using traditional methods',
       icon: 'Candy',
-      image: '/assets/banner/Jaggery_Sweeteners.jpeg',
+      image: getImage('/assets/banner/Jaggery_Sweeteners.jpeg', 500),
       products: ['Powder Jaggery', 'Ginger Jaggery', 'Solid Jaggery', 'Palm Jaggery'],
       color: 'bg-gradient-to-br from-brown-100 to-orange-100',
       textColor: 'text-brown-800'

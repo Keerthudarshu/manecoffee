@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Icon from '../../../components/AppIcon';
+import { getImage } from '../../../utils/image';
 
 const NewHeroSection = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -11,7 +12,8 @@ const NewHeroSection = () => {
       subtitle: "Mane Coffee",
       description: "Experience the purest traditional foods following ancient Indian wisdom. Chemical-free, preservative-free, made with love.",
       cta: "Discover Pure Heritage",
-      backgroundImage: "/assets/banner/gee1.jpeg",
+      backgroundImage: getImage("/assets/banner/gee1.jpeg", 1200),
+
       overlay: "bg-gradient-to-r from-primary/90 to-primary/70"
     },
     {
@@ -19,7 +21,8 @@ const NewHeroSection = () => {
       subtitle: "PURE & NATURAL",
       description: "Traditional wood pressing method preserves nutrients. Experience the authentic taste of coconut, sesame, and groundnut oils.",
       cta: "Shop Pure Oils",
-      backgroundImage: "/assets/banner/gee2.png",
+      backgroundImage: getImage("/assets/banner/gee2.png", 1200),
+
       overlay: "bg-gradient-to-r from-accent/90 to-accent/70"
     },
     {
@@ -27,7 +30,8 @@ const NewHeroSection = () => {
       subtitle: "AUTHENTIC FLAVORS",
       description: "Hand-ground spices following ancient recipes. Sambar powder, rasam powder, and traditional masalas for authentic taste.",
       cta: "Explore Spices",
-      backgroundImage: "/assets/banner/masala.jpg",
+      backgroundImage: getImage("/assets/banner/masala.jpg", 1200),
+
       overlay: "bg-gradient-to-r from-secondary/90 to-secondary/70"
     }
   ];

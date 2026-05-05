@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import Icon from '../../../components/AppIcon';
 import Button from '../../../components/ui/Button';
+import { getImage } from '../../../utils/image';
 
 const ProductInfo = ({ product, onAddToCart, onAddToWishlist, isInWishlist }) => {
   // Initialize with first variant or create a default one from product fields
@@ -301,7 +302,7 @@ const ProductInfo = ({ product, onAddToCart, onAddToWishlist, isInWishlist }) =>
             return (
               <div className="w-full mt-8 mb-4" style={{ width: '100%', background: '#FFF8E1', overflow: 'visible', margin: '0 auto' }}>
                 <img
-                  src="/assets/images/esential%20oils/oilessentials.jpeg"
+                  src={getImage("/assets/images/esential%20oils/oilessentials.jpeg", 800)}
                   alt="Oils Essentials Sticker"
                   className="w-full h-auto object-cover rounded"
                   style={{ width: '100%', maxWidth: '100%', display: 'block', margin: '0 auto' }}

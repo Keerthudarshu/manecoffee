@@ -11,6 +11,7 @@ const WhyChooseManeCoffee = lazy(() => import('./components/WhyChooseManeCoffee'
 
 
 const BannerShowcase = lazy(() => import('./components/BannerShowcase'));
+const GallerySection = lazy(() => import('./components/GallerySection'));
 
 import ShopByCategorySection from './components/ShopByCategorySection';
 
@@ -125,13 +126,12 @@ const Homepage = () => {
             <Suspense fallback={<LoadingSkeleton />}>
               <WhyChooseManeCoffee />
             </Suspense>
+          </LazySection>          {/* Brand Gallery Showcase */}
+          <LazySection>
+            <Suspense fallback={<LoadingSkeleton />}>
+              <GallerySection />
+            </Suspense>
           </LazySection>
-
-
-
-
-
-
           
           {/* Shop by Category - Browse all product categories */}
           <ShopByCategorySection />

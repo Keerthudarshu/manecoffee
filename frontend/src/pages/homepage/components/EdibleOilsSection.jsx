@@ -1,11 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import productApi from '../../../services/productApi';
+import { getImage } from '../../../utils/image';
 
 const EdibleOilsSection = () => {
     const [edibleOils, setEdibleOils] = useState([
-        { id: 1, name: 'Arabica', img: '/assets/images/coffee/Arabica.png' },
-        { id: 3, name: 'Robusta', img: '/assets/images/coffee/Robusta.png' },
-        { id: 4, name: 'Arabica + Robusta', img: '/assets/images/coffee/Arabica+robusta.png' },
+        {
+            id: 1,
+            name: 'Arabica',
+            img: "https://res.cloudinary.com/dletwba1e/image/upload/f_auto,q_auto,w_500/v1777961308/Arabica_evp5o2.png"
+        },
+        {
+            id: 3,
+            name: 'Robusta',
+            img: "https://res.cloudinary.com/dletwba1e/image/upload/f_auto,q_auto,w_500/v1777961296/Robusta_lzvypq.png"
+        },
+        {
+            id: 4,
+            name: 'Arabica + Robusta',
+            img: "https://res.cloudinary.com/dletwba1e/image/upload/f_auto,q_auto,w_500/v1777961323/Arabica_robusta_faexso.png"
+        }
     ]);
 
     useEffect(() => {

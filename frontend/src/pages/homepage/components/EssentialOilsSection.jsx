@@ -1,15 +1,16 @@
 import React from 'react';
 import Icon from '../../../components/AppIcon';
+import { getImage } from '../../../utils/image';
 
 const essentialOils = [
-  { id: 39, name: 'Groundnut Oil', img: '/assets/images/esential oils/Ground nut oil bottle.png' },
-  { id: 38, name: 'Dry Coconut Oil', img: '/assets/images/esential oils/Dry coconut oil Bottle.png' },
-  { id: 18, name: 'Saflower Oil', img: '/assets/images/esential oils/Saflower oil Bottle.png' },
-  { id: 19, name: 'Sesame Oil', img: '/assets/images/esential oils/Sesame oil bottle.png' },
-  { id: 23, name: 'Mustard Oil', img: '/assets/images/esential oils/Mustard oil bottle.png' },
-  { id: 21, name: 'Niger Oil', img: '/assets/images/esential oils/Niger oil Bottle.png' },
-  { id: 20, name: 'Flax Seed Oil', img: '/assets/images/esential oils/Flax seed oil.png' },
-  { id: 22, name: 'Virgin Coconut Oil', img: '/assets/images/esential oils/V Coconut oil Bottle.png' },
+  { id: 39, name: 'Groundnut Oil', img: getImage('/assets/images/esential oils/Ground nut oil bottle.png', 500) },
+  { id: 38, name: 'Dry Coconut Oil', img: getImage('/assets/images/esential oils/Dry coconut oil Bottle.png', 500) },
+  { id: 18, name: 'Saflower Oil', img: getImage('/assets/images/esential oils/Saflower oil Bottle.png', 500) },
+  { id: 19, name: 'Sesame Oil', img: getImage('/assets/images/esential oils/Sesame oil bottle.png', 500) },
+  { id: 23, name: 'Mustard Oil', img: getImage('/assets/images/esential oils/Mustard oil bottle.png', 500) },
+  { id: 21, name: 'Niger Oil', img: getImage('/assets/images/esential oils/Niger oil Bottle.png', 500) },
+  { id: 20, name: 'Flax Seed Oil', img: getImage('/assets/images/esential oils/Flax seed oil.png', 500) },
+  { id: 22, name: 'Virgin Coconut Oil', img: getImage('/assets/images/esential oils/V Coconut oil Bottle.png', 500) },
 ];
 
 const EssentialOilsSection = () => (

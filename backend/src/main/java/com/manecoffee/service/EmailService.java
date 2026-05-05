@@ -50,7 +50,7 @@ public class EmailService {
     @Value("${mail.from.email:${spring.mail.username}}")
     private String fromEmail;
 
-    @Value("${mail.admin.order-notification.to:hemanthgowda791@gmail.com}")
+    @Value("${mail.admin.order-notification.to:manecoffeee@gmail.com}")
     private String adminOrderNotificationEmail;
 
     @Value("${app.admin.orders.url:http://localhost:5173/admin-panel}")
