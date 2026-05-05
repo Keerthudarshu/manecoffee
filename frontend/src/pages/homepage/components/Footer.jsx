@@ -6,11 +6,6 @@ import { getImage } from '../../../utils/image';
 const Footer = () => {
   const currentYear = new Date()?.getFullYear();
 
-  const popularSearches = [
-    "Arabica Coffee", "Robusta Coffee", "Filter Coffee", "Roasted Beans",
-    "Instant Coffee", "Coorg Special", "Green Coffee", "Coffee Powder",
-    "Premium Blend", "Dark Roast", "Medium Roast", "Espresso Beans"
-  ];
 
   const footerLinks = {
     company: [
@@ -49,25 +44,6 @@ const Footer = () => {
 
   return (
     <footer className="footer-coffee border-t border-primary/20 text-[#f5e6c8]">
-      {/* Popular Searches Section */}
-      <div className="border-b border-[#C9A227]/10 py-8">
-        <div className="container mx-auto px-4">
-          <h3 className="font-heading font-bold text-lg text-[#C9A227] mb-4">
-            Popular Searches
-          </h3>
-          <div className="flex flex-wrap gap-2">
-            {popularSearches?.map((search, index) => (
-              <Link
-                key={index}
-                to={`/product-collection-grid?search=${encodeURIComponent(search)}`}
-                className="bg-[#C9A227]/10 hover:bg-[#C9A227] text-[#f5e6c8]/80 hover:text-[#1e1509] px-3 py-1 rounded-full text-sm font-caption transition-all duration-300 border border-[#C9A227]/20"
-              >
-                {search}
-              </Link>
-            ))}
-          </div>
-        </div>
-      </div>
       {/* Main Footer Content */}
       <div className="py-12">
         <div className="container mx-auto px-4">

@@ -122,10 +122,7 @@ function App() {
                   WhatsApp
                 </a>
 
-                {/* Mobile Sticky Buy Button */}
-                <div id="sticky-buy" className="md:hidden" style={{ position: 'fixed', bottom: 0, width: '100%', background: '#c49b63', textAlign: 'center', padding: '15px', zIndex: 999 }}>
-                  <a href="/shopping-cart" style={{ color: 'black', fontWeight: 'bold', textDecoration: 'none' }}>🛒 Buy Now</a>
-                </div>
+               
               </ErrorBoundary>
             </div>
           </CartProvider>

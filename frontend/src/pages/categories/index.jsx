@@ -61,7 +61,7 @@ const CategoriesPage = () => {
   ];
 
   const handleCategoryClick = (category) => {
-    navigate(`/product-collection-grid?category=${category.id}`);
+    navigate(`/product/${category.id}`);
   };
 
 
