@@ -3,7 +3,6 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Icon from '../AppIcon';
 import { getImage } from '../../utils/image';
 import Input from './Input';
-import AnnouncementBar from './AnnouncementBar';
 import MegaMenu from './MegaMenu';
 import CategoryDropdown from './CategoryDropdown';
 import CartDrawer from './CartDrawer';
@@ -21,7 +20,6 @@ const Header = ({ isLoggedIn = false, onSearch = () => { } }) => {
   const [isCartDrawerOpen, setIsCartDrawerOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
-  const [showAnnouncementBar, setShowAnnouncementBar] = useState(true);
   const [suggestions, setSuggestions] = useState([]);
   const [suggestionsOpen, setSuggestionsOpen] = useState(false);
   const [searchLoading, setSearchLoading] = useState(false);
@@ -93,31 +91,6 @@ const Header = ({ isLoggedIn = false, onSearch = () => { } }) => {
 
   return (
     <>
-      {/* Enhanced Top Bar - Layer 1 with Trust Badges */}
-      <div className="bg-coffee-primary text-coffee-primary py-2 text-sm border-b border-primary/20">
-        <div className="container mx-auto px-4 flex items-center justify-between">
-          <div className="flex items-center gap-4 md:gap-6">
-            <span className="flex items-center gap-2 whitespace-nowrap">
-              <Icon name="Truck" size={14} className="text-primary" />
-              <span className="hidden xs:inline">Free Shipping ₹2500+</span>
-              <span className="xs:hidden">₹2500+ Shipping</span>
-            </span>
-            <span className="hidden md:flex items-center gap-2 whitespace-nowrap">
-              <Icon name="Shield" size={14} className="text-primary" />
-              100% Authentic Products
-            </span>
-            <span className="hidden lg:flex items-center gap-2 whitespace-nowrap">
-              <span className="text-green-600">✓</span>
-              FSSAI Approved
-            </span>
-            <span className="hidden lg:flex items-center gap-2 whitespace-nowrap">
-              <span className="text-blue-600">🔒</span>
-              Secure Payment
-            </span>
-          </div>
-        </div>
-      </div>
-
       {/* Main Header */}
       <header className="nav-coffee sticky top-0 z-50">
         <div className="container mx-auto px-4">

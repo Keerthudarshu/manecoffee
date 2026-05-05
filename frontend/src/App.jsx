@@ -67,9 +67,7 @@ function App() {
         <AuthProvider>
           <CartProvider>
             <div className="App overflow-x-hidden">
-              <div style={{ background: '#c49b63', color: 'black', textAlign: 'center', padding: '10px', fontWeight: 'bold' }}>
-                🚚 Free Shipping on Orders Above ₹2500
-              </div>
+              
               <ErrorBoundary>
                 <ScrollToTop />
                 <Routes>
