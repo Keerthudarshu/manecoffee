@@ -65,61 +65,60 @@ const CartItem = ({ item, onUpdateQuantity, onRemoveItem, onSaveForLater }) => {
             </button>
           </div>
 
-          {/* Price and Quantity Controls */}
-          <div className="flex items-center justify-between">
-            <div className="flex flex-col">
-              <div className="flex items-center gap-2">
-                <span className="font-data font-bold text-lg text-foreground">
-                  ₹{(item?.price * item?.quantity)?.toFixed(2)}
-                </span>
-                {discountAmount > 0 && (
-                  <>
-                    <span className="font-data text-sm text-muted-foreground line-through">
-                      ₹{(item?.originalPrice * item?.quantity)?.toFixed(2)}
-                    </span>
-                    <span className="font-caption text-xs font-medium text-success bg-success/10 px-2 py-1 rounded">
-                      {discountPercentage}% OFF
-                    </span>
-                  </>
-                )}
-              </div>
-              <div className="space-y-1">
-                <p className="font-caption text-xs text-muted-foreground">
-                  ₹{item?.price?.toFixed(2)} per unit
-                </p>
-                {discountAmount > 0 && (
-                  <p className="font-caption text-xs text-success">
-                    You save ₹{(discountAmount * item?.quantity)?.toFixed(2)}
-                  </p>
-                )}
-              </div>
+          {/* Price Information */}
+          <div className="flex flex-col mb-3">
+            <div className="flex items-center gap-2">
+              <span className="font-data font-bold text-lg text-foreground">
+                ₹{(item?.price * item?.quantity)?.toFixed(2)}
+              </span>
+              {discountAmount > 0 && (
+                <>
+                  <span className="font-data text-sm text-muted-foreground line-through">
+                    ₹{(item?.originalPrice * item?.quantity)?.toFixed(2)}
+                  </span>
+                  <span className="font-caption text-xs font-medium text-success bg-success/10 px-2 py-1 rounded">
+                    {discountPercentage}% OFF
+                  </span>
+                </>
+              )}
             </div>
+            <div className="space-y-1">
+              <p className="font-caption text-xs text-muted-foreground">
+                ₹{item?.price?.toFixed(2)} per unit
+              </p>
+              {discountAmount > 0 && (
+                <p className="font-caption text-xs text-success">
+                  You save ₹{(discountAmount * item?.quantity)?.toFixed(2)}
+                </p>
+              )}
+            </div>
+          </div>
 
-            {/* Quantity Controls */}
-            <div className="flex items-center gap-3">
-              <div className="flex items-center border border-border rounded-lg">
-                <button
-                  onClick={() => handleQuantityChange(item?.quantity - 1)}
-                  className="p-2 hover:bg-muted transition-colors duration-200 rounded-l-lg"
-                  disabled={item?.quantity <= 1}
-                >
-                  <Icon name="Minus" size={16} />
-                </button>
-                <span className="font-data font-medium px-4 py-2 min-w-[3rem] text-center">
-                  {item?.quantity}
-                </span>
-                <button
-                  onClick={() => handleQuantityChange(item?.quantity + 1)}
-                  className="p-2 hover:bg-muted transition-colors duration-200 rounded-r-lg"
-                >
-                  <Icon name="Plus" size={16} />
-                </button>
-              </div>
+          {/* Quantity Controls */}
+          <div className="flex items-center justify-between mb-3">
+            <span className="font-body text-sm text-muted-foreground">Quantity:</span>
+            <div className="flex items-center border border-border rounded-lg">
+              <button
+                onClick={() => handleQuantityChange(item?.quantity - 1)}
+                className="p-2 hover:bg-muted transition-colors duration-200 rounded-l-lg"
+                disabled={item?.quantity <= 1}
+              >
+                <Icon name="Minus" size={16} />
+              </button>
+              <span className="font-data font-medium px-4 py-2 min-w-[3rem] text-center">
+                {item?.quantity}
+              </span>
+              <button
+                onClick={() => handleQuantityChange(item?.quantity + 1)}
+                className="p-2 hover:bg-muted transition-colors duration-200 rounded-r-lg"
+              >
+                <Icon name="Plus" size={16} />
+              </button>
             </div>
           </div>
 
           {/* Action Buttons */}
-          <div className="flex gap-2 mt-3">
+          <div className="flex gap-2">
             <Button
               variant="ghost"
               size="sm"
