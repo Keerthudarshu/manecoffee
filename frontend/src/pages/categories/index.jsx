@@ -17,7 +17,7 @@ const CategoriesPage = () => {
       id: 1,
       name: 'Arabica',
       displayName: 'Arabica Coffee',
-      productCount: 25,
+      productCount: 3,
       image: '/assets/banner/Arabica.png',
       icon: 'Coffee',
       description: 'Premium Arabica beans from the high-altitude estates of Coorg, known for their smooth, mild flavor and aromatic notes.',
@@ -30,7 +30,7 @@ const CategoriesPage = () => {
       id: 3,
       name: 'Robusta',
       displayName: 'Robusta Coffee',
-      productCount: 42,
+      productCount: 3,
       image: '/assets/banner/robusta.png',
       icon: 'Zap',
       description: 'Strong and bold Robusta beans with an intense flavor, thick crema, and higher caffeine content for an energetic start.',
@@ -43,7 +43,7 @@ const CategoriesPage = () => {
       id: 4,
       name: 'Arabica + Robusta',
       displayName: 'Premium Blend',
-      productCount: 18,
+      productCount: 3,
       image: '/assets/banner/arabicaand robusta.png',
       icon: 'Layers',
       description: 'A perfectly balanced blend of Arabica and Robusta, offering the aromatic sweetness of Arabica with the body and strength of Robusta.',
@@ -61,7 +61,7 @@ const CategoriesPage = () => {
   ];
 
   const handleCategoryClick = (category) => {
-    navigate(`/product/${category.id}`);
+    navigate(`/product-detail-page/${category.id}`);
   };
 
 
