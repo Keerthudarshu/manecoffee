@@ -112,29 +112,29 @@ const NewsletterSection = () => {
             </div>
 
             {/* Newsletter Form */}
-            <div className="bg-white border border-[#C9A227]/20 rounded-3xl p-6 lg:p-8 shadow-gold-lg">
+            <div className="bg-gradient-to-br from-[#C9A227] to-[#8a6a1a] border border-[#F0C040]/30 rounded-3xl p-6 lg:p-8 shadow-gold-xl">
               <div className="text-center mb-6">
-                <div className="w-12 h-12 bg-[#C9A227]/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Icon name="Mail" size={24} className="text-[#C9A227]" />
+                <div className="w-12 h-12 bg-white/15 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Icon name="Mail" size={24} className="text-white" />
                 </div>
-                <h3 className="font-heading font-bold text-xl text-[#120d07] mb-2">
+                <h3 className="font-heading font-bold text-xl text-white mb-2">
                   Get 10% Off Your First Order
                 </h3>
-                <p className="font-body text-[#120d07]/60">
+                <p className="font-body text-white/75">
                   Plus exclusive brewing guides and Coorg heritage stories
                 </p>
               </div>
 
               <form onSubmit={handleSubmit} className="space-y-5">
                 <div className="space-y-1">
-                  <label className="text-xs font-bold text-[#120d07] uppercase tracking-wider ml-1">Email Address</label>
+                  <label className="text-xs font-bold text-white/90 uppercase tracking-wider ml-1">Email Address</label>
                   <Input
                     type="email"
                     placeholder="Enter your email address"
                     value={email}
                     onChange={(e) => setEmail(e?.target?.value)}
                     required
-                    className="w-full bg-gray-50 border-gray-200 text-[#120d07] py-6"
+                    className="w-full bg-white border-white/30 text-[#120d07] py-6 placeholder:text-gray-400"
                   />
                 </div>
 
@@ -145,33 +145,33 @@ const NewsletterSection = () => {
                   iconName="ArrowRight"
                   iconPosition="right"
                   disabled={!email?.trim()}
-                  className="bg-[#C9A227] hover:bg-[#F0C040] text-[#120d07] py-6 rounded-xl shadow-gold-md font-bold text-lg"
+                  className="bg-[#1e1509] hover:bg-[#2a1f0e] text-[#F0C040] py-6 rounded-xl shadow-dark font-bold text-lg border border-[#F0C040]/20"
                 >
                   {isLoading ? 'Subscribing...' : 'Subscribe & Save 10%'}
                 </Button>
               </form>
 
-              <p className="font-caption text-xs text-[#120d07]/60 text-center mt-4">
+              <p className="font-caption text-xs text-white/60 text-center mt-4">
                 By subscribing, you agree to our Privacy Policy. Unsubscribe anytime.
               </p>
 
               {/* Trust Indicators */}
-              <div className="flex items-center justify-center space-x-4 mt-6 pt-6 border-t border-[#120d07]/10">
+              <div className="flex items-center justify-center space-x-4 mt-6 pt-6 border-t border-white/15">
                 <div className="flex items-center space-x-1">
-                  <Icon name="Shield" size={16} className="text-green-600" />
-                  <span className="font-caption text-xs text-[#120d07]/60 font-medium">
+                  <Icon name="Shield" size={16} className="text-green-300" />
+                  <span className="font-caption text-xs text-white/70 font-medium">
                     Secure
                   </span>
                 </div>
                 <div className="flex items-center space-x-1">
-                  <Icon name="Users" size={16} className="text-[#C9A227]" />
-                  <span className="font-caption text-xs text-[#120d07]/60 font-medium">
+                  <Icon name="Users" size={16} className="text-[#F0C040]" />
+                  <span className="font-caption text-xs text-white/70 font-medium">
                     5000+ Subscribers
                   </span>
                 </div>
                 <div className="flex items-center space-x-1">
-                  <Icon name="X" size={16} className="text-[#120d07]/40" />
-                  <span className="font-caption text-xs text-[#120d07]/60 font-medium">
+                  <Icon name="X" size={16} className="text-white/40" />
+                  <span className="font-caption text-xs text-white/70 font-medium">
                     No Spam
                   </span>
                 </div>
