@@ -275,57 +275,57 @@ const FeaturedProductsSection = ({ onAddToCart }) => {
                       {/* Info Tooltip Popup */}
                       {infoOpen === product.id && (
                         <div
-                          className="absolute inset-0 z-20 bg-[#2a1f0e]/85 backdrop-blur-sm flex items-center justify-center p-4 animate-fade-in"
+                          className="absolute inset-0 z-20 bg-[#2a1f0e]/85 backdrop-blur-sm flex items-center justify-center p-3 md:p-4"
                           onClick={(e) => { e.preventDefault(); e.stopPropagation(); setInfoOpen(null); }}
                         >
                           <div
-                            className="bg-white/95 backdrop-blur-md rounded-xl p-4 md:p-5 w-full max-w-[90%] shadow-2xl border border-[#C9A227]/20"
+                            className="bg-white rounded-xl p-3 md:p-5 w-full shadow-2xl border border-[#C9A227]/20"
                             onClick={(e) => e.stopPropagation()}
                           >
-                            <div className="flex items-center justify-between mb-3">
-                              <h4 className="font-heading font-bold text-sm md:text-base text-[#2a1f0e]">Coffee Details</h4>
+                            <div className="flex items-center justify-between mb-2 md:mb-3">
+                              <h4 className="font-heading font-bold text-xs md:text-base text-[#2a1f0e]">☕ Coffee Details</h4>
                               <button
                                 onClick={(e) => { e.preventDefault(); e.stopPropagation(); setInfoOpen(null); }}
-                                className="w-6 h-6 rounded-full bg-[#efe5d7] flex items-center justify-center text-[#2a1f0e] hover:bg-[#C9A227] hover:text-white transition-all"
+                                className="w-5 h-5 md:w-6 md:h-6 rounded-full bg-[#efe5d7] flex items-center justify-center text-[#2a1f0e] hover:bg-[#C9A227] hover:text-white transition-all flex-shrink-0"
                               >
-                                <Icon name="X" size={14} />
+                                <Icon name="X" size={12} />
                               </button>
                             </div>
-                            <div className="grid grid-cols-2 gap-3 text-xs md:text-sm">
-                              <div className="flex items-center gap-2">
-                                <span className="text-base">🌱</span>
-                                <div>
-                                  <span className="text-[#2a1f0e]/60 block text-[10px] font-medium">Origin</span>
-                                  <span className="text-[#2a1f0e] font-semibold">Coorg</span>
+                            <div className="grid grid-cols-2 gap-x-3 gap-y-2 md:gap-3">
+                              <div className="flex items-start gap-1.5">
+                                <span className="text-sm md:text-base leading-none mt-0.5">🌱</span>
+                                <div className="min-w-0">
+                                  <span className="text-[#2a1f0e]/50 block text-[9px] md:text-[10px] font-medium leading-tight">Origin</span>
+                                  <span className="text-[#2a1f0e] font-semibold text-[11px] md:text-sm leading-tight">Coorg</span>
                                 </div>
                               </div>
-                              <div className="flex items-center gap-2">
-                                <span className="text-base">🔥</span>
-                                <div>
-                                  <span className="text-[#2a1f0e]/60 block text-[10px] font-medium">Roast</span>
-                                  <span className="text-[#2a1f0e] font-semibold">{
+                              <div className="flex items-start gap-1.5">
+                                <span className="text-sm md:text-base leading-none mt-0.5">🔥</span>
+                                <div className="min-w-0">
+                                  <span className="text-[#2a1f0e]/50 block text-[9px] md:text-[10px] font-medium leading-tight">Roast</span>
+                                  <span className="text-[#2a1f0e] font-semibold text-[11px] md:text-sm leading-tight">{
                                     product.name.toLowerCase().includes('arabica + robusta') || product.name.toLowerCase().includes('blend') ? 'Medium-Dark' :
                                       product.name.toLowerCase().includes('robusta') ? 'Medium' : 'Dark Roast'
                                   }</span>
                                 </div>
                               </div>
-                              <div className="flex items-center gap-2">
-                                <span className="text-base">☕</span>
-                                <div>
-                                  <span className="text-[#2a1f0e]/60 block text-[10px] font-medium">Taste</span>
-                                  <span className="text-[#2a1f0e] font-semibold">{
+                              <div className="flex items-start gap-1.5">
+                                <span className="text-sm md:text-base leading-none mt-0.5">☕</span>
+                                <div className="min-w-0">
+                                  <span className="text-[#2a1f0e]/50 block text-[9px] md:text-[10px] font-medium leading-tight">Taste</span>
+                                  <span className="text-[#2a1f0e] font-semibold text-[11px] md:text-sm leading-tight">{
                                     product.name.toLowerCase().includes('arabica + robusta') || product.name.toLowerCase().includes('blend') ? 'Balanced, Smooth' :
                                       product.name.toLowerCase().includes('robusta') ? 'Strong, Bold' : 'Smooth, Aromatic'
                                   }</span>
                                 </div>
                               </div>
-                              <div className="flex items-center gap-2">
-                                <span className="text-base">✨</span>
-                                <div>
-                                  <span className="text-[#2a1f0e]/60 block text-[10px] font-medium">Best for</span>
-                                  <span className="text-[#2a1f0e] font-semibold">{
-                                    product.name.toLowerCase().includes('arabica + robusta') || product.name.toLowerCase().includes('blend') ? 'Filter Coffee/Black Coffee' :
-                                      product.name.toLowerCase().includes('robusta') ? 'Espresso/Filter Coffee' : 'Filter Coffee/Black coffee'
+                              <div className="flex items-start gap-1.5">
+                                <span className="text-sm md:text-base leading-none mt-0.5">✨</span>
+                                <div className="min-w-0">
+                                  <span className="text-[#2a1f0e]/50 block text-[9px] md:text-[10px] font-medium leading-tight">Best for</span>
+                                  <span className="text-[#2a1f0e] font-semibold text-[11px] md:text-sm leading-tight break-words">{
+                                    product.name.toLowerCase().includes('arabica + robusta') || product.name.toLowerCase().includes('blend') ? 'Filter / Black Coffee' :
+                                      product.name.toLowerCase().includes('robusta') ? 'Espresso / Filter' : 'Filter / Black Coffee'
                                   }</span>
                                 </div>
                               </div>
