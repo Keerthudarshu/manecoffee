@@ -10,6 +10,7 @@ const FeaturedProductsSection = ({ onAddToCart }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [selectedVariants, setSelectedVariants] = useState({}); // Track selected variant per product
+  const [infoOpen, setInfoOpen] = useState(null); // Track which product's info tooltip is open
 
   const categories = [
     { id: 'bestsellers', name: 'Best Sellers', icon: 'Star', filter: { sort: 'rating', category: null } },
@@ -256,6 +257,83 @@ const FeaturedProductsSection = ({ onAddToCart }) => {
                         </span>
                       </div>
 
+                      {/* Info Button - opposite to badge */}
+                      <div className="absolute top-2 right-2 md:top-3 md:right-3 z-10">
+                        <button
+                          onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            setInfoOpen(infoOpen === product.id ? null : product.id);
+                          }}
+                          className="w-7 h-7 md:w-8 md:h-8 bg-white/90 backdrop-blur-sm text-[#C9A227] rounded-full shadow-md border border-[#C9A227]/30 flex items-center justify-center hover:bg-[#C9A227] hover:text-white transition-all duration-300"
+                          aria-label="View coffee details"
+                        >
+                          <Icon name="Info" size={16} />
+                        </button>
+                      </div>
+
+                      {/* Info Tooltip Popup */}
+                      {infoOpen === product.id && (
+                        <div
+                          className="absolute inset-0 z-20 bg-[#2a1f0e]/85 backdrop-blur-sm flex items-center justify-center p-4 animate-fade-in"
+                          onClick={(e) => { e.preventDefault(); e.stopPropagation(); setInfoOpen(null); }}
+                        >
+                          <div
+                            className="bg-white/95 backdrop-blur-md rounded-xl p-4 md:p-5 w-full max-w-[90%] shadow-2xl border border-[#C9A227]/20"
+                            onClick={(e) => e.stopPropagation()}
+                          >
+                            <div className="flex items-center justify-between mb-3">
+                              <h4 className="font-heading font-bold text-sm md:text-base text-[#2a1f0e]">Coffee Details</h4>
+                              <button
+                                onClick={(e) => { e.preventDefault(); e.stopPropagation(); setInfoOpen(null); }}
+                                className="w-6 h-6 rounded-full bg-[#efe5d7] flex items-center justify-center text-[#2a1f0e] hover:bg-[#C9A227] hover:text-white transition-all"
+                              >
+                                <Icon name="X" size={14} />
+                              </button>
+                            </div>
+                            <div className="grid grid-cols-2 gap-3 text-xs md:text-sm">
+                              <div className="flex items-center gap-2">
+                                <span className="text-base">🌱</span>
+                                <div>
+                                  <span className="text-[#2a1f0e]/60 block text-[10px] font-medium">Origin</span>
+                                  <span className="text-[#2a1f0e] font-semibold">Coorg</span>
+                                </div>
+                              </div>
+                              <div className="flex items-center gap-2">
+                                <span className="text-base">🔥</span>
+                                <div>
+                                  <span className="text-[#2a1f0e]/60 block text-[10px] font-medium">Roast</span>
+                                  <span className="text-[#2a1f0e] font-semibold">{
+                                    product.name.toLowerCase().includes('arabica + robusta') || product.name.toLowerCase().includes('blend') ? 'Medium-Dark' :
+                                      product.name.toLowerCase().includes('robusta') ? 'Medium' : 'Dark Roast'
+                                  }</span>
+                                </div>
+                              </div>
+                              <div className="flex items-center gap-2">
+                                <span className="text-base">☕</span>
+                                <div>
+                                  <span className="text-[#2a1f0e]/60 block text-[10px] font-medium">Taste</span>
+                                  <span className="text-[#2a1f0e] font-semibold">{
+                                    product.name.toLowerCase().includes('arabica + robusta') || product.name.toLowerCase().includes('blend') ? 'Balanced, Smooth' :
+                                      product.name.toLowerCase().includes('robusta') ? 'Strong, Bold' : 'Smooth, Aromatic'
+                                  }</span>
+                                </div>
+                              </div>
+                              <div className="flex items-center gap-2">
+                                <span className="text-base">✨</span>
+                                <div>
+                                  <span className="text-[#2a1f0e]/60 block text-[10px] font-medium">Best for</span>
+                                  <span className="text-[#2a1f0e] font-semibold">{
+                                    product.name.toLowerCase().includes('arabica + robusta') || product.name.toLowerCase().includes('blend') ? 'Filter Coffee/Black Coffee' :
+                                      product.name.toLowerCase().includes('robusta') ? 'Espresso/Filter Coffee' : 'Filter Coffee/Black coffee'
+                                  }</span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+
                       {/* Image Hover Actions (Quick Add & Wishlist) */}
                       <div className="absolute bottom-4 left-0 right-0 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 px-4">
                         <button
@@ -308,36 +386,7 @@ const FeaturedProductsSection = ({ onAddToCart }) => {
                         </span>
                       </div>
 
-                      {/* Coffee Details */}
-                      <div className="mb-3 p-3 bg-[#efe5d7] rounded-lg">
-                        <div className="grid grid-cols-2 gap-2 text-xs">
-                          <div className="flex items-center gap-1">
-                            <span className="text-[#C9A227]">🌱</span>
-                            <span className="text-[#2a1f0e]">Origin: Coorg</span>
-                          </div>
-                          <div className="flex items-center gap-1">
-                            <span className="text-[#C9A227]">🔥</span>
-                            <span className="text-[#2a1f0e]">Roast: {
-                              product.name.toLowerCase().includes('arabica + robusta') || product.name.toLowerCase().includes('blend') ? 'Medium-Dark' :
-                                product.name.toLowerCase().includes('robusta') ? 'Medium' : 'Dark Roast'
-                            }</span>
-                          </div>
-                          <div className="flex items-center gap-1">
-                            <span className="text-[#C9A227]">☕</span>
-                            <span className="text-[#2a1f0e]">Taste: {
-                              product.name.toLowerCase().includes('arabica + robusta') || product.name.toLowerCase().includes('blend') ? 'Balanced, Smooth' :
-                                product.name.toLowerCase().includes('robusta') ? 'Strong, Bold' : 'Smooth, Aromatic'
-                            }</span>
-                          </div>
-                          <div className="flex items-center gap-1">
-                            <span className="text-[#C9A227]">✨</span>
-                            <span className="text-[#2a1f0e]">Best for: {
-                              product.name.toLowerCase().includes('arabica + robusta') || product.name.toLowerCase().includes('blend') ? 'Filter Coffee/Black Coffee' :
-                                product.name.toLowerCase().includes('robusta') ? 'Espresso/Filter Coffee' : 'Filter Coffee/Black coffee'
-                            }</span>
-                          </div>
-                        </div>
-                      </div>
+
 
                       {/* Weight Options */}
                       {product.variants && product.variants.length > 0 && (
