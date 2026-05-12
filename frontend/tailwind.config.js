@@ -123,9 +123,9 @@ module.exports = {
       },
 
       fontFamily: {
-        heading: ['Inter', 'sans-serif'],
-        body:    ['Source Sans Pro', 'sans-serif'],
-        caption: ['Roboto', 'sans-serif'],
+        heading: ['PriceSans', 'Playfair Display', 'Georgia', 'serif'],
+        body:    ['DM Sans', 'Inter', 'sans-serif'],
+        caption: ['Inter', 'sans-serif'],
         data:    ['JetBrains Mono', 'monospace'],
       },
 

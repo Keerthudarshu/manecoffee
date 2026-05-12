@@ -1,7 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;500;600&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap');
+
+/*
+ * PriceSans: virtual font that maps DM Sans only for currency symbols & digits.
+ * When stacked before Playfair Display, ₹ and numbers render in clean sans-serif
+ * while letters stay in the elegant serif — across the ENTIRE site automatically.
+ */
+@font-face {
+  font-family: 'PriceSans';
+  src: local('DM Sans'), local('DMSans-Regular');
+  font-weight: 100 900;
+  font-style: normal;
+  unicode-range: U+20B9, U+0024, U+20AC, U+00A3, U+0030-0039, U+002C, U+002E, U+002F, U+0025;
+  /* ₹  $  €  £  0-9  ,  .  /  % */
+}
+
+@font-face {
+  font-family: 'PriceSans';
+  src: local('DM Sans Italic'), local('DMSans-Italic');
+  font-weight: 100 900;
+  font-style: italic;
+  unicode-range: U+20B9, U+0024, U+20AC, U+00A3, U+0030-0039, U+002C, U+002E, U+002F, U+0025;
+}
 
 @tailwind base;
 @tailwind components;
@@ -96,10 +118,11 @@
 
 @layer utilities {
   /* ─── Typography ─── */
-  .font-heading  { font-family: 'Inter', sans-serif; }
-  .font-body     { font-family: 'Source Sans Pro', sans-serif; }
-  .font-caption  { font-family: 'Roboto', sans-serif; }
+  .font-heading  { font-family: 'PriceSans', 'Playfair Display', Georgia, serif; }
+  .font-body     { font-family: 'DM Sans', 'Inter', sans-serif; }
+  .font-caption  { font-family: 'Inter', sans-serif; }
   .font-data     { font-family: 'JetBrains Mono', monospace; }
+  .font-price    { font-family: 'DM Sans', 'Inter', sans-serif; font-variant-numeric: tabular-nums; }
 
   /* ─── Gold Gradient Text ─── */
   .text-gold-gradient {
