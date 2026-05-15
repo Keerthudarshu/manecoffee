@@ -158,7 +158,7 @@ const PaymentForm = ({ onNext, onBack, orderTotal, paymentMethod: initialPayment
           <Icon name="Info" size={16} />
         </div>
         <div>
-          <h3 className="font-heading font-bold text-primary text-sm uppercase tracking-wide">Step 3: Payment Method</h3>
+          <h3 className="font-heading font-bold text-primary text-sm uppercase tracking-wide">Step 2: Payment Method</h3>
           <p className="font-body text-foreground text-sm mt-1">
             Choose your preferred payment method. Online payments are processed securely via Razorpay.
           </p>
@@ -351,7 +351,7 @@ const PaymentForm = ({ onNext, onBack, orderTotal, paymentMethod: initialPayment
             iconPosition="left"
             disabled={isLoading}
           >
-            Back to Delivery
+            Back to Shipping
           </Button>
           <Button
             type="submit"

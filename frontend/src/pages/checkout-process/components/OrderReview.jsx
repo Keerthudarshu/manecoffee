@@ -132,44 +132,6 @@ const OrderReview = ({
           </div>
         </div>
 
-        {/* Delivery Information */}
-        <div className="p-4 bg-muted/30 rounded-lg border border-border">
-          <div className="flex items-center justify-between mb-3">
-            <h3 className="font-body font-medium text-foreground flex items-center space-x-2">
-              <Icon name="Truck" size={16} />
-              <span>Delivery Option</span>
-            </h3>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => onBack && onBack(2)}
-              iconName="Edit"
-              iconPosition="left"
-            >
-              Edit
-            </Button>
-          </div>
-          {deliveryOption ? (
-            <div className="space-y-2">
-              <div className="flex items-center justify-between">
-                <span className="font-body font-medium text-foreground">
-                  {deliveryOption?.name}
-                </span>
-                <span className="font-data font-medium text-foreground">
-                  {deliveryOption?.price === 0 ? 'Free' : `₹${deliveryOption?.price}`}
-                </span>
-              </div>
-              <p className="font-body text-sm text-muted-foreground">
-                {deliveryOption?.description}
-              </p>
-            </div>
-          ) : (
-            <p className="font-body text-sm text-muted-foreground">
-              No delivery option selected
-            </p>
-          )}
-        </div>
-
         {/* Payment Information */}
         <div className="p-4 bg-muted/30 rounded-lg border border-border">
           <div className="flex items-center justify-between mb-3">
@@ -180,7 +142,7 @@ const OrderReview = ({
             <Button
               variant="ghost"
               size="sm"
-              onClick={() => onBack && onBack(3)}
+              onClick={() => onBack && onBack(2)}
               iconName="Edit"
               iconPosition="left"
             >
@@ -251,7 +213,7 @@ const OrderReview = ({
           <Button
             type="button"
             variant="outline"
-            onClick={() => onBack && onBack(3)}
+            onClick={() => onBack && onBack(2)}
             iconName="ArrowLeft"
             iconPosition="left"
             disabled={isProcessing}

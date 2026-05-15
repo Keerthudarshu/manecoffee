@@ -495,7 +495,7 @@ const ShippingForm = ({ onNext, onAddressSelect, user, isLoading = false }) => {
             disabled={isLoading || (!selectedAddress && !showNewAddressForm) || (showNewAddressForm && !isFormValid())}
             loading={isLoading}
           >
-            {isLoading ? 'Processing...' : 'Continue to Delivery'}
+            {isLoading ? 'Processing...' : 'Continue to Payment'}
           </Button>
         </div>
 

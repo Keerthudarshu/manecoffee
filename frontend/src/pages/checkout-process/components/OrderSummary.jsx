@@ -51,7 +51,7 @@ const OrderSummary = ({
 
   const items = cartItems?.length > 0 ? cartItems : mockCartItems;
   const calculatedSubtotal = subtotal || items?.reduce((sum, item) => sum + (item?.price * item?.quantity), 0);
-  const calculatedShipping = shipping || (calculatedSubtotal >= 2500 ? 0 : 99);
+  const calculatedShipping = typeof shipping === 'number' ? shipping : 0;
   const calculatedDiscount = discount || (appliedCoupon === 'FLAT10' && calculatedSubtotal >= 1499 ? calculatedSubtotal * 0.1 : 0);
   const calculatedTotal = total || (calculatedSubtotal + calculatedShipping - calculatedDiscount);
 
@@ -211,9 +211,7 @@ const OrderSummary = ({
             
             <div className="flex justify-between font-body text-sm">
               <span className="text-muted-foreground">Shipping</span>
-              <span className="font-data font-medium">
-                {calculatedShipping === 0 ? 'Free' : `₹${calculatedShipping?.toFixed(2)}`}
-              </span>
+              <span className="font-data font-medium text-success">Free</span>
             </div>
             
             {calculatedDiscount > 0 && (
@@ -230,15 +228,6 @@ const OrderSummary = ({
               <span className="font-data">₹{calculatedTotal?.toFixed(2)}</span>
             </div>
           </div>
-
-          {/* Free Shipping Notice */}
-          {calculatedSubtotal < 2500 && (
-            <div className="bg-warning/10 border border-warning/20 rounded-lg p-3">
-              <p className="font-caption text-xs text-warning-foreground">
-                Add ₹{(2500 - calculatedSubtotal)?.toFixed(2)} more for free shipping!
-              </p>
-            </div>
-          )}
         </div>
       )}
     </div>

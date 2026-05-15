@@ -1,12 +1,11 @@
 import React from 'react';
 import Icon from '../../../components/AppIcon';
 
-const CheckoutProgress = ({ currentStep = 1, totalSteps = 4 }) => {
+const CheckoutProgress = ({ currentStep = 1, totalSteps = 3 }) => {
   const steps = [
     { id: 1, label: 'Shipping', icon: 'Truck' },
-    { id: 2, label: 'Delivery', icon: 'Clock' },
-    { id: 3, label: 'Payment', icon: 'CreditCard' },
-    { id: 4, label: 'Review', icon: 'CheckCircle' }
+    { id: 2, label: 'Payment', icon: 'CreditCard' },
+    { id: 3, label: 'Review', icon: 'CheckCircle' }
   ];
 
   return (

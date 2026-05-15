@@ -162,7 +162,7 @@ const CheckoutProcess = () => {
     const itemQuantity = parseInt(item?.quantity) || 0;
     return sum + (itemPrice * itemQuantity);
   }, 0);
-  const shippingCost = deliveryData?.price || (subtotal >= 499 ? 0 : 49);
+  const shippingCost = 0;
   const discountAmount = appliedCoupon === 'FLAT10' && subtotal >= 1499 ? subtotal * 0.1 : 0;
   const total = subtotal + shippingCost - discountAmount;
 
@@ -220,20 +220,7 @@ const CheckoutProcess = () => {
           setCurrentStep(2);
           break;
 
-        case 2: // Delivery & Payment Options
-          setDeliveryData(stepData);
-          if (user?.email) {
-            const selectionData = {
-              deliveryOption: stepData?.id || stepData?.deliveryOption,
-              paymentMethod: stepData?.method || stepData?.paymentMethod
-            };
-            await checkoutApi.saveSelection(user.email, selectionData);
-            console.log('Delivery and payment selection saved:', selectionData);
-          }
-          setCurrentStep(3);
-          break;
-
-        case 3: // Order Review
+        case 2: // Payment Method Selection
           setPaymentData(stepData);
           // Load order review data from backend
           if (user?.email) {
@@ -241,7 +228,7 @@ const CheckoutProcess = () => {
             setOrderReviewData(reviewData);
             console.log('Order review data loaded:', reviewData);
           }
-          setCurrentStep(4);
+          setCurrentStep(3);
           break;
 
         default:
@@ -257,7 +244,7 @@ const CheckoutProcess = () => {
 
   const handleStepBack = (targetStep = null) => {
     const newStep = targetStep || currentStep - 1;
-    if (newStep >= 1 && newStep <= 4) {
+    if (newStep >= 1 && newStep <= 3) {
       setCurrentStep(newStep);
     }
   };
@@ -419,17 +406,7 @@ const CheckoutProcess = () => {
             isLoading={isProcessing}
           />
         );
-      case 2: // Delivery & Payment Options Step
-        return (
-          <DeliveryOptions
-            onNext={handleStepNext}
-            onBack={handleStepBack}
-            shippingAddress={shippingData}
-            user={user}
-            isLoading={isProcessing}
-          />
-        );
-      case 3: // Payment Method Step
+      case 2: // Payment Method Step
         return (
           <PaymentForm
             onNext={handleStepNext}
@@ -441,13 +418,13 @@ const CheckoutProcess = () => {
             isLoading={isProcessing}
           />
         );
-      case 4: // Order Review & Place Order Step
+      case 3: // Order Review & Place Order Step
         return (
           <OrderReview
             onBack={handleStepBack}
             onPlaceOrder={handlePlaceOrder}
             shippingAddress={shippingData}
-            deliveryOption={deliveryData}
+            deliveryOption={null}
             paymentMethod={paymentData?.method}
             orderTotal={total}
             orderReviewData={orderReviewData}
@@ -510,7 +487,7 @@ const CheckoutProcess = () => {
   }
 
   // Show error state if there's an error
-  if (error && currentStep === 4) {
+  if (error && currentStep === 3) {
     return (
       <div className="min-h-screen bg-background">
         <Header />
@@ -553,7 +530,7 @@ const CheckoutProcess = () => {
         <Breadcrumb customItems={breadcrumbItems} />
 
         {/* Error Display */}
-        {error && currentStep !== 4 && (
+        {error && currentStep !== 3 && (
           <div className="mb-6 bg-red-50 border border-red-200 rounded-lg p-4">
             <div className="flex items-center">
               <Icon name="AlertCircle" size={20} className="text-red-500 mr-2" />
