@@ -92,8 +92,13 @@ public class PaymentController {
             }
             logger.debug("Calculated subtotal: {}", subtotal);
 
-            double shippingFee = "express".equalsIgnoreCase(selection.getDeliveryOption()) ? 100.0 : 50.0;
-            double total = subtotal + shippingFee;
+            double shippingFee = 0.0;
+            double discountAmount = 0.0;
+            String coupon = selection.getAppliedCoupon();
+            if ("FLAT10".equalsIgnoreCase(coupon) && subtotal >= 2500) {
+                discountAmount = subtotal * 0.10;
+            }
+            double total = subtotal + shippingFee - discountAmount;
 
             long amountPaise = Math.round(total * 100);
             logger.debug("Razorpay order amount: {} INR = {} paise", total, amountPaise);

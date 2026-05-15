@@ -52,7 +52,7 @@ const OrderSummary = ({
   const items = cartItems?.length > 0 ? cartItems : mockCartItems;
   const calculatedSubtotal = subtotal || items?.reduce((sum, item) => sum + (item?.price * item?.quantity), 0);
   const calculatedShipping = typeof shipping === 'number' ? shipping : 0;
-  const calculatedDiscount = discount || (appliedCoupon === 'FLAT10' && calculatedSubtotal >= 1499 ? calculatedSubtotal * 0.1 : 0);
+  const calculatedDiscount = discount || (appliedCoupon === 'FLAT10' && calculatedSubtotal >= 2500 ? calculatedSubtotal * 0.1 : 0);
   const calculatedTotal = total || (calculatedSubtotal + calculatedShipping - calculatedDiscount);
 
   const handleApplyCoupon = () => {
@@ -64,13 +64,13 @@ const OrderSummary = ({
     }
 
     if (couponCode?.toUpperCase() === 'FLAT10') {
-      if (calculatedSubtotal >= 1499) {
+      if (calculatedSubtotal >= 2500) {
         if (onApplyCoupon) {
           onApplyCoupon(couponCode?.toUpperCase());
         }
         setCouponCode('');
       } else {
-        setCouponError('Minimum order value ₹1,499 required for FLAT10');
+        setCouponError('Minimum order value ₹2,500 required for FLAT10');
       }
     } else {
       setCouponError('Invalid coupon code');
@@ -193,7 +193,7 @@ const OrderSummary = ({
                     Apply
                   </Button>
                 </div>
-                {calculatedSubtotal >= 1499 && !appliedCoupon && (
+                {calculatedSubtotal >= 2500 && !appliedCoupon && (
                   <p className="font-body text-xs text-success">
                     Use code FLAT10 for 10% off!
                   </p>

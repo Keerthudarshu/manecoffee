@@ -95,15 +95,9 @@ public class OrderService {
             .sum();
             
         double shippingFee = 0.0;
-        if ("express".equalsIgnoreCase(selection.getDeliveryOption())) {
-            shippingFee = 100.0;
-        } else {
-            shippingFee = (subtotal >= 499) ? 0.0 : 49.0;
-        }
-
         double discountAmount = 0.0;
         String coupon = selection.getAppliedCoupon();
-        if ("FLAT10".equalsIgnoreCase(coupon) && subtotal >= 1499) {
+        if ("FLAT10".equalsIgnoreCase(coupon) && subtotal >= 2500) {
             discountAmount = subtotal * 0.10;
         } else {
             coupon = null;

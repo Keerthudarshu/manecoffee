@@ -163,12 +163,12 @@ const CheckoutProcess = () => {
     return sum + (itemPrice * itemQuantity);
   }, 0);
   const shippingCost = 0;
-  const discountAmount = appliedCoupon === 'FLAT10' && subtotal >= 1499 ? subtotal * 0.1 : 0;
+  const discountAmount = appliedCoupon === 'FLAT10' && subtotal >= 2500 ? subtotal * 0.1 : 0;
   const total = subtotal + shippingCost - discountAmount;
 
   // Auto-apply FLAT10 coupon if eligible
   useEffect(() => {
-    if (subtotal >= 1499 && !appliedCoupon) {
+    if (subtotal >= 2500 && !appliedCoupon) {
       setAppliedCoupon('FLAT10');
     }
   }, [subtotal, appliedCoupon]);
@@ -224,9 +224,14 @@ const CheckoutProcess = () => {
           setPaymentData(stepData);
           // Load order review data from backend
           if (user?.email) {
+            const selectionData = {
+              paymentMethod: stepData?.method || stepData?.paymentMethod,
+              appliedCoupon: appliedCoupon
+            };
+            await checkoutApi.saveSelection(user.email, selectionData);
             const reviewData = await checkoutApi.review(user.email);
             setOrderReviewData(reviewData);
-            console.log('Order review data loaded:', reviewData);
+            console.log('Order review and selection saved:', selectionData);
           }
           setCurrentStep(3);
           break;
@@ -387,8 +392,20 @@ const CheckoutProcess = () => {
     }
   };
 
-  const handleApplyCoupon = (couponCode) => {
+  const handleApplyCoupon = async (couponCode) => {
     setAppliedCoupon(couponCode);
+    if (user?.email) {
+      try {
+        await checkoutApi.saveSelection(user.email, { appliedCoupon: couponCode });
+        // Refresh review data if on review step to sync with backend
+        if (currentStep === 3) {
+          const reviewData = await checkoutApi.review(user.email);
+          setOrderReviewData(reviewData);
+        }
+      } catch (err) {
+        console.error('Failed to sync coupon with backend:', err);
+      }
+    }
   };
 
   /**
