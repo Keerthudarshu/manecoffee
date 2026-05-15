@@ -250,9 +250,9 @@ const ProductDetailPage = () => {
 
   const breadcrumbItems = [
     { label: 'Home', path: '/homepage' },
-    { label: 'Products', path: '/product-collection-grid' },
-    { label: product?.category || 'Category', path: `/product-collection-grid?category=${encodeURIComponent(product?.category || '')}` },
-    { label: product?.name || 'Product', path: `/product-detail-page?id=${productId}` }
+    { label: 'Products', path: '/collections' },
+    { label: product?.category || 'Category', path: `/collections?category=${encodeURIComponent(product?.category || '')}` },
+    { label: product?.name || 'Product', path: `/products/${productId}` }
   ];
 
   const handleAddToCart = (item) => {
@@ -376,6 +376,16 @@ const ProductDetailPage = () => {
     );
   }
 
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://manecoffeee.com/" },
+      { "@type": "ListItem", "position": 2, "name": product?.category || "Coffee", "item": `https://manecoffeee.com/collections?category=${encodeURIComponent(product?.category || '')}` },
+      { "@type": "ListItem", "position": 3, "name": product?.name }
+    ]
+  };
+
   const productSchema = {
     "@context": "https://schema.org/",
     "@type": "Product",
@@ -386,9 +396,10 @@ const ProductDetailPage = () => {
       "@type": "Brand",
       "name": "Mane Coffee"
     },
+    "sku": `MC-${product?.id}`,
     "offers": {
       "@type": "Offer",
-      "url": `https://manecoffeee.com/product-detail-page?id=${productId}`,
+      "url": `https://manecoffeee.com/products/${productId}`,
       "priceCurrency": "INR",
       "price": product?.variants?.[0]?.price || 0,
       "availability": product?.variants?.[0]?.stockQuantity > 0 ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
@@ -401,18 +412,21 @@ const ProductDetailPage = () => {
     }
   };
 
+  // Title Formula: [Origin] [Variety] [Roast Level] Coffee [Format] — [Weight] | Mane Coffee
+  const productTitle = `${product?.name} | Mane Coffee`;
+
   return (
     <div className="min-h-screen bg-background">
       <SEO 
-        title={product?.name}
+        title={productTitle}
         description={product?.shortDescription}
         keywords={`${product?.name}, Coorg coffee, buy ${product?.name} online, Mane Coffee ${product?.category}, specialty coffee, specialty coffee shop, coffee speciality, gourmet coffee shop, specialty coffee website, best cafe coffee, coffee bistros, café coffee shop, gourmet coffee cafe, mane coffee shop, the best specialty coffee, speciality gourmet coffee, speciality of coffee`}
-        canonical={`/product-detail-page?id=${productId}`}
-        ogTitle={`${product?.name} - Mane Coffee`}
+        canonical={`/products/${productId}`}
+        ogTitle={productTitle}
         ogDescription={product?.shortDescription}
         ogImage={product?.images?.[0]}
         ogType="product"
-        structuredData={productSchema}
+        structuredData={[productSchema, breadcrumbSchema]}
       />
       <Header 
         cartItemCount={getCartItemCount()}

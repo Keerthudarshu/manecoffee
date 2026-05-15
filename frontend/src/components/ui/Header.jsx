@@ -77,13 +77,13 @@ const Header = ({ isLoggedIn = false, onSearch = () => { } }) => {
     e?.preventDefault();
     const params = new URLSearchParams();
     if (searchQuery?.trim()) params.set('search', searchQuery.trim());
-    const target = `/product-collection-grid${params.toString() ? `?${params.toString()}` : ''}`;
+    const target = `/collections${params.toString() ? `?${params.toString()}` : ''}`;
     navigate(target);
     if (searchQuery?.trim() && onSearch) onSearch(searchQuery.trim());
   };
 
   const navigationItems = [
-    { label: 'Products', path: '/product-collection-grid', icon: 'Package' },
+    { label: 'Products', path: '/collections', icon: 'Package' },
     { label: 'Categories', path: '/categories', icon: 'Grid', hasDropdown: true, isCategories: true },
     { label: 'About', path: '/about', icon: 'Info' },
     { label: 'Contact', path: '/contact', icon: 'Phone' },
@@ -184,7 +184,7 @@ const Header = ({ isLoggedIn = false, onSearch = () => { } }) => {
                         {suggestions.map(item => (
                           <button
                             key={item.id}
-                            onClick={() => navigate(`/product-detail-page?id=${item.id}`)}
+                            onClick={() => navigate(`/products/${item.id}`)}
                             className="w-full flex items-center gap-4 p-4 hover:bg-muted/50 text-left transition-colors duration-200"
                           >
                             <img src={item.image || '/assets/images/no_image.png'} alt={item.name} className="w-12 h-12 object-cover rounded-lg" />
@@ -218,7 +218,7 @@ const Header = ({ isLoggedIn = false, onSearch = () => { } }) => {
             <div className="flex items-center space-x-4">
               {/* User Account */}
               <Link
-                to={loggedIn ? "/user-account-dashboard" : "/user-login"}
+                to={loggedIn ? "/account" : "/login"}
                 className="flex items-center gap-2 px-4 py-2 text-coffee-primary hover:text-primary hover:bg-muted/30 rounded-xl transition-all duration-300"
               >
                 <Icon name="User" size={20} className="text-coffee-primary group-hover:text-primary" />
@@ -288,7 +288,7 @@ const Header = ({ isLoggedIn = false, onSearch = () => { } }) => {
 
               <div className="mt-6 pt-6 border-t border-border">
                 <Link
-                  to={loggedIn ? "/user-account-dashboard" : "/user-login"}
+                  to={loggedIn ? "/account" : "/login"}
                   className="flex items-center gap-2 px-4 py-3 text-[#120d07] hover:text-[#C9A227] transition-colors duration-200"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >

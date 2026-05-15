@@ -74,16 +74,24 @@ function App() {
                   <Route path="/" element={<Homepage />} />
                   <Route path="/homepage" element={<Homepage />} />
                   <Route path="/banner-preview" element={<BannerPreview />} />
-                  <Route path="/product-collection-grid" element={<ProductCollectionGrid />} />
-                  <Route path="/product-detail-page/:id" element={<ProductDetailPage />} />
-                  <Route path="/product-detail-page" element={<ProductDetailPage />} />
-                  <Route path="/shopping-cart" element={<ShoppingCart />} />
-                  <Route path="/checkout-process" element={<CheckoutProcess />} />
-                  <Route path="/user-login" element={<UserAuth />} />
-                  <Route path="/user-register" element={<UserAuth />} />
+                  <Route path="/collections" element={<ProductCollectionGrid />} />
+                  <Route path="/product-collection-grid" element={<Navigate to="/collections" replace />} />
+                  <Route path="/products/:id" element={<ProductDetailPage />} />
+                  <Route path="/products" element={<ProductCollectionGrid />} />
+                  <Route path="/product-detail-page/:id" element={<Navigate to="/products/:id" replace />} />
+                  <Route path="/product-detail-page" element={<Navigate to="/products" replace />} />
+                  <Route path="/cart" element={<ShoppingCart />} />
+                  <Route path="/shopping-cart" element={<Navigate to="/cart" replace />} />
+                  <Route path="/checkout" element={<CheckoutProcess />} />
+                  <Route path="/checkout-process" element={<Navigate to="/checkout" replace />} />
+                  <Route path="/login" element={<UserAuth />} />
+                  <Route path="/user-login" element={<Navigate to="/login" replace />} />
+                  <Route path="/register" element={<UserAuth />} />
+                  <Route path="/user-register" element={<Navigate to="/register" replace />} />
                   <Route path="/forgot-password" element={<ForgotPassword />} />
                   <Route path="/reset-password" element={<ForgotPassword />} />
-                  <Route path="/user-account-dashboard" element={<UserAccountDashboard />} />
+                  <Route path="/account" element={<UserAccountDashboard />} />
+                  <Route path="/user-account-dashboard" element={<Navigate to="/account" replace />} />
                   <Route path="/reviews" element={<ReviewsPage />} />
                   <Route path="/our-story" element={<OurStoryPage />} />
                   <Route path="/about" element={<AboutPage />} />

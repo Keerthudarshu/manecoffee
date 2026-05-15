@@ -16,9 +16,9 @@ const Footer = () => {
       { label: "Contact Us", path: "/contact" }
     ],
     customer: [
-      { label: "My Account", path: "/user-account-dashboard" },
-      { label: "Order History", path: "/user-account-dashboard?tab=orders" },
-      { label: "Track Order", path: "/user-account-dashboard?tab=orders" },
+      { label: "My Account", path: "/account" },
+      { label: "Order History", path: "/account?tab=orders" },
+      { label: "Track Order", path: "/account?tab=orders" },
       { label: "Help & Support", path: "/contact" }
     ],
     policies: [

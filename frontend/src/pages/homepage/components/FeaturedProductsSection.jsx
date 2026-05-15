@@ -467,7 +467,7 @@ const FeaturedProductsSection = ({ onAddToCart }) => {
         {/* View All CTA */}
         <div className="text-center">
           <Link
-            to="/product-collection-grid"
+            to="/collections"
             className="inline-flex items-center gap-3 bg-[#C9A227] hover:bg-[#F0C040] text-white px-8 py-4 rounded-full font-heading font-bold text-lg transition-all duration-300 hover:scale-105 shadow-gold-lg"
           >
             Shop All Products

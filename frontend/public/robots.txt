@@ -1,5 +1,9 @@
 User-agent: *
 Allow: /
+Disallow: /cart
+Disallow: /checkout
+Disallow: /account
+Disallow: /search?
 Disallow: /admin-login
 Disallow: /admin-dashboard
 Disallow: /admin-panel
@@ -12,7 +16,4 @@ Disallow: /forgot-password
 Disallow: /reset-password
 Disallow: /banner-preview
 
-Host: https://manecoffeee.com
-
-# Sitemaps
 Sitemap: https://manecoffeee.com/sitemap.xml

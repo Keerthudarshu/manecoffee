@@ -146,7 +146,7 @@ const ProductCard = ({
     ) {
       return;
     }
-    navigate(`/product-detail-page/${product?.id}`);
+    navigate(`/products/${product?.id}`);
   };
   return (
     <div

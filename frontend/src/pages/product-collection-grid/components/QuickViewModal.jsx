@@ -240,7 +240,7 @@ const QuickViewModal = ({ product, isOpen, onClose, onAddToCart }) => {
                     Add to Cart - ₹{(currentPrice * quantity)?.toFixed(2)} {selectedVariant?.weight || (selectedVariant?.weightValue ? selectedVariant.weightValue + (selectedVariant.weightUnit || '') : '')}
                   </Button>
                   
-                  <Link to={`/product-detail-page?id=${product?.id}`}>
+                  <Link to={`/products/${product?.id}`}>
                     <Button variant="outline" fullWidth onClick={onClose}>
                       View Full Details
                     </Button>

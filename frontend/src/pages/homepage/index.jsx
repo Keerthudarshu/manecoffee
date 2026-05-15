@@ -85,19 +85,37 @@ const Homepage = () => {
   const handleSearch = (query) => {
     setSearchQuery(query);
     // Navigate to product collection with search query
-    window.location.href = `/product-collection-grid?search=${encodeURIComponent(query)}`;
+    window.location.href = `/collections?search=${encodeURIComponent(query)}`;
   };
 
   return (
     <>
       <SEO 
-        title="Premium Coorg Coffee, Arabica & Robusta Online"
-        description="Experience the finest shade-grown coffee from the mist-covered hills of Coorg. Shop premium Arabica, Robusta, and signature estate blends roasted for the ultimate flavor. Free delivery above ₹499."
+        title="Premium Shade-Grown Coorg Coffee Online — Arabica & Robusta"
+        description="Shop authentic single-origin Arabica and Robusta coffee from Coorg's misty Western Ghats. Farm-to-cup freshness, free shipping across India. Order Mane Coffee today."
         keywords="Coorg coffee, Kodagu coffee, buy coffee online India, Arabica beans, Robusta beans, filter coffee powder, artisan coffee roasting, shade grown coffee, Mane Coffee, best coffee from Coorg, specialty coffee, specialty coffee shop, coffee speciality, gourmet coffee shop, specialty coffee website, best cafe coffee, coffee bistros, café coffee shop, gourmet coffee cafe, mane coffee shop, the best specialty coffee, atmosphere coffee shop, best coffee stores near me, best coffeehouse near me, coffee shop indoor seating, coffee shop with indoor seating, indoor coffee shop, upscale coffee shop near me"
         canonical="/"
         ogTitle="Mane Coffee | Premium Coorg Coffee, Arabica & Robusta"
-        ogDescription="Experience the finest shade-grown coffee from the mist-covered hills of Coorg. Premium Arabica, Robusta, and signature blends."
+        ogDescription="Shop authentic single-origin Arabica and Robusta coffee from Coorg's misty Western Ghats. Farm-to-cup freshness, free shipping across India."
         ogType="website"
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "name": "Mane Coffee",
+          "url": "https://manecoffeee.com",
+          "logo": "https://manecoffeee.com/assets/images/logo.jpeg",
+          "description": "Premium shade-grown Coorg coffee — Arabica and Robusta beans from the Western Ghats",
+          "foundingLocation": "Coorg, Karnataka, India",
+          "sameAs": [
+            "https://instagram.com/manecoffee",
+            "https://facebook.com/manecoffee"
+          ],
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "contactType": "customer service",
+            "areaServed": "IN"
+          }
+        }}
       />
 
       <div className="min-h-screen bg-coffee-primary">

@@ -327,7 +327,7 @@ const ProductCollectionGrid = () => {
 
   const breadcrumbItems = [
     { label: 'Home', path: '/homepage' },
-    { label: 'Products', path: '/product-collection-grid' }
+    { label: 'Products', path: '/collections' }
   ];
 
   // Category mapping for display - Coffee Heritage
@@ -370,7 +370,7 @@ const ProductCollectionGrid = () => {
         keywords={searchTerm
           ? `${searchTerm}, buy coffee online India, Coorg coffee, Mane Coffee`
           : `buy ${categoryTitle}, Coorg coffee online, Arabica Robusta blends, filter coffee powder, Mane Coffee products, blvd specialty coffee menu, coffee shop coffee menu, coffee shop coffee prices, coffee shop food menu, mane coffee menu, menu for cafe shop, specialty coffee menu, specialty coffee shop menu, specialty coffee cafe, specialty coffee house, speciality coffee bar, speciality coffee cafe, speciality coffee house, speciality gourmet coffee, speciality of coffee, a cafe specialty coffee, be speciality coffee, & specialty coffee`}
-        canonical="/product-collection-grid"
+        canonical="/collections"
         ogTitle={searchTerm ? `${searchTerm} - Mane Coffee` : `${categoryTitle} - Mane Coffee Collection`}
         ogDescription={searchTerm
           ? `Browse "${searchTerm}" coffee products from Mane Coffee.`
