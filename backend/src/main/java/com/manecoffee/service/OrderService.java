@@ -94,7 +94,7 @@ public class OrderService {
             .mapToDouble(ci -> (ci.getPriceAtAdd() != null ? ci.getPriceAtAdd() : 0.0) * ci.getQuantity())
             .sum();
             
-        double shippingFee = 0.0;
+        double shippingFee = 50.0;
         double discountAmount = 0.0;
         String coupon = selection.getAppliedCoupon();
         if ("FLAT10".equalsIgnoreCase(coupon) && subtotal >= 2500) {

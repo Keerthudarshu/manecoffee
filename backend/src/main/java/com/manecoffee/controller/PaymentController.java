@@ -52,7 +52,7 @@ public class PaymentController {
     }
 
     @PostMapping("/create-order")
-    public ResponseEntity<?> createOrder(@RequestParam("email") String email) {
+    public ResponseEntity<?> createOrder(@RequestParam("email") String email, @RequestBody(required = false) Map<String, Object> body) {
         try {
             if (email == null || email.trim().isEmpty()) {
                 return ResponseEntity.badRequest().body("Email is required");
@@ -66,39 +66,34 @@ public class PaymentController {
                 return ResponseEntity.badRequest().body("No checkout selection found. Please complete checkout steps.");
             }
 
-            if (selection.getAddressId() == null) {
-                return ResponseEntity.badRequest().body("No address selected. Please select a delivery address.");
-            }
-
-            com.manecoffee.entity.Address address = addressRepo.findById(selection.getAddressId()).orElse(null);
-            if (address == null) {
-                return ResponseEntity.badRequest().body("Selected address not found. Please select a valid address.");
-            }
-
             // Get cart and compute totals
             java.util.List<com.manecoffee.entity.CartItem> cart = cartService.getCart(user);
             if (cart == null || cart.isEmpty()) {
                 return ResponseEntity.badRequest().body("Your cart is empty. Please add items before checkout.");
             }
 
-            // Calculate subtotal using cart item prices, with fallback to product price
+            // Calculate subtotal
             double subtotal = 0.0;
             for (com.manecoffee.entity.CartItem ci : cart) {
                 double price = ci.getPriceAtAdd() != null && ci.getPriceAtAdd() > 0 ? ci.getPriceAtAdd()
                         : (ci.getProduct().getPrice() != null ? ci.getProduct().getPrice().doubleValue() : 0.0);
                 subtotal += price * ci.getQuantity();
-                logger.debug("Cart item: product={}, quantity={}, price={}, line_total={}",
-                        ci.getProduct().getName(), ci.getQuantity(), price, price * ci.getQuantity());
             }
-            logger.debug("Calculated subtotal: {}", subtotal);
 
-            double shippingFee = 0.0;
+            double shippingFee = 50.0; // Fixed shipping charge always
             double discountAmount = 0.0;
             String coupon = selection.getAppliedCoupon();
             if ("FLAT10".equalsIgnoreCase(coupon) && subtotal >= 2500) {
                 discountAmount = subtotal * 0.10;
             }
-            double total = subtotal + shippingFee - discountAmount;
+            double calculatedTotal = subtotal + shippingFee - discountAmount;
+
+            // Use amount from frontend if provided, else use calculatedTotal
+            double total = calculatedTotal;
+            if (body != null && body.containsKey("amount")) {
+                total = Double.parseDouble(body.get("amount").toString());
+                logger.info("Using frontend provided total: {}", total);
+            }
 
             long amountPaise = Math.round(total * 100);
             logger.debug("Razorpay order amount: {} INR = {} paise", total, amountPaise);

@@ -162,7 +162,7 @@ const CheckoutProcess = () => {
     const itemQuantity = parseInt(item?.quantity) || 0;
     return sum + (itemPrice * itemQuantity);
   }, 0);
-  const shippingCost = 0;
+  const shippingCost = 50;
   const discountAmount = appliedCoupon === 'FLAT10' && subtotal >= 2500 ? subtotal * 0.1 : 0;
   const total = subtotal + shippingCost - discountAmount;
 
@@ -278,7 +278,7 @@ const CheckoutProcess = () => {
       }
 
       // For online payments (card/upi/wallet), create a Razorpay order and open checkout
-      const r = await checkoutApi.createRazorpayOrder(user.email);
+      const r = await checkoutApi.createRazorpayOrder(user.email, total);
       const loadRzp = () => new Promise((resolve) => {
         if (window.Razorpay) return resolve(true);
         const script = document.createElement('script');

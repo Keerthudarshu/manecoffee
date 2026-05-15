@@ -51,7 +51,7 @@ const OrderSummary = ({
 
   const items = cartItems?.length > 0 ? cartItems : mockCartItems;
   const calculatedSubtotal = subtotal || items?.reduce((sum, item) => sum + (item?.price * item?.quantity), 0);
-  const calculatedShipping = typeof shipping === 'number' ? shipping : 0;
+  const calculatedShipping = typeof shipping === 'number' ? shipping : 50;
   const calculatedDiscount = discount || (appliedCoupon === 'FLAT10' && calculatedSubtotal >= 2500 ? calculatedSubtotal * 0.1 : 0);
   const calculatedTotal = total || (calculatedSubtotal + calculatedShipping - calculatedDiscount);
 
@@ -211,7 +211,7 @@ const OrderSummary = ({
             
             <div className="flex justify-between font-body text-sm">
               <span className="text-muted-foreground">Shipping</span>
-              <span className="font-data font-medium text-success">Free</span>
+              <span className="font-data font-medium">₹{calculatedShipping?.toFixed(2)}</span>
             </div>
             
             {calculatedDiscount > 0 && (

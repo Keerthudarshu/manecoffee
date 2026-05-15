@@ -14,8 +14,8 @@ const checkoutApi = {
     return res.data;
   }
   ,
-  async createRazorpayOrder(email) {
-    const res = await apiClient.post('/payments/razorpay/create-order', {}, { params: { email } });
+  async createRazorpayOrder(email, amount) {
+    const res = await apiClient.post('/payments/razorpay/create-order', { amount }, { params: { email } });
     return res.data;
   },
   async verifyRazorpayPayment(payload) {

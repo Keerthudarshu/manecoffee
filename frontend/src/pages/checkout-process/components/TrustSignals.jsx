@@ -10,8 +10,8 @@ const TrustSignals = () => {
     },
     {
       icon: 'Truck',
-      title: 'Free Shipping',
-      description: 'On orders above ₹2500'
+      title: 'Standard Shipping',
+      description: 'Fixed charge of ₹50'
     },
     {
       icon: 'Headphones',
