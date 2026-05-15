@@ -9,7 +9,7 @@ import { resolveImageUrl } from '../../lib/resolveImageUrl';
 const CartDrawer = ({ isOpen, onClose, cartItems = [], onUpdateQuantity, onRemoveItem }) => {
   const navigate = useNavigate();
   const subtotal = cartItems?.reduce((sum, item) => sum + (item?.price * item?.quantity), 0);
-  const shipping = subtotal >= 2500 ? 0 : 99;
+  const shipping = 50;
   const total = subtotal + shipping;
 
   const handleQuantityChange = (itemId, newQuantity) => {
@@ -121,10 +121,6 @@ const CartDrawer = ({ isOpen, onClose, cartItems = [], onUpdateQuantity, onRemov
           {/* Footer */}
           {cartItems?.length > 0 && (
             <div className="border-t border-border p-4 space-y-4">
-              {/* Shipping Notice */}
-                  <p className="font-caption text-xs text-primary font-bold">
-                    Add ₹{(2500 - subtotal)?.toFixed(2)} more for free shipping!
-                  </p>
               
               {/* Order Summary */}
               <div className="space-y-2">
@@ -135,7 +131,7 @@ const CartDrawer = ({ isOpen, onClose, cartItems = [], onUpdateQuantity, onRemov
                 <div className="flex justify-between font-body text-sm">
                   <span className="text-muted-foreground font-medium">Shipping</span>
                   <span className="font-data font-bold text-foreground">
-                    {shipping === 0 ? <span className="text-green-600">Free</span> : `₹${shipping?.toFixed(2)}`}
+                    ₹{shipping?.toFixed(2)}
                   </span>
                 </div>
                 <div className="flex justify-between font-heading font-bold text-lg pt-2 border-t border-border text-primary">

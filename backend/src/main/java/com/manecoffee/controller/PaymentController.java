@@ -79,6 +79,7 @@ public class PaymentController {
                         : (ci.getProduct().getPrice() != null ? ci.getProduct().getPrice().doubleValue() : 0.0);
                 subtotal += price * ci.getQuantity();
             }
+            logger.info("Subtotal calculated for {}: {}", email, subtotal);
 
             double shippingFee = 50.0; // Fixed shipping charge always
             double discountAmount = 0.0;
@@ -87,16 +88,25 @@ public class PaymentController {
                 discountAmount = subtotal * 0.10;
             }
             double calculatedTotal = subtotal + shippingFee - discountAmount;
+            logger.info("Calculated total (subtotal + shipping - discount): {} + {} - {} = {}", subtotal, shippingFee, discountAmount, calculatedTotal);
 
             // Use amount from frontend if provided, else use calculatedTotal
             double total = calculatedTotal;
             if (body != null && body.containsKey("amount")) {
-                total = Double.parseDouble(body.get("amount").toString());
-                logger.info("Using frontend provided total: {}", total);
+                try {
+                    double frontendAmount = Double.parseDouble(body.get("amount").toString());
+                    logger.info("Frontend provided total: {}", frontendAmount);
+                    // Use frontend amount to ensure exact match with what user sees
+                    total = frontendAmount;
+                } catch (Exception e) {
+                    logger.warn("Failed to parse amount from body: {}. Using calculated total.", body.get("amount"));
+                }
+            } else {
+                logger.warn("No amount provided in request body for {}. Using calculated total: {}", email, total);
             }
 
             long amountPaise = Math.round(total * 100);
-            logger.debug("Razorpay order amount: {} INR = {} paise", total, amountPaise);
+            logger.info("Final Razorpay amount: {} INR ({} paise)", total, amountPaise);
 
             String receipt = "receipt_" + System.currentTimeMillis() + "_" + user.getId();
 
@@ -109,6 +119,9 @@ public class PaymentController {
             resp.put("currency", created.get("currency"));
             resp.put("receipt", created.get("receipt"));
             resp.put("total", total);
+            resp.put("subtotal", subtotal);
+            resp.put("shipping", shippingFee);
+            resp.put("discount", discountAmount);
 
             return ResponseEntity.ok(resp);
 

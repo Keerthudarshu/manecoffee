@@ -32,8 +32,6 @@ const OrderSummary = ({
     }
   };
 
-  const freeShippingThreshold = 2500;
-  const remainingForFreeShipping = Math.max(0, freeShippingThreshold - subtotal);
 
   return (
     <div className="bg-card border border-border rounded-lg p-6 shadow-warm sticky top-4">
@@ -101,23 +99,6 @@ const OrderSummary = ({
           </p>
         )}
       </div>
-      {/* Free Shipping Progress */}
-      {remainingForFreeShipping > 0 && (
-        <div className="mb-6 p-4 bg-warning/10 border border-warning/20 rounded-lg">
-          <div className="flex items-center gap-2 mb-2">
-            <Icon name="Truck" size={16} className="text-warning" />
-            <p className="font-caption text-sm font-medium text-warning-foreground">
-              Add ₹{remainingForFreeShipping?.toFixed(2)} more for FREE shipping!
-            </p>
-          </div>
-          <div className="w-full bg-warning/20 rounded-full h-2">
-            <div 
-              className="bg-warning h-2 rounded-full transition-all duration-300"
-              style={{ width: `${Math.min(100, (subtotal / freeShippingThreshold) * 100)}%` }}
-            />
-          </div>
-        </div>
-      )}
       {/* Coupon Code */}
       <div className="mb-6">
         <h3 className="font-body font-medium text-foreground mb-3">
@@ -165,10 +146,10 @@ const OrderSummary = ({
           </p>
           <div className="space-y-1">
             <p className="font-caption text-xs text-muted-foreground">
-              • FLAT10: 10% off on orders ≥₹1,499
+              • FLAT10: 10% off on orders ≥₹2,500
             </p>
             <p className="font-caption text-xs text-muted-foreground">
-              • FREE SHIPPING: Free shipping on orders ≥₹2500
+              • STANDARD SHIPPING: Fixed charge of ₹50
             </p>
           </div>
         </div>

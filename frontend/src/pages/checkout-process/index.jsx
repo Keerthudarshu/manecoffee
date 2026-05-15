@@ -278,6 +278,7 @@ const CheckoutProcess = () => {
       }
 
       // For online payments (card/upi/wallet), create a Razorpay order and open checkout
+      console.log('Creating Razorpay order with total:', total, 'Subtotal:', subtotal, 'Shipping:', shippingCost);
       const r = await checkoutApi.createRazorpayOrder(user.email, total);
       const loadRzp = () => new Promise((resolve) => {
         if (window.Razorpay) return resolve(true);
